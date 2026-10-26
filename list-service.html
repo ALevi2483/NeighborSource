@@ -16,7 +16,7 @@
 
   <meta
     name="description"
-    content="Submit your business or individual service to NeighborSource for free."
+    content="Submit your local business or individual service to be considered for the NeighborSource directory."
   >
 
   <link
@@ -39,21 +39,17 @@
 
     <div class="container">
 
-
       <div class="eyebrow">
         FOR LOCAL PROVIDERS
       </div>
-
 
       <h1>
         List Your Service
       </h1>
 
-
       <p>
-        Own a local business or provide a service in the community? Submit a free NeighborSource listing for review.
+        Own a local business or provide a service in Hampton Roads? Submit your information for review and possible inclusion in the NeighborSource directory.
       </p>
-
 
     </div>
 
@@ -61,48 +57,71 @@
 
 
 
-  <!-- FORM -->
+  <!-- FORM SECTION -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <form
-        class="card form-card"
-        id="list-service-form"
-        data-form-type="provider"
+      <div
+        style="
+          display:grid;
+          grid-template-columns:minmax(0, 1fr) 340px;
+          gap:32px;
+          align-items:start;
+        "
       >
 
 
-        <input
-          type="hidden"
-          name="type"
-          value="provider"
+        <!-- FORM -->
+
+        <form
+          class="card form-card"
+          id="list-service-form"
+          data-form-type="provider"
         >
 
-
-        <!-- INTRO -->
-
-        <div
-          class="notice green"
-          style="margin-bottom:30px;"
-        >
-
-          <strong>Free to list.</strong>
-
-          NeighborSource does not charge providers to submit a listing and does not sell leads or paid rankings.
-
-        </div>
+          <input
+            type="hidden"
+            name="type"
+            value="provider"
+          >
 
 
+          <!--
+            This hidden field receives the combined
+            checkbox selections before submission.
+          -->
 
-        <div class="form-grid">
+          <input
+            type="hidden"
+            id="serviceArea"
+            name="serviceArea"
+            value=""
+          >
+
+
+
+          <div class="eyebrow dark">
+            PROVIDER INFORMATION
+          </div>
+
+
+          <h2>
+            Tell us about your service
+          </h2>
+
+
+          <p class="small">
+            Fields marked with * are required.
+          </p>
+
 
 
           <!-- PROVIDER TYPE -->
 
-          <div class="field full">
+          <div class="form-group">
 
             <label for="providerType">
               Provider Type *
@@ -115,7 +134,7 @@
             >
 
               <option value="">
-                Choose provider type
+                Select provider type
               </option>
 
               <option value="Business">
@@ -123,7 +142,7 @@
               </option>
 
               <option value="Individual">
-                Individual Service Provider
+                Individual
               </option>
 
             </select>
@@ -134,20 +153,23 @@
 
           <!-- PROVIDER NAME -->
 
-          <div class="field">
+          <div class="form-group">
 
             <label for="providerName">
-              Business or Service Name *
+              Business or Provider Name *
             </label>
 
             <input
               id="providerName"
               name="providerName"
               type="text"
-              required
               autocomplete="organization"
-              placeholder="Example: Smith Lawn Care"
+              required
             >
+
+            <div class="small">
+              This is the name that will appear publicly on NeighborSource.
+            </div>
 
           </div>
 
@@ -155,7 +177,7 @@
 
           <!-- CONTACT NAME -->
 
-          <div class="field">
+          <div class="form-group">
 
             <label for="contactName">
               Contact Name *
@@ -165,60 +187,64 @@
               id="contactName"
               name="contactName"
               type="text"
-              required
               autocomplete="name"
-              placeholder="Your name"
+              required
             >
 
-            <div class="helper">
-              This is for NeighborSource administration and may not be displayed publicly.
+            <div class="small">
+              Used for administrative contact. This does not have to be the public provider name.
             </div>
 
           </div>
 
 
 
-          <!-- PHONE -->
+          <!-- PHONE / EMAIL -->
 
-          <div class="field">
-
-            <label for="phone">
-              Phone *
-            </label>
-
-            <input
-              id="phone"
-              name="phone"
-              type="tel"
-              required
-              autocomplete="tel"
-              placeholder="757-555-0100"
-            >
-
-          </div>
+          <div
+            style="
+              display:grid;
+              grid-template-columns:repeat(2, minmax(0, 1fr));
+              gap:18px;
+            "
+          >
 
 
+            <div class="form-group">
 
-          <!-- EMAIL -->
+              <label for="phone">
+                Phone *
+              </label>
 
-          <div class="field">
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                autocomplete="tel"
+                placeholder="757-555-1234"
+                required
+              >
 
-            <label for="email">
-              Email *
-            </label>
-
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autocomplete="email"
-              placeholder="you@example.com"
-            >
-
-            <div class="helper">
-              Used for listing questions and updates.
             </div>
+
+
+
+            <div class="form-group">
+
+              <label for="email">
+                Email *
+              </label>
+
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+              >
+
+            </div>
+
 
           </div>
 
@@ -226,10 +252,10 @@
 
           <!-- CATEGORY -->
 
-          <div class="field">
+          <div class="form-group">
 
             <label for="category">
-              Primary Category *
+              Primary Service Category *
             </label>
 
             <select
@@ -239,7 +265,7 @@
             >
 
               <option value="">
-                Choose a category
+                Select a category
               </option>
 
               <option value="Home & Repair">
@@ -296,47 +322,23 @@
 
 
 
-          <!-- SERVICE AREA -->
-
-          <div class="field">
-
-            <label for="serviceArea">
-              Service Area *
-            </label>
-
-            <input
-              id="serviceArea"
-              name="serviceArea"
-              type="text"
-              required
-              placeholder="Example: Chesapeake, Portsmouth, Suffolk"
-            >
-
-            <div class="helper">
-              List the Hampton Roads cities or communities you serve.
-            </div>
-
-          </div>
-
-
-
           <!-- SERVICES -->
 
-          <div class="field full">
+          <div class="form-group">
 
             <label for="services">
-              What services do you provide? *
+              Services Offered *
             </label>
 
             <input
               id="services"
               name="services"
               type="text"
+              placeholder="Example: Handyman, deck repair, fence repair, drywall"
               required
-              placeholder="Example: Fence repair, decks, pressure washing, handyman services"
             >
 
-            <div class="helper">
+            <div class="small">
               Separate multiple services with commas.
             </div>
 
@@ -346,7 +348,7 @@
 
           <!-- DESCRIPTION -->
 
-          <div class="field full">
+          <div class="form-group">
 
             <label for="description">
               About Your Service *
@@ -355,9 +357,241 @@
             <textarea
               id="description"
               name="description"
+              rows="6"
+              placeholder="Tell neighbors what you do, your experience, specialties, and anything else they should know."
               required
-              placeholder="Tell neighbors what you do, the type of work you specialize in, and anything useful they should know."
             ></textarea>
+
+          </div>
+
+
+
+          <!-- SERVICE AREA -->
+
+          <div class="form-group">
+
+            <label>
+              Service Area *
+            </label>
+
+
+            <div class="small">
+              Select every city where you provide service.
+            </div>
+
+
+            <div
+              style="
+                display:grid;
+                grid-template-columns:repeat(2, minmax(0, 1fr));
+                gap:12px 20px;
+                margin-top:16px;
+                padding:20px;
+                background:var(--soft);
+                border:1px solid var(--line);
+                border-radius:14px;
+              "
+            >
+
+
+              <label
+                style="
+                  display:flex;
+                  align-items:center;
+                  gap:10px;
+                  cursor:pointer;
+                "
+              >
+
+                <input
+                  type="checkbox"
+                  class="service-area-option"
+                  value="Chesapeake"
+                >
+
+                <span>
+                  Chesapeake
+                </span>
+
+              </label>
+
+
+
+              <label
+                style="
+                  display:flex;
+                  align-items:center;
+                  gap:10px;
+                  cursor:pointer;
+                "
+              >
+
+                <input
+                  type="checkbox"
+                  class="service-area-option"
+                  value="Norfolk"
+                >
+
+                <span>
+                  Norfolk
+                </span>
+
+              </label>
+
+
+
+              <label
+                style="
+                  display:flex;
+                  align-items:center;
+                  gap:10px;
+                  cursor:pointer;
+                "
+              >
+
+                <input
+                  type="checkbox"
+                  class="service-area-option"
+                  value="Portsmouth"
+                >
+
+                <span>
+                  Portsmouth
+                </span>
+
+              </label>
+
+
+
+              <label
+                style="
+                  display:flex;
+                  align-items:center;
+                  gap:10px;
+                  cursor:pointer;
+                "
+              >
+
+                <input
+                  type="checkbox"
+                  class="service-area-option"
+                  value="Suffolk"
+                >
+
+                <span>
+                  Suffolk
+                </span>
+
+              </label>
+
+
+
+              <label
+                style="
+                  display:flex;
+                  align-items:center;
+                  gap:10px;
+                  cursor:pointer;
+                "
+              >
+
+                <input
+                  type="checkbox"
+                  class="service-area-option"
+                  value="Virginia Beach"
+                >
+
+                <span>
+                  Virginia Beach
+                </span>
+
+              </label>
+
+
+
+              <label
+                style="
+                  display:flex;
+                  align-items:center;
+                  gap:10px;
+                  cursor:pointer;
+                "
+              >
+
+                <input
+                  type="checkbox"
+                  class="service-area-option"
+                  value="Hampton"
+                >
+
+                <span>
+                  Hampton
+                </span>
+
+              </label>
+
+
+
+              <label
+                style="
+                  display:flex;
+                  align-items:center;
+                  gap:10px;
+                  cursor:pointer;
+                "
+              >
+
+                <input
+                  type="checkbox"
+                  class="service-area-option"
+                  value="Newport News"
+                >
+
+                <span>
+                  Newport News
+                </span>
+
+              </label>
+
+
+
+              <label
+                style="
+                  display:flex;
+                  align-items:center;
+                  gap:10px;
+                  cursor:pointer;
+                "
+              >
+
+                <input
+                  type="checkbox"
+                  class="service-area-option"
+                  value="Other"
+                >
+
+                <span>
+                  Other
+                </span>
+
+              </label>
+
+
+            </div>
+
+
+            <div
+              id="service-area-error"
+              class="small"
+              style="
+                display:none;
+                margin-top:10px;
+                font-weight:700;
+              "
+            >
+              Please select at least one service area.
+            </div>
+
 
           </div>
 
@@ -365,7 +599,7 @@
 
           <!-- WEBSITE -->
 
-          <div class="field">
+          <div class="form-group">
 
             <label for="website">
               Website
@@ -375,7 +609,7 @@
               id="website"
               name="website"
               type="url"
-              placeholder="https://yourwebsite.com"
+              placeholder="https://"
             >
 
           </div>
@@ -384,7 +618,7 @@
 
           <!-- FACEBOOK -->
 
-          <div class="field">
+          <div class="form-group">
 
             <label for="facebook">
               Facebook Page
@@ -394,27 +628,44 @@
               id="facebook"
               name="facebook"
               type="url"
-              placeholder="https://facebook.com/yourpage"
+              placeholder="https://facebook.com/..."
             >
 
           </div>
 
 
 
-          <!-- AUTHORIZATION -->
+          <!-- CONFIRMATION -->
 
-          <div class="field full">
+          <div
+            style="
+              margin-top:24px;
+              padding:20px;
+              background:var(--soft);
+              border:1px solid var(--line);
+              border-radius:14px;
+            "
+          >
 
-            <label class="check-row">
+            <label
+              style="
+                display:flex;
+                gap:12px;
+                align-items:flex-start;
+                cursor:pointer;
+              "
+            >
 
               <input
-                id="listingAuthorization"
                 type="checkbox"
                 required
+                style="margin-top:4px;"
               >
 
-              <span>
-                I confirm that the information submitted is accurate and that I am authorized to submit this listing.
+              <span class="small">
+
+                I confirm that the information submitted is accurate to the best of my knowledge and that I am authorized to submit this provider information.
+
               </span>
 
             </label>
@@ -422,172 +673,109 @@
           </div>
 
 
-        </div>
 
+          <!-- SUBMIT -->
 
+          <div style="margin-top:26px;">
 
-        <!-- SUBMIT -->
+            <button
+              class="btn btn-green"
+              type="submit"
+            >
+              Submit Listing
+            </button>
 
-        <button
-          class="btn btn-green"
-          type="submit"
-        >
-          Submit Listing
-        </button>
-
-
-
-        <!-- STATUS -->
-
-        <div
-          id="form-status"
-          style="margin-top:20px;"
-          aria-live="polite"
-        ></div>
-
-
-      </form>
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- WHAT HAPPENS NEXT -->
-
-  <section class="section section-soft">
-
-    <div class="container">
-
-
-      <div class="section-heading centered">
-
-        <div class="eyebrow dark">
-          AFTER YOU SUBMIT
-        </div>
-
-        <h2>
-          What happens next?
-        </h2>
-
-        <p class="section-intro">
-          Listings are reviewed before appearing publicly.
-        </p>
-
-      </div>
-
-
-
-      <div class="steps-grid">
-
-
-        <div class="card step-card">
-
-          <div class="step-number">
-            1
           </div>
 
-          <h3>
-            Submit
-          </h3>
-
-          <p>
-            Send us your business or service information.
-          </p>
-
-        </div>
 
 
+          <!-- STATUS -->
 
-        <div class="card step-card">
+          <div
+            id="form-status"
+            style="margin-top:20px;"
+            aria-live="polite"
+          ></div>
 
-          <div class="step-number">
-            2
+
+        </form>
+
+
+
+        <!-- SIDEBAR -->
+
+        <aside>
+
+
+          <div
+            class="card"
+            style="margin-bottom:22px;"
+          >
+
+            <div class="eyebrow dark">
+              WHAT HAPPENS NEXT?
+            </div>
+
+            <h3>
+              Listings are reviewed first
+            </h3>
+
+            <p class="small">
+              Submitting this form does not immediately publish the listing.
+            </p>
+
+
+            <div
+              class="trust-list"
+              style="
+                margin-top:20px;
+                color:var(--text);
+              "
+            >
+
+              <div class="trust-item">
+                1. Submit your information
+              </div>
+
+              <div class="trust-item">
+                2. NeighborSource reviews it
+              </div>
+
+              <div class="trust-item">
+                3. Approved listings are added to the directory
+              </div>
+
+            </div>
+
           </div>
 
-          <h3>
-            Review
-          </h3>
-
-          <p>
-            NeighborSource reviews the submission for completeness and obvious issues.
-          </p>
-
-        </div>
 
 
+          <div class="card">
 
-        <div class="card step-card">
+            <div class="eyebrow dark">
+              ALREADY LISTED?
+            </div>
 
-          <div class="step-number">
-            3
+            <h3>
+              Need to make a change?
+            </h3>
+
+            <p class="small">
+              Use the listing update form instead of submitting a duplicate provider.
+            </p>
+
+            <a
+              class="btn btn-outline"
+              href="update-listing.html"
+            >
+              Update a Listing
+            </a>
+
           </div>
 
-          <h3>
-            Publish
-          </h3>
 
-          <p>
-            Approved listings become searchable in the NeighborSource directory.
-          </p>
-
-        </div>
-
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- VERIFICATION NOTE -->
-
-  <section class="section">
-
-    <div class="container">
-
-
-      <div
-        class="card"
-        style="
-          max-width:900px;
-          margin:0 auto;
-          padding:36px;
-        "
-      >
-
-
-        <div class="eyebrow dark">
-          VERIFICATION
-        </div>
-
-
-        <h2>
-          Listing does not automatically mean verified
-        </h2>
-
-
-        <p>
-          NeighborSource may separately verify certain information such as a phone number, business information, license, or insurance when applicable.
-        </p>
-
-
-        <p class="small">
-          Verification badges only represent the specific information reviewed. They are not a guarantee of workmanship or an endorsement by NeighborSource.
-        </p>
-
-
-        <a
-          class="btn btn-outline"
-          href="verification.html"
-        >
-          Learn About Verification
-        </a>
+        </aside>
 
 
       </div>
@@ -600,6 +788,152 @@
 
 </main>
 
+
+
+<!--
+  SERVICE AREA CHECKBOX HANDLER
+
+  Converts selected checkboxes into one value such as:
+
+  Chesapeake, Norfolk, Virginia Beach
+
+  That preserves the existing "serviceArea" field expected
+  by Google Apps Script.
+-->
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+    const form =
+      document.getElementById(
+        "list-service-form"
+      );
+
+    const hiddenField =
+      document.getElementById(
+        "serviceArea"
+      );
+
+    const checkboxes =
+      Array.from(
+        document.querySelectorAll(
+          ".service-area-option"
+        )
+      );
+
+    const errorMessage =
+      document.getElementById(
+        "service-area-error"
+      );
+
+
+    if (
+      !form ||
+      !hiddenField ||
+      !checkboxes.length
+    ) {
+
+      return;
+
+    }
+
+
+    function updateServiceArea() {
+
+      const selected =
+        checkboxes
+          .filter(
+            checkbox =>
+              checkbox.checked
+          )
+          .map(
+            checkbox =>
+              checkbox.value
+          );
+
+
+      hiddenField.value =
+        selected.join(
+          ", "
+        );
+
+
+      if (
+        selected.length
+      ) {
+
+        if (
+          errorMessage
+        ) {
+
+          errorMessage.style.display =
+            "none";
+
+        }
+
+      }
+
+
+      return selected;
+
+    }
+
+
+    checkboxes.forEach(
+      checkbox => {
+
+        checkbox.addEventListener(
+          "change",
+          updateServiceArea
+        );
+
+      }
+    );
+
+
+    form.addEventListener(
+      "submit",
+      function (event) {
+
+        const selected =
+          updateServiceArea();
+
+
+        if (
+          selected.length ===
+          0
+        ) {
+
+          event.preventDefault();
+
+          event.stopImmediatePropagation();
+
+
+          if (
+            errorMessage
+          ) {
+
+            errorMessage.style.display =
+              "block";
+
+          }
+
+
+          checkboxes[0].focus();
+
+        }
+
+      },
+      true
+    );
+
+  }
+);
+
+</script>
 
 
 <script src="js/app.js?v=3"></script>
