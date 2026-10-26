@@ -25,8 +25,6 @@
   >
 
 
-  <!-- PAGE-SPECIFIC RESPONSIVE FIXES -->
-
   <style>
 
     .listing-layout {
@@ -57,25 +55,36 @@
 
 
     .service-area-choice {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      gap: 12px;
+      width: 100%;
       min-width: 0;
+      margin: 0;
+      cursor: pointer;
     }
 
 
-    .service-area-choice input {
-      flex: 0 0 auto;
-      width: 20px;
-      height: 20px;
-      margin: 0;
+    .service-area-choice input[type="checkbox"] {
+      width: 22px !important;
+      height: 22px !important;
+      min-width: 22px !important;
+      max-width: 22px !important;
+      flex: 0 0 22px !important;
+      margin: 0 !important;
+      padding: 0 !important;
     }
 
 
     .service-area-choice span {
+      display: block;
+      width: auto;
       min-width: 0;
-      overflow-wrap: anywhere;
+      flex: 1 1 auto;
+      white-space: normal;
+      word-break: normal;
+      overflow-wrap: normal;
     }
 
 
@@ -89,18 +98,30 @@
 
 
     .confirmation-label {
-      display: flex;
+      display: flex !important;
+      align-items: flex-start !important;
+      justify-content: flex-start !important;
       gap: 12px;
-      align-items: flex-start;
+      width: 100%;
       cursor: pointer;
     }
 
 
-    .confirmation-label input {
-      flex: 0 0 auto;
-      width: 20px;
-      height: 20px;
-      margin: 3px 0 0 0;
+    .confirmation-label input[type="checkbox"] {
+      width: 22px !important;
+      height: 22px !important;
+      min-width: 22px !important;
+      max-width: 22px !important;
+      flex: 0 0 22px !important;
+      margin: 3px 0 0 0 !important;
+      padding: 0 !important;
+    }
+
+
+    .confirmation-label span {
+      flex: 1 1 auto;
+      min-width: 0;
+      width: auto;
     }
 
 
@@ -109,9 +130,6 @@
     }
 
 
-    /*
-      TABLET / PHONE
-    */
 
     @media (max-width: 900px) {
 
@@ -134,15 +152,12 @@
 
 
       .service-area-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
       }
 
     }
 
 
-    /*
-      SMALL PHONES
-    */
 
     @media (max-width: 520px) {
 
@@ -170,33 +185,34 @@
 
 
       .service-area-grid {
+        display: grid;
         grid-template-columns: 1fr;
-        gap: 14px;
+        gap: 16px;
         padding: 18px;
       }
 
 
-      .service-area-choice {
-        width: 100%;
-      }
+      /*
+       * IMPORTANT:
+       * This deliberately excludes checkboxes.
+       */
 
-
-      .confirmation-box {
-        padding: 18px;
-      }
-
-
-      .confirmation-label {
-        width: 100%;
-      }
-
-
-      .form-card input,
+      .form-card input:not([type="checkbox"]),
       .form-card select,
       .form-card textarea {
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
+      }
+
+
+      .service-area-choice input[type="checkbox"],
+      .confirmation-label input[type="checkbox"] {
+        width: 22px !important;
+        height: 22px !important;
+        min-width: 22px !important;
+        max-width: 22px !important;
+        flex-basis: 22px !important;
       }
 
 
@@ -222,8 +238,6 @@
 <main>
 
 
-  <!-- PAGE HERO -->
-
   <section class="page-hero">
 
     <div class="container">
@@ -248,8 +262,6 @@
 
 
 
-  <!-- FORM SECTION -->
-
   <section class="section">
 
     <div class="container">
@@ -257,8 +269,6 @@
 
       <div class="listing-layout">
 
-
-        <!-- FORM -->
 
         <form
           class="card form-card"
@@ -273,11 +283,6 @@
             value="provider"
           >
 
-
-          <!--
-            Stores all selected service-area checkboxes
-            as one comma-separated value.
-          -->
 
           <input
             type="hidden"
@@ -303,8 +308,6 @@
           </p>
 
 
-
-          <!-- PROVIDER TYPE -->
 
           <div class="form-group">
 
@@ -337,8 +340,6 @@
 
 
 
-          <!-- PROVIDER NAME -->
-
           <div class="form-group">
 
             <label for="providerName">
@@ -363,8 +364,6 @@
 
 
 
-          <!-- CONTACT NAME -->
-
           <div class="form-group">
 
             <label for="contactName">
@@ -388,8 +387,6 @@
           </div>
 
 
-
-          <!-- PHONE / EMAIL -->
 
           <div class="listing-contact-grid">
 
@@ -436,8 +433,6 @@
           </div>
 
 
-
-          <!-- CATEGORY -->
 
           <div class="form-group">
 
@@ -510,8 +505,6 @@
 
 
 
-          <!-- SERVICES -->
-
           <div class="form-group">
 
             <label for="services">
@@ -536,8 +529,6 @@
 
 
 
-          <!-- DESCRIPTION -->
-
           <div class="form-group">
 
             <label for="description">
@@ -556,8 +547,6 @@
           </div>
 
 
-
-          <!-- SERVICE AREA -->
 
           <div class="form-group">
 
@@ -722,8 +711,6 @@
 
 
 
-          <!-- WEBSITE -->
-
           <div class="form-group">
 
             <label for="website">
@@ -743,8 +730,6 @@
 
 
 
-          <!-- FACEBOOK -->
-
           <div class="form-group">
 
             <label for="facebook">
@@ -763,8 +748,6 @@
           </div>
 
 
-
-          <!-- CONFIRMATION -->
 
           <div class="confirmation-box">
 
@@ -786,8 +769,6 @@
 
 
 
-          <!-- SUBMIT -->
-
           <div style="margin-top:26px;">
 
             <button
@@ -801,8 +782,6 @@
 
 
 
-          <!-- STATUS -->
-
           <div
             id="form-status"
             style="margin-top:20px;"
@@ -813,8 +792,6 @@
         </form>
 
 
-
-        <!-- SIDEBAR -->
 
         <aside class="listing-sidebar">
 
@@ -903,8 +880,6 @@
 </main>
 
 
-
-<!-- SERVICE AREA CHECKBOX HANDLER -->
 
 <script>
 
@@ -1006,8 +981,7 @@ document.addEventListener(
 
 
         if (
-          selected.length ===
-          0
+          selected.length === 0
         ) {
 
           event.preventDefault();
