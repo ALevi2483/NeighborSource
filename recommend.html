@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
@@ -17,12 +16,12 @@
 
   <meta
     name="description"
-    content="Recommend a local provider on NeighborSource."
+    content="Share your experience with a local provider and help your neighbors make informed choices."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css"
+    href="css/style.css?v=3"
   >
 
 </head>
@@ -34,19 +33,27 @@
 <main>
 
 
-  <!-- PAGE HEADER -->
+  <!-- PAGE HERO -->
 
   <section class="page-hero">
 
     <div class="container">
 
+
+      <div class="eyebrow">
+        SHARE YOUR EXPERIENCE
+      </div>
+
+
       <h1>
         Recommend a Provider
       </h1>
 
+
       <p>
-        Share your experience and help your neighbors find people and businesses they can trust.
+        Used someone listed on NeighborSource? Tell your neighbors about your experience.
       </p>
+
 
     </div>
 
@@ -63,14 +70,10 @@
 
       <form
         class="card form-card"
-        id="recommendationForm"
-        action="https://script.google.com/macros/s/AKfycbx4bTHYgVwb9rB66m4hnFKvxtPHrTwe6qoqdERU_eRVb4yg1cdrH1zkeIHHl54573_8/exec"
-        method="POST"
-        target="recommendationFrame"
+        id="recommendation-form"
+        data-form-type="recommendation"
       >
 
-
-        <!-- DATABASE TYPE -->
 
         <input
           type="hidden"
@@ -79,14 +82,27 @@
         >
 
 
-        <!-- PROVIDER ID -->
-
         <input
           type="hidden"
           id="providerId"
           name="providerId"
           value=""
         >
+
+
+
+        <!-- INTRO -->
+
+        <div
+          class="notice green"
+          style="margin-bottom:30px;"
+        >
+
+          <strong>Only recommend providers you have actually used.</strong>
+
+          Your experience helps other neighbors understand what to expect.
+
+        </div>
 
 
 
@@ -98,75 +114,115 @@
           <div class="field full">
 
             <label for="providerName">
-              Provider
+              Provider *
             </label>
 
             <input
               id="providerName"
               name="providerName"
               type="text"
-              readonly
               required
+              placeholder="Provider name"
             >
 
             <div class="helper">
-              This provider was selected from their NeighborSource profile.
+              If you came here from a provider profile, this should already be filled in.
             </div>
 
           </div>
 
 
 
-          <!-- REVIEWER NAME -->
-
-          <div class="field">
-
-            <label for="reviewerName">
-              Your Name
-            </label>
-
-            <input
-              id="reviewerName"
-              name="reviewerName"
-              type="text"
-              required
-              placeholder="Your name"
-            >
-
-          </div>
-
-
-
-          <!-- REVIEWER EMAIL -->
-
-          <div class="field">
-
-            <label for="reviewerEmail">
-              Your Email
-            </label>
-
-            <input
-              id="reviewerEmail"
-              name="reviewerEmail"
-              type="email"
-              required
-              placeholder="you@example.com"
-            >
-
-            <div class="helper">
-              Your email is used for moderation and is not displayed publicly.
-            </div>
-
-          </div>
-
-
-
-          <!-- REVIEWER CITY -->
+          <!-- SERVICE PROVIDED -->
 
           <div class="field full">
 
+            <label for="serviceProvided">
+              What service did they provide? *
+            </label>
+
+            <input
+              id="serviceProvided"
+              name="serviceProvided"
+              type="text"
+              required
+              placeholder="Example: Fence repair, dog walking, mobile notary"
+            >
+
+          </div>
+
+
+
+          <!-- WOULD RECOMMEND -->
+
+          <div class="field">
+
+            <label for="wouldRecommend">
+              Would you recommend them? *
+            </label>
+
+            <select
+              id="wouldRecommend"
+              name="wouldRecommend"
+              required
+            >
+
+              <option value="">
+                Choose one
+              </option>
+
+              <option value="Yes">
+                Yes
+              </option>
+
+              <option value="No">
+                No
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- WOULD USE AGAIN -->
+
+          <div class="field">
+
+            <label for="wouldUseAgain">
+              Would you use them again? *
+            </label>
+
+            <select
+              id="wouldUseAgain"
+              name="wouldUseAgain"
+              required
+            >
+
+              <option value="">
+                Choose one
+              </option>
+
+              <option value="Yes">
+                Yes
+              </option>
+
+              <option value="No">
+                No
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- CITY -->
+
+          <div class="field">
+
             <label for="reviewerCity">
-              Your City
+              Your City *
             </label>
 
             <select
@@ -176,7 +232,7 @@
             >
 
               <option value="">
-                Select your city
+                Choose your city
               </option>
 
               <option value="Chesapeake">
@@ -217,85 +273,47 @@
 
 
 
-          <!-- WOULD RECOMMEND -->
+          <!-- NAME -->
 
-          <div class="field full">
+          <div class="field">
 
-            <label for="wouldRecommend">
-              Would you recommend this provider?
-            </label>
-
-            <select
-              id="wouldRecommend"
-              name="wouldRecommend"
-              required
-            >
-
-              <option value="">
-                Select an answer
-              </option>
-
-              <option value="Yes">
-                Yes, I recommend them
-              </option>
-
-              <option value="No">
-                No, I do not recommend them
-              </option>
-
-            </select>
-
-          </div>
-
-
-
-          <!-- SERVICE PROVIDED -->
-
-          <div class="field full">
-
-            <label for="serviceProvided">
-              What service did they provide?
+            <label for="reviewerName">
+              Your Name *
             </label>
 
             <input
-              id="serviceProvided"
-              name="serviceProvided"
+              id="reviewerName"
+              name="reviewerName"
               type="text"
               required
-              placeholder="Example: Fence installation, dog walking, mobile notary"
+              autocomplete="name"
+              placeholder="Your name"
             >
 
           </div>
 
 
 
-          <!-- WOULD USE AGAIN -->
+          <!-- EMAIL -->
 
           <div class="field full">
 
-            <label for="wouldUseAgain">
-              Would you use this provider again?
+            <label for="reviewerEmail">
+              Your Email *
             </label>
 
-            <select
-              id="wouldUseAgain"
-              name="wouldUseAgain"
+            <input
+              id="reviewerEmail"
+              name="reviewerEmail"
+              type="email"
               required
+              autocomplete="email"
+              placeholder="you@example.com"
             >
 
-              <option value="">
-                Select an answer
-              </option>
-
-              <option value="Yes">
-                Yes
-              </option>
-
-              <option value="No">
-                No
-              </option>
-
-            </select>
+            <div class="helper">
+              Your email is used for moderation or follow-up and is not displayed publicly.
+            </div>
 
           </div>
 
@@ -312,11 +330,11 @@
             <textarea
               id="comments"
               name="comments"
-              placeholder="Optional. What went well? What service did they perform? Anything your neighbors should know?"
+              placeholder="What did they do well? Was communication good? Were you satisfied with the work? Anything another neighbor should know?"
             ></textarea>
 
             <div class="helper">
-              Optional. Keep comments factual and based on your own experience.
+              Keep comments factual and based on your own experience.
             </div>
 
           </div>
@@ -330,12 +348,14 @@
             <label class="check-row">
 
               <input
+                id="recommendationConfirmation"
                 type="checkbox"
-                id="experienceConfirmation"
                 required
               >
 
-              I confirm that this recommendation reflects my own experience with this provider.
+              <span>
+                I confirm that I personally used this provider and that this recommendation reflects my genuine experience.
+              </span>
 
             </label>
 
@@ -346,104 +366,163 @@
 
 
 
-        <!-- NO PROVIDER ERROR -->
-
-        <div
-          class="notice warning"
-          id="providerError"
-          style="
-            display:none;
-            margin-bottom:16px;
-          "
-        >
-
-          <strong>
-            No provider was selected.
-          </strong>
-
-          Please return to a provider profile and click Recommend.
-
-        </div>
-
-
-
-        <!-- SUBMIT BUTTON -->
+        <!-- SUBMIT -->
 
         <button
           class="btn btn-green"
           type="submit"
-          id="submitRecommendationButton"
         >
-
           Submit Recommendation
-
         </button>
 
 
 
-        <!-- SUBMITTING -->
+        <!-- STATUS -->
 
         <div
-          class="notice"
-          id="submittingMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            Submitting recommendation...
-          </strong>
-
-          Please do not close this page.
-
-        </div>
-
-
-
-        <!-- SUCCESS -->
-
-        <div
-          class="notice green"
-          id="successMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            Recommendation submitted.
-          </strong>
-
-          Your recommendation has been sent for review.
-
-        </div>
-
-
-
-        <!-- ERROR -->
-
-        <div
-          class="notice warning"
-          id="errorMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            We could not submit your recommendation.
-          </strong>
-
-          Please try again.
-
-        </div>
+          id="form-status"
+          style="margin-top:20px;"
+          aria-live="polite"
+        ></div>
 
 
       </form>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- WHY RECOMMENDATIONS MATTER -->
+
+  <section class="section section-soft">
+
+    <div class="container">
+
+
+      <div class="section-heading centered">
+
+        <div class="eyebrow dark">
+          COMMUNITY RECOMMENDATIONS
+        </div>
+
+        <h2>
+          Real experiences help neighbors choose
+        </h2>
+
+        <p class="section-intro">
+          NeighborSource recommendations are connected to individual provider listings after review.
+        </p>
+
+      </div>
+
+
+
+      <div class="steps-grid">
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            1
+          </div>
+
+          <h3>
+            Share Your Experience
+          </h3>
+
+          <p>
+            Tell us who you used and what service they provided.
+          </p>
+
+        </div>
+
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            2
+          </div>
+
+          <h3>
+            Recommendation Reviewed
+          </h3>
+
+          <p>
+            Recommendations are reviewed before being connected to a provider's public profile.
+          </p>
+
+        </div>
+
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            3
+          </div>
+
+          <h3>
+            Help Your Neighbors
+          </h3>
+
+          <p>
+            Approved recommendations help other people find providers their neighbors have actually used.
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- GUIDELINES -->
+
+  <section class="section">
+
+    <div class="container">
+
+
+      <div
+        class="card"
+        style="
+          max-width:900px;
+          margin:0 auto;
+          padding:36px;
+        "
+      >
+
+
+        <div class="eyebrow dark">
+          RECOMMENDATION GUIDELINES
+        </div>
+
+
+        <h2>
+          Keep it useful and fair
+        </h2>
+
+
+        <p>
+          Recommendations should describe your own experience with the provider. Avoid rumors, personal attacks, private information, or claims about situations you did not personally experience.
+        </p>
+
+
+        <p class="small">
+          NeighborSource may decline or remove submissions that are abusive, misleading, unrelated, or cannot reasonably be connected to the provider.
+        </p>
+
+
+      </div>
 
 
     </div>
@@ -455,351 +534,58 @@
 
 
 
-<!-- HIDDEN POST TARGET -->
+<script src="js/app.js?v=3"></script>
 
-<iframe
-  name="recommendationFrame"
-  id="recommendationFrame"
-  style="
-    width:0;
-    height:0;
-    border:0;
-    position:absolute;
-    left:-9999px;
-  "
-></iframe>
-
-
-
-<!-- MAIN WEBSITE JAVASCRIPT -->
-
-<script src="js/app.js"></script>
-
-
-
-<!-- RECOMMENDATION PAGE JAVASCRIPT -->
 
 <script>
 
-document.addEventListener(
-  "DOMContentLoaded",
-  function () {
+  /*
+   * Fill provider information from the provider profile URL.
+   *
+   * Expected format:
+   * recommend.html?providerId=PROVIDER-ID&provider=Provider%20Name
+   */
 
+  const recommendationParams =
+    new URLSearchParams(window.location.search);
 
-    /**********************************************
-     * ELEMENTS
-     **********************************************/
+  const recommendationProviderId =
+    recommendationParams.get("providerId") || "";
 
-    const form =
-      document.getElementById(
-        "recommendationForm"
-      );
+  const recommendationProviderName =
+    recommendationParams.get("provider") || "";
 
 
-    const providerIdInput =
-      document.getElementById(
-        "providerId"
-      );
+  const providerIdField =
+    document.getElementById("providerId");
 
+  const providerNameField =
+    document.getElementById("providerName");
 
-    const providerNameInput =
-      document.getElementById(
-        "providerName"
-      );
 
+  if (
+    providerIdField &&
+    recommendationProviderId
+  ) {
 
-    const providerError =
-      document.getElementById(
-        "providerError"
-      );
-
-
-    const submitButton =
-      document.getElementById(
-        "submitRecommendationButton"
-      );
-
-
-    const submittingMessage =
-      document.getElementById(
-        "submittingMessage"
-      );
-
-
-    const successMessage =
-      document.getElementById(
-        "successMessage"
-      );
-
-
-    const errorMessage =
-      document.getElementById(
-        "errorMessage"
-      );
-
-
-    const iframe =
-      document.getElementById(
-        "recommendationFrame"
-      );
-
-
-    let submissionStarted =
-      false;
-
-
-    /**********************************************
-     * READ PROVIDER FROM URL
-     *
-     * Example:
-     *
-     * recommend.html
-     * ?providerId=PROV-WEB-123
-     * &provider=Smith%20Construction
-     **********************************************/
-
-    const params =
-      new URLSearchParams(
-        window.location.search
-      );
-
-
-    const providerId =
-      params.get(
-        "providerId"
-      ) || "";
-
-
-    const providerName =
-      params.get(
-        "provider"
-      ) || "";
-
-
-    providerIdInput.value =
-      providerId;
-
-
-    providerNameInput.value =
-      providerName;
-
-
-
-    /**********************************************
-     * NO PROVIDER SELECTED
-     **********************************************/
-
-    if (
-      !providerId ||
-      !providerName
-    ) {
-
-      providerError.style.display =
-        "block";
-
-
-      submitButton.disabled =
-        true;
-
-    }
-
-
-
-    /**********************************************
-     * FORM SUBMISSION
-     **********************************************/
-
-    form.addEventListener(
-      "submit",
-      function (
-        event
-      ) {
-
-
-        if (
-          !providerIdInput.value ||
-          !providerNameInput.value
-        ) {
-
-          event.preventDefault();
-
-
-          providerError.style.display =
-            "block";
-
-
-          return;
-
-        }
-
-
-        successMessage.style.display =
-          "none";
-
-
-        errorMessage.style.display =
-          "none";
-
-
-        submittingMessage.style.display =
-          "block";
-
-
-        submitButton.disabled =
-          true;
-
-
-        submitButton.textContent =
-          "Submitting...";
-
-
-        submissionStarted =
-          true;
-
-
-        /*
-         * Do not prevent default.
-         *
-         * The form posts directly to Apps Script
-         * through the hidden iframe.
-         */
-
-      }
-    );
-
-
-
-    /**********************************************
-     * IFRAME FINISHED LOADING
-     *
-     * Once Apps Script finishes processing the
-     * POST, the hidden iframe loads its response.
-     **********************************************/
-
-    iframe.addEventListener(
-      "load",
-      function () {
-
-
-        if (
-          !submissionStarted
-        ) {
-
-          return;
-
-        }
-
-
-        submissionStarted =
-          false;
-
-
-        submittingMessage.style.display =
-          "none";
-
-
-        submitButton.disabled =
-          false;
-
-
-        submitButton.textContent =
-          "Submit Recommendation";
-
-
-        successMessage.style.display =
-          "block";
-
-
-        errorMessage.style.display =
-          "none";
-
-
-        /*
-         * Clear user-entered fields while keeping
-         * the selected provider.
-         */
-
-        document
-          .getElementById(
-            "reviewerName"
-          )
-          .value =
-          "";
-
-
-        document
-          .getElementById(
-            "reviewerEmail"
-          )
-          .value =
-          "";
-
-
-        document
-          .getElementById(
-            "reviewerCity"
-          )
-          .value =
-          "";
-
-
-        document
-          .getElementById(
-            "wouldRecommend"
-          )
-          .value =
-          "";
-
-
-        document
-          .getElementById(
-            "serviceProvided"
-          )
-          .value =
-          "";
-
-
-        document
-          .getElementById(
-            "wouldUseAgain"
-          )
-          .value =
-          "";
-
-
-        document
-          .getElementById(
-            "comments"
-          )
-          .value =
-          "";
-
-
-        document
-          .getElementById(
-            "experienceConfirmation"
-          )
-          .checked =
-          false;
-
-
-        successMessage.scrollIntoView({
-
-          behavior:
-            "smooth",
-
-          block:
-            "center"
-
-        });
-
-
-      }
-    );
-
+    providerIdField.value =
+      recommendationProviderId;
 
   }
-);
+
+
+  if (
+    providerNameField &&
+    recommendationProviderName
+  ) {
+
+    providerNameField.value =
+      recommendationProviderName;
+
+    providerNameField.readOnly =
+      true;
+
+  }
 
 </script>
 
