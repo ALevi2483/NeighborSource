@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
@@ -12,17 +11,17 @@
   >
 
   <title>
-    Recommend Someone | NeighborSource
+    Recommend a Local Provider | NeighborSource
   </title>
 
   <meta
     name="description"
-    content="Recommend a local business or service provider to NeighborSource."
+    content="Recommend a local business or individual service provider for NeighborSource."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css"
+    href="css/style.css?v=3"
   >
 
 </head>
@@ -34,19 +33,27 @@
 <main>
 
 
-  <!-- PAGE HEADER -->
+  <!-- PAGE HERO -->
 
   <section class="page-hero">
 
     <div class="container">
 
+
+      <div class="eyebrow">
+        HELP BUILD THE DIRECTORY
+      </div>
+
+
       <h1>
         Recommend Someone
       </h1>
 
+
       <p>
-        Know a local business or individual who does good work? Tell us about them.
+        Know a local business or individual who does great work? Suggest them for the NeighborSource directory.
       </p>
+
 
     </div>
 
@@ -63,14 +70,10 @@
 
       <form
         class="card form-card"
-        id="providerSuggestionForm"
-        action="https://script.google.com/macros/s/AKfycbx4bTHYgVwb9rB66m4hnFKvxtPHrTwe6qoqdERU_eRVb4yg1cdrH1zkeIHHl54573_8/exec"
-        method="POST"
-        target="providerSuggestionFrame"
+        id="suggest-provider-form"
+        data-form-type="providerSuggestion"
       >
 
-
-        <!-- DATABASE TYPE -->
 
         <input
           type="hidden"
@@ -79,34 +82,23 @@
         >
 
 
-        <!-- COMBINED SERVICE AREA -->
 
-        <input
-          type="hidden"
-          id="serviceAreaCombined"
-          name="serviceArea"
-          value=""
+        <!-- INTRO -->
+
+        <div
+          class="notice green"
+          style="margin-bottom:30px;"
         >
+
+          <strong>You do not need to be the provider.</strong>
+
+          Use this form to suggest a business or individual you believe should be listed on NeighborSource.
+
+        </div>
 
 
 
         <div class="form-grid">
-
-
-          <!-- SECTION TITLE -->
-
-          <div class="field full">
-
-            <h2 style="margin-bottom:0;">
-              Who are you recommending?
-            </h2>
-
-            <div class="helper">
-              Give us as much information as you know.
-            </div>
-
-          </div>
-
 
 
           <!-- PROVIDER NAME -->
@@ -114,7 +106,7 @@
           <div class="field">
 
             <label for="providerName">
-              Business / Provider Name
+              Provider or Business Name *
             </label>
 
             <input
@@ -122,7 +114,7 @@
               name="providerName"
               type="text"
               required
-              placeholder="Example: Smith Construction"
+              placeholder="Example: Smith Lawn Care"
             >
 
           </div>
@@ -134,7 +126,7 @@
           <div class="field">
 
             <label for="providerType">
-              Provider Type
+              Provider Type *
             </label>
 
             <select
@@ -144,7 +136,7 @@
             >
 
               <option value="">
-                Select provider type
+                Choose provider type
               </option>
 
               <option value="Business">
@@ -163,10 +155,10 @@
 
           <!-- CATEGORY -->
 
-          <div class="field full">
+          <div class="field">
 
             <label for="category">
-              Category
+              Primary Category *
             </label>
 
             <select
@@ -233,20 +225,44 @@
 
 
 
+          <!-- SERVICE AREA -->
+
+          <div class="field">
+
+            <label for="serviceArea">
+              Service Area
+            </label>
+
+            <input
+              id="serviceArea"
+              name="serviceArea"
+              type="text"
+              placeholder="Example: Chesapeake, Portsmouth, Suffolk"
+            >
+
+            <div class="helper">
+              List the cities or communities they serve if you know them.
+            </div>
+
+          </div>
+
+
+
           <!-- SERVICE DESCRIPTION -->
 
           <div class="field full">
 
             <label for="serviceDescription">
-              What services do they provide?
+              What service do they provide? *
             </label>
 
-            <textarea
+            <input
               id="serviceDescription"
               name="serviceDescription"
+              type="text"
               required
               placeholder="Example: Deck building, fence repair, handyman work"
-            ></textarea>
+            >
 
           </div>
 
@@ -267,10 +283,6 @@
               placeholder="757-555-0100"
             >
 
-            <div class="helper">
-              Optional
-            </div>
-
           </div>
 
 
@@ -290,10 +302,6 @@
               placeholder="provider@example.com"
             >
 
-            <div class="helper">
-              Optional
-            </div>
-
           </div>
 
 
@@ -309,14 +317,9 @@
             <input
               id="providerWebsite"
               name="providerWebsite"
-              type="text"
-              inputmode="url"
-              placeholder="example.com"
+              type="url"
+              placeholder="https://example.com"
             >
-
-            <div class="helper">
-              Optional. You do not need to enter https://
-            </div>
 
           </div>
 
@@ -333,149 +336,8 @@
             <input
               id="providerFacebook"
               name="providerFacebook"
-              type="text"
-              inputmode="url"
-              placeholder="facebook.com/provider"
-            >
-
-            <div class="helper">
-              Optional. You do not need to enter https://
-            </div>
-
-          </div>
-
-
-
-          <!-- SERVICE AREA -->
-
-          <div class="field full">
-
-            <label>
-              Service Area
-            </label>
-
-            <div class="helper">
-              Select every city you know they serve.
-            </div>
-
-
-            <div class="checkbox-grid">
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  class="service-area-checkbox"
-                  value="Chesapeake"
-                >
-
-                Chesapeake
-
-              </label>
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  class="service-area-checkbox"
-                  value="Norfolk"
-                >
-
-                Norfolk
-
-              </label>
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  class="service-area-checkbox"
-                  value="Portsmouth"
-                >
-
-                Portsmouth
-
-              </label>
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  class="service-area-checkbox"
-                  value="Suffolk"
-                >
-
-                Suffolk
-
-              </label>
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  class="service-area-checkbox"
-                  value="Virginia Beach"
-                >
-
-                Virginia Beach
-
-              </label>
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  class="service-area-checkbox"
-                  value="Hampton"
-                >
-
-                Hampton
-
-              </label>
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  class="service-area-checkbox"
-                  value="Newport News"
-                >
-
-                Newport News
-
-              </label>
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  id="serviceAreaOther"
-                >
-
-                Other
-
-              </label>
-
-
-            </div>
-
-
-            <input
-              type="text"
-              id="otherServiceArea"
-              placeholder="Enter another city or service area"
-              style="
-                display:none;
-                margin-top:12px;
-              "
+              type="url"
+              placeholder="https://facebook.com/..."
             >
 
           </div>
@@ -487,44 +349,26 @@
           <div class="field full">
 
             <label for="whyRecommended">
-              Why are you recommending them?
+              Why are you recommending them? *
             </label>
 
             <textarea
               id="whyRecommended"
               name="whyRecommended"
               required
-              placeholder="Tell us about your experience with this provider and why you think your neighbors should know about them."
+              placeholder="Tell us about your experience or why you think this provider should be added."
             ></textarea>
 
           </div>
 
 
 
-          <!-- DIVIDER -->
-
-          <div class="field full">
-
-            <hr>
-
-            <h2 style="margin-bottom:0;">
-              About You
-            </h2>
-
-            <div class="helper">
-              We use this information to review the recommendation. Your email is not displayed publicly.
-            </div>
-
-          </div>
-
-
-
-          <!-- SUBMITTED BY -->
+          <!-- SUBMITTER NAME -->
 
           <div class="field">
 
             <label for="submittedBy">
-              Your Name
+              Your Name *
             </label>
 
             <input
@@ -532,6 +376,7 @@
               name="submittedBy"
               type="text"
               required
+              autocomplete="name"
               placeholder="Your name"
             >
 
@@ -544,7 +389,7 @@
           <div class="field">
 
             <label for="submitterEmail">
-              Your Email
+              Your Email *
             </label>
 
             <input
@@ -552,8 +397,13 @@
               name="submitterEmail"
               type="email"
               required
+              autocomplete="email"
               placeholder="you@example.com"
             >
+
+            <div class="helper">
+              Used only if we need to clarify the recommendation.
+            </div>
 
           </div>
 
@@ -566,12 +416,14 @@
             <label class="check-row">
 
               <input
+                id="suggestionConfirmation"
                 type="checkbox"
-                id="recommendationConfirmation"
                 required
               >
 
-              I confirm that this recommendation is based on my own experience or direct knowledge of this provider.
+              <span>
+                I confirm that I am submitting this recommendation in good faith and that the information is accurate to the best of my knowledge.
+              </span>
 
             </label>
 
@@ -587,78 +439,161 @@
         <button
           class="btn btn-green"
           type="submit"
-          id="submitSuggestionButton"
         >
-
-          Recommend This Provider
-
+          Submit Recommendation
         </button>
 
 
 
-        <!-- SUBMITTING -->
+        <!-- STATUS -->
 
         <div
-          class="notice"
-          id="submittingMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            Submitting your recommendation...
-          </strong>
-
-          Please do not close this page.
-
-        </div>
-
-
-
-        <!-- SUCCESS -->
-
-        <div
-          class="notice green"
-          id="successMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            Recommendation submitted.
-          </strong>
-
-          Thank you. The provider has been sent for review.
-
-        </div>
-
-
-
-        <!-- ERROR -->
-
-        <div
-          class="notice warning"
-          id="errorMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            We could not submit your recommendation.
-          </strong>
-
-          Please check your information and try again.
-
-        </div>
+          id="form-status"
+          style="margin-top:20px;"
+          aria-live="polite"
+        ></div>
 
 
       </form>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- HOW IT WORKS -->
+
+  <section class="section section-soft">
+
+    <div class="container">
+
+
+      <div class="section-heading centered">
+
+        <div class="eyebrow dark">
+          WHAT HAPPENS NEXT
+        </div>
+
+        <h2>
+          Your suggestion helps grow NeighborSource
+        </h2>
+
+        <p class="section-intro">
+          Suggested providers are reviewed before appearing in the public directory.
+        </p>
+
+      </div>
+
+
+
+      <div class="steps-grid">
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            1
+          </div>
+
+          <h3>
+            You Recommend
+          </h3>
+
+          <p>
+            Tell us about a provider you believe your neighbors should know about.
+          </p>
+
+        </div>
+
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            2
+          </div>
+
+          <h3>
+            We Review
+          </h3>
+
+          <p>
+            NeighborSource reviews the information before adding anything publicly.
+          </p>
+
+        </div>
+
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            3
+          </div>
+
+          <h3>
+            Provider Gets Listed
+          </h3>
+
+          <p>
+            Approved providers can then appear in searches and service categories.
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ALREADY LISTED -->
+
+  <section class="section">
+
+    <div class="container">
+
+
+      <div
+        class="card"
+        style="
+          max-width:900px;
+          margin:0 auto;
+          padding:36px;
+        "
+      >
+
+
+        <div class="eyebrow dark">
+          ALREADY ON NEIGHBORSOURCE?
+        </div>
+
+
+        <h2>
+          Recommend an existing provider instead
+        </h2>
+
+
+        <p>
+          If the provider is already listed, use their profile page to submit a recommendation. That recommendation can be connected directly to their listing.
+        </p>
+
+
+        <a
+          class="btn btn-primary"
+          href="services.html"
+        >
+          Find Their Listing
+        </a>
+
+
+      </div>
 
 
     </div>
@@ -670,455 +605,7 @@
 
 
 
-<!-- HIDDEN POST TARGET -->
-
-<iframe
-  name="providerSuggestionFrame"
-  id="providerSuggestionFrame"
-  style="
-    width:0;
-    height:0;
-    border:0;
-    position:absolute;
-    left:-9999px;
-  "
-></iframe>
-
-
-
-<!-- MAIN NEIGHBORSOURCE JAVASCRIPT -->
-
-<script src="js/app.js"></script>
-
-
-
-<!-- PROVIDER SUGGESTION JAVASCRIPT -->
-
-<script>
-
-document.addEventListener(
-  "DOMContentLoaded",
-  function () {
-
-
-    /**********************************************
-     * ELEMENTS
-     **********************************************/
-
-    const form =
-      document.getElementById(
-        "providerSuggestionForm"
-      );
-
-
-    const otherCheckbox =
-      document.getElementById(
-        "serviceAreaOther"
-      );
-
-
-    const otherInput =
-      document.getElementById(
-        "otherServiceArea"
-      );
-
-
-    const serviceAreaCombined =
-      document.getElementById(
-        "serviceAreaCombined"
-      );
-
-
-    const providerPhone =
-      document.getElementById(
-        "providerPhone"
-      );
-
-
-    const providerEmail =
-      document.getElementById(
-        "providerEmail"
-      );
-
-
-    const providerWebsite =
-      document.getElementById(
-        "providerWebsite"
-      );
-
-
-    const providerFacebook =
-      document.getElementById(
-        "providerFacebook"
-      );
-
-
-    const submitButton =
-      document.getElementById(
-        "submitSuggestionButton"
-      );
-
-
-    const submittingMessage =
-      document.getElementById(
-        "submittingMessage"
-      );
-
-
-    const successMessage =
-      document.getElementById(
-        "successMessage"
-      );
-
-
-    const errorMessage =
-      document.getElementById(
-        "errorMessage"
-      );
-
-
-    const iframe =
-      document.getElementById(
-        "providerSuggestionFrame"
-      );
-
-
-    let submissionStarted =
-      false;
-
-
-
-    /**********************************************
-     * OTHER SERVICE AREA
-     **********************************************/
-
-    otherCheckbox.addEventListener(
-      "change",
-      function () {
-
-
-        if (
-          otherCheckbox.checked
-        ) {
-
-          otherInput.style.display =
-            "block";
-
-
-          otherInput.focus();
-
-        }
-
-        else {
-
-          otherInput.style.display =
-            "none";
-
-
-          otherInput.value =
-            "";
-
-        }
-
-
-      }
-    );
-
-
-
-    /**********************************************
-     * GET SERVICE AREAS
-     **********************************************/
-
-    function getServiceAreas() {
-
-
-      const areas =
-        [];
-
-
-      document
-        .querySelectorAll(
-          ".service-area-checkbox:checked"
-        )
-        .forEach(
-          function (
-            checkbox
-          ) {
-
-
-            areas.push(
-              checkbox.value
-            );
-
-
-          }
-        );
-
-
-      if (
-        otherCheckbox.checked &&
-        otherInput.value.trim()
-      ) {
-
-        areas.push(
-          otherInput.value.trim()
-        );
-
-      }
-
-
-      return areas;
-
-    }
-
-
-
-    /**********************************************
-     * CHECK PROVIDER CONTACT INFORMATION
-     **********************************************/
-
-    function hasProviderContactInfo() {
-
-
-      return (
-
-        providerPhone
-          .value
-          .trim() ||
-
-        providerEmail
-          .value
-          .trim() ||
-
-        providerWebsite
-          .value
-          .trim() ||
-
-        providerFacebook
-          .value
-          .trim()
-
-      );
-
-    }
-
-
-
-    /**********************************************
-     * FORM SUBMISSION
-     **********************************************/
-
-    form.addEventListener(
-      "submit",
-      function (
-        event
-      ) {
-
-
-        /******************************************
-         * SERVICE AREA
-         ******************************************/
-
-        const serviceAreas =
-          getServiceAreas();
-
-
-        if (
-          serviceAreas.length ===
-          0
-        ) {
-
-          event.preventDefault();
-
-
-          alert(
-            "Please select at least one service area."
-          );
-
-
-          return;
-
-        }
-
-
-        if (
-          otherCheckbox.checked &&
-          !otherInput.value.trim()
-        ) {
-
-          event.preventDefault();
-
-
-          alert(
-            "Please enter the other service area."
-          );
-
-
-          otherInput.focus();
-
-
-          return;
-
-        }
-
-
-        serviceAreaCombined.value =
-          serviceAreas.join(
-            ", "
-          );
-
-
-
-        /******************************************
-         * PROVIDER CONTACT
-         ******************************************/
-
-        if (
-          !hasProviderContactInfo()
-        ) {
-
-          event.preventDefault();
-
-
-          alert(
-            "Please enter at least one way to identify or contact the provider: phone, email, website, or Facebook."
-          );
-
-
-          providerPhone.focus();
-
-
-          return;
-
-        }
-
-
-
-        /******************************************
-         * SUBMITTING STATE
-         ******************************************/
-
-        successMessage.style.display =
-          "none";
-
-
-        errorMessage.style.display =
-          "none";
-
-
-        submittingMessage.style.display =
-          "block";
-
-
-        submitButton.disabled =
-          true;
-
-
-        submitButton.textContent =
-          "Submitting...";
-
-
-        submissionStarted =
-          true;
-
-
-        /*
-         * Do not prevent default here.
-         *
-         * The browser submits directly to
-         * Google Apps Script through the iframe.
-         */
-
-      }
-    );
-
-
-
-    /**********************************************
-     * APPS SCRIPT FINISHED
-     **********************************************/
-
-    iframe.addEventListener(
-      "load",
-      function () {
-
-
-        if (
-          !submissionStarted
-        ) {
-
-          return;
-
-        }
-
-
-        submissionStarted =
-          false;
-
-
-        submittingMessage.style.display =
-          "none";
-
-
-        successMessage.style.display =
-          "block";
-
-
-        errorMessage.style.display =
-          "none";
-
-
-        submitButton.disabled =
-          false;
-
-
-        submitButton.textContent =
-          "Recommend This Provider";
-
-
-        /******************************************
-         * RESET FORM
-         ******************************************/
-
-        form.reset();
-
-
-        otherInput.style.display =
-          "none";
-
-
-        otherInput.value =
-          "";
-
-
-        serviceAreaCombined.value =
-          "";
-
-
-        /******************************************
-         * SCROLL TO SUCCESS
-         ******************************************/
-
-        successMessage.scrollIntoView({
-
-          behavior:
-            "smooth",
-
-          block:
-            "center"
-
-        });
-
-
-      }
-    );
-
-
-  }
-);
-
-</script>
+<script src="js/app.js?v=3"></script>
 
 
 </body>
