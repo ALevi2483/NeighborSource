@@ -380,6 +380,8 @@
             </div>
 
 
+            <!-- OTHER SERVICE AREA -->
+
             <input
               type="text"
               id="otherServiceArea"
@@ -387,6 +389,8 @@
               style="display:none; margin-top:12px;"
             >
 
+
+            <!-- COMBINED SERVICE AREA -->
 
             <input
               type="hidden"
@@ -399,7 +403,7 @@
 
 
 
-          <!-- SERVICES -->
+          <!-- SERVICES PROVIDED -->
 
           <div class="field full">
 
@@ -412,7 +416,7 @@
               name="services"
               type="text"
               required
-              placeholder="Example: Decks, fences, repairs"
+              placeholder="Example: Snake relocation, lawn care, tutoring"
             >
 
             <div class="helper">
@@ -456,11 +460,11 @@
               type="text"
               inputmode="url"
               autocomplete="url"
-              placeholder="example.com"
+              placeholder="FreeSnakeRelocation.com"
             >
 
             <div class="helper">
-              Optional. You can enter example.com or https://example.com
+              Optional. You can enter example.com without https://
             </div>
 
           </div>
@@ -484,7 +488,7 @@
             >
 
             <div class="helper">
-              Optional. You do not need to type https://
+              Optional. You can enter the Facebook address without https://
             </div>
 
           </div>
@@ -514,7 +518,7 @@
 
 
 
-        <!-- SUBMIT -->
+        <!-- SUBMIT BUTTON -->
 
         <button
           class="btn btn-green"
@@ -594,21 +598,9 @@ document.addEventListener(
       );
 
 
-    const websiteInput =
-      document.getElementById(
-        "website"
-      );
-
-
-    const facebookInput =
-      document.getElementById(
-        "facebook"
-      );
-
-
 
     /**********************************************
-     * OTHER SERVICE AREA
+     * SHOW / HIDE OTHER SERVICE AREA
      **********************************************/
 
     if (
@@ -645,6 +637,7 @@ document.addEventListener(
 
           updateServiceArea();
 
+
         }
       );
 
@@ -670,6 +663,11 @@ document.addEventListener(
           checkbox => {
 
 
+            /*
+             * Do not add the word "Other"
+             * to the final service area.
+             */
+
             if (
               checkbox.id !==
               "serviceAreaOther"
@@ -685,6 +683,11 @@ document.addEventListener(
           }
         );
 
+
+      /*
+       * Add whatever the user entered
+       * in the Other field.
+       */
 
       if (
         otherCheckbox &&
@@ -713,7 +716,7 @@ document.addEventListener(
 
 
     /**********************************************
-     * SERVICE AREA EVENTS
+     * SERVICE AREA CHECKBOX EVENTS
      **********************************************/
 
     document
@@ -732,106 +735,16 @@ document.addEventListener(
       );
 
 
+
+    /**********************************************
+     * OTHER SERVICE AREA EVENT
+     **********************************************/
+
     if (otherInput) {
 
       otherInput.addEventListener(
         "input",
         updateServiceArea
-      );
-
-    }
-
-
-
-    /**********************************************
-     * NORMALIZE URL
-     *
-     * Turns:
-     *
-     * FreeSnakeRelocation.com
-     *
-     * into:
-     *
-     * https://FreeSnakeRelocation.com
-     **********************************************/
-
-    function normalizeURL(
-      input
-    ) {
-
-
-      if (!input) {
-
-        return;
-
-      }
-
-
-      let value =
-        input.value.trim();
-
-
-      if (!value) {
-
-        return;
-
-      }
-
-
-      if (
-        !/^https?:\/\//i.test(value)
-      ) {
-
-        value =
-          "https://" + value;
-
-      }
-
-
-      input.value =
-        value;
-
-
-    }
-
-
-
-    /**********************************************
-     * WEBSITE URL
-     **********************************************/
-
-    if (websiteInput) {
-
-      websiteInput.addEventListener(
-        "blur",
-        function () {
-
-          normalizeURL(
-            websiteInput
-          );
-
-        }
-      );
-
-    }
-
-
-
-    /**********************************************
-     * FACEBOOK URL
-     **********************************************/
-
-    if (facebookInput) {
-
-      facebookInput.addEventListener(
-        "blur",
-        function () {
-
-          normalizeURL(
-            facebookInput
-          );
-
-        }
       );
 
     }
@@ -853,28 +766,13 @@ document.addEventListener(
 
 
           /*
-           * Normalize URLs one last time
-           * before submission.
-           */
-
-          normalizeURL(
-            websiteInput
-          );
-
-          normalizeURL(
-            facebookInput
-          );
-
-
-
-          /*
-           * Make sure at least one
-           * service area was selected.
+           * Make sure a service area
+           * has been selected.
            */
 
           if (
             !combinedInput ||
-            !combinedInput.value
+            !combinedInput.value.trim()
           ) {
 
             event.preventDefault();
@@ -890,15 +788,17 @@ document.addEventListener(
 
 
           /*
-           * If Other is selected,
-           * require the user to enter
-           * the other location.
+           * If Other is checked,
+           * require a city or area.
            */
 
           if (
             otherCheckbox &&
             otherCheckbox.checked &&
-            !otherInput.value.trim()
+            (
+              !otherInput ||
+              !otherInput.value.trim()
+            )
           ) {
 
             event.preventDefault();
@@ -907,12 +807,36 @@ document.addEventListener(
               "Please enter the other service area."
             );
 
-            otherInput.focus();
+
+            if (otherInput) {
+
+              otherInput.focus();
+
+            }
+
 
             return;
 
           }
 
+
+          /*
+           * IMPORTANT:
+           *
+           * Website and Facebook fields are
+           * intentionally NOT changed here.
+           *
+           * If the user enters:
+           *
+           * FreeSnakeRelocation.com
+           *
+           * it stays:
+           *
+           * FreeSnakeRelocation.com
+           *
+           * We can add https:// behind the scenes
+           * when the data is sent to the database.
+           */
 
         }
       );
