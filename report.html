@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
@@ -17,12 +16,12 @@
 
   <meta
     name="description"
-    content="Report an incorrect, closed, suspicious, or inappropriate NeighborSource listing."
+    content="Report inaccurate, misleading, inappropriate, or concerning information on a NeighborSource listing."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css"
+    href="css/style.css?v=3"
   >
 
 </head>
@@ -34,23 +33,35 @@
 <main>
 
 
+  <!-- PAGE HERO -->
+
   <section class="page-hero">
 
     <div class="container">
+
+
+      <div class="eyebrow">
+        HELP KEEP NEIGHBORSOURCE ACCURATE
+      </div>
+
 
       <h1>
         Report a Listing
       </h1>
 
+
       <p>
-        Let us know if a listing contains incorrect information or needs our attention.
+        Let us know if a listing contains inaccurate, misleading, inappropriate, or otherwise concerning information.
       </p>
+
 
     </div>
 
   </section>
 
 
+
+  <!-- FORM -->
 
   <section class="section">
 
@@ -59,10 +70,8 @@
 
       <form
         class="card form-card"
-        id="reportForm"
-        action="https://script.google.com/macros/s/AKfycbx4bTHYgVwb9rB66m4hnFKvxtPHrTwe6qoqdERU_eRVb4yg1cdrH1zkeIHHl54573_8/exec"
-        method="POST"
-        target="reportFrame"
+        id="report-listing-form"
+        data-form-type="report"
       >
 
 
@@ -82,13 +91,30 @@
 
 
 
+        <!-- INTRO -->
+
+        <div
+          class="notice warning"
+          style="margin-bottom:30px;"
+        >
+
+          <strong>Use this form for listing concerns.</strong>
+
+          If you simply need to change your own business information, use the Update a Listing page instead.
+
+        </div>
+
+
+
         <div class="form-grid">
 
+
+          <!-- PROVIDER -->
 
           <div class="field full">
 
             <label for="providerName">
-              Provider / Business Name
+              Which listing are you reporting? *
             </label>
 
             <input
@@ -96,21 +122,23 @@
               name="providerName"
               type="text"
               required
-              placeholder="Example: Smith Construction"
+              placeholder="Business or provider name"
             >
 
             <div class="helper">
-              The provider will be identified automatically when possible.
+              If you opened this page from a provider profile, this may already be filled in.
             </div>
 
           </div>
 
 
 
+          <!-- REASON -->
+
           <div class="field full">
 
             <label for="reason">
-              Why are you reporting this listing?
+              Reason for Report *
             </label>
 
             <select
@@ -120,27 +148,35 @@
             >
 
               <option value="">
-                Select a reason
+                Choose a reason
               </option>
 
               <option value="Incorrect Information">
-                Incorrect Information
+                Incorrect information
               </option>
 
               <option value="Business Closed">
-                Business Closed
+                Business is closed or no longer operating
+              </option>
+
+              <option value="Unable to Contact">
+                Provider appears to be unreachable
               </option>
 
               <option value="Possible Scam">
-                Possible Scam
-              </option>
-
-              <option value="Inappropriate Listing">
-                Inappropriate Listing
+                Possible scam or fraudulent activity
               </option>
 
               <option value="False Credential Claim">
-                False Credential Claim
+                Possible false license, insurance, or credential claim
+              </option>
+
+              <option value="Inappropriate Listing">
+                Inappropriate or abusive listing content
+              </option>
+
+              <option value="Duplicate Listing">
+                Duplicate listing
               </option>
 
               <option value="Other">
@@ -153,31 +189,35 @@
 
 
 
+          <!-- DETAILS -->
+
           <div class="field full">
 
             <label for="details">
-              Details
+              Additional Details *
             </label>
 
             <textarea
               id="details"
               name="details"
               required
-              placeholder="Explain what is wrong with the listing or why it should be reviewed."
+              placeholder="Explain what appears to be incorrect or concerning. Include enough detail for us to review the issue."
             ></textarea>
 
             <div class="helper">
-              Please provide enough information for us to review the issue.
+              Please stick to factual information and your own experience or observations.
             </div>
 
           </div>
 
 
 
+          <!-- REPORTER NAME -->
+
           <div class="field">
 
             <label for="reporterName">
-              Your Name
+              Your Name *
             </label>
 
             <input
@@ -185,6 +225,7 @@
               name="reporterName"
               type="text"
               required
+              autocomplete="name"
               placeholder="Your name"
             >
 
@@ -192,10 +233,12 @@
 
 
 
+          <!-- REPORTER EMAIL -->
+
           <div class="field">
 
             <label for="reporterEmail">
-              Your Email
+              Your Email *
             </label>
 
             <input
@@ -203,28 +246,33 @@
               name="reporterEmail"
               type="email"
               required
+              autocomplete="email"
               placeholder="you@example.com"
             >
 
             <div class="helper">
-              Your email is used for review purposes and is not displayed publicly.
+              Your email is not displayed publicly. It may be used if we need more information.
             </div>
 
           </div>
 
 
 
+          <!-- CONFIRMATION -->
+
           <div class="field full">
 
             <label class="check-row">
 
               <input
-                type="checkbox"
                 id="reportConfirmation"
+                type="checkbox"
                 required
               >
 
-              I confirm that this report is being submitted in good faith and the information I provided is accurate to the best of my knowledge.
+              <span>
+                I confirm that this report is being submitted in good faith and that the information provided is accurate to the best of my knowledge.
+              </span>
 
             </label>
 
@@ -235,77 +283,168 @@
 
 
 
+        <!-- SUBMIT -->
+
         <button
-          class="btn btn-green"
+          class="btn btn-primary"
           type="submit"
-          id="submitReportButton"
         >
-
           Submit Report
-
         </button>
 
 
 
-        <div
-          class="notice"
-          id="submittingMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            Submitting your report...
-          </strong>
-
-          Please do not close this page.
-
-        </div>
-
-
+        <!-- STATUS -->
 
         <div
-          class="notice green"
-          id="successMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            Report submitted.
-          </strong>
-
-          Thank you. The listing has been sent for review.
-
-        </div>
-
-
-
-        <div
-          class="notice warning"
-          id="errorMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            We could not submit your report.
-          </strong>
-
-          <span id="errorText">
-            Please check your information and try again.
-          </span>
-
-        </div>
+          id="form-status"
+          style="margin-top:20px;"
+          aria-live="polite"
+        ></div>
 
 
       </form>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- REVIEW PROCESS -->
+
+  <section class="section section-soft">
+
+    <div class="container">
+
+
+      <div class="section-heading centered">
+
+        <div class="eyebrow dark">
+          WHAT HAPPENS NEXT
+        </div>
+
+
+        <h2>
+          Reports are reviewed before action is taken
+        </h2>
+
+
+        <p class="section-intro">
+          A report does not automatically remove or change a provider listing.
+        </p>
+
+      </div>
+
+
+
+      <div class="steps-grid">
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            1
+          </div>
+
+          <h3>
+            Submit the Concern
+          </h3>
+
+          <p>
+            Tell us which listing you are reporting and what appears to be wrong.
+          </p>
+
+        </div>
+
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            2
+          </div>
+
+          <h3>
+            We Review It
+          </h3>
+
+          <p>
+            NeighborSource reviews the report and available listing information.
+          </p>
+
+        </div>
+
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            3
+          </div>
+
+          <h3>
+            Appropriate Action
+          </h3>
+
+          <p>
+            Depending on the issue, information may be corrected, the provider may be contacted, or the listing may be removed.
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- NORMAL UPDATE -->
+
+  <section class="section">
+
+    <div class="container">
+
+
+      <div
+        class="card"
+        style="
+          max-width:900px;
+          margin:0 auto;
+          padding:36px;
+        "
+      >
+
+
+        <div class="eyebrow dark">
+          NEED A NORMAL CORRECTION?
+        </div>
+
+
+        <h2>
+          Update a listing instead
+        </h2>
+
+
+        <p>
+          If you own or manage the listing and simply need to update a phone number, service area, website, description, or other information, use the listing update form.
+        </p>
+
+
+        <a
+          class="btn btn-outline"
+          href="update-listing.html"
+        >
+          Update a Listing
+        </a>
+
+
+      </div>
 
 
     </div>
@@ -317,527 +456,66 @@
 
 
 
-<iframe
-  name="reportFrame"
-  id="reportFrame"
-  style="
-    width:0;
-    height:0;
-    border:0;
-    position:absolute;
-    left:-9999px;
-  "
-></iframe>
-
-
-
-<script src="js/app.js"></script>
-
+<script src="js/app.js?v=3"></script>
 
 
 <script>
 
-document.addEventListener(
-  "DOMContentLoaded",
-  async function () {
-
-
-    /**********************************************
-     * API
-     **********************************************/
-
-    const API_URL =
-      "https://script.google.com/macros/s/AKfycbx4bTHYgVwb9rB66m4hnFKvxtPHrTwe6qoqdERU_eRVb4yg1cdrH1zkeIHHl54573_8/exec";
-
-
-    /**********************************************
-     * ELEMENTS
-     **********************************************/
-
-    const form =
-      document.getElementById(
-        "reportForm"
-      );
-
-
-    const providerIdInput =
-      document.getElementById(
-        "providerId"
-      );
-
-
-    const providerNameInput =
-      document.getElementById(
-        "providerName"
-      );
-
-
-    const submitButton =
-      document.getElementById(
-        "submitReportButton"
-      );
-
-
-    const submittingMessage =
-      document.getElementById(
-        "submittingMessage"
-      );
-
-
-    const successMessage =
-      document.getElementById(
-        "successMessage"
-      );
-
-
-    const errorMessage =
-      document.getElementById(
-        "errorMessage"
-      );
-
-
-    const errorText =
-      document.getElementById(
-        "errorText"
-      );
-
-
-    const iframe =
-      document.getElementById(
-        "reportFrame"
-      );
-
-
-    let submissionStarted =
-      false;
-
-
-
-    /**********************************************
-     * READ PROVIDER FROM URL
-     **********************************************/
-
-    const params =
-      new URLSearchParams(
-        window.location.search
-      );
-
-
-    const urlProviderId =
-      params.get(
-        "providerId"
-      ) ||
-      params.get(
-        "id"
-      ) ||
-      "";
-
-
-    const urlProviderName =
-      params.get(
-        "provider"
-      ) ||
-      params.get(
-        "providerName"
-      ) ||
-      "";
-
-
-    if (
-      urlProviderId
-    ) {
-
-      providerIdInput.value =
-        urlProviderId.trim();
-
-    }
-
-
-    if (
-      urlProviderName
-    ) {
-
-      providerNameInput.value =
-        urlProviderName.trim();
-
-    }
-
-
-
-    /**********************************************
-     * FIND PROVIDER ID FROM DATABASE
-     *
-     * This fixes reports where the profile link
-     * supplied the name but not the ID.
-     **********************************************/
-
-    async function findProviderIdByName(
-      providerName
-    ) {
-
-
-      if (
-        !providerName
-      ) {
-
-        return "";
-
-      }
-
-
-      try {
-
-
-        const response =
-          await fetch(
-
-            API_URL +
-            "?action=providers&t=" +
-            Date.now(),
-
-            {
-
-              method:
-                "GET",
-
-              cache:
-                "no-store",
-
-              redirect:
-                "follow"
-
-            }
-
-          );
-
-
-        if (
-          !response.ok
-        ) {
-
-          return "";
-
-        }
-
-
-        const data =
-          await response.json();
-
-
-        if (
-          !data.success ||
-          !Array.isArray(
-            data.providers
-          )
-        ) {
-
-          return "";
-
-        }
-
-
-        const normalizedName =
-          providerName
-            .trim()
-            .toLowerCase();
-
-
-        const provider =
-          data.providers.find(
-            function (
-              item
-            ) {
-
-              return (
-                String(
-                  item.name ||
-                  ""
-                )
-                  .trim()
-                  .toLowerCase() ===
-                normalizedName
-              );
-
-            }
-          );
-
-
-        if (
-          provider &&
-          provider.id
-        ) {
-
-          return String(
-            provider.id
-          ).trim();
-
-        }
-
-
-        return "";
-
-
-      }
-
-      catch (
-        error
-      ) {
-
-
-        console.error(
-          "Could not identify provider:",
-          error
-        );
-
-
-        return "";
-
-      }
-
-    }
-
-
-
-    /**********************************************
-     * AUTO-LOOKUP PROVIDER ID
-     **********************************************/
-
-    if (
-      !providerIdInput.value &&
-      providerNameInput.value
-    ) {
-
-
-      const foundId =
-        await findProviderIdByName(
-          providerNameInput.value
-        );
-
-
-      if (
-        foundId
-      ) {
-
-        providerIdInput.value =
-          foundId;
-
-      }
-
-    }
-
-
-
-    /**********************************************
-     * LOOK UP AGAIN IF USER TYPES PROVIDER NAME
-     **********************************************/
-
-    providerNameInput.addEventListener(
-      "change",
-      async function () {
-
-
-        if (
-          providerIdInput.value
-        ) {
-
-          return;
-
-        }
-
-
-        const foundId =
-          await findProviderIdByName(
-            providerNameInput.value
-          );
-
-
-        if (
-          foundId
-        ) {
-
-          providerIdInput.value =
-            foundId;
-
-        }
-
-
-      }
+  /*
+   * Fill provider information when this page
+   * is opened from a provider profile.
+   */
+
+  const reportParams =
+    new URLSearchParams(
+      window.location.search
     );
 
 
-
-    /**********************************************
-     * FORM SUBMISSION
-     **********************************************/
-
-    form.addEventListener(
-      "submit",
-      async function (
-        event
-      ) {
+  const reportProviderId =
+    reportParams.get("providerId") ||
+    reportParams.get("id") ||
+    "";
 
 
-        /******************************************
-         * FINAL PROVIDER ID CHECK
-         ******************************************/
-
-        if (
-          !providerIdInput.value &&
-          providerNameInput.value
-        ) {
+  const reportProviderName =
+    reportParams.get("provider") ||
+    reportParams.get("providerName") ||
+    "";
 
 
-          event.preventDefault();
-
-
-          const foundId =
-            await findProviderIdByName(
-              providerNameInput.value
-            );
-
-
-          if (
-            foundId
-          ) {
-
-
-            providerIdInput.value =
-              foundId;
-
-
-            /*
-             * Now that the Provider ID exists,
-             * submit the form normally.
-             */
-
-            form.requestSubmit();
-
-
-            return;
-
-          }
-
-
-          errorMessage.style.display =
-            "block";
-
-
-          errorText.textContent =
-            "We could not match this report to a NeighborSource provider. Please open the provider's profile and click Report Listing from there.";
-
-
-          return;
-
-        }
-
-
-
-        /******************************************
-         * SUBMITTING STATE
-         ******************************************/
-
-        successMessage.style.display =
-          "none";
-
-
-        errorMessage.style.display =
-          "none";
-
-
-        submittingMessage.style.display =
-          "block";
-
-
-        submitButton.disabled =
-          true;
-
-
-        submitButton.textContent =
-          "Submitting...";
-
-
-        submissionStarted =
-          true;
-
-
-        /*
-         * Do not prevent default here.
-         *
-         * Browser submits directly to Apps Script
-         * through the hidden iframe.
-         */
-
-      }
+  const reportProviderIdField =
+    document.getElementById(
+      "providerId"
     );
 
 
-
-    /**********************************************
-     * APPS SCRIPT FINISHED
-     **********************************************/
-
-    iframe.addEventListener(
-      "load",
-      function () {
-
-
-        if (
-          !submissionStarted
-        ) {
-
-          return;
-
-        }
-
-
-        submissionStarted =
-          false;
-
-
-        submittingMessage.style.display =
-          "none";
-
-
-        successMessage.style.display =
-          "block";
-
-
-        errorMessage.style.display =
-          "none";
-
-
-        submitButton.disabled =
-          false;
-
-
-        submitButton.textContent =
-          "Submit Report";
-
-
-        form.reset();
-
-
-        providerIdInput.value =
-          "";
-
-
-        successMessage.scrollIntoView({
-
-          behavior:
-            "smooth",
-
-          block:
-            "center"
-
-        });
-
-
-      }
+  const reportProviderNameField =
+    document.getElementById(
+      "providerName"
     );
 
+
+  if (
+    reportProviderIdField &&
+    reportProviderId
+  ) {
+
+    reportProviderIdField.value =
+      reportProviderId;
 
   }
-);
+
+
+  if (
+    reportProviderNameField &&
+    reportProviderName
+  ) {
+
+    reportProviderNameField.value =
+      reportProviderName;
+
+  }
 
 </script>
 
