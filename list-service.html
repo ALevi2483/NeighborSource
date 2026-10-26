@@ -24,6 +24,195 @@
     href="css/style.css?v=3"
   >
 
+
+  <!-- PAGE-SPECIFIC RESPONSIVE FIXES -->
+
+  <style>
+
+    .listing-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 32px;
+      align-items: start;
+    }
+
+
+    .listing-contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+
+    .service-area-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 20px;
+      margin-top: 16px;
+      padding: 20px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+
+    .service-area-choice {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      min-width: 0;
+    }
+
+
+    .service-area-choice input {
+      flex: 0 0 auto;
+      width: 20px;
+      height: 20px;
+      margin: 0;
+    }
+
+
+    .service-area-choice span {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+
+    .confirmation-box {
+      margin-top: 24px;
+      padding: 20px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+
+    .confirmation-label {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      cursor: pointer;
+    }
+
+
+    .confirmation-label input {
+      flex: 0 0 auto;
+      width: 20px;
+      height: 20px;
+      margin: 3px 0 0 0;
+    }
+
+
+    .listing-sidebar .card + .card {
+      margin-top: 22px;
+    }
+
+
+    /*
+      TABLET / PHONE
+    */
+
+    @media (max-width: 900px) {
+
+      .listing-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+
+      .listing-sidebar {
+        order: 2;
+        width: 100%;
+      }
+
+
+      .listing-contact-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+
+      .service-area-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+
+    /*
+      SMALL PHONES
+    */
+
+    @media (max-width: 520px) {
+
+      .listing-layout {
+        display: block;
+      }
+
+
+      .listing-layout > form {
+        width: 100%;
+        max-width: 100%;
+      }
+
+
+      .listing-sidebar {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 24px;
+      }
+
+
+      .listing-contact-grid {
+        display: block;
+      }
+
+
+      .service-area-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 18px;
+      }
+
+
+      .service-area-choice {
+        width: 100%;
+      }
+
+
+      .confirmation-box {
+        padding: 18px;
+      }
+
+
+      .confirmation-label {
+        width: 100%;
+      }
+
+
+      .form-card input,
+      .form-card select,
+      .form-card textarea {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+
+      .form-card textarea {
+        min-height: 150px;
+      }
+
+
+      .form-card .btn[type="submit"] {
+        width: 100%;
+      }
+
+    }
+
+  </style>
+
 </head>
 
 
@@ -43,9 +232,11 @@
         FOR LOCAL PROVIDERS
       </div>
 
+
       <h1>
         List Your Service
       </h1>
+
 
       <p>
         Own a local business or provide a service in Hampton Roads? Submit your information for review and possible inclusion in the NeighborSource directory.
@@ -64,14 +255,7 @@
     <div class="container">
 
 
-      <div
-        style="
-          display:grid;
-          grid-template-columns:minmax(0, 1fr) 340px;
-          gap:32px;
-          align-items:start;
-        "
-      >
+      <div class="listing-layout">
 
 
         <!-- FORM -->
@@ -82,6 +266,7 @@
           data-form-type="provider"
         >
 
+
           <input
             type="hidden"
             name="type"
@@ -90,8 +275,8 @@
 
 
           <!--
-            This hidden field receives the combined
-            checkbox selections before submission.
+            Stores all selected service-area checkboxes
+            as one comma-separated value.
           -->
 
           <input
@@ -127,6 +312,7 @@
               Provider Type *
             </label>
 
+
             <select
               id="providerType"
               name="providerType"
@@ -159,6 +345,7 @@
               Business or Provider Name *
             </label>
 
+
             <input
               id="providerName"
               name="providerName"
@@ -166,6 +353,7 @@
               autocomplete="organization"
               required
             >
+
 
             <div class="small">
               This is the name that will appear publicly on NeighborSource.
@@ -183,6 +371,7 @@
               Contact Name *
             </label>
 
+
             <input
               id="contactName"
               name="contactName"
@@ -190,6 +379,7 @@
               autocomplete="name"
               required
             >
+
 
             <div class="small">
               Used for administrative contact. This does not have to be the public provider name.
@@ -201,13 +391,7 @@
 
           <!-- PHONE / EMAIL -->
 
-          <div
-            style="
-              display:grid;
-              grid-template-columns:repeat(2, minmax(0, 1fr));
-              gap:18px;
-            "
-          >
+          <div class="listing-contact-grid">
 
 
             <div class="form-group">
@@ -216,10 +400,12 @@
                 Phone *
               </label>
 
+
               <input
                 id="phone"
                 name="phone"
                 type="tel"
+                inputmode="tel"
                 autocomplete="tel"
                 placeholder="757-555-1234"
                 required
@@ -234,6 +420,7 @@
               <label for="email">
                 Email *
               </label>
+
 
               <input
                 id="email"
@@ -257,6 +444,7 @@
             <label for="category">
               Primary Service Category *
             </label>
+
 
             <select
               id="category"
@@ -330,6 +518,7 @@
               Services Offered *
             </label>
 
+
             <input
               id="services"
               name="services"
@@ -337,6 +526,7 @@
               placeholder="Example: Handyman, deck repair, fence repair, drywall"
               required
             >
+
 
             <div class="small">
               Separate multiple services with commas.
@@ -353,6 +543,7 @@
             <label for="description">
               About Your Service *
             </label>
+
 
             <textarea
               id="description"
@@ -380,28 +571,11 @@
             </div>
 
 
-            <div
-              style="
-                display:grid;
-                grid-template-columns:repeat(2, minmax(0, 1fr));
-                gap:12px 20px;
-                margin-top:16px;
-                padding:20px;
-                background:var(--soft);
-                border:1px solid var(--line);
-                border-radius:14px;
-              "
-            >
+
+            <div class="service-area-grid">
 
 
-              <label
-                style="
-                  display:flex;
-                  align-items:center;
-                  gap:10px;
-                  cursor:pointer;
-                "
-              >
+              <label class="service-area-choice">
 
                 <input
                   type="checkbox"
@@ -417,14 +591,7 @@
 
 
 
-              <label
-                style="
-                  display:flex;
-                  align-items:center;
-                  gap:10px;
-                  cursor:pointer;
-                "
-              >
+              <label class="service-area-choice">
 
                 <input
                   type="checkbox"
@@ -440,14 +607,7 @@
 
 
 
-              <label
-                style="
-                  display:flex;
-                  align-items:center;
-                  gap:10px;
-                  cursor:pointer;
-                "
-              >
+              <label class="service-area-choice">
 
                 <input
                   type="checkbox"
@@ -463,14 +623,7 @@
 
 
 
-              <label
-                style="
-                  display:flex;
-                  align-items:center;
-                  gap:10px;
-                  cursor:pointer;
-                "
-              >
+              <label class="service-area-choice">
 
                 <input
                   type="checkbox"
@@ -486,14 +639,7 @@
 
 
 
-              <label
-                style="
-                  display:flex;
-                  align-items:center;
-                  gap:10px;
-                  cursor:pointer;
-                "
-              >
+              <label class="service-area-choice">
 
                 <input
                   type="checkbox"
@@ -509,14 +655,7 @@
 
 
 
-              <label
-                style="
-                  display:flex;
-                  align-items:center;
-                  gap:10px;
-                  cursor:pointer;
-                "
-              >
+              <label class="service-area-choice">
 
                 <input
                   type="checkbox"
@@ -532,14 +671,7 @@
 
 
 
-              <label
-                style="
-                  display:flex;
-                  align-items:center;
-                  gap:10px;
-                  cursor:pointer;
-                "
-              >
+              <label class="service-area-choice">
 
                 <input
                   type="checkbox"
@@ -555,14 +687,7 @@
 
 
 
-              <label
-                style="
-                  display:flex;
-                  align-items:center;
-                  gap:10px;
-                  cursor:pointer;
-                "
-              >
+              <label class="service-area-choice">
 
                 <input
                   type="checkbox"
@@ -580,6 +705,7 @@
             </div>
 
 
+
             <div
               id="service-area-error"
               class="small"
@@ -591,7 +717,6 @@
             >
               Please select at least one service area.
             </div>
-
 
           </div>
 
@@ -605,10 +730,12 @@
               Website
             </label>
 
+
             <input
               id="website"
               name="website"
               type="url"
+              inputmode="url"
               placeholder="https://"
             >
 
@@ -624,10 +751,12 @@
               Facebook Page
             </label>
 
+
             <input
               id="facebook"
               name="facebook"
               type="url"
+              inputmode="url"
               placeholder="https://facebook.com/..."
             >
 
@@ -637,35 +766,18 @@
 
           <!-- CONFIRMATION -->
 
-          <div
-            style="
-              margin-top:24px;
-              padding:20px;
-              background:var(--soft);
-              border:1px solid var(--line);
-              border-radius:14px;
-            "
-          >
+          <div class="confirmation-box">
 
-            <label
-              style="
-                display:flex;
-                gap:12px;
-                align-items:flex-start;
-                cursor:pointer;
-              "
-            >
+            <label class="confirmation-label">
 
               <input
                 type="checkbox"
                 required
-                style="margin-top:4px;"
               >
 
+
               <span class="small">
-
                 I confirm that the information submitted is accurate to the best of my knowledge and that I am authorized to submit this provider information.
-
               </span>
 
             </label>
@@ -704,21 +816,20 @@
 
         <!-- SIDEBAR -->
 
-        <aside>
+        <aside class="listing-sidebar">
 
 
-          <div
-            class="card"
-            style="margin-bottom:22px;"
-          >
+          <div class="card">
 
             <div class="eyebrow dark">
               WHAT HAPPENS NEXT?
             </div>
 
+
             <h3>
               Listings are reviewed first
             </h3>
+
 
             <p class="small">
               Submitting this form does not immediately publish the listing.
@@ -757,13 +868,16 @@
               ALREADY LISTED?
             </div>
 
+
             <h3>
               Need to make a change?
             </h3>
 
+
             <p class="small">
               Use the listing update form instead of submitting a duplicate provider.
             </p>
+
 
             <a
               class="btn btn-outline"
@@ -790,16 +904,7 @@
 
 
 
-<!--
-  SERVICE AREA CHECKBOX HANDLER
-
-  Converts selected checkboxes into one value such as:
-
-  Chesapeake, Norfolk, Virginia Beach
-
-  That preserves the existing "serviceArea" field expected
-  by Google Apps Script.
--->
+<!-- SERVICE AREA CHECKBOX HANDLER -->
 
 <script>
 
@@ -812,10 +917,12 @@ document.addEventListener(
         "list-service-form"
       );
 
+
     const hiddenField =
       document.getElementById(
         "serviceArea"
       );
+
 
     const checkboxes =
       Array.from(
@@ -823,6 +930,7 @@ document.addEventListener(
           ".service-area-option"
         )
       );
+
 
     const errorMessage =
       document.getElementById(
@@ -862,17 +970,12 @@ document.addEventListener(
 
 
       if (
-        selected.length
+        selected.length &&
+        errorMessage
       ) {
 
-        if (
-          errorMessage
-        ) {
-
-          errorMessage.style.display =
-            "none";
-
-        }
+        errorMessage.style.display =
+          "none";
 
       }
 
