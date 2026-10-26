@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
@@ -12,17 +11,17 @@
   >
 
   <title>
-    Contact | NeighborSource
+    Contact NeighborSource
   </title>
 
   <meta
     name="description"
-    content="Contact NeighborSource with questions, feedback, or website issues."
+    content="Contact NeighborSource with questions, feedback, suggestions, or general inquiries."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css"
+    href="css/style.css?v=3"
   >
 
 </head>
@@ -34,19 +33,27 @@
 <main>
 
 
-  <!-- PAGE HEADER -->
+  <!-- PAGE HERO -->
 
   <section class="page-hero">
 
     <div class="container">
 
+
+      <div class="eyebrow">
+        GET IN TOUCH
+      </div>
+
+
       <h1>
         Contact NeighborSource
       </h1>
 
+
       <p>
-        Have a question, suggestion, or problem with the website? Send us a message.
+        Have a question, suggestion, or idea for improving NeighborSource? Send us a message.
       </p>
+
 
     </div>
 
@@ -63,20 +70,29 @@
 
       <form
         class="card form-card"
-        id="contactForm"
-        action="https://script.google.com/macros/s/AKfycbx4bTHYgVwb9rB66m4hnFKvxtPHrTwe6qoqdERU_eRVb4yg1cdrH1zkeIHHl54573_8/exec"
-        method="POST"
-        target="contactFrame"
+        id="contact-form"
+        data-form-type="contact"
       >
 
-
-        <!-- DATABASE TYPE -->
 
         <input
           type="hidden"
           name="type"
           value="contact"
         >
+
+
+
+        <div
+          class="notice green"
+          style="margin-bottom:30px;"
+        >
+
+          <strong>Need help with a specific listing?</strong>
+
+          Use the appropriate listing form when possible so your request can be handled correctly.
+
+        </div>
 
 
 
@@ -88,7 +104,7 @@
           <div class="field">
 
             <label for="name">
-              Your Name
+              Your Name *
             </label>
 
             <input
@@ -96,6 +112,7 @@
               name="name"
               type="text"
               required
+              autocomplete="name"
               placeholder="Your name"
             >
 
@@ -108,7 +125,7 @@
           <div class="field">
 
             <label for="email">
-              Your Email
+              Your Email *
             </label>
 
             <input
@@ -116,6 +133,7 @@
               name="email"
               type="email"
               required
+              autocomplete="email"
               placeholder="you@example.com"
             >
 
@@ -128,7 +146,7 @@
           <div class="field full">
 
             <label for="subject">
-              Subject
+              Subject *
             </label>
 
             <select
@@ -145,24 +163,24 @@
                 General Question
               </option>
 
-              <option value="Website Problem">
-                Website Problem
-              </option>
-
-              <option value="Listing Question">
-                Listing Question
-              </option>
-
-              <option value="Verification Question">
-                Verification Question
+              <option value="Website Feedback">
+                Website Feedback
               </option>
 
               <option value="Suggestion">
                 Suggestion
               </option>
 
-              <option value="Privacy Question">
-                Privacy Question
+              <option value="Provider Question">
+                Provider Question
+              </option>
+
+              <option value="Service Request Question">
+                Service Request Question
+              </option>
+
+              <option value="Technical Problem">
+                Technical Problem
               </option>
 
               <option value="Other">
@@ -180,33 +198,35 @@
           <div class="field full">
 
             <label for="message">
-              Message
+              Message *
             </label>
 
             <textarea
               id="message"
               name="message"
               required
-              placeholder="Tell us how we can help."
+              placeholder="How can we help?"
             ></textarea>
 
           </div>
 
 
 
-          <!-- CONFIRMATION -->
+          <!-- CONFIRM -->
 
           <div class="field full">
 
             <label class="check-row">
 
               <input
-                type="checkbox"
                 id="contactConfirmation"
+                type="checkbox"
                 required
               >
 
-              I confirm that the information I submitted is accurate.
+              <span>
+                I confirm that the information provided is accurate and that NeighborSource may contact me about this message.
+              </span>
 
             </label>
 
@@ -222,78 +242,170 @@
         <button
           class="btn btn-green"
           type="submit"
-          id="submitContactButton"
         >
-
           Send Message
-
         </button>
 
 
 
-        <!-- SUBMITTING -->
-
         <div
-          class="notice"
-          id="submittingMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            Sending your message...
-          </strong>
-
-          Please do not close this page.
-
-        </div>
-
-
-
-        <!-- SUCCESS -->
-
-        <div
-          class="notice green"
-          id="successMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            Message sent.
-          </strong>
-
-          Thank you for contacting NeighborSource.
-
-        </div>
-
-
-
-        <!-- ERROR -->
-
-        <div
-          class="notice warning"
-          id="errorMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            We could not send your message.
-          </strong>
-
-          Please check your information and try again.
-
-        </div>
+          id="form-status"
+          style="margin-top:20px;"
+          aria-live="polite"
+        ></div>
 
 
       </form>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- QUICK LINKS -->
+
+  <section class="section section-soft">
+
+    <div class="container">
+
+
+      <div class="section-heading centered">
+
+        <div class="eyebrow dark">
+          LOOKING FOR SOMETHING SPECIFIC?
+        </div>
+
+
+        <h2>
+          These forms may be faster
+        </h2>
+
+
+        <p class="section-intro">
+          Use the form that best matches what you need.
+        </p>
+
+      </div>
+
+
+
+      <div class="steps-grid">
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            1
+          </div>
+
+          <h3>
+            Update a Listing
+          </h3>
+
+          <p>
+            Correct, add, or remove information from an existing provider listing.
+          </p>
+
+          <a href="update-listing.html">
+            Update a listing →
+          </a>
+
+        </div>
+
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            2
+          </div>
+
+          <h3>
+            Report a Listing
+          </h3>
+
+          <p>
+            Let us know about inaccurate, misleading, or concerning listing information.
+          </p>
+
+          <a href="report.html">
+            Report a listing →
+          </a>
+
+        </div>
+
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            3
+          </div>
+
+          <h3>
+            Recommend Someone
+          </h3>
+
+          <p>
+            Suggest a local provider that should be included in NeighborSource.
+          </p>
+
+          <a href="suggest-provider.html">
+            Recommend someone →
+          </a>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- COMMUNITY NOTE -->
+
+  <section class="section">
+
+    <div class="container">
+
+
+      <div
+        class="card"
+        style="
+          max-width:900px;
+          margin:0 auto;
+          padding:36px;
+        "
+      >
+
+
+        <div class="eyebrow dark">
+          COMMUNITY BUILT
+        </div>
+
+
+        <h2>
+          Help us make NeighborSource better
+        </h2>
+
+
+        <p>
+          NeighborSource is designed to make local recommendations easier to find and organize. Feedback about confusing pages, missing categories, useful features, or problems with the site is welcome.
+        </p>
+
+
+        <p class="small">
+          Please do not send sensitive personal, financial, medical, or account information through the contact form.
+        </p>
+
+
+      </div>
 
 
     </div>
@@ -305,200 +417,7 @@
 
 
 
-<!-- HIDDEN GOOGLE APPS SCRIPT TARGET -->
-
-<iframe
-  name="contactFrame"
-  id="contactFrame"
-  style="
-    width:0;
-    height:0;
-    border:0;
-    position:absolute;
-    left:-9999px;
-  "
-></iframe>
-
-
-
-<!-- MAIN NEIGHBORSOURCE JAVASCRIPT -->
-
-<script src="js/app.js"></script>
-
-
-
-<!-- CONTACT FORM JAVASCRIPT -->
-
-<script>
-
-document.addEventListener(
-  "DOMContentLoaded",
-  function () {
-
-
-    /**********************************************
-     * ELEMENTS
-     **********************************************/
-
-    const form =
-      document.getElementById(
-        "contactForm"
-      );
-
-
-    const submitButton =
-      document.getElementById(
-        "submitContactButton"
-      );
-
-
-    const submittingMessage =
-      document.getElementById(
-        "submittingMessage"
-      );
-
-
-    const successMessage =
-      document.getElementById(
-        "successMessage"
-      );
-
-
-    const errorMessage =
-      document.getElementById(
-        "errorMessage"
-      );
-
-
-    const iframe =
-      document.getElementById(
-        "contactFrame"
-      );
-
-
-    let submissionStarted =
-      false;
-
-
-
-    /**********************************************
-     * FORM SUBMISSION
-     **********************************************/
-
-    form.addEventListener(
-      "submit",
-      function () {
-
-
-        successMessage.style.display =
-          "none";
-
-
-        errorMessage.style.display =
-          "none";
-
-
-        submittingMessage.style.display =
-          "block";
-
-
-        submitButton.disabled =
-          true;
-
-
-        submitButton.textContent =
-          "Sending...";
-
-
-        submissionStarted =
-          true;
-
-
-        /*
-         * Do not prevent default.
-         *
-         * The form posts directly to
-         * Google Apps Script through the
-         * hidden iframe.
-         */
-
-      }
-    );
-
-
-
-    /**********************************************
-     * APPS SCRIPT FINISHED
-     **********************************************/
-
-    iframe.addEventListener(
-      "load",
-      function () {
-
-
-        if (
-          !submissionStarted
-        ) {
-
-          return;
-
-        }
-
-
-        submissionStarted =
-          false;
-
-
-        submittingMessage.style.display =
-          "none";
-
-
-        successMessage.style.display =
-          "block";
-
-
-        errorMessage.style.display =
-          "none";
-
-
-        submitButton.disabled =
-          false;
-
-
-        submitButton.textContent =
-          "Send Message";
-
-
-        /******************************************
-         * RESET FORM
-         ******************************************/
-
-        form.reset();
-
-
-        /******************************************
-         * SCROLL TO SUCCESS
-         ******************************************/
-
-        successMessage.scrollIntoView({
-
-          behavior:
-            "smooth",
-
-          block:
-            "center"
-
-        });
-
-
-      }
-    );
-
-
-  }
-);
-
-</script>
+<script src="js/app.js?v=3"></script>
 
 
 </body>
