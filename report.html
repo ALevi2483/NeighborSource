@@ -1,26 +1,609 @@
 <!doctype html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Report a Listing | NeighborSource</title>
-  <meta name="description" content="NeighborSource local services directory">
-  <link rel="stylesheet" href="css/style.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    Report a Listing | NeighborSource
+  </title>
+
+  <meta
+    name="description"
+    content="Report an incorrect, closed, suspicious, or inappropriate NeighborSource listing."
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
 </head>
+
+
 <body>
 
-<main><section class="page-hero"><div class="container"><h1>Report a Listing</h1><p>Help us keep NeighborSource accurate and useful.</p></div></section>
-<section class="section"><div class="container"><form class="card form-card" data-demo-form>
-  <div class="form-grid">
-    <div class="field full"><label>Which listing are you reporting?</label><input required></div>
-    <div class="field full"><label>Reason for report</label><select required><option>Incorrect information</option><option>Business closed</option><option>Possible scam</option><option>Inappropriate listing</option><option>False credential claim</option><option>Other</option></select></div>
-    <div class="field full"><label>Additional details</label><textarea></textarea></div>
-    <div class="field"><label>Your Name</label><input required></div>
-    <div class="field"><label>Your Email</label><input required type="email"></div>
-  </div>
-  <button class="btn btn-primary" type="submit">Submit Report</button><div class="notice green success-message"><strong>Prototype:</strong> Your form is working on the page. When we connect this site to Google Forms/Sheets, this submission will go to your real admin workflow.</div>
-</form></div></section></main>
+
+<main>
+
+
+  <!-- PAGE HEADER -->
+
+  <section class="page-hero">
+
+    <div class="container">
+
+      <h1>
+        Report a Listing
+      </h1>
+
+      <p>
+        Let us know if a listing contains incorrect information or needs our attention.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- FORM -->
+
+  <section class="section">
+
+    <div class="container">
+
+
+      <form
+        class="card form-card"
+        id="reportForm"
+        action="https://script.google.com/macros/s/AKfycbx4bTHYgVwb9rB66m4hnFKvxtPHrTwe6qoqdERU_eRVb4yg1cdrH1zkeIHHl54573_8/exec"
+        method="POST"
+        target="reportFrame"
+      >
+
+
+        <!-- DATABASE TYPE -->
+
+        <input
+          type="hidden"
+          name="type"
+          value="report"
+        >
+
+
+        <!-- PROVIDER ID -->
+
+        <input
+          type="hidden"
+          id="providerId"
+          name="providerId"
+          value=""
+        >
+
+
+
+        <div class="form-grid">
+
+
+          <!-- PROVIDER NAME -->
+
+          <div class="field full">
+
+            <label for="providerName">
+              Provider / Business Name
+            </label>
+
+            <input
+              id="providerName"
+              name="providerName"
+              type="text"
+              required
+              placeholder="Example: Smith Construction"
+            >
+
+            <div class="helper">
+              Enter the provider name exactly as it appears on NeighborSource.
+            </div>
+
+          </div>
+
+
+
+          <!-- REASON -->
+
+          <div class="field full">
+
+            <label for="reason">
+              Why are you reporting this listing?
+            </label>
+
+            <select
+              id="reason"
+              name="reason"
+              required
+            >
+
+              <option value="">
+                Select a reason
+              </option>
+
+              <option value="Incorrect Information">
+                Incorrect Information
+              </option>
+
+              <option value="Business Closed">
+                Business Closed
+              </option>
+
+              <option value="Possible Scam">
+                Possible Scam
+              </option>
+
+              <option value="Inappropriate Listing">
+                Inappropriate Listing
+              </option>
+
+              <option value="False Credential Claim">
+                False Credential Claim
+              </option>
+
+              <option value="Other">
+                Other
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- DETAILS -->
+
+          <div class="field full">
+
+            <label for="details">
+              Details
+            </label>
+
+            <textarea
+              id="details"
+              name="details"
+              required
+              placeholder="Explain what is wrong with the listing or why it should be reviewed."
+            ></textarea>
+
+            <div class="helper">
+              Please provide enough information for us to review the issue.
+            </div>
+
+          </div>
+
+
+
+          <!-- REPORTER NAME -->
+
+          <div class="field">
+
+            <label for="reporterName">
+              Your Name
+            </label>
+
+            <input
+              id="reporterName"
+              name="reporterName"
+              type="text"
+              required
+              placeholder="Your name"
+            >
+
+          </div>
+
+
+
+          <!-- REPORTER EMAIL -->
+
+          <div class="field">
+
+            <label for="reporterEmail">
+              Your Email
+            </label>
+
+            <input
+              id="reporterEmail"
+              name="reporterEmail"
+              type="email"
+              required
+              placeholder="you@example.com"
+            >
+
+            <div class="helper">
+              Your email is used for review purposes and is not displayed publicly.
+            </div>
+
+          </div>
+
+
+
+          <!-- CONFIRMATION -->
+
+          <div class="field full">
+
+            <label class="check-row">
+
+              <input
+                type="checkbox"
+                id="reportConfirmation"
+                required
+              >
+
+              I confirm that this report is being submitted in good faith and the information I provided is accurate to the best of my knowledge.
+
+            </label>
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- SUBMIT -->
+
+        <button
+          class="btn btn-green"
+          type="submit"
+          id="submitReportButton"
+        >
+
+          Submit Report
+
+        </button>
+
+
+
+        <!-- SUBMITTING -->
+
+        <div
+          class="notice"
+          id="submittingMessage"
+          style="
+            display:none;
+            margin-top:16px;
+          "
+        >
+
+          <strong>
+            Submitting your report...
+          </strong>
+
+          Please do not close this page.
+
+        </div>
+
+
+
+        <!-- SUCCESS -->
+
+        <div
+          class="notice green"
+          id="successMessage"
+          style="
+            display:none;
+            margin-top:16px;
+          "
+        >
+
+          <strong>
+            Report submitted.
+          </strong>
+
+          Thank you. The listing has been sent for review.
+
+        </div>
+
+
+
+        <!-- ERROR -->
+
+        <div
+          class="notice warning"
+          id="errorMessage"
+          style="
+            display:none;
+            margin-top:16px;
+          "
+        >
+
+          <strong>
+            We could not submit your report.
+          </strong>
+
+          Please check your information and try again.
+
+        </div>
+
+
+      </form>
+
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+
+<!-- HIDDEN POST TARGET -->
+
+<iframe
+  name="reportFrame"
+  id="reportFrame"
+  style="
+    width:0;
+    height:0;
+    border:0;
+    position:absolute;
+    left:-9999px;
+  "
+></iframe>
+
+
+
+<!-- MAIN NEIGHBORSOURCE JAVASCRIPT -->
 
 <script src="js/app.js"></script>
+
+
+
+<!-- REPORT PAGE JAVASCRIPT -->
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+
+    /**********************************************
+     * ELEMENTS
+     **********************************************/
+
+    const form =
+      document.getElementById(
+        "reportForm"
+      );
+
+
+    const providerIdInput =
+      document.getElementById(
+        "providerId"
+      );
+
+
+    const providerNameInput =
+      document.getElementById(
+        "providerName"
+      );
+
+
+    const submitButton =
+      document.getElementById(
+        "submitReportButton"
+      );
+
+
+    const submittingMessage =
+      document.getElementById(
+        "submittingMessage"
+      );
+
+
+    const successMessage =
+      document.getElementById(
+        "successMessage"
+      );
+
+
+    const errorMessage =
+      document.getElementById(
+        "errorMessage"
+      );
+
+
+    const iframe =
+      document.getElementById(
+        "reportFrame"
+      );
+
+
+    let submissionStarted =
+      false;
+
+
+
+    /**********************************************
+     * READ PROVIDER FROM URL
+     *
+     * Supports:
+     *
+     * report.html
+     * ?providerId=PROV-WEB-123
+     * &provider=Smith%20Construction
+     **********************************************/
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const providerId =
+      params.get(
+        "providerId"
+      ) || "";
+
+
+    const providerName =
+      params.get(
+        "provider"
+      ) || "";
+
+
+    if (
+      providerId
+    ) {
+
+      providerIdInput.value =
+        providerId;
+
+    }
+
+
+    if (
+      providerName
+    ) {
+
+      providerNameInput.value =
+        providerName;
+
+    }
+
+
+
+    /**********************************************
+     * FORM SUBMISSION
+     **********************************************/
+
+    form.addEventListener(
+      "submit",
+      function () {
+
+
+        successMessage.style.display =
+          "none";
+
+
+        errorMessage.style.display =
+          "none";
+
+
+        submittingMessage.style.display =
+          "block";
+
+
+        submitButton.disabled =
+          true;
+
+
+        submitButton.textContent =
+          "Submitting...";
+
+
+        submissionStarted =
+          true;
+
+
+        /*
+         * Do not prevent default.
+         *
+         * Browser submits directly to
+         * Google Apps Script through
+         * the hidden iframe.
+         */
+
+      }
+    );
+
+
+
+    /**********************************************
+     * APPS SCRIPT FINISHED
+     **********************************************/
+
+    iframe.addEventListener(
+      "load",
+      function () {
+
+
+        if (
+          !submissionStarted
+        ) {
+
+          return;
+
+        }
+
+
+        submissionStarted =
+          false;
+
+
+        submittingMessage.style.display =
+          "none";
+
+
+        successMessage.style.display =
+          "block";
+
+
+        errorMessage.style.display =
+          "none";
+
+
+        submitButton.disabled =
+          false;
+
+
+        submitButton.textContent =
+          "Submit Report";
+
+
+        /******************************************
+         * RESET FORM
+         ******************************************/
+
+        form.reset();
+
+
+        providerIdInput.value =
+          "";
+
+
+        /******************************************
+         * SCROLL TO SUCCESS
+         ******************************************/
+
+        successMessage.scrollIntoView({
+
+          behavior:
+            "smooth",
+
+          block:
+            "center"
+
+        });
+
+
+      }
+    );
+
+
+  }
+);
+
+</script>
+
+
 </body>
+
 </html>
