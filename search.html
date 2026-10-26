@@ -1,38 +1,227 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Search Results | NeighborSource</title>
-  <meta name="description" content="NeighborSource local services directory">
-  <link rel="stylesheet" href="css/style.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    Search Local Services | NeighborSource
+  </title>
+
+  <meta
+    name="description"
+    content="Search NeighborSource for local businesses and individual service providers."
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css?v=3"
+  >
+
 </head>
+
+
 <body>
 
+
 <main>
-  <section class="page-hero"><div class="container"><h1>Search Results</h1><p>Showing results for “<span id="search-query"></span>”.</p></div></section>
-  <section class="section">
+
+
+  <!-- PAGE HERO -->
+
+  <section class="page-hero">
+
     <div class="container">
-      <form class="search-bar" data-search-form style="max-width:760px;margin:0 0 24px">
-        <input id="search-page-input" placeholder="Search again">
-        <button>Search</button>
-      </form>
-      <div class="content-layout">
-        <aside class="card sidebar">
-          <h3 style="margin-top:0">Filter Results</h3>
-          <div class="filter-group"><h4>Location</h4><label class="check-row"><input type="checkbox"> Chesapeake</label><label class="check-row"><input type="checkbox"> Suffolk</label><label class="check-row"><input type="checkbox"> Portsmouth</label><label class="check-row"><input type="checkbox"> Norfolk</label></div>
-          <div class="filter-group"><h4>Provider Type</h4><label class="check-row"><input type="checkbox"> Business</label><label class="check-row"><input type="checkbox"> Individual</label></div>
-          <div class="filter-group"><h4>Verification</h4><label class="check-row"><input type="checkbox"> License Verified</label><label class="check-row"><input type="checkbox"> Insurance Verified</label></div>
-        </aside>
-        <div>
-          <div class="section-title"><div><h2 id="result-count">0 providers found</h2></div></div>
-          <div class="grid" id="search-results"></div>
-        </div>
+
+      <div class="eyebrow">
+        FIND LOCAL HELP
       </div>
+
+      <h1>
+        Search Local Services
+      </h1>
+
+      <p>
+        Search businesses and individual service providers by service, name, category, or location.
+      </p>
+
     </div>
+
   </section>
+
+
+
+  <!-- SEARCH AREA -->
+
+  <section class="section">
+
+    <div class="container">
+
+
+      <!-- SEARCH BAR -->
+
+      <form
+        class="search-page-form"
+        data-search-form
+      >
+
+        <input
+          id="search-page-input"
+          type="search"
+          name="q"
+          aria-label="Search local services"
+          placeholder="Plumber, lawn care, dog sitter, notary..."
+        >
+
+        <button
+          class="btn btn-green"
+          type="submit"
+        >
+          Search
+        </button>
+
+      </form>
+
+
+
+      <!-- SEARCH HEADING -->
+
+      <div class="section-heading-row">
+
+        <div>
+
+          <div class="eyebrow dark">
+            SEARCH RESULTS
+          </div>
+
+          <h2>
+            Results for:
+            <span id="search-query">
+              all services
+            </span>
+          </h2>
+
+          <p
+            class="section-intro"
+            id="result-count"
+          >
+            Searching...
+          </p>
+
+        </div>
+
+
+        <a
+          class="btn btn-outline"
+          href="services.html"
+        >
+          Browse Categories
+        </a>
+
+      </div>
+
+
+
+      <!-- RESULTS -->
+
+      <div
+        class="search-results"
+        id="search-results"
+      >
+
+        <div class="card empty-state">
+
+          <p>
+            Loading local providers...
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- NO MATCH HELP -->
+
+  <section class="section section-soft">
+
+    <div class="container">
+
+
+      <div
+        class="card"
+        style="
+          max-width:900px;
+          margin:0 auto;
+          padding:36px;
+        "
+      >
+
+        <div class="eyebrow dark">
+          DON'T SEE WHAT YOU NEED?
+        </div>
+
+        <h2>
+          You still have options
+        </h2>
+
+        <p>
+          NeighborSource is community-built. If the service you need is not listed yet, ask the community or recommend a provider you already know.
+        </p>
+
+
+        <div
+          style="
+            display:flex;
+            flex-wrap:wrap;
+            gap:12px;
+            margin-top:24px;
+          "
+        >
+
+          <a
+            class="btn btn-green"
+            href="request-help.html"
+          >
+            Post What You Need
+          </a>
+
+          <a
+            class="btn btn-primary"
+            href="suggest-provider.html"
+          >
+            Recommend Someone
+          </a>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
 </main>
 
-<script src="js/app.js"></script>
+
+
+<script src="js/app.js?v=3"></script>
+
+
 </body>
+
 </html>
