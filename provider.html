@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Provider Profile | NeighborSource</title>
+  <meta name="description" content="NeighborSource local services directory">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<main>
+  <section class="page-hero"><div class="container"><div class="small" id="provider-category" style="color:#cfe1f2"></div><h1 id="provider-name">Provider Name</h1><p id="provider-description"></p></div></section>
+  <section class="section"><div class="container profile-head">
+    <div>
+      <div class="card">
+        <h2>About</h2><p id="provider-description"></p>
+        <h3>Services</h3><div class="pill-row" id="provider-services"></div>
+        <h3 style="margin-top:22px">Service Area</h3><p id="provider-area"></p>
+        <h3>Verification</h3><div class="badges" id="provider-badges"></div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h2>Neighbor Recommendations</h2>
+        <p><strong>“Great communication and solid work. I would use them again.”</strong></p>
+        <div class="small">Example recommendation</div>
+      </div>
+    </div>
+    <aside>
+      <div class="card">
+        <div class="profile-stats">
+          <div class="stat"><strong id="provider-recs">0</strong><span class="small">Recommendations</span></div>
+          <div class="stat"><strong id="provider-rehire">0</strong><span class="small">Would Rehire</span></div>
+          <div class="stat"><strong>✓</strong><span class="small">Verified Info</span></div>
+        </div>
+        <div class="provider-actions" style="margin-top:20px">
+          <a class="btn btn-green" id="provider-call" href="#">Call <span id="provider-phone"></span></a>
+          <a class="btn btn-primary" id="recommend-provider-link" href="recommend.html">Recommend</a>
+          <a class="btn btn-outline" href="report.html">Report Listing</a>
+        </div>
+      </div>
+    </aside>
+  </div></section>
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>
