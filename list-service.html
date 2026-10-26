@@ -1,34 +1,746 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>List Your Service | NeighborSource</title>
-  <meta name="description" content="NeighborSource local services directory">
-  <link rel="stylesheet" href="css/style.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    List Your Service | NeighborSource
+  </title>
+
+  <meta
+    name="description"
+    content="List your local business or service on NeighborSource."
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
 </head>
+
+
 <body>
 
-<main><section class="page-hero"><div class="container"><h1>List Your Service</h1><p>Share your business or individual service with the community.</p></div></section>
-<section class="section"><div class="container"><form class="card form-card" data-demo-form>
-  <div class="form-grid">
-    <div class="field full"><label>Listing Type</label><select required><option>Business</option><option>Individual Service Provider</option></select></div>
-    <div class="field"><label>Business / Service Name</label><input required placeholder="KDH Construction, LLC"></div>
-    <div class="field"><label>Contact Name</label><input required placeholder="Your name"></div>
-    <div class="field"><label>Phone</label><input required type="tel" placeholder="757-555-0100"></div>
-    <div class="field"><label>Email</label><input required type="email" placeholder="you@example.com"></div>
-    <div class="field"><label>Category</label><select required><option value="">Choose a category</option><option>Home & Repair</option><option>Lawn & Outdoor</option><option>Cleaning</option><option>Pets</option><option>Automotive</option><option>Child Care</option><option>Tutoring & Lessons</option><option>Events & Photography</option><option>Moving & Hauling</option><option>Technology</option><option>Notary & Professional</option><option>Other Services</option></select></div>
-    <div class="field"><label>Service Area</label><input required placeholder="Chesapeake, Suffolk"></div>
-    <div class="field full"><label>What services do you provide?</label><input required placeholder="Decks, fences, repairs"></div>
-    <div class="field full"><label>Description</label><textarea required placeholder="Tell neighbors what you do."></textarea></div>
-    <div class="field"><label>Website</label><input type="url" placeholder="https://"></div>
-    <div class="field"><label>Facebook Page</label><input type="url" placeholder="https://facebook.com/..."></div>
-    <div class="field full"><label><input type="checkbox" style="width:auto"> I confirm this information is accurate and I am authorized to submit it.</label></div>
-  </div>
-  <button class="btn btn-green" type="submit">Submit Listing</button>
-  <div class="notice green success-message"><strong>Prototype:</strong> Your form is working on the page. When we connect this site to Google Forms/Sheets, this submission will go to your real admin workflow.</div>
-</form></div></section></main>
+
+<main>
+
+
+  <!-- PAGE HEADER -->
+
+  <section class="page-hero">
+
+    <div class="container">
+
+      <h1>
+        List Your Service
+      </h1>
+
+      <p>
+        Share your business or individual service with the community.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- FORM -->
+
+  <section class="section">
+
+    <div class="container">
+
+
+      <form
+        class="card form-card"
+        id="listServiceForm"
+        data-demo-form
+      >
+
+
+        <div class="form-grid">
+
+
+          <!-- LISTING TYPE -->
+
+          <div class="field full">
+
+            <label for="providerType">
+              Listing Type
+            </label>
+
+            <select
+              id="providerType"
+              name="providerType"
+              required
+            >
+
+              <option value="">
+                Select listing type
+              </option>
+
+              <option value="Business">
+                Business
+              </option>
+
+              <option value="Individual">
+                Individual Service Provider
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- BUSINESS / SERVICE NAME -->
+
+          <div class="field">
+
+            <label for="providerName">
+              Business / Service Name
+            </label>
+
+            <input
+              id="providerName"
+              name="providerName"
+              type="text"
+              required
+              placeholder="Example: KDH Construction, LLC"
+            >
+
+          </div>
+
+
+
+          <!-- CONTACT NAME -->
+
+          <div class="field">
+
+            <label for="contactName">
+              Contact Name
+            </label>
+
+            <input
+              id="contactName"
+              name="contactName"
+              type="text"
+              required
+              placeholder="Your name"
+            >
+
+          </div>
+
+
+
+          <!-- PHONE -->
+
+          <div class="field">
+
+            <label for="phone">
+              Phone
+            </label>
+
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              required
+              placeholder="757-555-0100"
+            >
+
+          </div>
+
+
+
+          <!-- EMAIL -->
+
+          <div class="field">
+
+            <label for="email">
+              Email
+            </label>
+
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="you@example.com"
+            >
+
+          </div>
+
+
+
+          <!-- CATEGORY -->
+
+          <div class="field full">
+
+            <label for="category">
+              Category
+            </label>
+
+            <select
+              id="category"
+              name="category"
+              required
+            >
+
+              <option value="">
+                Choose a category
+              </option>
+
+              <option value="Home & Repair">
+                Home & Repair
+              </option>
+
+              <option value="Lawn & Outdoor">
+                Lawn & Outdoor
+              </option>
+
+              <option value="Cleaning">
+                Cleaning
+              </option>
+
+              <option value="Pets">
+                Pets
+              </option>
+
+              <option value="Automotive">
+                Automotive
+              </option>
+
+              <option value="Child Care">
+                Child Care
+              </option>
+
+              <option value="Tutoring & Lessons">
+                Tutoring & Lessons
+              </option>
+
+              <option value="Events & Photography">
+                Events & Photography
+              </option>
+
+              <option value="Moving & Hauling">
+                Moving & Hauling
+              </option>
+
+              <option value="Technology">
+                Technology
+              </option>
+
+              <option value="Notary & Professional">
+                Notary & Professional
+              </option>
+
+              <option value="Other Services">
+                Other Services
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- SERVICE AREA -->
+
+          <div class="field full">
+
+            <label>
+              Service Area
+            </label>
+
+            <div class="helper">
+              Select every city where you provide services.
+            </div>
+
+
+            <div
+              class="checkbox-grid"
+              id="serviceAreaOptions"
+            >
+
+
+              <label class="check-row">
+
+                <input
+                  type="checkbox"
+                  name="serviceArea"
+                  value="Chesapeake"
+                >
+
+                Chesapeake
+
+              </label>
+
+
+              <label class="check-row">
+
+                <input
+                  type="checkbox"
+                  name="serviceArea"
+                  value="Norfolk"
+                >
+
+                Norfolk
+
+              </label>
+
+
+              <label class="check-row">
+
+                <input
+                  type="checkbox"
+                  name="serviceArea"
+                  value="Portsmouth"
+                >
+
+                Portsmouth
+
+              </label>
+
+
+              <label class="check-row">
+
+                <input
+                  type="checkbox"
+                  name="serviceArea"
+                  value="Suffolk"
+                >
+
+                Suffolk
+
+              </label>
+
+
+              <label class="check-row">
+
+                <input
+                  type="checkbox"
+                  name="serviceArea"
+                  value="Virginia Beach"
+                >
+
+                Virginia Beach
+
+              </label>
+
+
+              <label class="check-row">
+
+                <input
+                  type="checkbox"
+                  name="serviceArea"
+                  value="Hampton"
+                >
+
+                Hampton
+
+              </label>
+
+
+              <label class="check-row">
+
+                <input
+                  type="checkbox"
+                  name="serviceArea"
+                  value="Newport News"
+                >
+
+                Newport News
+
+              </label>
+
+
+              <label class="check-row">
+
+                <input
+                  type="checkbox"
+                  id="serviceAreaOther"
+                  value="Other"
+                >
+
+                Other
+
+              </label>
+
+
+            </div>
+
+
+            <input
+              type="text"
+              id="otherServiceArea"
+              placeholder="Enter another city or service area"
+              style="display:none; margin-top:12px;"
+            >
+
+
+            <!--
+              This hidden field will eventually contain:
+              Chesapeake, Portsmouth, Suffolk
+            -->
+
+            <input
+              type="hidden"
+              id="serviceAreaCombined"
+              name="serviceAreaCombined"
+            >
+
+
+          </div>
+
+
+
+          <!-- SERVICES PROVIDED -->
+
+          <div class="field full">
+
+            <label for="services">
+              What services do you provide?
+            </label>
+
+            <input
+              id="services"
+              name="services"
+              type="text"
+              required
+              placeholder="Example: Decks, fences, repairs"
+            >
+
+            <div class="helper">
+              Separate multiple services with commas.
+            </div>
+
+          </div>
+
+
+
+          <!-- DESCRIPTION -->
+
+          <div class="field full">
+
+            <label for="description">
+              Description
+            </label>
+
+            <textarea
+              id="description"
+              name="description"
+              required
+              placeholder="Tell neighbors what you do, what services you offer, and anything else they should know."
+            ></textarea>
+
+          </div>
+
+
+
+          <!-- WEBSITE -->
+
+          <div class="field">
+
+            <label for="website">
+              Website
+            </label>
+
+            <input
+              id="website"
+              name="website"
+              type="url"
+              placeholder="https://"
+            >
+
+            <div class="helper">
+              Optional
+            </div>
+
+          </div>
+
+
+
+          <!-- FACEBOOK -->
+
+          <div class="field">
+
+            <label for="facebook">
+              Facebook Page
+            </label>
+
+            <input
+              id="facebook"
+              name="facebook"
+              type="url"
+              placeholder="https://facebook.com/..."
+            >
+
+            <div class="helper">
+              Optional
+            </div>
+
+          </div>
+
+
+
+          <!-- AGREEMENT -->
+
+          <div class="field full">
+
+            <label class="check-row">
+
+              <input
+                type="checkbox"
+                id="accuracyConfirmation"
+                required
+                style="width:auto;"
+              >
+
+              I confirm that the information I submitted is accurate
+              and that I am authorized to submit this listing.
+
+            </label>
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- SUBMIT BUTTON -->
+
+        <button
+          class="btn btn-green"
+          type="submit"
+        >
+          Submit Listing
+        </button>
+
+
+
+        <!-- CURRENT PROTOTYPE MESSAGE -->
+
+        <div class="notice green success-message">
+
+          <strong>
+            Listing submitted.
+          </strong>
+
+          Your listing has been sent for review.
+
+        </div>
+
+
+      </form>
+
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+
+<!-- MAIN NEIGHBORSOURCE JAVASCRIPT -->
 
 <script src="js/app.js"></script>
+
+
+
+<!-- SERVICE AREA CHECKBOX JAVASCRIPT -->
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+
+    const form =
+      document.getElementById(
+        "listServiceForm"
+      );
+
+
+    const otherCheckbox =
+      document.getElementById(
+        "serviceAreaOther"
+      );
+
+
+    const otherInput =
+      document.getElementById(
+        "otherServiceArea"
+      );
+
+
+    const combinedInput =
+      document.getElementById(
+        "serviceAreaCombined"
+      );
+
+
+
+    /* SHOW / HIDE OTHER FIELD */
+
+    if (
+      otherCheckbox &&
+      otherInput
+    ) {
+
+      otherCheckbox.addEventListener(
+        "change",
+        function () {
+
+
+          if (
+            otherCheckbox.checked
+          ) {
+
+            otherInput.style.display =
+              "block";
+
+            otherInput.focus();
+
+          }
+
+          else {
+
+            otherInput.style.display =
+              "none";
+
+            otherInput.value =
+              "";
+
+          }
+
+
+        }
+      );
+
+    }
+
+
+
+    /* BUILD SERVICE AREA STRING */
+
+    function updateServiceArea() {
+
+
+      const selectedAreas = [];
+
+
+      document
+        .querySelectorAll(
+          'input[name="serviceArea"]:checked'
+        )
+        .forEach(
+          checkbox => {
+
+            selectedAreas.push(
+              checkbox.value
+            );
+
+          }
+        );
+
+
+      if (
+        otherCheckbox.checked &&
+        otherInput.value.trim()
+      ) {
+
+        selectedAreas.push(
+          otherInput.value.trim()
+        );
+
+      }
+
+
+      combinedInput.value =
+        selectedAreas.join(", ");
+
+
+    }
+
+
+
+    /* UPDATE WHEN CHECKBOX CHANGES */
+
+    document
+      .querySelectorAll(
+        'input[name="serviceArea"]'
+      )
+      .forEach(
+        checkbox => {
+
+          checkbox.addEventListener(
+            "change",
+            updateServiceArea
+          );
+
+        }
+      );
+
+
+
+    /* UPDATE OTHER FIELD */
+
+    otherInput.addEventListener(
+      "input",
+      updateServiceArea
+    );
+
+
+
+    /* VALIDATE AT LEAST ONE AREA */
+
+    form.addEventListener(
+      "submit",
+      function (event) {
+
+
+        updateServiceArea();
+
+
+        if (
+          !combinedInput.value
+        ) {
+
+          event.preventDefault();
+
+          alert(
+            "Please select at least one service area."
+          );
+
+          return;
+
+        }
+
+
+      }
+    );
+
+
+  }
+);
+
+</script>
+
+
 </body>
+
 </html>
