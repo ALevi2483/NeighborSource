@@ -1,156 +1,296 @@
-const providers = [
-  {
-    id:"kdh-construction",
-    name:"KDH Construction, LLC",
-    type:"Business",
-    category:"Home & Repair",
-    services:["Decks","Fences","Exterior Construction","Repairs"],
-    area:["Chesapeake","Suffolk","Portsmouth"],
-    recommendations:27,
-    rehire:24,
-    phone:"757-651-3910",
-    website:"#",
-    facebook:"#",
-    verified:["Phone Verified","Business Verified","License Verified","Insurance Verified"],
-    description:"Locally owned construction company specializing in decks, fences, repairs, and exterior residential projects."
-  },
-  {
-    id:"tidewater-lawn-care",
-    name:"Tidewater Lawn Care",
-    type:"Business",
-    category:"Lawn & Outdoor",
-    services:["Lawn Mowing","Yard Cleanup","Mulch"],
-    area:["Chesapeake","Portsmouth"],
-    recommendations:19,
-    rehire:18,
-    phone:"757-555-0142",
-    website:"#",
-    facebook:"#",
-    verified:["Phone Verified","Business Verified"],
-    description:"Residential lawn mowing, cleanup, and seasonal yard services."
-  },
-  {
-    id:"western-branch-mobile-notary",
-    name:"Western Branch Mobile Notary",
-    type:"Individual",
-    category:"Notary & Professional",
-    services:["Mobile Notary","Document Witnessing"],
-    area:["Chesapeake","Suffolk"],
-    recommendations:14,
-    rehire:14,
-    phone:"757-555-0188",
-    website:"#",
-    facebook:"#",
-    verified:["Phone Verified","Identity Verified"],
-    description:"Mobile notary service for homes, offices, and public meeting locations."
-  },
-  {
-    id:"port-rover-pet-care",
-    name:"Port Rover Pet Care",
-    type:"Business",
-    category:"Pets",
-    services:["Dog Daycare","Boarding","Dog Walking"],
-    area:["Chesapeake","Suffolk"],
-    recommendations:31,
-    rehire:29,
-    phone:"757-555-0120",
-    website:"#",
-    facebook:"#",
-    verified:["Phone Verified","Business Verified"],
-    description:"Dog daycare, boarding, and walking services for local families."
-  }
-];
+/*************************************************
+ * NEIGHBORSOURCE
+ * Main JavaScript
+ *************************************************/
+
+
+/*************************************************
+ * DATABASE API
+ *************************************************/
+
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbx4bTHYgVwb9rB66m4hnFKvxtPHrTwe6qoqdERU_eRVb4yg1cdrH1zkeIHHl54573_8/exec";
+
+
+/*************************************************
+ * DATA
+ *************************************************/
+
+let providers = [];
 
 const categories = [
-  ["Home & Repair","🏠","Handyman, plumbing, electrical, windows, decks, fences and more."],
-  ["Lawn & Outdoor","🌿","Lawn care, landscaping, tree work, pressure washing and outdoor projects."],
-  ["Cleaning","🧹","House cleaning, move-out cleaning, organization and specialty cleaning."],
-  ["Pets","🐾","Dog walking, pet sitting, boarding, grooming and pet care."],
-  ["Automotive","🚗","Mobile mechanics, detailing, towing, tires and other vehicle services."],
-  ["Child Care","🧸","Babysitting, child care, mother's helpers and family support."],
-  ["Tutoring & Lessons","📚","Academic tutoring, music lessons, coaching and instruction."],
-  ["Events & Photography","📸","Photography, DJs, party help, event services and rentals."],
-  ["Moving & Hauling","📦","Moving help, junk removal, hauling and delivery."],
-  ["Technology","💻","Computer repair, setup, websites, networking and tech support."],
-  ["Notary & Professional","✍️","Notary, bookkeeping, tax support and other professional services."],
-  ["Other Services","🛠️","Everything that does not fit another category."]
+
+  [
+    "Home & Repair",
+    "🏠",
+    "Handyman, plumbing, electrical, windows, decks, fences and more."
+  ],
+
+  [
+    "Lawn & Outdoor",
+    "🌿",
+    "Lawn care, landscaping, tree work, pressure washing and outdoor projects."
+  ],
+
+  [
+    "Cleaning",
+    "🧹",
+    "House cleaning, move-out cleaning, organization and specialty cleaning."
+  ],
+
+  [
+    "Pets",
+    "🐾",
+    "Dog walking, pet sitting, boarding, grooming and pet care."
+  ],
+
+  [
+    "Automotive",
+    "🚗",
+    "Mobile mechanics, detailing, towing, tires and other vehicle services."
+  ],
+
+  [
+    "Child Care",
+    "🧸",
+    "Babysitting, child care, mother's helpers and family support."
+  ],
+
+  [
+    "Tutoring & Lessons",
+    "📚",
+    "Academic tutoring, music lessons, coaching and instruction."
+  ],
+
+  [
+    "Events & Photography",
+    "📸",
+    "Photography, DJs, party help, event services and rentals."
+  ],
+
+  [
+    "Moving & Hauling",
+    "📦",
+    "Moving help, junk removal, hauling and delivery."
+  ],
+
+  [
+    "Technology",
+    "💻",
+    "Computer repair, setup, websites, networking and tech support."
+  ],
+
+  [
+    "Notary & Professional",
+    "✍️",
+    "Notary, bookkeeping, tax support and other professional services."
+  ],
+
+  [
+    "Other Services",
+    "🛠️",
+    "Everything that does not fit another category."
+  ]
+
 ];
 
-function header(){
+
+/*************************************************
+ * HEADER
+ *************************************************/
+
+function header() {
+
   return `
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">🏡</span>
-        <span>NeighborSource</span>
-      </a>
+    <header class="site-header">
 
-      <button class="menu-btn" aria-label="Open menu">☰</button>
+      <div class="container nav">
 
-      <nav class="nav-links">
-        <a href="services.html">Find Services</a>
-        <a href="request-help.html">I Need Someone</a>
-        <a href="list-service.html">List Your Service</a>
-        <a href="how-it-works.html">How It Works</a>
-        <a class="nav-cta" href="suggest-provider.html">
-          Recommend Someone
+        <a class="brand" href="index.html">
+
+          <span class="brand-mark">
+            🏡
+          </span>
+
+          <span>
+            NeighborSource
+          </span>
+
         </a>
-      </nav>
-    </div>
-  </header>`;
-}
 
-function footer(){
-  return `
-  <footer class="footer">
-    <div class="container">
+        <button
+          class="menu-btn"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
 
-      <div class="footer-grid">
+        <nav class="nav-links">
 
-        <div>
-          <a class="brand" href="index.html" style="color:#fff">
-            <span class="brand-mark">🏡</span>
-            <span>NeighborSource</span>
+          <a href="services.html">
+            Find Services
           </a>
 
-          <p class="small" style="color:#b9cadb;margin-top:12px">
-            Find who your neighbors actually use.
-          </p>
-        </div>
+          <a href="request-help.html">
+            I Need Someone
+          </a>
 
-        <div>
-          <h4>Find Help</h4>
-          <a href="services.html">Browse Services</a>
-          <a href="request-help.html">Post What You Need</a>
-          <a href="suggest-provider.html">Suggest a Provider</a>
-        </div>
+          <a href="list-service.html">
+            List Your Service
+          </a>
 
-        <div>
-          <h4>For Providers</h4>
-          <a href="list-service.html">List Your Service</a>
-          <a href="update-listing.html">Update a Listing</a>
-          <a href="verification.html">Verification</a>
-        </div>
+          <a href="how-it-works.html">
+            How It Works
+          </a>
 
-        <div>
-          <h4>NeighborSource</h4>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-          <a href="privacy.html">Privacy</a>
-          <a href="terms.html">Terms</a>
-        </div>
+          <a
+            class="nav-cta"
+            href="suggest-provider.html"
+          >
+            Recommend Someone
+          </a>
+
+        </nav>
 
       </div>
 
-      <div class="footer-bottom">
-        © <span id="year"></span> NeighborSource. Community directory prototype.
-      </div>
+    </header>
+  `;
 
-    </div>
-  </footer>`;
 }
 
-function boot(){
+
+/*************************************************
+ * FOOTER
+ *************************************************/
+
+function footer() {
+
+  return `
+    <footer class="footer">
+
+      <div class="container">
+
+        <div class="footer-grid">
+
+          <div>
+
+            <a
+              class="brand"
+              href="index.html"
+              style="color:#fff"
+            >
+
+              <span class="brand-mark">
+                🏡
+              </span>
+
+              <span>
+                NeighborSource
+              </span>
+
+            </a>
+
+            <p
+              class="small"
+              style="color:#b9cadb;margin-top:12px"
+            >
+              Find who your neighbors actually use.
+            </p>
+
+          </div>
+
+
+          <div>
+
+            <h4>
+              Find Help
+            </h4>
+
+            <a href="services.html">
+              Browse Services
+            </a>
+
+            <a href="request-help.html">
+              Post What You Need
+            </a>
+
+            <a href="suggest-provider.html">
+              Suggest a Provider
+            </a>
+
+          </div>
+
+
+          <div>
+
+            <h4>
+              For Providers
+            </h4>
+
+            <a href="list-service.html">
+              List Your Service
+            </a>
+
+            <a href="update-listing.html">
+              Update a Listing
+            </a>
+
+            <a href="verification.html">
+              Verification
+            </a>
+
+          </div>
+
+
+          <div>
+
+            <h4>
+              NeighborSource
+            </h4>
+
+            <a href="about.html">
+              About
+            </a>
+
+            <a href="contact.html">
+              Contact
+            </a>
+
+            <a href="privacy.html">
+              Privacy
+            </a>
+
+            <a href="terms.html">
+              Terms
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+          ©
+          <span id="year"></span>
+          NeighborSource.
+
+        </div>
+
+      </div>
+
+    </footer>
+  `;
+
+}
+
+
+/*************************************************
+ * START WEBSITE
+ *************************************************/
+
+async function boot() {
 
   document.body.insertAdjacentHTML(
     "afterbegin",
@@ -162,424 +302,556 @@ function boot(){
     footer()
   );
 
-  document.querySelector("#year")
-    ?.replaceChildren(
-      document.createTextNode(
-        new Date().getFullYear()
-      )
+
+  const yearElement =
+    document.querySelector("#year");
+
+  if (yearElement) {
+
+    yearElement.textContent =
+      new Date().getFullYear();
+
+  }
+
+
+  const menuButton =
+    document.querySelector(".menu-btn");
+
+  if (menuButton) {
+
+    menuButton.addEventListener(
+      "click",
+      () => {
+
+        document
+          .querySelector(".nav-links")
+          ?.classList.toggle("open");
+
+      }
     );
 
-  document.querySelector(".menu-btn")
-    ?.addEventListener("click", () => {
+  }
 
-      document.querySelector(".nav-links")
-        ?.classList.toggle("open");
-
-    });
 
   initSearchForms();
 
   initDemoForms();
 
+  showLoadingState();
+
+  await loadProviders();
+
   renderDynamic();
+
 }
 
-function initSearchForms(){
 
-  document.querySelectorAll("[data-search-form]")
-    .forEach(form => {
+/*************************************************
+ * LOAD PROVIDERS FROM GOOGLE SHEETS
+ *************************************************/
 
-      form.addEventListener("submit", e => {
+async function loadProviders() {
 
-        e.preventDefault();
+  try {
 
-        const q =
-          form.querySelector("input")
-            ?.value.trim() || "";
+    const response =
+      await fetch(
+        `${API_URL}?action=providers`,
+        {
+          method: "GET",
+          redirect: "follow",
+          cache: "no-store"
+        }
+      );
 
-        location.href =
-          `search.html?q=${encodeURIComponent(q)}`;
 
-      });
+    if (!response.ok) {
 
-    });
+      throw new Error(
+        `Database request failed: ${response.status}`
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if (!data.success) {
+
+      throw new Error(
+        data.message ||
+        "The database returned an error."
+      );
+
+    }
+
+
+    providers =
+      Array.isArray(data.providers)
+        ? data.providers
+        : [];
+
+
+    console.log(
+      `NeighborSource loaded ${providers.length} approved provider(s).`
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "NeighborSource database error:",
+      error
+    );
+
+    providers = [];
+
+    showDatabaseError();
+
+  }
+
 }
 
-function initDemoForms(){
 
-  document.querySelectorAll("form[data-demo-form]")
+/*************************************************
+ * SEARCH FORMS
+ *************************************************/
+
+function initSearchForms() {
+
+  document
+    .querySelectorAll(
+      "[data-search-form]"
+    )
     .forEach(form => {
 
-      form.addEventListener("submit", e => {
+      form.addEventListener(
+        "submit",
+        event => {
 
-        e.preventDefault();
+          event.preventDefault();
 
-        const msg =
-          form.querySelector(".success-message");
 
-        if(msg){
+          const input =
+            form.querySelector("input");
 
-          msg.classList.add("show");
 
-          msg.scrollIntoView({
-            behavior:"smooth",
-            block:"center"
-          });
+          const query =
+            input
+              ? input.value.trim()
+              : "";
+
+
+          location.href =
+            `search.html?q=${encodeURIComponent(query)}`;
 
         }
-
-      });
+      );
 
     });
+
 }
 
-function renderDynamic(){
+
+/*************************************************
+ * CURRENT DEMO FORMS
+ *
+ * These will be replaced later with real
+ * database submissions.
+ *************************************************/
+
+function initDemoForms() {
+
+  document
+    .querySelectorAll(
+      "form[data-demo-form]"
+    )
+    .forEach(form => {
+
+      form.addEventListener(
+        "submit",
+        event => {
+
+          event.preventDefault();
+
+
+          const message =
+            form.querySelector(
+              ".success-message"
+            );
+
+
+          if (message) {
+
+            message.classList.add(
+              "show"
+            );
+
+            message.scrollIntoView({
+
+              behavior: "smooth",
+
+              block: "center"
+
+            });
+
+          }
+
+        }
+      );
+
+    });
+
+}
+
+
+/*************************************************
+ * DETERMINE CURRENT PAGE
+ *************************************************/
+
+function renderDynamic() {
 
   const path =
     location.pathname
       .split("/")
-      .pop() || "index.html";
+      .pop() ||
+    "index.html";
 
-  if(
+
+  if (
     path === "index.html" ||
     path === ""
-  ){
+  ) {
+
     renderHomeCategories();
+
     renderFeatured();
+
   }
 
-  if(path === "services.html"){
-    renderCategories("all-categories");
+
+  if (
+    path === "services.html"
+  ) {
+
+    renderCategories(
+      "all-categories"
+    );
+
   }
 
-  if(path === "search.html"){
+
+  if (
+    path === "search.html"
+  ) {
+
     renderSearch();
+
   }
 
-  if(path === "category.html"){
+
+  if (
+    path === "category.html"
+  ) {
+
     renderCategoryPage();
+
   }
 
-  if(path === "provider.html"){
+
+  if (
+    path === "provider.html"
+  ) {
+
     renderProvider();
+
   }
 
 }
 
-function categorySlug(name){
 
-  return name
-    .toLowerCase()
-    .replace(/&/g,"and")
-    .replace(/[^a-z0-9]+/g,"-")
-    .replace(/^-|-$/g,"");
+/*************************************************
+ * HOME PAGE CATEGORIES
+ *************************************************/
 
-}
+function renderHomeCategories() {
 
-function renderHomeCategories(){
+  const element =
+    document.querySelector(
+      "#home-categories"
+    );
 
-  const el =
-    document.querySelector("#home-categories");
 
-  if(!el) return;
+  if (!element) {
 
-  el.innerHTML =
+    return;
+
+  }
+
+
+  element.innerHTML =
     categories
-      .slice(0,8)
-      .map(([name,icon,desc]) => `
+      .slice(0, 8)
+      .map(
+        ([name, icon, description]) => {
 
-        <a
-          class="card category-card"
-          href="category.html?name=${encodeURIComponent(name)}"
-        >
+          return `
 
-          <div class="category-icon">
-            ${icon}
-          </div>
+            <a
+              class="card category-card"
+              href="category.html?name=${encodeURIComponent(name)}"
+            >
 
-          <h3>
-            ${name}
-          </h3>
+              <div class="category-icon">
+                ${icon}
+              </div>
 
-          <div class="small">
-            ${desc}
-          </div>
+              <h3>
+                ${escapeHTML(name)}
+              </h3>
 
-        </a>
+              <div class="small">
+                ${escapeHTML(description)}
+              </div>
 
-      `)
+            </a>
+
+          `;
+
+        }
+      )
       .join("");
 
 }
 
-function renderCategories(id){
 
-  const el =
+/*************************************************
+ * ALL CATEGORIES
+ *************************************************/
+
+function renderCategories(id) {
+
+  const element =
     document.getElementById(id);
 
-  if(!el) return;
 
-  el.innerHTML =
+  if (!element) {
+
+    return;
+
+  }
+
+
+  element.innerHTML =
     categories
-      .map(([name,icon,desc]) => `
+      .map(
+        ([name, icon, description]) => {
 
-        <a
-          class="card category-card"
-          href="category.html?name=${encodeURIComponent(name)}"
-        >
+          return `
 
-          <div class="category-icon">
-            ${icon}
-          </div>
+            <a
+              class="card category-card"
+              href="category.html?name=${encodeURIComponent(name)}"
+            >
 
-          <h3>
-            ${name}
-          </h3>
+              <div class="category-icon">
+                ${icon}
+              </div>
 
-          <div class="small">
-            ${desc}
-          </div>
+              <h3>
+                ${escapeHTML(name)}
+              </h3>
 
-        </a>
+              <div class="small">
+                ${escapeHTML(description)}
+              </div>
 
-      `)
+            </a>
+
+          `;
+
+        }
+      )
       .join("");
 
 }
 
-function providerCard(p){
+
+/*************************************************
+ * PROVIDER CARD
+ *************************************************/
+
+function providerCard(provider) {
+
+  const providerId =
+    encodeURIComponent(
+      provider.id || ""
+    );
+
+
+  const phone =
+    provider.phone || "";
+
+
+  const phoneLink =
+    phone.replace(
+      /\D/g,
+      ""
+    );
+
+
+  const areas =
+    Array.isArray(provider.area)
+      ? provider.area
+      : [];
+
+
+  const verification =
+    Array.isArray(provider.verified)
+      ? provider.verified
+      : [];
+
 
   return `
-    <article class="card provider-card">
+
+    <article
+      class="card provider-card"
+    >
 
       <div class="small">
-        ${p.type} • ${p.category}
+
+        ${escapeHTML(provider.type || "")}
+
+        ${provider.category ? " • " : ""}
+
+        ${escapeHTML(provider.category || "")}
+
       </div>
 
+
       <h3>
-        ${p.name}
+
+        ${escapeHTML(provider.name || "Unnamed Provider")}
+
       </h3>
+
 
       <div class="meta">
 
         <span>
-          👍 ${p.recommendations} recommendations
+
+          👍
+          ${Number(provider.recommendations) || 0}
+          recommendation${Number(provider.recommendations) === 1 ? "" : "s"}
+
         </span>
 
-        <span>
-          📍 ${p.area.join(", ")}
-        </span>
 
-      </div>
-
-      <div class="badges">
-
-        ${p.verified
-          .slice(0,3)
-          .map(v => `
-            <span class="badge green">
-              ✓ ${v}
-            </span>
-          `)
-          .join("")
+        ${
+          areas.length
+            ? `
+              <span>
+                📍
+                ${escapeHTML(areas.join(", "))}
+              </span>
+            `
+            : ""
         }
 
       </div>
 
-      <p>
-        ${p.description}
-      </p>
+
+      ${
+        verification.length
+          ? `
+            <div class="badges">
+
+              ${verification
+                .slice(0, 4)
+                .map(
+                  badge => `
+                    <span class="badge green">
+                      ✓ ${escapeHTML(badge)}
+                    </span>
+                  `
+                )
+                .join("")
+              }
+
+            </div>
+          `
+          : ""
+      }
+
+
+      ${
+        provider.description
+          ? `
+            <p>
+              ${escapeHTML(provider.description)}
+            </p>
+          `
+          : ""
+      }
+
 
       <div class="provider-actions">
 
         <a
           class="btn btn-primary"
-          href="provider.html?id=${encodeURIComponent(p.id)}"
+          href="provider.html?id=${providerId}"
         >
           View Profile
         </a>
 
-        <a
-          class="btn btn-outline"
-          href="tel:${p.phone.replace(/\D/g,"")}"
-        >
-          Call
-        </a>
+
+        ${
+          phoneLink
+            ? `
+              <a
+                class="btn btn-outline"
+                href="tel:${phoneLink}"
+              >
+                Call
+              </a>
+            `
+            : ""
+        }
 
       </div>
 
     </article>
+
   `;
 
 }
 
-function renderFeatured(){
 
-  const el =
-    document.querySelector("#featured-providers");
+/*************************************************
+ * FEATURED PROVIDERS
+ *************************************************/
 
-  if(el){
+function renderFeatured() {
 
-    el.innerHTML =
-      providers
-        .slice(0,3)
-        .map(providerCard)
-        .join("");
+  const element =
+    document.querySelector(
+      "#featured-providers"
+    );
+
+
+  if (!element) {
+
+    return;
 
   }
 
-}
 
-function renderSearch(){
+  if (!providers.length) {
 
-  const params =
-    new URLSearchParams(
-      location.search
-    );
+    element.innerHTML = `
 
-  const q =
-    (params.get("q") || "")
-      .trim();
-
-  const qEl =
-    document.querySelector("#search-query");
-
-  if(qEl){
-
-    qEl.textContent =
-      q || "all services";
-
-  }
-
-  const input =
-    document.querySelector("#search-page-input");
-
-  if(input){
-
-    input.value = q;
-
-  }
-
-  const results =
-    providers.filter(p => {
-
-      const hay = [
-        p.name,
-        p.type,
-        p.category,
-        p.services.join(" "),
-        p.area.join(" "),
-        p.description
-      ]
-      .join(" ")
-      .toLowerCase();
-
-      return (
-        !q ||
-        hay.includes(q.toLowerCase())
-      );
-
-    });
-
-  document.querySelector("#result-count")
-    ?.replaceChildren(
-      document.createTextNode(
-        `${results.length} provider${results.length === 1 ? "" : "s"} found`
-      )
-    );
-
-  const el =
-    document.querySelector("#search-results");
-
-  if(el){
-
-    el.innerHTML =
-      results.length
-      ?
-      results
-        .map(providerCard)
-        .join("")
-      :
-      `
-      <div class="card empty-state">
-
-        <h3>
-          No exact matches yet
-        </h3>
-
-        <p>
-          Try a broader search or
-          <a
-            href="request-help.html"
-            style="color:var(--blue);font-weight:800"
-          >
-            post what you need
-          </a>.
-        </p>
-
-      </div>
-      `;
-
-  }
-
-}
-
-function renderCategoryPage(){
-
-  const name =
-    new URLSearchParams(
-      location.search
-    )
-    .get("name") ||
-    "Home & Repair";
-
-  document.querySelectorAll(
-    "[data-category-name]"
-  )
-  .forEach(el => {
-
-    el.textContent = name;
-
-  });
-
-  const cat =
-    categories.find(
-      c => c[0] === name
-    ) ||
-    categories[0];
-
-  document.querySelector("#category-icon")
-    ?.replaceChildren(
-      document.createTextNode(
-        cat[1]
-      )
-    );
-
-  document.querySelector("#category-desc")
-    ?.replaceChildren(
-      document.createTextNode(
-        cat[2]
-      )
-    );
-
-  const results =
-    providers.filter(
-      p => p.category === name
-    );
-
-  const el =
-    document.querySelector("#category-providers");
-
-  if(el){
-
-    el.innerHTML =
-      results.length
-      ?
-      results
-        .map(providerCard)
-        .join("")
-      :
-      `
       <div class="card empty-state">
 
         <h3>
@@ -587,135 +859,980 @@ function renderCategoryPage(){
         </h3>
 
         <p>
-          Be the first to
-          <a
-            href="list-service.html"
-            style="color:var(--blue);font-weight:800"
-          >
-            list a service
-          </a>
-          in this category.
+          Approved local providers will appear here.
         </p>
 
+        <a
+          class="btn btn-green"
+          href="list-service.html"
+        >
+          List Your Service
+        </a>
+
       </div>
-      `;
+
+    `;
+
+    return;
+
+  }
+
+
+  const featuredProviders =
+    [...providers]
+      .sort(
+        (a, b) =>
+          (Number(b.recommendations) || 0) -
+          (Number(a.recommendations) || 0)
+      )
+      .slice(0, 3);
+
+
+  element.innerHTML =
+    featuredProviders
+      .map(providerCard)
+      .join("");
+
+}
+
+
+/*************************************************
+ * SEARCH RESULTS
+ *************************************************/
+
+function renderSearch() {
+
+  const params =
+    new URLSearchParams(
+      location.search
+    );
+
+
+  const query =
+    (
+      params.get("q") ||
+      ""
+    ).trim();
+
+
+  const queryDisplay =
+    document.querySelector(
+      "#search-query"
+    );
+
+
+  if (queryDisplay) {
+
+    queryDisplay.textContent =
+      query ||
+      "all services";
+
+  }
+
+
+  const searchInput =
+    document.querySelector(
+      "#search-page-input"
+    );
+
+
+  if (searchInput) {
+
+    searchInput.value =
+      query;
+
+  }
+
+
+  const normalizedQuery =
+    query.toLowerCase();
+
+
+  const results =
+    providers.filter(
+      provider => {
+
+        const haystack = [
+
+          provider.name || "",
+
+          provider.type || "",
+
+          provider.category || "",
+
+          Array.isArray(provider.services)
+            ? provider.services.join(" ")
+            : "",
+
+          Array.isArray(provider.area)
+            ? provider.area.join(" ")
+            : "",
+
+          provider.description || ""
+
+        ]
+          .join(" ")
+          .toLowerCase();
+
+
+        return (
+          !normalizedQuery ||
+          haystack.includes(
+            normalizedQuery
+          )
+        );
+
+      }
+    );
+
+
+  const resultCount =
+    document.querySelector(
+      "#result-count"
+    );
+
+
+  if (resultCount) {
+
+    resultCount.textContent =
+      `${results.length} provider${results.length === 1 ? "" : "s"} found`;
+
+  }
+
+
+  const element =
+    document.querySelector(
+      "#search-results"
+    );
+
+
+  if (!element) {
+
+    return;
+
+  }
+
+
+  if (!results.length) {
+
+    element.innerHTML = `
+
+      <div class="card empty-state">
+
+        <h3>
+          No exact matches yet
+        </h3>
+
+        <p>
+          Try a broader search or tell the community what you need.
+        </p>
+
+        <a
+          class="btn btn-green"
+          href="request-help.html"
+        >
+          Post What You Need
+        </a>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  element.innerHTML =
+    results
+      .map(providerCard)
+      .join("");
+
+}
+
+
+/*************************************************
+ * CATEGORY PAGE
+ *************************************************/
+
+function renderCategoryPage() {
+
+  const params =
+    new URLSearchParams(
+      location.search
+    );
+
+
+  const name =
+    params.get("name") ||
+    "Home & Repair";
+
+
+  document
+    .querySelectorAll(
+      "[data-category-name]"
+    )
+    .forEach(element => {
+
+      element.textContent =
+        name;
+
+    });
+
+
+  const category =
+    categories.find(
+      item =>
+        item[0] === name
+    ) ||
+    [
+      name,
+      "🛠️",
+      "Local providers and services."
+    ];
+
+
+  const categoryIcon =
+    document.querySelector(
+      "#category-icon"
+    );
+
+
+  if (categoryIcon) {
+
+    categoryIcon.textContent =
+      category[1];
+
+  }
+
+
+  const categoryDescription =
+    document.querySelector(
+      "#category-desc"
+    );
+
+
+  if (categoryDescription) {
+
+    categoryDescription.textContent =
+      category[2];
+
+  }
+
+
+  const results =
+    providers.filter(
+      provider =>
+        String(
+          provider.category || ""
+        ).toLowerCase() ===
+        String(name).toLowerCase()
+    );
+
+
+  const element =
+    document.querySelector(
+      "#category-providers"
+    );
+
+
+  if (!element) {
+
+    return;
+
+  }
+
+
+  if (!results.length) {
+
+    element.innerHTML = `
+
+      <div class="card empty-state">
+
+        <h3>
+          No providers listed yet
+        </h3>
+
+        <p>
+          There are currently no approved providers in this category.
+        </p>
+
+        <a
+          class="btn btn-green"
+          href="list-service.html"
+        >
+          List a Service
+        </a>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  element.innerHTML =
+    results
+      .map(providerCard)
+      .join("");
+
+}
+
+
+/*************************************************
+ * PROVIDER PROFILE
+ *************************************************/
+
+async function renderProvider() {
+
+  const params =
+    new URLSearchParams(
+      location.search
+    );
+
+
+  const id =
+    params.get("id") ||
+    "";
+
+
+  const provider =
+    providers.find(
+      item =>
+        String(item.id) ===
+        String(id)
+    );
+
+
+  if (!provider) {
+
+    showProviderNotFound();
+
+    return;
+
+  }
+
+
+  setText(
+    "#provider-name",
+    provider.name
+  );
+
+
+  setText(
+    "#provider-category",
+    [
+      provider.type,
+      provider.category
+    ]
+      .filter(Boolean)
+      .join(" • ")
+  );
+
+
+  document
+    .querySelectorAll(
+      "#provider-description"
+    )
+    .forEach(element => {
+
+      element.textContent =
+        provider.description ||
+        "";
+
+    });
+
+
+  setText(
+    "#provider-recs",
+    Number(
+      provider.recommendations
+    ) || 0
+  );
+
+
+  setText(
+    "#provider-rehire",
+    Number(
+      provider.rehire
+    ) || 0
+  );
+
+
+  setText(
+    "#provider-area",
+    Array.isArray(provider.area)
+      ? provider.area.join(", ")
+      : ""
+  );
+
+
+  setText(
+    "#provider-phone",
+    provider.phone ||
+    ""
+  );
+
+
+  const callButton =
+    document.querySelector(
+      "#provider-call"
+    );
+
+
+  if (callButton) {
+
+    const phone =
+      String(
+        provider.phone || ""
+      ).replace(
+        /\D/g,
+        ""
+      );
+
+
+    if (phone) {
+
+      callButton.href =
+        `tel:${phone}`;
+
+    } else {
+
+      callButton.style.display =
+        "none";
+
+    }
+
+  }
+
+
+  const servicesContainer =
+    document.querySelector(
+      "#provider-services"
+    );
+
+
+  if (servicesContainer) {
+
+    const services =
+      Array.isArray(
+        provider.services
+      )
+        ? provider.services
+        : [];
+
+
+    servicesContainer.innerHTML =
+      services.length
+        ? services
+            .map(
+              service => `
+                <span class="pill">
+                  ${escapeHTML(service)}
+                </span>
+              `
+            )
+            .join("")
+        : `<span class="small">No services listed.</span>`;
+
+  }
+
+
+  const badgeContainer =
+    document.querySelector(
+      "#provider-badges"
+    );
+
+
+  if (badgeContainer) {
+
+    const badges =
+      Array.isArray(
+        provider.verified
+      )
+        ? provider.verified
+        : [];
+
+
+    badgeContainer.innerHTML =
+      badges.length
+        ? badges
+            .map(
+              badge => `
+                <span class="badge green">
+                  ✓ ${escapeHTML(badge)}
+                </span>
+              `
+            )
+            .join("")
+        : `
+          <span class="small">
+            No verification badges yet.
+          </span>
+        `;
+
+  }
+
+
+  const recommendLink =
+    document.querySelector(
+      "#recommend-provider-link"
+    );
+
+
+  if (recommendLink) {
+
+    recommendLink.href =
+      `recommend.html?providerId=${encodeURIComponent(provider.id)}&provider=${encodeURIComponent(provider.name)}`;
+
+  }
+
+
+  await loadProviderRecommendations(
+    provider.id
+  );
+
+}
+
+
+/*************************************************
+ * LOAD PROVIDER RECOMMENDATIONS
+ *************************************************/
+
+async function loadProviderRecommendations(
+  providerId
+) {
+
+  try {
+
+    const response =
+      await fetch(
+        `${API_URL}?action=recommendations&providerId=${encodeURIComponent(providerId)}`,
+        {
+          method: "GET",
+          redirect: "follow",
+          cache: "no-store"
+        }
+      );
+
+
+    if (!response.ok) {
+
+      return;
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if (
+      !data.success ||
+      !Array.isArray(
+        data.recommendations
+      )
+    ) {
+
+      return;
+
+    }
+
+
+    renderRecommendations(
+      data.recommendations
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "Could not load recommendations:",
+      error
+    );
 
   }
 
 }
 
-function renderProvider(){
 
-  const id =
-    new URLSearchParams(
-      location.search
-    )
-    .get("id") ||
-    providers[0].id;
+/*************************************************
+ * DISPLAY RECOMMENDATIONS
+ *************************************************/
 
-  const p =
-    providers.find(
-      x => x.id === id
-    ) ||
-    providers[0];
+function renderRecommendations(
+  recommendations
+) {
 
-  const set =
-    (sel,val) => {
+  const headings =
+    Array.from(
+      document.querySelectorAll("h2")
+    );
 
-      const el =
-        document.querySelector(sel);
 
-      if(el){
-        el.textContent = val;
-      }
+  const heading =
+    headings.find(
+      element =>
+        element.textContent
+          .trim()
+          .toLowerCase() ===
+        "neighbor recommendations"
+    );
 
-    };
 
-  set(
-    "#provider-name",
-    p.name
-  );
+  if (!heading) {
 
-  set(
-    "#provider-category",
-    `${p.type} • ${p.category}`
-  );
+    return;
 
-  document.querySelectorAll(
-    "#provider-description"
-  )
-  .forEach(el => {
+  }
 
-    el.textContent =
-      p.description;
+
+  const card =
+    heading.closest(
+      ".card"
+    );
+
+
+  if (!card) {
+
+    return;
+
+  }
+
+
+  if (!recommendations.length) {
+
+    card.innerHTML = `
+
+      <h2>
+        Neighbor Recommendations
+      </h2>
+
+      <p class="small">
+        No approved recommendations yet.
+      </p>
+
+    `;
+
+    return;
+
+  }
+
+
+  const recommendationHTML =
+    recommendations
+      .map(
+        recommendation => {
+
+          const reviewer =
+            recommendation.reviewerName
+              ? escapeHTML(
+                  recommendation.reviewerName
+                )
+              : "Neighbor";
+
+
+          const city =
+            recommendation.reviewerCity
+              ? ` from ${escapeHTML(recommendation.reviewerCity)}`
+              : "";
+
+
+          const service =
+            recommendation.serviceProvided
+              ? `
+                <div class="small">
+                  Service:
+                  ${escapeHTML(recommendation.serviceProvided)}
+                </div>
+              `
+              : "";
+
+
+          const comments =
+            recommendation.comments
+              ? `
+                <p>
+                  “${escapeHTML(recommendation.comments)}”
+                </p>
+              `
+              : "";
+
+
+          const useAgain =
+            recommendation.wouldUseAgain
+              ? `
+                <span class="badge">
+                  Would use again:
+                  ${escapeHTML(recommendation.wouldUseAgain)}
+                </span>
+              `
+              : "";
+
+
+          return `
+
+            <div
+              style="
+                padding:16px 0;
+                border-bottom:1px solid var(--line);
+              "
+            >
+
+              ${comments}
+
+              ${service}
+
+              <div class="badges">
+
+                ${useAgain}
+
+              </div>
+
+              <div class="small">
+
+                ${reviewer}${city}
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+      )
+      .join("");
+
+
+  card.innerHTML = `
+
+    <h2>
+      Neighbor Recommendations
+    </h2>
+
+    ${recommendationHTML}
+
+  `;
+
+}
+
+
+/*************************************************
+ * PROVIDER NOT FOUND
+ *************************************************/
+
+function showProviderNotFound() {
+
+  const main =
+    document.querySelector(
+      "main"
+    );
+
+
+  if (!main) {
+
+    return;
+
+  }
+
+
+  main.innerHTML = `
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="card empty-state">
+
+          <h2>
+            Provider Not Found
+          </h2>
+
+          <p>
+            This provider may have been removed or the link may be incorrect.
+          </p>
+
+          <a
+            class="btn btn-primary"
+            href="services.html"
+          >
+            Browse Services
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  `;
+
+}
+
+
+/*************************************************
+ * LOADING STATE
+ *************************************************/
+
+function showLoadingState() {
+
+  const ids = [
+
+    "#featured-providers",
+
+    "#search-results",
+
+    "#category-providers"
+
+  ];
+
+
+  ids.forEach(selector => {
+
+    const element =
+      document.querySelector(
+        selector
+      );
+
+
+    if (element) {
+
+      element.innerHTML = `
+
+        <div class="card empty-state">
+
+          <p>
+            Loading local providers...
+          </p>
+
+        </div>
+
+      `;
+
+    }
 
   });
 
-  set(
-    "#provider-recs",
-    p.recommendations
-  );
+}
 
-  set(
-    "#provider-rehire",
-    p.rehire
-  );
 
-  set(
-    "#provider-area",
-    p.area.join(", ")
-  );
+/*************************************************
+ * DATABASE ERROR
+ *************************************************/
 
-  set(
-    "#provider-phone",
-    p.phone
-  );
+function showDatabaseError() {
 
-  document.querySelector(
-    "#provider-call"
-  )
-  ?.setAttribute(
-    "href",
-    `tel:${p.phone.replace(/\D/g,"")}`
-  );
+  const ids = [
 
-  document.querySelector(
-    "#provider-services"
-  )
-  .innerHTML =
-    p.services
-      .map(
-        s => `
-          <span class="pill">
-            ${s}
-          </span>
-        `
-      )
-      .join("");
+    "#featured-providers",
 
-  document.querySelector(
-    "#provider-badges"
-  )
-  .innerHTML =
-    p.verified
-      .map(
-        v => `
-          <span class="badge green">
-            ✓ ${v}
-          </span>
-        `
-      )
-      .join("");
+    "#search-results",
 
-  document.querySelector(
-    "#recommend-provider-link"
-  )
-  ?.setAttribute(
-    "href",
-    `recommend.html?provider=${encodeURIComponent(p.name)}`
-  );
+    "#category-providers"
+
+  ];
+
+
+  ids.forEach(selector => {
+
+    const element =
+      document.querySelector(
+        selector
+      );
+
+
+    if (element) {
+
+      element.innerHTML = `
+
+        <div class="card empty-state">
+
+          <h3>
+            Unable to load providers
+          </h3>
+
+          <p>
+            NeighborSource could not connect to the provider database.
+            Please try again shortly.
+          </p>
+
+        </div>
+
+      `;
+
+    }
+
+  });
 
 }
+
+
+/*************************************************
+ * SET TEXT
+ *************************************************/
+
+function setText(
+  selector,
+  value
+) {
+
+  const element =
+    document.querySelector(
+      selector
+    );
+
+
+  if (element) {
+
+    element.textContent =
+      value ?? "";
+
+  }
+
+}
+
+
+/*************************************************
+ * HTML SECURITY
+ *
+ * Prevents text stored in Google Sheets
+ * from being interpreted as website code.
+ *************************************************/
+
+function escapeHTML(value) {
+
+  return String(
+    value ?? ""
+  )
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+/*************************************************
+ * START
+ *************************************************/
 
 document.addEventListener(
   "DOMContentLoaded",
