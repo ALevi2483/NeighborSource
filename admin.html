@@ -1,30 +1,483 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Admin Dashboard | NeighborSource</title>
-  <meta name="description" content="NeighborSource local services directory">
-  <link rel="stylesheet" href="css/style.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <meta
+    name="robots"
+    content="noindex, nofollow"
+  >
+
+  <title>
+    Administration | NeighborSource
+  </title>
+
+  <meta
+    name="description"
+    content="NeighborSource administration page."
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css?v=3"
+  >
+
 </head>
+
+
 <body>
 
-<main><section class="page-hero"><div class="container"><h1>Admin Dashboard</h1><p>Prototype view for managing submissions, recommendations, reports, and edits.</p></div></section>
-<section class="section"><div class="container">
-  <div class="notice warning"><strong>Important:</strong> GitHub Pages cannot protect this page by itself. Do not publish private admin information here. The final admin workflow should live in your private Google Sheet.</div>
-  <div class="admin-cards" style="margin-top:18px">
-    <div class="admin-card"><strong>12</strong><span>Pending Listings</span></div>
-    <div class="admin-card"><strong>8</strong><span>Pending Recommendations</span></div>
-    <div class="admin-card"><strong>5</strong><span>Pending Edits</span></div>
-    <div class="admin-card"><strong>3</strong><span>Reported Listings</span></div>
-  </div>
-  <div class="card" style="margin-top:18px"><h2>Recent Submissions</h2><div class="table-wrap"><table><thead><tr><th>Name</th><th>Type</th><th>Category</th><th>Status</th><th>Action</th></tr></thead><tbody>
-    <tr><td>ABC Plumbing</td><td>Business</td><td>Home & Repair</td><td><span class="badge orange">Pending</span></td><td><button class="btn btn-outline">Review</button></td></tr>
-    <tr><td>Sarah M.</td><td>Individual</td><td>Child Care</td><td><span class="badge orange">Pending</span></td><td><button class="btn btn-outline">Review</button></td></tr>
-    <tr><td>Tidewater Lawn Care</td><td>Business</td><td>Lawn & Outdoor</td><td><span class="badge green">Approved</span></td><td><button class="btn btn-outline">View</button></td></tr>
-  </tbody></table></div></div>
-</div></section></main>
 
-<script src="js/app.js"></script>
+<main>
+
+
+  <!-- PAGE HERO -->
+
+  <section class="page-hero">
+
+    <div class="container">
+
+
+      <div class="eyebrow">
+        NEIGHBORSOURCE
+      </div>
+
+
+      <h1>
+        Administration
+      </h1>
+
+
+      <p>
+        NeighborSource administrative functions are managed separately from the public website.
+      </p>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ADMIN NOTICE -->
+
+  <section class="section">
+
+    <div class="container">
+
+
+      <div
+        class="card"
+        style="
+          max-width:900px;
+          margin:0 auto;
+          padding:42px;
+        "
+      >
+
+
+        <div class="eyebrow dark">
+          ADMIN ACCESS
+        </div>
+
+
+        <h2>
+          Public admin controls are disabled
+        </h2>
+
+
+        <p>
+          NeighborSource is currently hosted as a public static website. For security, administrative records and moderation controls are not exposed through this page.
+        </p>
+
+
+        <div
+          class="notice green"
+          style="margin-top:26px;"
+        >
+
+          <strong>This is intentional.</strong>
+
+          Provider submissions, recommendations, service requests, reports, listing updates, and other administrative records should continue to be reviewed through the private NeighborSource management system.
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ADMIN WORKFLOW -->
+
+  <section class="section section-soft">
+
+    <div class="container">
+
+
+      <div class="section-heading centered">
+
+
+        <div class="eyebrow dark">
+          ADMIN WORKFLOW
+        </div>
+
+
+        <h2>
+          What is currently reviewed
+        </h2>
+
+
+        <p class="section-intro">
+          Public submissions are separated from approved public directory information.
+        </p>
+
+
+      </div>
+
+
+
+      <div class="category-grid">
+
+
+        <!-- PROVIDERS -->
+
+        <div class="card category-card">
+
+
+          <div class="category-icon">
+            🧰
+          </div>
+
+
+          <h3>
+            Provider Listings
+          </h3>
+
+
+          <div class="small">
+            Review new businesses and individual service providers before they appear publicly.
+          </div>
+
+
+        </div>
+
+
+
+        <!-- RECOMMENDATIONS -->
+
+        <div class="card category-card">
+
+
+          <div class="category-icon">
+            👍
+          </div>
+
+
+          <h3>
+            Recommendations
+          </h3>
+
+
+          <div class="small">
+            Review community recommendations before connecting them to provider profiles.
+          </div>
+
+
+        </div>
+
+
+
+        <!-- SERVICE REQUESTS -->
+
+        <div class="card category-card">
+
+
+          <div class="category-icon">
+            🔎
+          </div>
+
+
+          <h3>
+            Service Requests
+          </h3>
+
+
+          <div class="small">
+            Review requests submitted by people looking for local help.
+          </div>
+
+
+        </div>
+
+
+
+        <!-- PROVIDER SUGGESTIONS -->
+
+        <div class="card category-card">
+
+
+          <div class="category-icon">
+            ➕
+          </div>
+
+
+          <h3>
+            Provider Suggestions
+          </h3>
+
+
+          <div class="small">
+            Review providers suggested by community members for possible inclusion in the directory.
+          </div>
+
+
+        </div>
+
+
+
+        <!-- LISTING UPDATES -->
+
+        <div class="card category-card">
+
+
+          <div class="category-icon">
+            ✏️
+          </div>
+
+
+          <h3>
+            Listing Updates
+          </h3>
+
+
+          <div class="small">
+            Review requests to correct, update, add, or remove provider information.
+          </div>
+
+
+        </div>
+
+
+
+        <!-- REPORTS -->
+
+        <div class="card category-card">
+
+
+          <div class="category-icon">
+            ⚑
+          </div>
+
+
+          <h3>
+            Reports
+          </h3>
+
+
+          <div class="small">
+            Review reports involving inaccurate, misleading, duplicate, or concerning listings.
+          </div>
+
+
+        </div>
+
+
+
+        <!-- CONTACT -->
+
+        <div class="card category-card">
+
+
+          <div class="category-icon">
+            ✉️
+          </div>
+
+
+          <h3>
+            Contact Messages
+          </h3>
+
+
+          <div class="small">
+            Review questions, feedback, technical issues, and other messages submitted through the website.
+          </div>
+
+
+        </div>
+
+
+
+        <!-- VERIFICATION -->
+
+        <div class="card category-card">
+
+
+          <div class="category-icon">
+            ✓
+          </div>
+
+
+          <h3>
+            Verification
+          </h3>
+
+
+          <div class="small">
+            Manage applicable phone, business, license, and insurance verification information.
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- SECURITY -->
+
+  <section class="section">
+
+    <div class="container">
+
+
+      <div
+        class="card"
+        style="
+          max-width:900px;
+          margin:0 auto;
+          padding:42px;
+        "
+      >
+
+
+        <div class="eyebrow dark">
+          SECURITY
+        </div>
+
+
+        <h2>
+          Administrative information stays off the public site
+        </h2>
+
+
+        <p>
+          This page intentionally does not contain passwords, private email addresses, moderation notes, submission records, Google Sheet links, approval controls, or other administrative information.
+        </p>
+
+
+        <p>
+          A future web-based admin dashboard should only be added after secure authentication and authorization are in place.
+        </p>
+
+
+        <div
+          class="notice warning"
+          style="margin-top:26px;"
+        >
+
+          <strong>Important:</strong>
+
+          Hiding an admin page or using a secret URL is not security. Any future administrative dashboard must require actual authentication before private information or moderation actions are exposed.
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- RETURN -->
+
+  <section class="section section-cta">
+
+    <div class="container">
+
+
+      <div class="cta-card">
+
+
+        <div>
+
+
+          <div class="eyebrow">
+            NEIGHBORSOURCE
+          </div>
+
+
+          <h2>
+            Return to the public directory.
+          </h2>
+
+
+          <p>
+            Browse local providers and community recommendations.
+          </p>
+
+
+        </div>
+
+
+
+        <div class="cta-actions">
+
+
+          <a
+            class="btn btn-green"
+            href="index.html"
+          >
+            NeighborSource Home
+          </a>
+
+
+          <a
+            class="btn btn-outline-light"
+            href="services.html"
+          >
+            Browse Services
+          </a>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+
+<script src="js/app.js?v=3"></script>
+
+
 </body>
+
 </html>
