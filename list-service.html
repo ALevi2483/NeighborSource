@@ -63,7 +63,6 @@
       <form
         class="card form-card"
         id="listServiceForm"
-        data-demo-form
       >
 
 
@@ -102,7 +101,7 @@
 
 
 
-          <!-- BUSINESS / SERVICE NAME -->
+          <!-- PROVIDER NAME -->
 
           <div class="field">
 
@@ -267,17 +266,14 @@
             </div>
 
 
-            <div
-              class="checkbox-grid"
-              id="serviceAreaOptions"
-            >
+            <div class="checkbox-grid">
 
 
               <label class="check-row">
 
                 <input
                   type="checkbox"
-                  name="serviceArea"
+                  class="service-area-checkbox"
                   value="Chesapeake"
                 >
 
@@ -290,7 +286,7 @@
 
                 <input
                   type="checkbox"
-                  name="serviceArea"
+                  class="service-area-checkbox"
                   value="Norfolk"
                 >
 
@@ -303,7 +299,7 @@
 
                 <input
                   type="checkbox"
-                  name="serviceArea"
+                  class="service-area-checkbox"
                   value="Portsmouth"
                 >
 
@@ -316,7 +312,7 @@
 
                 <input
                   type="checkbox"
-                  name="serviceArea"
+                  class="service-area-checkbox"
                   value="Suffolk"
                 >
 
@@ -329,7 +325,7 @@
 
                 <input
                   type="checkbox"
-                  name="serviceArea"
+                  class="service-area-checkbox"
                   value="Virginia Beach"
                 >
 
@@ -342,7 +338,7 @@
 
                 <input
                   type="checkbox"
-                  name="serviceArea"
+                  class="service-area-checkbox"
                   value="Hampton"
                 >
 
@@ -355,7 +351,7 @@
 
                 <input
                   type="checkbox"
-                  name="serviceArea"
+                  class="service-area-checkbox"
                   value="Newport News"
                 >
 
@@ -369,7 +365,6 @@
                 <input
                   type="checkbox"
                   id="serviceAreaOther"
-                  value="Other"
                 >
 
                 Other
@@ -380,30 +375,21 @@
             </div>
 
 
-            <!-- OTHER SERVICE AREA -->
-
             <input
               type="text"
               id="otherServiceArea"
               placeholder="Enter another city or service area"
-              style="display:none; margin-top:12px;"
+              style="
+                display:none;
+                margin-top:12px;
+              "
             >
-
-
-            <!-- COMBINED SERVICE AREA -->
-
-            <input
-              type="hidden"
-              id="serviceAreaCombined"
-              name="serviceAreaCombined"
-            >
-
 
           </div>
 
 
 
-          <!-- SERVICES PROVIDED -->
+          <!-- SERVICES -->
 
           <div class="field full">
 
@@ -459,12 +445,11 @@
               name="website"
               type="text"
               inputmode="url"
-              autocomplete="url"
               placeholder="FreeSnakeRelocation.com"
             >
 
             <div class="helper">
-              Optional. You can enter example.com without https://
+              Optional. You do not need to enter https://
             </div>
 
           </div>
@@ -488,7 +473,7 @@
             >
 
             <div class="helper">
-              Optional. You can enter the Facebook address without https://
+              Optional. You do not need to enter https://
             </div>
 
           </div>
@@ -518,7 +503,7 @@
 
 
 
-        <!-- SUBMIT BUTTON -->
+        <!-- SUBMIT -->
 
         <button
           class="btn btn-green"
@@ -530,15 +515,60 @@
 
 
 
-        <!-- SUCCESS MESSAGE -->
+        <!-- SUBMITTING -->
 
-        <div class="notice green success-message">
+        <div
+          class="notice"
+          id="submittingMessage"
+          style="
+            display:none;
+            margin-top:16px;
+          "
+        >
+
+          Submitting your listing...
+
+        </div>
+
+
+
+        <!-- SUCCESS -->
+
+        <div
+          class="notice green"
+          id="successMessage"
+          style="
+            display:none;
+            margin-top:16px;
+          "
+        >
 
           <strong>
             Listing submitted.
           </strong>
 
           Your listing has been sent for review.
+
+        </div>
+
+
+
+        <!-- ERROR -->
+
+        <div
+          class="notice warning"
+          id="errorMessage"
+          style="
+            display:none;
+            margin-top:16px;
+          "
+        >
+
+          <strong>
+            We could not submit your listing.
+          </strong>
+
+          Please check your information and try again.
 
         </div>
 
@@ -555,19 +585,29 @@
 
 
 
-<!-- MAIN SITE JAVASCRIPT -->
+<!-- MAIN WEBSITE JS -->
 
 <script src="js/app.js"></script>
 
 
 
-<!-- PAGE JAVASCRIPT -->
-
 <script>
+
+/*************************************************
+ * LIST SERVICE DATABASE CONNECTION
+ *************************************************/
 
 document.addEventListener(
   "DOMContentLoaded",
   function () {
+
+
+    /**********************************************
+     * APPS SCRIPT URL
+     **********************************************/
+
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbx4bTHYgVwb9rB66m4hnFKvxtPHrTwe6qoqdERU_eRVb4yg1cdrH1zkeIHHl54573_8/exec";
 
 
     /**********************************************
@@ -577,6 +617,12 @@ document.addEventListener(
     const form =
       document.getElementById(
         "listServiceForm"
+      );
+
+
+    const submitButton =
+      document.getElementById(
+        "submitListingButton"
       );
 
 
@@ -592,123 +638,100 @@ document.addEventListener(
       );
 
 
-    const combinedInput =
+    const submittingMessage =
       document.getElementById(
-        "serviceAreaCombined"
+        "submittingMessage"
+      );
+
+
+    const successMessage =
+      document.getElementById(
+        "successMessage"
+      );
+
+
+    const errorMessage =
+      document.getElementById(
+        "errorMessage"
       );
 
 
 
     /**********************************************
-     * SHOW / HIDE OTHER SERVICE AREA
+     * OTHER SERVICE AREA
      **********************************************/
 
-    if (
-      otherCheckbox &&
-      otherInput
-    ) {
-
-      otherCheckbox.addEventListener(
-        "change",
-        function () {
+    otherCheckbox.addEventListener(
+      "change",
+      function () {
 
 
-          if (
-            otherCheckbox.checked
-          ) {
+        if (
+          otherCheckbox.checked
+        ) {
 
-            otherInput.style.display =
-              "block";
+          otherInput.style.display =
+            "block";
 
-            otherInput.focus();
-
-          }
-
-          else {
-
-            otherInput.style.display =
-              "none";
-
-            otherInput.value =
-              "";
-
-          }
-
-
-          updateServiceArea();
-
+          otherInput.focus();
 
         }
-      );
 
-    }
+        else {
+
+          otherInput.style.display =
+            "none";
+
+          otherInput.value =
+            "";
+
+        }
+
+
+      }
+    );
 
 
 
     /**********************************************
-     * BUILD SERVICE AREA STRING
+     * GET SELECTED SERVICE AREAS
      **********************************************/
 
-    function updateServiceArea() {
+    function getServiceAreas() {
 
 
-      const selectedAreas = [];
+      const selected =
+        [];
 
 
       document
         .querySelectorAll(
-          'input[name="serviceArea"]:checked'
+          ".service-area-checkbox:checked"
         )
         .forEach(
           checkbox => {
 
-
-            /*
-             * Do not add the word "Other"
-             * to the final service area.
-             */
-
-            if (
-              checkbox.id !==
-              "serviceAreaOther"
-            ) {
-
-              selectedAreas.push(
-                checkbox.value
-              );
-
-            }
-
+            selected.push(
+              checkbox.value
+            );
 
           }
         );
 
 
-      /*
-       * Add whatever the user entered
-       * in the Other field.
-       */
-
       if (
-        otherCheckbox &&
         otherCheckbox.checked &&
-        otherInput &&
         otherInput.value.trim()
       ) {
 
-        selectedAreas.push(
+        selected.push(
           otherInput.value.trim()
         );
 
       }
 
 
-      if (combinedInput) {
-
-        combinedInput.value =
-          selectedAreas.join(", ");
-
-      }
+      return selected;
 
 
     }
@@ -716,132 +739,347 @@ document.addEventListener(
 
 
     /**********************************************
-     * SERVICE AREA CHECKBOX EVENTS
+     * SUBMIT FORM
      **********************************************/
 
-    document
-      .querySelectorAll(
-        'input[name="serviceArea"]'
-      )
-      .forEach(
-        checkbox => {
+    form.addEventListener(
+      "submit",
+      async function (event) {
 
-          checkbox.addEventListener(
-            "change",
-            updateServiceArea
+
+        event.preventDefault();
+
+
+        /******************************************
+         * HIDE OLD MESSAGES
+         ******************************************/
+
+        successMessage.style.display =
+          "none";
+
+        errorMessage.style.display =
+          "none";
+
+
+        /******************************************
+         * SERVICE AREA VALIDATION
+         ******************************************/
+
+        const serviceAreas =
+          getServiceAreas();
+
+
+        if (
+          serviceAreas.length === 0
+        ) {
+
+          alert(
+            "Please select at least one service area."
           );
 
+          return;
+
         }
-      );
+
+
+        if (
+          otherCheckbox.checked &&
+          !otherInput.value.trim()
+        ) {
+
+          alert(
+            "Please enter the other service area."
+          );
+
+          otherInput.focus();
+
+          return;
+
+        }
 
 
 
-    /**********************************************
-     * OTHER SERVICE AREA EVENT
-     **********************************************/
+        /******************************************
+         * BUILD DATABASE SUBMISSION
+         ******************************************/
 
-    if (otherInput) {
-
-      otherInput.addEventListener(
-        "input",
-        updateServiceArea
-      );
-
-    }
+        const submission =
+          new URLSearchParams();
 
 
-
-    /**********************************************
-     * FORM VALIDATION
-     **********************************************/
-
-    if (form) {
-
-      form.addEventListener(
-        "submit",
-        function (event) {
+        submission.append(
+          "type",
+          "provider"
+        );
 
 
-          updateServiceArea();
+        submission.append(
+          "providerName",
+          document
+            .getElementById(
+              "providerName"
+            )
+            .value
+            .trim()
+        );
 
 
-          /*
-           * Make sure a service area
-           * has been selected.
-           */
+        submission.append(
+          "contactName",
+          document
+            .getElementById(
+              "contactName"
+            )
+            .value
+            .trim()
+        );
 
-          if (
-            !combinedInput ||
-            !combinedInput.value.trim()
-          ) {
 
-            event.preventDefault();
+        submission.append(
+          "providerType",
+          document
+            .getElementById(
+              "providerType"
+            )
+            .value
+        );
 
-            alert(
-              "Please select at least one service area."
+
+        submission.append(
+          "category",
+          document
+            .getElementById(
+              "category"
+            )
+            .value
+        );
+
+
+        submission.append(
+          "services",
+          document
+            .getElementById(
+              "services"
+            )
+            .value
+            .trim()
+        );
+
+
+        submission.append(
+          "description",
+          document
+            .getElementById(
+              "description"
+            )
+            .value
+            .trim()
+        );
+
+
+        submission.append(
+          "phone",
+          document
+            .getElementById(
+              "phone"
+            )
+            .value
+            .trim()
+        );
+
+
+        submission.append(
+          "email",
+          document
+            .getElementById(
+              "email"
+            )
+            .value
+            .trim()
+        );
+
+
+        submission.append(
+          "website",
+          document
+            .getElementById(
+              "website"
+            )
+            .value
+            .trim()
+        );
+
+
+        submission.append(
+          "facebook",
+          document
+            .getElementById(
+              "facebook"
+            )
+            .value
+            .trim()
+        );
+
+
+        submission.append(
+          "serviceArea",
+          serviceAreas.join(", ")
+        );
+
+
+
+        /******************************************
+         * SUBMITTING STATE
+         ******************************************/
+
+        submitButton.disabled =
+          true;
+
+
+        submitButton.textContent =
+          "Submitting...";
+
+
+        submittingMessage.style.display =
+          "block";
+
+
+
+        /******************************************
+         * SEND TO GOOGLE APPS SCRIPT
+         ******************************************/
+
+        try {
+
+
+          const response =
+            await fetch(
+              API_URL,
+              {
+
+                method:
+                  "POST",
+
+                body:
+                  submission,
+
+                redirect:
+                  "follow"
+
+              }
             );
 
-            return;
+
+          if (
+            !response.ok
+          ) {
+
+            throw new Error(
+              "Submission failed."
+            );
+
+          }
+
+
+          const result =
+            await response.json();
+
+
+          if (
+            !result.success
+          ) {
+
+            throw new Error(
+              result.message ||
+              "Submission failed."
+            );
 
           }
 
 
 
-          /*
-           * If Other is checked,
-           * require a city or area.
-           */
+          /****************************************
+           * SUCCESS
+           ****************************************/
 
-          if (
-            otherCheckbox &&
-            otherCheckbox.checked &&
-            (
-              !otherInput ||
-              !otherInput.value.trim()
-            )
-          ) {
-
-            event.preventDefault();
-
-            alert(
-              "Please enter the other service area."
-            );
+          submittingMessage.style.display =
+            "none";
 
 
-            if (otherInput) {
+          successMessage.style.display =
+            "block";
 
-              otherInput.focus();
+
+          form.reset();
+
+
+          otherInput.style.display =
+            "none";
+
+
+          successMessage.scrollIntoView(
+            {
+
+              behavior:
+                "smooth",
+
+              block:
+                "center"
 
             }
+          );
 
-
-            return;
-
-          }
-
-
-          /*
-           * IMPORTANT:
-           *
-           * Website and Facebook fields are
-           * intentionally NOT changed here.
-           *
-           * If the user enters:
-           *
-           * FreeSnakeRelocation.com
-           *
-           * it stays:
-           *
-           * FreeSnakeRelocation.com
-           *
-           * We can add https:// behind the scenes
-           * when the data is sent to the database.
-           */
 
         }
-      );
 
-    }
+        catch (error) {
+
+
+          console.error(
+            "NeighborSource submission error:",
+            error
+          );
+
+
+          submittingMessage.style.display =
+            "none";
+
+
+          errorMessage.style.display =
+            "block";
+
+
+          errorMessage.scrollIntoView(
+            {
+
+              behavior:
+                "smooth",
+
+              block:
+                "center"
+
+            }
+          );
+
+
+        }
+
+        finally {
+
+
+          submitButton.disabled =
+            false;
+
+
+          submitButton.textContent =
+            "Submit Listing";
+
+
+        }
+
+
+      }
+    );
 
 
   }
