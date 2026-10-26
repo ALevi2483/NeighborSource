@@ -1,6 +1,6 @@
 /*************************************************
  * NEIGHBORSOURCE
- * Main JavaScript
+ * MAIN JAVASCRIPT
  *************************************************/
 
 
@@ -17,6 +17,7 @@ const API_URL =
  *************************************************/
 
 let providers = [];
+
 
 const categories = [
 
@@ -102,11 +103,15 @@ const categories = [
 function header() {
 
   return `
+
     <header class="site-header">
 
       <div class="container nav">
 
-        <a class="brand" href="index.html">
+        <a
+          class="brand"
+          href="index.html"
+        >
 
           <span class="brand-mark">
             🏡
@@ -118,12 +123,14 @@ function header() {
 
         </a>
 
+
         <button
           class="menu-btn"
           aria-label="Open menu"
         >
           ☰
         </button>
+
 
         <nav class="nav-links">
 
@@ -155,6 +162,7 @@ function header() {
       </div>
 
     </header>
+
   `;
 
 }
@@ -167,11 +175,14 @@ function header() {
 function footer() {
 
   return `
+
     <footer class="footer">
 
       <div class="container">
 
+
         <div class="footer-grid">
+
 
           <div>
 
@@ -191,6 +202,7 @@ function footer() {
 
             </a>
 
+
             <p
               class="small"
               style="color:#b9cadb;margin-top:12px"
@@ -199,6 +211,7 @@ function footer() {
             </p>
 
           </div>
+
 
 
           <div>
@@ -222,6 +235,7 @@ function footer() {
           </div>
 
 
+
           <div>
 
             <h4>
@@ -241,6 +255,7 @@ function footer() {
             </a>
 
           </div>
+
 
 
           <div>
@@ -267,6 +282,7 @@ function footer() {
 
           </div>
 
+
         </div>
 
 
@@ -278,9 +294,11 @@ function footer() {
 
         </div>
 
+
       </div>
 
     </footer>
+
   `;
 
 }
@@ -292,10 +310,12 @@ function footer() {
 
 async function boot() {
 
+
   document.body.insertAdjacentHTML(
     "afterbegin",
     header()
   );
+
 
   document.body.insertAdjacentHTML(
     "beforeend",
@@ -304,7 +324,10 @@ async function boot() {
 
 
   const yearElement =
-    document.querySelector("#year");
+    document.querySelector(
+      "#year"
+    );
+
 
   if (yearElement) {
 
@@ -315,17 +338,24 @@ async function boot() {
 
 
   const menuButton =
-    document.querySelector(".menu-btn");
+    document.querySelector(
+      ".menu-btn"
+    );
+
 
   if (menuButton) {
 
     menuButton.addEventListener(
       "click",
-      () => {
+      function () {
 
         document
-          .querySelector(".nav-links")
-          ?.classList.toggle("open");
+          .querySelector(
+            ".nav-links"
+          )
+          ?.classList.toggle(
+            "open"
+          );
 
       }
     );
@@ -335,11 +365,12 @@ async function boot() {
 
   initSearchForms();
 
-  initDemoForms();
 
   showLoadingState();
 
+
   await loadProviders();
+
 
   renderDynamic();
 
@@ -347,28 +378,43 @@ async function boot() {
 
 
 /*************************************************
- * LOAD PROVIDERS FROM GOOGLE SHEETS
+ * LOAD PROVIDERS
  *************************************************/
 
 async function loadProviders() {
 
   try {
 
+
     const response =
       await fetch(
-        `${API_URL}?action=providers`,
+
+        API_URL +
+        "?action=providers&t=" +
+        Date.now(),
+
         {
-          method: "GET",
-          redirect: "follow",
-          cache: "no-store"
+
+          method:
+            "GET",
+
+          redirect:
+            "follow",
+
+          cache:
+            "no-store"
+
         }
+
       );
 
 
-    if (!response.ok) {
+    if (
+      !response.ok
+    ) {
 
       throw new Error(
-        `Database request failed: ${response.status}`
+        "Database request failed."
       );
 
     }
@@ -378,35 +424,47 @@ async function loadProviders() {
       await response.json();
 
 
-    if (!data.success) {
+    if (
+      !data.success
+    ) {
 
       throw new Error(
         data.message ||
-        "The database returned an error."
+        "Database error."
       );
 
     }
 
 
     providers =
-      Array.isArray(data.providers)
+      Array.isArray(
+        data.providers
+      )
         ? data.providers
         : [];
 
 
     console.log(
-      `NeighborSource loaded ${providers.length} approved provider(s).`
+      "NeighborSource loaded " +
+      providers.length +
+      " approved provider(s)."
     );
 
 
-  } catch (error) {
+  }
+
+  catch (error) {
+
 
     console.error(
       "NeighborSource database error:",
       error
     );
 
-    providers = [];
+
+    providers =
+      [];
+
 
     showDatabaseError();
 
@@ -425,104 +483,65 @@ function initSearchForms() {
     .querySelectorAll(
       "[data-search-form]"
     )
-    .forEach(form => {
-
-      form.addEventListener(
-        "submit",
-        event => {
-
-          event.preventDefault();
+    .forEach(
+      function (form) {
 
 
-          const input =
-            form.querySelector("input");
+        form.addEventListener(
+          "submit",
+          function (event) {
 
 
-          const query =
-            input
-              ? input.value.trim()
-              : "";
+            event.preventDefault();
 
 
-          location.href =
-            `search.html?q=${encodeURIComponent(query)}`;
-
-        }
-      );
-
-    });
-
-}
+            const input =
+              form.querySelector(
+                "input"
+              );
 
 
-/*************************************************
- * CURRENT DEMO FORMS
- *
- * These will be replaced later with real
- * database submissions.
- *************************************************/
-
-function initDemoForms() {
-
-  document
-    .querySelectorAll(
-      "form[data-demo-form]"
-    )
-    .forEach(form => {
-
-      form.addEventListener(
-        "submit",
-        event => {
-
-          event.preventDefault();
+            const query =
+              input
+                ? input.value.trim()
+                : "";
 
 
-          const message =
-            form.querySelector(
-              ".success-message"
-            );
+            window.location.href =
+              "search.html?q=" +
+              encodeURIComponent(
+                query
+              );
 
-
-          if (message) {
-
-            message.classList.add(
-              "show"
-            );
-
-            message.scrollIntoView({
-
-              behavior: "smooth",
-
-              block: "center"
-
-            });
 
           }
+        );
 
-        }
-      );
 
-    });
+      }
+    );
 
 }
 
 
 /*************************************************
- * DETERMINE CURRENT PAGE
+ * CURRENT PAGE
  *************************************************/
 
 function renderDynamic() {
 
   const path =
-    location.pathname
+    window.location.pathname
       .split("/")
       .pop() ||
     "index.html";
 
 
   if (
-    path === "index.html" ||
-    path === ""
+    path ===
+      "index.html" ||
+    path ===
+      ""
   ) {
 
     renderHomeCategories();
@@ -533,7 +552,8 @@ function renderDynamic() {
 
 
   if (
-    path === "services.html"
+    path ===
+    "services.html"
   ) {
 
     renderCategories(
@@ -544,7 +564,8 @@ function renderDynamic() {
 
 
   if (
-    path === "search.html"
+    path ===
+    "search.html"
   ) {
 
     renderSearch();
@@ -553,7 +574,8 @@ function renderDynamic() {
 
 
   if (
-    path === "category.html"
+    path ===
+    "category.html"
   ) {
 
     renderCategoryPage();
@@ -562,7 +584,8 @@ function renderDynamic() {
 
 
   if (
-    path === "provider.html"
+    path ===
+    "provider.html"
   ) {
 
     renderProvider();
@@ -573,7 +596,7 @@ function renderDynamic() {
 
 
 /*************************************************
- * HOME PAGE CATEGORIES
+ * HOME CATEGORIES
  *************************************************/
 
 function renderHomeCategories() {
@@ -593,9 +616,27 @@ function renderHomeCategories() {
 
   element.innerHTML =
     categories
-      .slice(0, 8)
+      .slice(
+        0,
+        8
+      )
       .map(
-        ([name, icon, description]) => {
+        function (
+          category
+        ) {
+
+
+          const name =
+            category[0];
+
+
+          const icon =
+            category[1];
+
+
+          const description =
+            category[2];
+
 
           return `
 
@@ -605,20 +646,30 @@ function renderHomeCategories() {
             >
 
               <div class="category-icon">
+
                 ${icon}
+
               </div>
+
 
               <h3>
+
                 ${escapeHTML(name)}
+
               </h3>
 
+
               <div class="small">
+
                 ${escapeHTML(description)}
+
               </div>
+
 
             </a>
 
           `;
+
 
         }
       )
@@ -631,10 +682,14 @@ function renderHomeCategories() {
  * ALL CATEGORIES
  *************************************************/
 
-function renderCategories(id) {
+function renderCategories(
+  id
+) {
 
   const element =
-    document.getElementById(id);
+    document.getElementById(
+      id
+    );
 
 
   if (!element) {
@@ -647,7 +702,22 @@ function renderCategories(id) {
   element.innerHTML =
     categories
       .map(
-        ([name, icon, description]) => {
+        function (
+          category
+        ) {
+
+
+          const name =
+            category[0];
+
+
+          const icon =
+            category[1];
+
+
+          const description =
+            category[2];
+
 
           return `
 
@@ -657,20 +727,30 @@ function renderCategories(id) {
             >
 
               <div class="category-icon">
+
                 ${icon}
+
               </div>
+
 
               <h3>
+
                 ${escapeHTML(name)}
+
               </h3>
 
+
               <div class="small">
+
                 ${escapeHTML(description)}
+
               </div>
+
 
             </a>
 
           `;
+
 
         }
       )
@@ -683,16 +763,22 @@ function renderCategories(id) {
  * PROVIDER CARD
  *************************************************/
 
-function providerCard(provider) {
+function providerCard(
+  provider
+) {
 
   const providerId =
     encodeURIComponent(
-      provider.id || ""
+      provider.id ||
+      ""
     );
 
 
   const phone =
-    provider.phone || "";
+    String(
+      provider.phone ||
+      ""
+    );
 
 
   const phoneLink =
@@ -703,15 +789,26 @@ function providerCard(provider) {
 
 
   const areas =
-    Array.isArray(provider.area)
+    Array.isArray(
+      provider.area
+    )
       ? provider.area
       : [];
 
 
   const verification =
-    Array.isArray(provider.verified)
+    Array.isArray(
+      provider.verified
+    )
       ? provider.verified
       : [];
+
+
+  const recommendations =
+    Number(
+      provider.recommendations
+    ) ||
+    0;
 
 
   return `
@@ -720,107 +817,180 @@ function providerCard(provider) {
       class="card provider-card"
     >
 
+
       <div class="small">
 
-        ${escapeHTML(provider.type || "")}
+        ${escapeHTML(
+          provider.type ||
+          ""
+        )}
 
-        ${provider.category ? " • " : ""}
+        ${
+          provider.category
+            ? " • "
+            : ""
+        }
 
-        ${escapeHTML(provider.category || "")}
+        ${escapeHTML(
+          provider.category ||
+          ""
+        )}
 
       </div>
 
 
+
       <h3>
 
-        ${escapeHTML(provider.name || "Unnamed Provider")}
+        ${escapeHTML(
+          provider.name ||
+          "Unnamed Provider"
+        )}
 
       </h3>
 
 
+
       <div class="meta">
+
 
         <span>
 
           👍
-          ${Number(provider.recommendations) || 0}
-          recommendation${Number(provider.recommendations) === 1 ? "" : "s"}
+          ${recommendations}
+          recommendation${recommendations === 1 ? "" : "s"}
 
         </span>
 
 
         ${
           areas.length
+
             ? `
+
               <span>
+
                 📍
-                ${escapeHTML(areas.join(", "))}
+                ${escapeHTML(
+                  areas.join(
+                    ", "
+                  )
+                )}
+
               </span>
+
             `
+
             : ""
+
         }
+
 
       </div>
 
 
+
       ${
         verification.length
+
           ? `
+
             <div class="badges">
 
               ${verification
-                .slice(0, 4)
+                .slice(
+                  0,
+                  4
+                )
                 .map(
-                  badge => `
-                    <span class="badge green">
-                      ✓ ${escapeHTML(badge)}
-                    </span>
-                  `
+                  function (
+                    badge
+                  ) {
+
+                    return `
+
+                      <span class="badge green">
+
+                        ✓ ${escapeHTML(
+                          badge
+                        )}
+
+                      </span>
+
+                    `;
+
+                  }
                 )
                 .join("")
               }
 
             </div>
+
           `
+
           : ""
+
       }
+
 
 
       ${
         provider.description
+
           ? `
+
             <p>
-              ${escapeHTML(provider.description)}
+
+              ${escapeHTML(
+                provider.description
+              )}
+
             </p>
+
           `
+
           : ""
+
       }
 
 
+
       <div class="provider-actions">
+
 
         <a
           class="btn btn-primary"
           href="provider.html?id=${providerId}"
         >
+
           View Profile
+
         </a>
 
 
         ${
           phoneLink
+
             ? `
+
               <a
                 class="btn btn-outline"
                 href="tel:${phoneLink}"
               >
+
                 Call
+
               </a>
+
             `
+
             : ""
+
         }
 
+
       </div>
+
 
     </article>
 
@@ -848,7 +1018,9 @@ function renderFeatured() {
   }
 
 
-  if (!providers.length) {
+  if (
+    !providers.length
+  ) {
 
     element.innerHTML = `
 
@@ -873,6 +1045,7 @@ function renderFeatured() {
 
     `;
 
+
     return;
 
   }
@@ -881,36 +1054,59 @@ function renderFeatured() {
   const featuredProviders =
     [...providers]
       .sort(
-        (a, b) =>
-          (Number(b.recommendations) || 0) -
-          (Number(a.recommendations) || 0)
+        function (
+          a,
+          b
+        ) {
+
+          return (
+            Number(
+              b.recommendations
+            ) ||
+            0
+          ) -
+          (
+            Number(
+              a.recommendations
+            ) ||
+            0
+          );
+
+        }
       )
-      .slice(0, 3);
+      .slice(
+        0,
+        3
+      );
 
 
   element.innerHTML =
     featuredProviders
-      .map(providerCard)
+      .map(
+        providerCard
+      )
       .join("");
 
 }
 
 
 /*************************************************
- * SEARCH RESULTS
+ * SEARCH
  *************************************************/
 
 function renderSearch() {
 
   const params =
     new URLSearchParams(
-      location.search
+      window.location.search
     );
 
 
   const query =
     (
-      params.get("q") ||
+      params.get(
+        "q"
+      ) ||
       ""
     ).trim();
 
@@ -950,29 +1146,47 @@ function renderSearch() {
 
   const results =
     providers.filter(
-      provider => {
+      function (
+        provider
+      ) {
 
-        const haystack = [
 
-          provider.name || "",
+        const haystack =
+          [
 
-          provider.type || "",
+            provider.name ||
+              "",
 
-          provider.category || "",
+            provider.type ||
+              "",
 
-          Array.isArray(provider.services)
-            ? provider.services.join(" ")
-            : "",
+            provider.category ||
+              "",
 
-          Array.isArray(provider.area)
-            ? provider.area.join(" ")
-            : "",
+            Array.isArray(
+              provider.services
+            )
+              ? provider.services.join(
+                  " "
+                )
+              : "",
 
-          provider.description || ""
+            Array.isArray(
+              provider.area
+            )
+              ? provider.area.join(
+                  " "
+                )
+              : "",
 
-        ]
-          .join(" ")
-          .toLowerCase();
+            provider.description ||
+              ""
+
+          ]
+            .join(
+              " "
+            )
+            .toLowerCase();
 
 
         return (
@@ -981,6 +1195,7 @@ function renderSearch() {
             normalizedQuery
           )
         );
+
 
       }
     );
@@ -995,7 +1210,14 @@ function renderSearch() {
   if (resultCount) {
 
     resultCount.textContent =
-      `${results.length} provider${results.length === 1 ? "" : "s"} found`;
+      results.length +
+      " provider" +
+      (
+        results.length === 1
+          ? ""
+          : "s"
+      ) +
+      " found";
 
   }
 
@@ -1013,7 +1235,9 @@ function renderSearch() {
   }
 
 
-  if (!results.length) {
+  if (
+    !results.length
+  ) {
 
     element.innerHTML = `
 
@@ -1038,6 +1262,7 @@ function renderSearch() {
 
     `;
 
+
     return;
 
   }
@@ -1045,7 +1270,9 @@ function renderSearch() {
 
   element.innerHTML =
     results
-      .map(providerCard)
+      .map(
+        providerCard
+      )
       .join("");
 
 }
@@ -1059,12 +1286,14 @@ function renderCategoryPage() {
 
   const params =
     new URLSearchParams(
-      location.search
+      window.location.search
     );
 
 
   const name =
-    params.get("name") ||
+    params.get(
+      "name"
+    ) ||
     "Home & Repair";
 
 
@@ -1072,23 +1301,39 @@ function renderCategoryPage() {
     .querySelectorAll(
       "[data-category-name]"
     )
-    .forEach(element => {
+    .forEach(
+      function (
+        element
+      ) {
 
-      element.textContent =
-        name;
+        element.textContent =
+          name;
 
-    });
+      }
+    );
 
 
   const category =
     categories.find(
-      item =>
-        item[0] === name
+      function (
+        item
+      ) {
+
+        return (
+          item[0] ===
+          name
+        );
+
+      }
     ) ||
     [
+
       name,
+
       "🛠️",
+
       "Local providers and services."
+
     ];
 
 
@@ -1112,7 +1357,9 @@ function renderCategoryPage() {
     );
 
 
-  if (categoryDescription) {
+  if (
+    categoryDescription
+  ) {
 
     categoryDescription.textContent =
       category[2];
@@ -1122,11 +1369,21 @@ function renderCategoryPage() {
 
   const results =
     providers.filter(
-      provider =>
-        String(
-          provider.category || ""
-        ).toLowerCase() ===
-        String(name).toLowerCase()
+      function (
+        provider
+      ) {
+
+        return (
+          String(
+            provider.category ||
+            ""
+          ).toLowerCase() ===
+          String(
+            name
+          ).toLowerCase()
+        );
+
+      }
     );
 
 
@@ -1143,7 +1400,9 @@ function renderCategoryPage() {
   }
 
 
-  if (!results.length) {
+  if (
+    !results.length
+  ) {
 
     element.innerHTML = `
 
@@ -1168,6 +1427,7 @@ function renderCategoryPage() {
 
     `;
 
+
     return;
 
   }
@@ -1175,7 +1435,9 @@ function renderCategoryPage() {
 
   element.innerHTML =
     results
-      .map(providerCard)
+      .map(
+        providerCard
+      )
       .join("");
 
 }
@@ -1189,20 +1451,33 @@ async function renderProvider() {
 
   const params =
     new URLSearchParams(
-      location.search
+      window.location.search
     );
 
 
   const id =
-    params.get("id") ||
+    params.get(
+      "id"
+    ) ||
     "";
 
 
   const provider =
     providers.find(
-      item =>
-        String(item.id) ===
-        String(id)
+      function (
+        item
+      ) {
+
+        return (
+          String(
+            item.id
+          ) ===
+          String(
+            id
+          )
+        );
+
+      }
     );
 
 
@@ -1215,6 +1490,10 @@ async function renderProvider() {
   }
 
 
+  /**********************************************
+   * BASIC PROVIDER INFO
+   **********************************************/
+
   setText(
     "#provider-name",
     provider.name
@@ -1224,11 +1503,18 @@ async function renderProvider() {
   setText(
     "#provider-category",
     [
+
       provider.type,
+
       provider.category
+
     ]
-      .filter(Boolean)
-      .join(" • ")
+      .filter(
+        Boolean
+      )
+      .join(
+        " • "
+      )
   );
 
 
@@ -1236,20 +1522,29 @@ async function renderProvider() {
     .querySelectorAll(
       "#provider-description"
     )
-    .forEach(element => {
+    .forEach(
+      function (
+        element
+      ) {
 
-      element.textContent =
-        provider.description ||
-        "";
+        element.textContent =
+          provider.description ||
+          "";
 
-    });
+      }
+    );
 
+
+  /**********************************************
+   * RECOMMENDATIONS
+   **********************************************/
 
   setText(
     "#provider-recs",
     Number(
       provider.recommendations
-    ) || 0
+    ) ||
+    0
   );
 
 
@@ -1257,17 +1552,30 @@ async function renderProvider() {
     "#provider-rehire",
     Number(
       provider.rehire
-    ) || 0
+    ) ||
+    0
   );
 
+
+  /**********************************************
+   * SERVICE AREA
+   **********************************************/
 
   setText(
     "#provider-area",
-    Array.isArray(provider.area)
-      ? provider.area.join(", ")
+    Array.isArray(
+      provider.area
+    )
+      ? provider.area.join(
+          ", "
+        )
       : ""
   );
 
+
+  /**********************************************
+   * PHONE
+   **********************************************/
 
   setText(
     "#provider-phone",
@@ -1284,9 +1592,11 @@ async function renderProvider() {
 
   if (callButton) {
 
+
     const phone =
       String(
-        provider.phone || ""
+        provider.phone ||
+        ""
       ).replace(
         /\D/g,
         ""
@@ -1296,9 +1606,12 @@ async function renderProvider() {
     if (phone) {
 
       callButton.href =
-        `tel:${phone}`;
+        "tel:" +
+        phone;
 
-    } else {
+    }
+
+    else {
 
       callButton.style.display =
         "none";
@@ -1308,13 +1621,20 @@ async function renderProvider() {
   }
 
 
+  /**********************************************
+   * SERVICES
+   **********************************************/
+
   const servicesContainer =
     document.querySelector(
       "#provider-services"
     );
 
 
-  if (servicesContainer) {
+  if (
+    servicesContainer
+  ) {
+
 
     const services =
       Array.isArray(
@@ -1326,18 +1646,52 @@ async function renderProvider() {
 
     servicesContainer.innerHTML =
       services.length
+
         ? services
             .map(
-              service => `
-                <span class="pill">
-                  ${escapeHTML(service)}
-                </span>
-              `
+              function (
+                service
+              ) {
+
+                return `
+
+                  <span class="pill">
+
+                    ${escapeHTML(
+                      service
+                    )}
+
+                  </span>
+
+                `;
+
+              }
             )
             .join("")
-        : `<span class="small">No services listed.</span>`;
+
+        : `
+
+          <span class="small">
+
+            No services listed.
+
+          </span>
+
+        `;
 
   }
+
+
+  /**********************************************
+   * VERIFICATION BADGES
+   **********************************************/
+
+  const badges =
+    Array.isArray(
+      provider.verified
+    )
+      ? provider.verified
+      : [];
 
 
   const badgeContainer =
@@ -1346,35 +1700,63 @@ async function renderProvider() {
     );
 
 
-  if (badgeContainer) {
-
-    const badges =
-      Array.isArray(
-        provider.verified
-      )
-        ? provider.verified
-        : [];
+  if (
+    badgeContainer
+  ) {
 
 
     badgeContainer.innerHTML =
       badges.length
+
         ? badges
             .map(
-              badge => `
-                <span class="badge green">
-                  ✓ ${escapeHTML(badge)}
-                </span>
-              `
+              function (
+                badge
+              ) {
+
+                return `
+
+                  <span class="badge green">
+
+                    ✓ ${escapeHTML(
+                      badge
+                    )}
+
+                  </span>
+
+                `;
+
+              }
             )
             .join("")
+
         : `
+
           <span class="small">
+
             No verification badges yet.
+
           </span>
+
         `;
 
   }
 
+
+  /**********************************************
+   * VERIFIED INFO STAT
+   *
+   * Fixes the old permanent checkmark.
+   **********************************************/
+
+  updateVerificationStat(
+    badges
+  );
+
+
+  /**********************************************
+   * RECOMMEND LINK
+   **********************************************/
 
   const recommendLink =
     document.querySelector(
@@ -1382,17 +1764,138 @@ async function renderProvider() {
     );
 
 
-  if (recommendLink) {
+  if (
+    recommendLink
+  ) {
+
 
     recommendLink.href =
-      `recommend.html?providerId=${encodeURIComponent(provider.id)}&provider=${encodeURIComponent(provider.name)}`;
+      "recommend.html?providerId=" +
+      encodeURIComponent(
+        provider.id
+      ) +
+      "&provider=" +
+      encodeURIComponent(
+        provider.name
+      );
 
   }
 
 
+  /**********************************************
+   * LOAD RECOMMENDATIONS
+   **********************************************/
+
   await loadProviderRecommendations(
     provider.id
   );
+
+}
+
+
+/*************************************************
+ * VERIFIED INFO STAT
+ *************************************************/
+
+function updateVerificationStat(
+  badges
+) {
+
+  const stats =
+    document.querySelectorAll(
+      ".profile-stats .stat"
+    );
+
+
+  if (
+    stats.length <
+    3
+  ) {
+
+    return;
+
+  }
+
+
+  const verificationStat =
+    stats[2];
+
+
+  const value =
+    verificationStat.querySelector(
+      "strong"
+    );
+
+
+  const label =
+    verificationStat.querySelector(
+      ".small"
+    );
+
+
+  const count =
+    Array.isArray(
+      badges
+    )
+      ? badges.length
+      : 0;
+
+
+  if (
+    count >
+    0
+  ) {
+
+
+    if (value) {
+
+      value.textContent =
+        "✓";
+
+    }
+
+
+    if (label) {
+
+      label.textContent =
+        count === 1
+          ? "1 Verified Item"
+          : count +
+            " Verified Items";
+
+    }
+
+
+    verificationStat.title =
+      badges.join(
+        ", "
+      );
+
+  }
+
+  else {
+
+
+    if (value) {
+
+      value.textContent =
+        "—";
+
+    }
+
+
+    if (label) {
+
+      label.textContent =
+        "Not Verified";
+
+    }
+
+
+    verificationStat.title =
+      "No verification information has been confirmed.";
+
+  }
 
 }
 
@@ -1407,18 +1910,38 @@ async function loadProviderRecommendations(
 
   try {
 
+
     const response =
       await fetch(
-        `${API_URL}?action=recommendations&providerId=${encodeURIComponent(providerId)}`,
+
+        API_URL +
+        "?action=recommendations" +
+        "&providerId=" +
+        encodeURIComponent(
+          providerId
+        ) +
+        "&t=" +
+        Date.now(),
+
         {
-          method: "GET",
-          redirect: "follow",
-          cache: "no-store"
+
+          method:
+            "GET",
+
+          redirect:
+            "follow",
+
+          cache:
+            "no-store"
+
         }
+
       );
 
 
-    if (!response.ok) {
+    if (
+      !response.ok
+    ) {
 
       return;
 
@@ -1446,7 +1969,10 @@ async function loadProviderRecommendations(
     );
 
 
-  } catch (error) {
+  }
+
+  catch (error) {
+
 
     console.error(
       "Could not load recommendations:",
@@ -1468,17 +1994,26 @@ function renderRecommendations(
 
   const headings =
     Array.from(
-      document.querySelectorAll("h2")
+      document.querySelectorAll(
+        "h2"
+      )
     );
 
 
   const heading =
     headings.find(
-      element =>
-        element.textContent
-          .trim()
-          .toLowerCase() ===
-        "neighbor recommendations"
+      function (
+        element
+      ) {
+
+        return (
+          element.textContent
+            .trim()
+            .toLowerCase() ===
+          "neighbor recommendations"
+        );
+
+      }
     );
 
 
@@ -1502,7 +2037,9 @@ function renderRecommendations(
   }
 
 
-  if (!recommendations.length) {
+  if (
+    !recommendations.length
+  ) {
 
     card.innerHTML = `
 
@@ -1516,6 +2053,7 @@ function renderRecommendations(
 
     `;
 
+
     return;
 
   }
@@ -1524,51 +2062,85 @@ function renderRecommendations(
   const recommendationHTML =
     recommendations
       .map(
-        recommendation => {
+        function (
+          recommendation
+        ) {
+
 
           const reviewer =
             recommendation.reviewerName
+
               ? escapeHTML(
                   recommendation.reviewerName
                 )
+
               : "Neighbor";
 
 
           const city =
             recommendation.reviewerCity
-              ? ` from ${escapeHTML(recommendation.reviewerCity)}`
+
+              ? " from " +
+                escapeHTML(
+                  recommendation.reviewerCity
+                )
+
               : "";
 
 
           const service =
             recommendation.serviceProvided
+
               ? `
+
                 <div class="small">
+
                   Service:
-                  ${escapeHTML(recommendation.serviceProvided)}
+                  ${escapeHTML(
+                    recommendation.serviceProvided
+                  )}
+
                 </div>
+
               `
+
               : "";
 
 
           const comments =
             recommendation.comments
+
               ? `
+
                 <p>
-                  “${escapeHTML(recommendation.comments)}”
+
+                  “${escapeHTML(
+                    recommendation.comments
+                  )}”
+
                 </p>
+
               `
+
               : "";
 
 
           const useAgain =
             recommendation.wouldUseAgain
+
               ? `
+
                 <span class="badge">
+
                   Would use again:
-                  ${escapeHTML(recommendation.wouldUseAgain)}
+                  ${escapeHTML(
+                    recommendation.wouldUseAgain
+                  )}
+
                 </span>
+
               `
+
               : "";
 
 
@@ -1585,11 +2157,13 @@ function renderRecommendations(
 
               ${service}
 
+
               <div class="badges">
 
                 ${useAgain}
 
               </div>
+
 
               <div class="small">
 
@@ -1597,9 +2171,11 @@ function renderRecommendations(
 
               </div>
 
+
             </div>
 
           `;
+
 
         }
       )
@@ -1673,7 +2249,7 @@ function showProviderNotFound() {
 
 
 /*************************************************
- * LOADING STATE
+ * LOADING
  *************************************************/
 
 function showLoadingState() {
@@ -1689,31 +2265,37 @@ function showLoadingState() {
   ];
 
 
-  ids.forEach(selector => {
-
-    const element =
-      document.querySelector(
-        selector
-      );
+  ids.forEach(
+    function (
+      selector
+    ) {
 
 
-    if (element) {
+      const element =
+        document.querySelector(
+          selector
+        );
 
-      element.innerHTML = `
 
-        <div class="card empty-state">
+      if (element) {
 
-          <p>
-            Loading local providers...
-          </p>
+        element.innerHTML = `
 
-        </div>
+          <div class="card empty-state">
 
-      `;
+            <p>
+              Loading local providers...
+            </p>
+
+          </div>
+
+        `;
+
+      }
+
 
     }
-
-  });
+  );
 
 }
 
@@ -1735,36 +2317,42 @@ function showDatabaseError() {
   ];
 
 
-  ids.forEach(selector => {
-
-    const element =
-      document.querySelector(
-        selector
-      );
+  ids.forEach(
+    function (
+      selector
+    ) {
 
 
-    if (element) {
+      const element =
+        document.querySelector(
+          selector
+        );
 
-      element.innerHTML = `
 
-        <div class="card empty-state">
+      if (element) {
 
-          <h3>
-            Unable to load providers
-          </h3>
+        element.innerHTML = `
 
-          <p>
-            NeighborSource could not connect to the provider database.
-            Please try again shortly.
-          </p>
+          <div class="card empty-state">
 
-        </div>
+            <h3>
+              Unable to load providers
+            </h3>
 
-      `;
+            <p>
+              NeighborSource could not connect to the provider database.
+              Please try again.
+            </p>
+
+          </div>
+
+        `;
+
+      }
+
 
     }
-
-  });
+  );
 
 }
 
@@ -1787,7 +2375,8 @@ function setText(
   if (element) {
 
     element.textContent =
-      value ?? "";
+      value ??
+      "";
 
   }
 
@@ -1796,32 +2385,37 @@ function setText(
 
 /*************************************************
  * HTML SECURITY
- *
- * Prevents text stored in Google Sheets
- * from being interpreted as website code.
  *************************************************/
 
-function escapeHTML(value) {
+function escapeHTML(
+  value
+) {
 
   return String(
-    value ?? ""
+    value ??
+    ""
   )
+
     .replace(
       /&/g,
       "&amp;"
     )
+
     .replace(
       /</g,
       "&lt;"
     )
+
     .replace(
       />/g,
       "&gt;"
     )
+
     .replace(
       /"/g,
       "&quot;"
     )
+
     .replace(
       /'/g,
       "&#039;"
