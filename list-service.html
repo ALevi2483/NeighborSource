@@ -388,11 +388,6 @@
             >
 
 
-            <!--
-              This hidden field will eventually contain:
-              Chesapeake, Portsmouth, Suffolk
-            -->
-
             <input
               type="hidden"
               id="serviceAreaCombined"
@@ -404,7 +399,7 @@
 
 
 
-          <!-- SERVICES PROVIDED -->
+          <!-- SERVICES -->
 
           <div class="field full">
 
@@ -458,12 +453,14 @@
             <input
               id="website"
               name="website"
-              type="url"
-              placeholder="https://"
+              type="text"
+              inputmode="url"
+              autocomplete="url"
+              placeholder="example.com"
             >
 
             <div class="helper">
-              Optional
+              Optional. You can enter example.com or https://example.com
             </div>
 
           </div>
@@ -481,12 +478,13 @@
             <input
               id="facebook"
               name="facebook"
-              type="url"
-              placeholder="https://facebook.com/..."
+              type="text"
+              inputmode="url"
+              placeholder="facebook.com/yourpage"
             >
 
             <div class="helper">
-              Optional
+              Optional. You do not need to type https://
             </div>
 
           </div>
@@ -503,11 +501,9 @@
                 type="checkbox"
                 id="accuracyConfirmation"
                 required
-                style="width:auto;"
               >
 
-              I confirm that the information I submitted is accurate
-              and that I am authorized to submit this listing.
+              I confirm that the information I submitted is accurate and that I am authorized to submit this listing.
 
             </label>
 
@@ -518,18 +514,19 @@
 
 
 
-        <!-- SUBMIT BUTTON -->
+        <!-- SUBMIT -->
 
         <button
           class="btn btn-green"
           type="submit"
+          id="submitListingButton"
         >
           Submit Listing
         </button>
 
 
 
-        <!-- CURRENT PROTOTYPE MESSAGE -->
+        <!-- SUCCESS MESSAGE -->
 
         <div class="notice green success-message">
 
@@ -554,13 +551,13 @@
 
 
 
-<!-- MAIN NEIGHBORSOURCE JAVASCRIPT -->
+<!-- MAIN SITE JAVASCRIPT -->
 
 <script src="js/app.js"></script>
 
 
 
-<!-- SERVICE AREA CHECKBOX JAVASCRIPT -->
+<!-- PAGE JAVASCRIPT -->
 
 <script>
 
@@ -568,6 +565,10 @@ document.addEventListener(
   "DOMContentLoaded",
   function () {
 
+
+    /**********************************************
+     * ELEMENTS
+     **********************************************/
 
     const form =
       document.getElementById(
@@ -593,8 +594,22 @@ document.addEventListener(
       );
 
 
+    const websiteInput =
+      document.getElementById(
+        "website"
+      );
 
-    /* SHOW / HIDE OTHER FIELD */
+
+    const facebookInput =
+      document.getElementById(
+        "facebook"
+      );
+
+
+
+    /**********************************************
+     * OTHER SERVICE AREA
+     **********************************************/
 
     if (
       otherCheckbox &&
@@ -628,6 +643,8 @@ document.addEventListener(
           }
 
 
+          updateServiceArea();
+
         }
       );
 
@@ -635,7 +652,9 @@ document.addEventListener(
 
 
 
-    /* BUILD SERVICE AREA STRING */
+    /**********************************************
+     * BUILD SERVICE AREA STRING
+     **********************************************/
 
     function updateServiceArea() {
 
@@ -650,16 +669,27 @@ document.addEventListener(
         .forEach(
           checkbox => {
 
-            selectedAreas.push(
-              checkbox.value
-            );
+
+            if (
+              checkbox.id !==
+              "serviceAreaOther"
+            ) {
+
+              selectedAreas.push(
+                checkbox.value
+              );
+
+            }
+
 
           }
         );
 
 
       if (
+        otherCheckbox &&
         otherCheckbox.checked &&
+        otherInput &&
         otherInput.value.trim()
       ) {
 
@@ -670,15 +700,21 @@ document.addEventListener(
       }
 
 
-      combinedInput.value =
-        selectedAreas.join(", ");
+      if (combinedInput) {
+
+        combinedInput.value =
+          selectedAreas.join(", ");
+
+      }
 
 
     }
 
 
 
-    /* UPDATE WHEN CHECKBOX CHANGES */
+    /**********************************************
+     * SERVICE AREA EVENTS
+     **********************************************/
 
     document
       .querySelectorAll(
@@ -696,43 +732,192 @@ document.addEventListener(
       );
 
 
+    if (otherInput) {
 
-    /* UPDATE OTHER FIELD */
+      otherInput.addEventListener(
+        "input",
+        updateServiceArea
+      );
 
-    otherInput.addEventListener(
-      "input",
-      updateServiceArea
-    );
-
-
-
-    /* VALIDATE AT LEAST ONE AREA */
-
-    form.addEventListener(
-      "submit",
-      function (event) {
+    }
 
 
-        updateServiceArea();
+
+    /**********************************************
+     * NORMALIZE URL
+     *
+     * Turns:
+     *
+     * FreeSnakeRelocation.com
+     *
+     * into:
+     *
+     * https://FreeSnakeRelocation.com
+     **********************************************/
+
+    function normalizeURL(
+      input
+    ) {
 
 
-        if (
-          !combinedInput.value
-        ) {
+      if (!input) {
 
-          event.preventDefault();
-
-          alert(
-            "Please select at least one service area."
-          );
-
-          return;
-
-        }
-
+        return;
 
       }
-    );
+
+
+      let value =
+        input.value.trim();
+
+
+      if (!value) {
+
+        return;
+
+      }
+
+
+      if (
+        !/^https?:\/\//i.test(value)
+      ) {
+
+        value =
+          "https://" + value;
+
+      }
+
+
+      input.value =
+        value;
+
+
+    }
+
+
+
+    /**********************************************
+     * WEBSITE URL
+     **********************************************/
+
+    if (websiteInput) {
+
+      websiteInput.addEventListener(
+        "blur",
+        function () {
+
+          normalizeURL(
+            websiteInput
+          );
+
+        }
+      );
+
+    }
+
+
+
+    /**********************************************
+     * FACEBOOK URL
+     **********************************************/
+
+    if (facebookInput) {
+
+      facebookInput.addEventListener(
+        "blur",
+        function () {
+
+          normalizeURL(
+            facebookInput
+          );
+
+        }
+      );
+
+    }
+
+
+
+    /**********************************************
+     * FORM VALIDATION
+     **********************************************/
+
+    if (form) {
+
+      form.addEventListener(
+        "submit",
+        function (event) {
+
+
+          updateServiceArea();
+
+
+          /*
+           * Normalize URLs one last time
+           * before submission.
+           */
+
+          normalizeURL(
+            websiteInput
+          );
+
+          normalizeURL(
+            facebookInput
+          );
+
+
+
+          /*
+           * Make sure at least one
+           * service area was selected.
+           */
+
+          if (
+            !combinedInput ||
+            !combinedInput.value
+          ) {
+
+            event.preventDefault();
+
+            alert(
+              "Please select at least one service area."
+            );
+
+            return;
+
+          }
+
+
+
+          /*
+           * If Other is selected,
+           * require the user to enter
+           * the other location.
+           */
+
+          if (
+            otherCheckbox &&
+            otherCheckbox.checked &&
+            !otherInput.value.trim()
+          ) {
+
+            event.preventDefault();
+
+            alert(
+              "Please enter the other service area."
+            );
+
+            otherInput.focus();
+
+            return;
+
+          }
+
+
+        }
+      );
+
+    }
 
 
   }
