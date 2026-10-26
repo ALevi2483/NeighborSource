@@ -34,8 +34,6 @@
 <main>
 
 
-  <!-- PAGE HEADER -->
-
   <section class="page-hero">
 
     <div class="container">
@@ -54,8 +52,6 @@
 
 
 
-  <!-- FORM -->
-
   <section class="section">
 
     <div class="container">
@@ -70,16 +66,12 @@
       >
 
 
-        <!-- DATABASE TYPE -->
-
         <input
           type="hidden"
           name="type"
           value="report"
         >
 
-
-        <!-- PROVIDER ID -->
 
         <input
           type="hidden"
@@ -92,8 +84,6 @@
 
         <div class="form-grid">
 
-
-          <!-- PROVIDER NAME -->
 
           <div class="field full">
 
@@ -110,14 +100,12 @@
             >
 
             <div class="helper">
-              Enter the provider name exactly as it appears on NeighborSource.
+              The provider will be identified automatically when possible.
             </div>
 
           </div>
 
 
-
-          <!-- REASON -->
 
           <div class="field full">
 
@@ -165,8 +153,6 @@
 
 
 
-          <!-- DETAILS -->
-
           <div class="field full">
 
             <label for="details">
@@ -188,8 +174,6 @@
 
 
 
-          <!-- REPORTER NAME -->
-
           <div class="field">
 
             <label for="reporterName">
@@ -207,8 +191,6 @@
           </div>
 
 
-
-          <!-- REPORTER EMAIL -->
 
           <div class="field">
 
@@ -232,8 +214,6 @@
 
 
 
-          <!-- CONFIRMATION -->
-
           <div class="field full">
 
             <label class="check-row">
@@ -255,8 +235,6 @@
 
 
 
-        <!-- SUBMIT -->
-
         <button
           class="btn btn-green"
           type="submit"
@@ -268,8 +246,6 @@
         </button>
 
 
-
-        <!-- SUBMITTING -->
 
         <div
           class="notice"
@@ -290,8 +266,6 @@
 
 
 
-        <!-- SUCCESS -->
-
         <div
           class="notice green"
           id="successMessage"
@@ -311,8 +285,6 @@
 
 
 
-        <!-- ERROR -->
-
         <div
           class="notice warning"
           id="errorMessage"
@@ -326,7 +298,9 @@
             We could not submit your report.
           </strong>
 
-          Please check your information and try again.
+          <span id="errorText">
+            Please check your information and try again.
+          </span>
 
         </div>
 
@@ -343,8 +317,6 @@
 
 
 
-<!-- HIDDEN POST TARGET -->
-
 <iframe
   name="reportFrame"
   id="reportFrame"
@@ -359,19 +331,23 @@
 
 
 
-<!-- MAIN NEIGHBORSOURCE JAVASCRIPT -->
-
 <script src="js/app.js"></script>
 
 
-
-<!-- REPORT PAGE JAVASCRIPT -->
 
 <script>
 
 document.addEventListener(
   "DOMContentLoaded",
-  function () {
+  async function () {
+
+
+    /**********************************************
+     * API
+     **********************************************/
+
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbx4bTHYgVwb9rB66m4hnFKvxtPHrTwe6qoqdERU_eRVb4yg1cdrH1zkeIHHl54573_8/exec";
 
 
     /**********************************************
@@ -420,6 +396,12 @@ document.addEventListener(
       );
 
 
+    const errorText =
+      document.getElementById(
+        "errorText"
+      );
+
+
     const iframe =
       document.getElementById(
         "reportFrame"
@@ -433,12 +415,6 @@ document.addEventListener(
 
     /**********************************************
      * READ PROVIDER FROM URL
-     *
-     * Supports:
-     *
-     * report.html
-     * ?providerId=PROV-WEB-123
-     * &provider=Smith%20Construction
      **********************************************/
 
     const params =
@@ -447,36 +423,246 @@ document.addEventListener(
       );
 
 
-    const providerId =
+    const urlProviderId =
       params.get(
         "providerId"
-      ) || "";
+      ) ||
+      params.get(
+        "id"
+      ) ||
+      "";
 
 
-    const providerName =
+    const urlProviderName =
       params.get(
         "provider"
-      ) || "";
+      ) ||
+      params.get(
+        "providerName"
+      ) ||
+      "";
 
 
     if (
-      providerId
+      urlProviderId
     ) {
 
       providerIdInput.value =
-        providerId;
+        urlProviderId.trim();
 
     }
 
 
     if (
-      providerName
+      urlProviderName
     ) {
 
       providerNameInput.value =
-        providerName;
+        urlProviderName.trim();
 
     }
+
+
+
+    /**********************************************
+     * FIND PROVIDER ID FROM DATABASE
+     *
+     * This fixes reports where the profile link
+     * supplied the name but not the ID.
+     **********************************************/
+
+    async function findProviderIdByName(
+      providerName
+    ) {
+
+
+      if (
+        !providerName
+      ) {
+
+        return "";
+
+      }
+
+
+      try {
+
+
+        const response =
+          await fetch(
+
+            API_URL +
+            "?action=providers&t=" +
+            Date.now(),
+
+            {
+
+              method:
+                "GET",
+
+              cache:
+                "no-store",
+
+              redirect:
+                "follow"
+
+            }
+
+          );
+
+
+        if (
+          !response.ok
+        ) {
+
+          return "";
+
+        }
+
+
+        const data =
+          await response.json();
+
+
+        if (
+          !data.success ||
+          !Array.isArray(
+            data.providers
+          )
+        ) {
+
+          return "";
+
+        }
+
+
+        const normalizedName =
+          providerName
+            .trim()
+            .toLowerCase();
+
+
+        const provider =
+          data.providers.find(
+            function (
+              item
+            ) {
+
+              return (
+                String(
+                  item.name ||
+                  ""
+                )
+                  .trim()
+                  .toLowerCase() ===
+                normalizedName
+              );
+
+            }
+          );
+
+
+        if (
+          provider &&
+          provider.id
+        ) {
+
+          return String(
+            provider.id
+          ).trim();
+
+        }
+
+
+        return "";
+
+
+      }
+
+      catch (
+        error
+      ) {
+
+
+        console.error(
+          "Could not identify provider:",
+          error
+        );
+
+
+        return "";
+
+      }
+
+    }
+
+
+
+    /**********************************************
+     * AUTO-LOOKUP PROVIDER ID
+     **********************************************/
+
+    if (
+      !providerIdInput.value &&
+      providerNameInput.value
+    ) {
+
+
+      const foundId =
+        await findProviderIdByName(
+          providerNameInput.value
+        );
+
+
+      if (
+        foundId
+      ) {
+
+        providerIdInput.value =
+          foundId;
+
+      }
+
+    }
+
+
+
+    /**********************************************
+     * LOOK UP AGAIN IF USER TYPES PROVIDER NAME
+     **********************************************/
+
+    providerNameInput.addEventListener(
+      "change",
+      async function () {
+
+
+        if (
+          providerIdInput.value
+        ) {
+
+          return;
+
+        }
+
+
+        const foundId =
+          await findProviderIdByName(
+            providerNameInput.value
+          );
+
+
+        if (
+          foundId
+        ) {
+
+          providerIdInput.value =
+            foundId;
+
+        }
+
+
+      }
+    );
 
 
 
@@ -486,8 +672,69 @@ document.addEventListener(
 
     form.addEventListener(
       "submit",
-      function () {
+      async function (
+        event
+      ) {
 
+
+        /******************************************
+         * FINAL PROVIDER ID CHECK
+         ******************************************/
+
+        if (
+          !providerIdInput.value &&
+          providerNameInput.value
+        ) {
+
+
+          event.preventDefault();
+
+
+          const foundId =
+            await findProviderIdByName(
+              providerNameInput.value
+            );
+
+
+          if (
+            foundId
+          ) {
+
+
+            providerIdInput.value =
+              foundId;
+
+
+            /*
+             * Now that the Provider ID exists,
+             * submit the form normally.
+             */
+
+            form.requestSubmit();
+
+
+            return;
+
+          }
+
+
+          errorMessage.style.display =
+            "block";
+
+
+          errorText.textContent =
+            "We could not match this report to a NeighborSource provider. Please open the provider's profile and click Report Listing from there.";
+
+
+          return;
+
+        }
+
+
+
+        /******************************************
+         * SUBMITTING STATE
+         ******************************************/
 
         successMessage.style.display =
           "none";
@@ -514,11 +761,10 @@ document.addEventListener(
 
 
         /*
-         * Do not prevent default.
+         * Do not prevent default here.
          *
-         * Browser submits directly to
-         * Google Apps Script through
-         * the hidden iframe.
+         * Browser submits directly to Apps Script
+         * through the hidden iframe.
          */
 
       }
@@ -568,20 +814,12 @@ document.addEventListener(
           "Submit Report";
 
 
-        /******************************************
-         * RESET FORM
-         ******************************************/
-
         form.reset();
 
 
         providerIdInput.value =
           "";
 
-
-        /******************************************
-         * SCROLL TO SUCCESS
-         ******************************************/
 
         successMessage.scrollIntoView({
 
