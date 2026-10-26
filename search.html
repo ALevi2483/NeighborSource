@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Search Results | NeighborSource</title>
+  <meta name="description" content="NeighborSource local services directory">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<main>
+  <section class="page-hero"><div class="container"><h1>Search Results</h1><p>Showing results for “<span id="search-query"></span>”.</p></div></section>
+  <section class="section">
+    <div class="container">
+      <form class="search-bar" data-search-form style="max-width:760px;margin:0 0 24px">
+        <input id="search-page-input" placeholder="Search again">
+        <button>Search</button>
+      </form>
+      <div class="content-layout">
+        <aside class="card sidebar">
+          <h3 style="margin-top:0">Filter Results</h3>
+          <div class="filter-group"><h4>Location</h4><label class="check-row"><input type="checkbox"> Chesapeake</label><label class="check-row"><input type="checkbox"> Suffolk</label><label class="check-row"><input type="checkbox"> Portsmouth</label><label class="check-row"><input type="checkbox"> Norfolk</label></div>
+          <div class="filter-group"><h4>Provider Type</h4><label class="check-row"><input type="checkbox"> Business</label><label class="check-row"><input type="checkbox"> Individual</label></div>
+          <div class="filter-group"><h4>Verification</h4><label class="check-row"><input type="checkbox"> License Verified</label><label class="check-row"><input type="checkbox"> Insurance Verified</label></div>
+        </aside>
+        <div>
+          <div class="section-title"><div><h2 id="result-count">0 providers found</h2></div></div>
+          <div class="grid" id="search-results"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>
