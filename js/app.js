@@ -146,6 +146,10 @@ function header() {
             List Your Service
           </a>
 
+          <a href="update-listing.html">
+            Update a Listing
+          </a>
+
           <a href="how-it-works.html">
             How It Works
           </a>
@@ -179,7 +183,6 @@ function footer() {
     <footer class="footer">
 
       <div class="container">
-
 
         <div class="footer-grid">
 
@@ -310,7 +313,6 @@ function footer() {
 
 async function boot() {
 
-
   document.body.insertAdjacentHTML(
     "afterbegin",
     header()
@@ -385,7 +387,6 @@ async function loadProviders() {
 
   try {
 
-
     const response =
       await fetch(
 
@@ -450,11 +451,9 @@ async function loadProviders() {
       " approved provider(s)."
     );
 
-
   }
 
   catch (error) {
-
 
     console.error(
       "NeighborSource database error:",
@@ -486,11 +485,9 @@ function initSearchForms() {
     .forEach(
       function (form) {
 
-
         form.addEventListener(
           "submit",
           function (event) {
-
 
             event.preventDefault();
 
@@ -513,10 +510,8 @@ function initSearchForms() {
                 query
               );
 
-
           }
         );
-
 
       }
     );
@@ -538,10 +533,8 @@ function renderDynamic() {
 
 
   if (
-    path ===
-      "index.html" ||
-    path ===
-      ""
+    path === "index.html" ||
+    path === ""
   ) {
 
     renderHomeCategories();
@@ -625,7 +618,6 @@ function renderHomeCategories() {
           category
         ) {
 
-
           const name =
             category[0];
 
@@ -646,30 +638,20 @@ function renderHomeCategories() {
             >
 
               <div class="category-icon">
-
                 ${icon}
-
               </div>
-
 
               <h3>
-
                 ${escapeHTML(name)}
-
               </h3>
 
-
               <div class="small">
-
                 ${escapeHTML(description)}
-
               </div>
-
 
             </a>
 
           `;
-
 
         }
       )
@@ -706,7 +688,6 @@ function renderCategories(
           category
         ) {
 
-
           const name =
             category[0];
 
@@ -727,30 +708,20 @@ function renderCategories(
             >
 
               <div class="category-icon">
-
                 ${icon}
-
               </div>
-
 
               <h3>
-
                 ${escapeHTML(name)}
-
               </h3>
 
-
               <div class="small">
-
                 ${escapeHTML(description)}
-
               </div>
-
 
             </a>
 
           `;
-
 
         }
       )
@@ -817,7 +788,6 @@ function providerCard(
       class="card provider-card"
     >
 
-
       <div class="small">
 
         ${escapeHTML(
@@ -839,7 +809,6 @@ function providerCard(
       </div>
 
 
-
       <h3>
 
         ${escapeHTML(
@@ -850,9 +819,7 @@ function providerCard(
       </h3>
 
 
-
       <div class="meta">
-
 
         <span>
 
@@ -885,9 +852,7 @@ function providerCard(
 
         }
 
-
       </div>
-
 
 
       ${
@@ -933,7 +898,6 @@ function providerCard(
       }
 
 
-
       ${
         provider.description
 
@@ -954,9 +918,7 @@ function providerCard(
       }
 
 
-
       <div class="provider-actions">
-
 
         <a
           class="btn btn-primary"
@@ -988,9 +950,7 @@ function providerCard(
 
         }
 
-
       </div>
-
 
     </article>
 
@@ -1150,7 +1110,6 @@ function renderSearch() {
         provider
       ) {
 
-
         const haystack =
           [
 
@@ -1195,7 +1154,6 @@ function renderSearch() {
             normalizedQuery
           )
         );
-
 
       }
     );
@@ -1491,7 +1449,7 @@ async function renderProvider() {
 
 
   /**********************************************
-   * BASIC PROVIDER INFO
+   * BASIC INFO
    **********************************************/
 
   setText(
@@ -1536,7 +1494,7 @@ async function renderProvider() {
 
 
   /**********************************************
-   * RECOMMENDATIONS
+   * STATS
    **********************************************/
 
   setText(
@@ -1592,7 +1550,6 @@ async function renderProvider() {
 
   if (callButton) {
 
-
     const phone =
       String(
         provider.phone ||
@@ -1634,7 +1591,6 @@ async function renderProvider() {
   if (
     servicesContainer
   ) {
-
 
     const services =
       Array.isArray(
@@ -1683,7 +1639,7 @@ async function renderProvider() {
 
 
   /**********************************************
-   * VERIFICATION BADGES
+   * VERIFICATION
    **********************************************/
 
   const badges =
@@ -1703,7 +1659,6 @@ async function renderProvider() {
   if (
     badgeContainer
   ) {
-
 
     badgeContainer.innerHTML =
       badges.length
@@ -1743,12 +1698,6 @@ async function renderProvider() {
   }
 
 
-  /**********************************************
-   * VERIFIED INFO STAT
-   *
-   * Fixes the old permanent checkmark.
-   **********************************************/
-
   updateVerificationStat(
     badges
   );
@@ -1768,9 +1717,80 @@ async function renderProvider() {
     recommendLink
   ) {
 
-
     recommendLink.href =
       "recommend.html?providerId=" +
+      encodeURIComponent(
+        provider.id
+      ) +
+      "&provider=" +
+      encodeURIComponent(
+        provider.name
+      );
+
+  }
+
+
+  /**********************************************
+   * REPORT LISTING LINK
+   *
+   * This is the important fix.
+   **********************************************/
+
+  let reportLink =
+    document.querySelector(
+      "#report-provider-link"
+    );
+
+
+  if (
+    !reportLink
+  ) {
+
+    reportLink =
+      document.querySelector(
+        'a[href^="report.html"]'
+      );
+
+  }
+
+
+  if (
+    reportLink
+  ) {
+
+    reportLink.href =
+      "report.html?providerId=" +
+      encodeURIComponent(
+        provider.id
+      ) +
+      "&provider=" +
+      encodeURIComponent(
+        provider.name
+      );
+
+  }
+
+
+  /**********************************************
+   * UPDATE LISTING LINK
+   *
+   * If provider.html contains an Update Listing
+   * link, it will also automatically carry the
+   * provider ID and name.
+   **********************************************/
+
+  let updateLink =
+    document.querySelector(
+      "#update-provider-link"
+    );
+
+
+  if (
+    updateLink
+  ) {
+
+    updateLink.href =
+      "update-listing.html?providerId=" +
       encodeURIComponent(
         provider.id
       ) +
@@ -1846,7 +1866,6 @@ function updateVerificationStat(
     0
   ) {
 
-
     if (value) {
 
       value.textContent =
@@ -1874,7 +1893,6 @@ function updateVerificationStat(
   }
 
   else {
-
 
     if (value) {
 
@@ -1909,7 +1927,6 @@ async function loadProviderRecommendations(
 ) {
 
   try {
-
 
     const response =
       await fetch(
@@ -1968,11 +1985,9 @@ async function loadProviderRecommendations(
       data.recommendations
     );
 
-
   }
 
   catch (error) {
-
 
     console.error(
       "Could not load recommendations:",
@@ -2065,7 +2080,6 @@ function renderRecommendations(
         function (
           recommendation
         ) {
-
 
           const reviewer =
             recommendation.reviewerName
@@ -2176,7 +2190,6 @@ function renderRecommendations(
 
           `;
 
-
         }
       )
       .join("");
@@ -2270,7 +2283,6 @@ function showLoadingState() {
       selector
     ) {
 
-
       const element =
         document.querySelector(
           selector
@@ -2292,7 +2304,6 @@ function showLoadingState() {
         `;
 
       }
-
 
     }
   );
@@ -2322,7 +2333,6 @@ function showDatabaseError() {
       selector
     ) {
 
-
       const element =
         document.querySelector(
           selector
@@ -2349,7 +2359,6 @@ function showDatabaseError() {
         `;
 
       }
-
 
     }
   );
