@@ -42,20 +42,10 @@
     }
 
 
-    /*
-     * Slightly more breathing room between
-     * every major field group.
-     */
-
     #list-service-form .form-group {
       margin-bottom: 26px;
     }
 
-
-    /*
-     * Give helper text a little space from
-     * both the field above and the next field.
-     */
 
     #list-service-form .form-group > .small {
       display: block;
@@ -63,11 +53,6 @@
       line-height: 1.5;
     }
 
-
-    /*
-     * More room between the intro and
-     * the first form field.
-     */
 
     #list-service-form > .small {
       display: block;
@@ -206,11 +191,6 @@
       }
 
 
-      /*
-       * Slightly more mobile spacing
-       * between fields.
-       */
-
       #list-service-form .form-group {
         margin-bottom: 30px;
       }
@@ -245,11 +225,6 @@
         padding: 20px;
       }
 
-
-      /*
-       * Full-width text fields only.
-       * Checkboxes are deliberately excluded.
-       */
 
       .form-card input:not([type="checkbox"]),
       .form-card select,
@@ -805,10 +780,16 @@
             <input
               id="website"
               name="website"
-              type="url"
+              type="text"
               inputmode="url"
-              placeholder="https://"
+              autocomplete="url"
+              placeholder="example.com"
             >
+
+
+            <div class="small">
+              You can enter your website with or without https://
+            </div>
 
           </div>
 
@@ -826,10 +807,15 @@
             <input
               id="facebook"
               name="facebook"
-              type="url"
+              type="text"
               inputmode="url"
-              placeholder="https://facebook.com/..."
+              placeholder="facebook.com/yourpage"
             >
+
+
+            <div class="small">
+              You can enter the Facebook address with or without https://
+            </div>
 
           </div>
 
