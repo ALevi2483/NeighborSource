@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
@@ -17,12 +16,12 @@
 
   <meta
     name="description"
-    content="List your local business or service on NeighborSource."
+    content="Submit your business or individual service to NeighborSource for free."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css"
+    href="css/style.css?v=3"
   >
 
 </head>
@@ -34,19 +33,27 @@
 <main>
 
 
-  <!-- PAGE HEADER -->
+  <!-- PAGE HERO -->
 
   <section class="page-hero">
 
     <div class="container">
 
+
+      <div class="eyebrow">
+        FOR LOCAL PROVIDERS
+      </div>
+
+
       <h1>
         List Your Service
       </h1>
 
+
       <p>
-        Share your business or individual service with the community.
+        Own a local business or provide a service in the community? Submit a free NeighborSource listing for review.
       </p>
+
 
     </div>
 
@@ -63,14 +70,10 @@
 
       <form
         class="card form-card"
-        id="listServiceForm"
-        action="https://script.google.com/macros/s/AKfycbx4bTHYgVwb9rB66m4hnFKvxtPHrTwe6qoqdERU_eRVb4yg1cdrH1zkeIHHl54573_8/exec"
-        method="POST"
-        target="submissionFrame"
+        id="list-service-form"
+        data-form-type="provider"
       >
 
-
-        <!-- DATABASE FIELDS -->
 
         <input
           type="hidden"
@@ -79,32 +82,30 @@
         >
 
 
-        <input
-          type="hidden"
-          name="submissionId"
-          id="submissionId"
-          value=""
+        <!-- INTRO -->
+
+        <div
+          class="notice green"
+          style="margin-bottom:30px;"
         >
 
+          <strong>Free to list.</strong>
 
-        <input
-          type="hidden"
-          name="serviceArea"
-          id="serviceAreaCombined"
-          value=""
-        >
+          NeighborSource does not charge providers to submit a listing and does not sell leads or paid rankings.
+
+        </div>
 
 
 
         <div class="form-grid">
 
 
-          <!-- LISTING TYPE -->
+          <!-- PROVIDER TYPE -->
 
           <div class="field full">
 
             <label for="providerType">
-              Listing Type
+              Provider Type *
             </label>
 
             <select
@@ -114,7 +115,7 @@
             >
 
               <option value="">
-                Select listing type
+                Choose provider type
               </option>
 
               <option value="Business">
@@ -136,7 +137,7 @@
           <div class="field">
 
             <label for="providerName">
-              Business / Service Name
+              Business or Service Name *
             </label>
 
             <input
@@ -144,7 +145,8 @@
               name="providerName"
               type="text"
               required
-              placeholder="Example: KDH Construction, LLC"
+              autocomplete="organization"
+              placeholder="Example: Smith Lawn Care"
             >
 
           </div>
@@ -156,7 +158,7 @@
           <div class="field">
 
             <label for="contactName">
-              Contact Name
+              Contact Name *
             </label>
 
             <input
@@ -164,8 +166,13 @@
               name="contactName"
               type="text"
               required
+              autocomplete="name"
               placeholder="Your name"
             >
+
+            <div class="helper">
+              This is for NeighborSource administration and may not be displayed publicly.
+            </div>
 
           </div>
 
@@ -176,7 +183,7 @@
           <div class="field">
 
             <label for="phone">
-              Phone
+              Phone *
             </label>
 
             <input
@@ -184,6 +191,7 @@
               name="phone"
               type="tel"
               required
+              autocomplete="tel"
               placeholder="757-555-0100"
             >
 
@@ -196,7 +204,7 @@
           <div class="field">
 
             <label for="email">
-              Email
+              Email *
             </label>
 
             <input
@@ -204,8 +212,13 @@
               name="email"
               type="email"
               required
+              autocomplete="email"
               placeholder="you@example.com"
             >
+
+            <div class="helper">
+              Used for listing questions and updates.
+            </div>
 
           </div>
 
@@ -213,10 +226,10 @@
 
           <!-- CATEGORY -->
 
-          <div class="field full">
+          <div class="field">
 
             <label for="category">
-              Category
+              Primary Category *
             </label>
 
             <select
@@ -285,135 +298,23 @@
 
           <!-- SERVICE AREA -->
 
-          <div class="field full">
+          <div class="field">
 
-            <label>
-              Service Area
+            <label for="serviceArea">
+              Service Area *
             </label>
 
-            <div class="helper">
-              Select every city where you provide services.
-            </div>
-
-
-            <div class="checkbox-grid">
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  class="service-area-checkbox"
-                  value="Chesapeake"
-                >
-
-                Chesapeake
-
-              </label>
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  class="service-area-checkbox"
-                  value="Norfolk"
-                >
-
-                Norfolk
-
-              </label>
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  class="service-area-checkbox"
-                  value="Portsmouth"
-                >
-
-                Portsmouth
-
-              </label>
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  class="service-area-checkbox"
-                  value="Suffolk"
-                >
-
-                Suffolk
-
-              </label>
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  class="service-area-checkbox"
-                  value="Virginia Beach"
-                >
-
-                Virginia Beach
-
-              </label>
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  class="service-area-checkbox"
-                  value="Hampton"
-                >
-
-                Hampton
-
-              </label>
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  class="service-area-checkbox"
-                  value="Newport News"
-                >
-
-                Newport News
-
-              </label>
-
-
-              <label class="check-row">
-
-                <input
-                  type="checkbox"
-                  id="serviceAreaOther"
-                >
-
-                Other
-
-              </label>
-
-
-            </div>
-
-
             <input
+              id="serviceArea"
+              name="serviceArea"
               type="text"
-              id="otherServiceArea"
-              placeholder="Enter another city or service area"
-              style="
-                display:none;
-                margin-top:12px;
-              "
+              required
+              placeholder="Example: Chesapeake, Portsmouth, Suffolk"
             >
+
+            <div class="helper">
+              List the Hampton Roads cities or communities you serve.
+            </div>
 
           </div>
 
@@ -424,7 +325,7 @@
           <div class="field full">
 
             <label for="services">
-              What services do you provide?
+              What services do you provide? *
             </label>
 
             <input
@@ -432,7 +333,7 @@
               name="services"
               type="text"
               required
-              placeholder="Example: Snake relocation, lawn care, tutoring"
+              placeholder="Example: Fence repair, decks, pressure washing, handyman services"
             >
 
             <div class="helper">
@@ -448,14 +349,14 @@
           <div class="field full">
 
             <label for="description">
-              Description
+              About Your Service *
             </label>
 
             <textarea
               id="description"
               name="description"
               required
-              placeholder="Tell neighbors what you do, what services you offer, and anything else they should know."
+              placeholder="Tell neighbors what you do, the type of work you specialize in, and anything useful they should know."
             ></textarea>
 
           </div>
@@ -473,14 +374,9 @@
             <input
               id="website"
               name="website"
-              type="text"
-              inputmode="url"
-              placeholder="FreeSnakeRelocation.com"
+              type="url"
+              placeholder="https://yourwebsite.com"
             >
-
-            <div class="helper">
-              Optional. You do not need to enter https://
-            </div>
 
           </div>
 
@@ -497,32 +393,29 @@
             <input
               id="facebook"
               name="facebook"
-              type="text"
-              inputmode="url"
-              placeholder="facebook.com/yourpage"
+              type="url"
+              placeholder="https://facebook.com/yourpage"
             >
-
-            <div class="helper">
-              Optional. You do not need to enter https://
-            </div>
 
           </div>
 
 
 
-          <!-- AGREEMENT -->
+          <!-- AUTHORIZATION -->
 
           <div class="field full">
 
             <label class="check-row">
 
               <input
+                id="listingAuthorization"
                 type="checkbox"
-                id="accuracyConfirmation"
                 required
               >
 
-              I confirm that the information I submitted is accurate and that I am authorized to submit this listing.
+              <span>
+                I confirm that the information submitted is accurate and that I am authorized to submit this listing.
+              </span>
 
             </label>
 
@@ -533,85 +426,171 @@
 
 
 
-        <!-- SUBMIT BUTTON -->
+        <!-- SUBMIT -->
 
         <button
           class="btn btn-green"
           type="submit"
-          id="submitListingButton"
         >
-
           Submit Listing
-
         </button>
 
 
 
-        <!-- SUBMITTING MESSAGE -->
+        <!-- STATUS -->
 
         <div
-          class="notice"
-          id="submittingMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            Submitting listing...
-          </strong>
-
-          Please do not close this page.
-
-        </div>
-
-
-
-        <!-- SUCCESS MESSAGE -->
-
-        <div
-          class="notice green"
-          id="successMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            Listing submitted.
-          </strong>
-
-          Your listing has been sent for review.
-
-        </div>
-
-
-
-        <!-- ERROR MESSAGE -->
-
-        <div
-          class="notice warning"
-          id="errorMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            We could not confirm your submission.
-          </strong>
-
-          <span id="errorText">
-            Please try again.
-          </span>
-
-        </div>
+          id="form-status"
+          style="margin-top:20px;"
+          aria-live="polite"
+        ></div>
 
 
       </form>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- WHAT HAPPENS NEXT -->
+
+  <section class="section section-soft">
+
+    <div class="container">
+
+
+      <div class="section-heading centered">
+
+        <div class="eyebrow dark">
+          AFTER YOU SUBMIT
+        </div>
+
+        <h2>
+          What happens next?
+        </h2>
+
+        <p class="section-intro">
+          Listings are reviewed before appearing publicly.
+        </p>
+
+      </div>
+
+
+
+      <div class="steps-grid">
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            1
+          </div>
+
+          <h3>
+            Submit
+          </h3>
+
+          <p>
+            Send us your business or service information.
+          </p>
+
+        </div>
+
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            2
+          </div>
+
+          <h3>
+            Review
+          </h3>
+
+          <p>
+            NeighborSource reviews the submission for completeness and obvious issues.
+          </p>
+
+        </div>
+
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            3
+          </div>
+
+          <h3>
+            Publish
+          </h3>
+
+          <p>
+            Approved listings become searchable in the NeighborSource directory.
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- VERIFICATION NOTE -->
+
+  <section class="section">
+
+    <div class="container">
+
+
+      <div
+        class="card"
+        style="
+          max-width:900px;
+          margin:0 auto;
+          padding:36px;
+        "
+      >
+
+
+        <div class="eyebrow dark">
+          VERIFICATION
+        </div>
+
+
+        <h2>
+          Listing does not automatically mean verified
+        </h2>
+
+
+        <p>
+          NeighborSource may separately verify certain information such as a phone number, business information, license, or insurance when applicable.
+        </p>
+
+
+        <p class="small">
+          Verification badges only represent the specific information reviewed. They are not a guarantee of workmanship or an endorsement by NeighborSource.
+        </p>
+
+
+        <a
+          class="btn btn-outline"
+          href="verification.html"
+        >
+          Learn About Verification
+        </a>
+
+
+      </div>
 
 
     </div>
@@ -623,648 +602,7 @@
 
 
 
-<!-- HIDDEN POST TARGET -->
-
-<iframe
-  name="submissionFrame"
-  id="submissionFrame"
-  style="
-    width:0;
-    height:0;
-    border:0;
-    position:absolute;
-    left:-9999px;
-  "
-></iframe>
-
-
-
-<!-- MAIN NEIGHBORSOURCE JAVASCRIPT -->
-
-<script src="js/app.js"></script>
-
-
-
-<!-- LIST SERVICE JAVASCRIPT -->
-
-<script>
-
-document.addEventListener(
-  "DOMContentLoaded",
-  function () {
-
-
-    /**********************************************
-     * API
-     **********************************************/
-
-    const API_URL =
-      "https://script.google.com/macros/s/AKfycbx4bTHYgVwb9rB66m4hnFKvxtPHrTwe6qoqdERU_eRVb4yg1cdrH1zkeIHHl54573_8/exec";
-
-
-    /**********************************************
-     * ELEMENTS
-     **********************************************/
-
-    const form =
-      document.getElementById(
-        "listServiceForm"
-      );
-
-
-    const submissionIdInput =
-      document.getElementById(
-        "submissionId"
-      );
-
-
-    const serviceAreaCombined =
-      document.getElementById(
-        "serviceAreaCombined"
-      );
-
-
-    const otherCheckbox =
-      document.getElementById(
-        "serviceAreaOther"
-      );
-
-
-    const otherInput =
-      document.getElementById(
-        "otherServiceArea"
-      );
-
-
-    const submitButton =
-      document.getElementById(
-        "submitListingButton"
-      );
-
-
-    const submittingMessage =
-      document.getElementById(
-        "submittingMessage"
-      );
-
-
-    const successMessage =
-      document.getElementById(
-        "successMessage"
-      );
-
-
-    const errorMessage =
-      document.getElementById(
-        "errorMessage"
-      );
-
-
-    const errorText =
-      document.getElementById(
-        "errorText"
-      );
-
-
-    let currentSubmissionId =
-      "";
-
-
-    let polling =
-      false;
-
-
-
-    /**********************************************
-     * OTHER SERVICE AREA
-     **********************************************/
-
-    otherCheckbox.addEventListener(
-      "change",
-      function () {
-
-
-        if (
-          otherCheckbox.checked
-        ) {
-
-          otherInput.style.display =
-            "block";
-
-
-          otherInput.focus();
-
-        }
-
-        else {
-
-          otherInput.style.display =
-            "none";
-
-
-          otherInput.value =
-            "";
-
-        }
-
-
-      }
-    );
-
-
-
-    /**********************************************
-     * GET SERVICE AREAS
-     **********************************************/
-
-    function getServiceAreas() {
-
-
-      const areas =
-        [];
-
-
-      document
-        .querySelectorAll(
-          ".service-area-checkbox:checked"
-        )
-        .forEach(
-          function (
-            checkbox
-          ) {
-
-
-            areas.push(
-              checkbox.value
-            );
-
-
-          }
-        );
-
-
-      if (
-        otherCheckbox.checked &&
-        otherInput.value.trim()
-      ) {
-
-        areas.push(
-          otherInput.value.trim()
-        );
-
-      }
-
-
-      return areas;
-
-    }
-
-
-
-    /**********************************************
-     * CREATE UNIQUE BROWSER SUBMISSION ID
-     **********************************************/
-
-    function createSubmissionId() {
-
-
-      const timestamp =
-        Date.now()
-          .toString(36)
-          .toUpperCase();
-
-
-      const random =
-        Math.random()
-          .toString(36)
-          .substring(
-            2,
-            10
-          )
-          .toUpperCase();
-
-
-      return (
-        "PROV-WEB-" +
-        timestamp +
-        "-" +
-        random
-      );
-
-    }
-
-
-
-    /**********************************************
-     * WAIT
-     **********************************************/
-
-    function wait(
-      milliseconds
-    ) {
-
-
-      return new Promise(
-        resolve => {
-
-          setTimeout(
-            resolve,
-            milliseconds
-          );
-
-        }
-      );
-
-    }
-
-
-
-    /**********************************************
-     * CHECK GOOGLE SHEET
-     **********************************************/
-
-    async function checkSubmission(
-      submissionId
-    ) {
-
-
-      const url =
-        API_URL +
-        "?action=submissionStatus" +
-        "&id=" +
-        encodeURIComponent(
-          submissionId
-        ) +
-        "&t=" +
-        Date.now();
-
-
-      const response =
-        await fetch(
-          url,
-          {
-
-            method:
-              "GET",
-
-            cache:
-              "no-store",
-
-            redirect:
-              "follow"
-
-          }
-        );
-
-
-      if (
-        !response.ok
-      ) {
-
-        throw new Error(
-          "Database verification failed."
-        );
-
-      }
-
-
-      return await response.json();
-
-    }
-
-
-
-    /**********************************************
-     * VERIFY SUBMISSION
-     **********************************************/
-
-    async function verifySubmission(
-      submissionId
-    ) {
-
-
-      if (polling) {
-
-        return;
-
-      }
-
-
-      polling =
-        true;
-
-
-      /*
-       * Try for roughly 30 seconds.
-       */
-
-      for (
-        let attempt = 0;
-        attempt < 20;
-        attempt++
-      ) {
-
-
-        /*
-         * Give the POST time to reach Apps Script.
-         */
-
-        await wait(
-          1500
-        );
-
-
-        try {
-
-
-          const result =
-            await checkSubmission(
-              submissionId
-            );
-
-
-          if (
-            result.success &&
-            result.found
-          ) {
-
-
-            polling =
-              false;
-
-
-            showSuccess();
-
-
-            return;
-
-          }
-
-
-        }
-
-        catch (error) {
-
-
-          console.log(
-            "Waiting for database confirmation...",
-            error
-          );
-
-
-        }
-
-
-      }
-
-
-      polling =
-        false;
-
-
-      showError(
-        "The database did not confirm the submission. Please try again."
-      );
-
-    }
-
-
-
-    /**********************************************
-     * SHOW SUCCESS
-     **********************************************/
-
-    function showSuccess() {
-
-
-      submittingMessage.style.display =
-        "none";
-
-
-      errorMessage.style.display =
-        "none";
-
-
-      successMessage.style.display =
-        "block";
-
-
-      submitButton.disabled =
-        false;
-
-
-      submitButton.textContent =
-        "Submit Listing";
-
-
-      form.reset();
-
-
-      otherInput.value =
-        "";
-
-
-      otherInput.style.display =
-        "none";
-
-
-      serviceAreaCombined.value =
-        "";
-
-
-      submissionIdInput.value =
-        "";
-
-
-      currentSubmissionId =
-        "";
-
-
-      successMessage.scrollIntoView({
-
-        behavior:
-          "smooth",
-
-        block:
-          "center"
-
-      });
-
-    }
-
-
-
-    /**********************************************
-     * SHOW ERROR
-     **********************************************/
-
-    function showError(
-      message
-    ) {
-
-
-      submittingMessage.style.display =
-        "none";
-
-
-      successMessage.style.display =
-        "none";
-
-
-      errorMessage.style.display =
-        "block";
-
-
-      errorText.textContent =
-        message;
-
-
-      submitButton.disabled =
-        false;
-
-
-      submitButton.textContent =
-        "Submit Listing";
-
-
-      errorMessage.scrollIntoView({
-
-        behavior:
-          "smooth",
-
-        block:
-          "center"
-
-      });
-
-    }
-
-
-
-    /**********************************************
-     * FORM SUBMIT
-     **********************************************/
-
-    form.addEventListener(
-      "submit",
-      function (
-        event
-      ) {
-
-
-        /******************************************
-         * SERVICE AREA
-         ******************************************/
-
-        const areas =
-          getServiceAreas();
-
-
-        if (
-          areas.length ===
-          0
-        ) {
-
-          event.preventDefault();
-
-
-          alert(
-            "Please select at least one service area."
-          );
-
-
-          return;
-
-        }
-
-
-        if (
-          otherCheckbox.checked &&
-          !otherInput.value.trim()
-        ) {
-
-          event.preventDefault();
-
-
-          alert(
-            "Please enter the other service area."
-          );
-
-
-          otherInput.focus();
-
-
-          return;
-
-        }
-
-
-        serviceAreaCombined.value =
-          areas.join(
-            ", "
-          );
-
-
-        /******************************************
-         * CREATE SUBMISSION ID
-         ******************************************/
-
-        currentSubmissionId =
-          createSubmissionId();
-
-
-        submissionIdInput.value =
-          currentSubmissionId;
-
-
-        /******************************************
-         * USER INTERFACE
-         ******************************************/
-
-        successMessage.style.display =
-          "none";
-
-
-        errorMessage.style.display =
-          "none";
-
-
-        submittingMessage.style.display =
-          "block";
-
-
-        submitButton.disabled =
-          true;
-
-
-        submitButton.textContent =
-          "Submitting...";
-
-
-        /******************************************
-         * VERIFY AFTER NORMAL FORM POST
-         *
-         * IMPORTANT:
-         * We intentionally do NOT call
-         * event.preventDefault() here.
-         *
-         * Browser sends the POST directly to
-         * Apps Script through the hidden iframe.
-         ******************************************/
-
-        verifySubmission(
-          currentSubmissionId
-        );
-
-
-      }
-    );
-
-
-  }
-);
-
-</script>
+<script src="js/app.js?v=3"></script>
 
 
 </body>
