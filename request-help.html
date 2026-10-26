@@ -1,29 +1,926 @@
 <!doctype html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Post What You Need | NeighborSource</title>
-  <meta name="description" content="NeighborSource local services directory">
-  <link rel="stylesheet" href="css/style.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    I Need Someone | NeighborSource
+  </title>
+
+  <meta
+    name="description"
+    content="Tell NeighborSource what service you need and find local help."
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
 </head>
+
+
 <body>
 
-<main><section class="page-hero"><div class="container"><h1>Post What You Need</h1><p>Tell local providers what you are looking for.</p></div></section>
-<section class="section"><div class="container"><form class="card form-card" data-demo-form>
-  <div class="form-grid">
-    <div class="field full"><label>What do you need help with?</label><textarea required placeholder="Example: I need someone to replace one specialty window."></textarea></div>
-    <div class="field"><label>Category</label><select required><option>Home & Repair</option><option>Lawn & Outdoor</option><option>Cleaning</option><option>Pets</option><option>Automotive</option><option>Child Care</option><option>Other Services</option></select></div>
-    <div class="field"><label>Location</label><input required placeholder="Western Branch, Chesapeake"></div>
-    <div class="field"><label>When do you need it?</label><select><option>As soon as possible</option><option>Within a week</option><option>Within a month</option><option>I'm flexible</option></select></div>
-    <div class="field"><label>Preferred Contact</label><select><option>Text</option><option>Phone</option><option>Email</option></select></div>
-    <div class="field"><label>Your Name</label><input required></div>
-    <div class="field"><label>Email or Phone</label><input required></div>
-    <div class="field full"><label>Photo Link (optional)</label><input type="url" placeholder="Optional link to photos"></div>
-  </div>
-  <button class="btn btn-green" type="submit">Submit Request</button><div class="notice green success-message"><strong>Prototype:</strong> Your form is working on the page. When we connect this site to Google Forms/Sheets, this submission will go to your real admin workflow.</div>
-</form></div></section></main>
+
+<main>
+
+
+  <!-- PAGE HEADER -->
+
+  <section class="page-hero">
+
+    <div class="container">
+
+      <h1>
+        I Need Someone
+      </h1>
+
+      <p>
+        Tell the community what you need help with.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- FORM SECTION -->
+
+  <section class="section">
+
+    <div class="container">
+
+
+      <form
+        class="card form-card"
+        id="serviceRequestForm"
+        action="https://script.google.com/macros/s/AKfycbx4bTHYgVwb9rB66m4hnFKvxtPHrTwe6qoqdERU_eRVb4yg1cdrH1zkeIHHl54573_8/exec"
+        method="POST"
+        target="serviceRequestFrame"
+      >
+
+
+        <!-- DATABASE TYPE -->
+
+        <input
+          type="hidden"
+          name="type"
+          value="serviceRequest"
+        >
+
+
+
+        <div class="form-grid">
+
+
+          <!-- NAME -->
+
+          <div class="field">
+
+            <label for="requesterName">
+              Your Name
+            </label>
+
+            <input
+              id="requesterName"
+              name="requesterName"
+              type="text"
+              required
+              placeholder="Your name"
+            >
+
+          </div>
+
+
+
+          <!-- EMAIL -->
+
+          <div class="field">
+
+            <label for="requesterEmail">
+              Email
+            </label>
+
+            <input
+              id="requesterEmail"
+              name="requesterEmail"
+              type="email"
+              required
+              placeholder="you@example.com"
+            >
+
+          </div>
+
+
+
+          <!-- PHONE -->
+
+          <div class="field full">
+
+            <label for="requesterPhone">
+              Phone
+            </label>
+
+            <input
+              id="requesterPhone"
+              name="requesterPhone"
+              type="tel"
+              placeholder="757-555-0100"
+            >
+
+            <div class="helper">
+              Optional unless you choose phone or text as your preferred contact method.
+            </div>
+
+          </div>
+
+
+
+          <!-- CATEGORY -->
+
+          <div class="field full">
+
+            <label for="category">
+              What type of help do you need?
+            </label>
+
+            <select
+              id="category"
+              name="category"
+              required
+            >
+
+              <option value="">
+                Choose a category
+              </option>
+
+              <option value="Home & Repair">
+                Home & Repair
+              </option>
+
+              <option value="Lawn & Outdoor">
+                Lawn & Outdoor
+              </option>
+
+              <option value="Cleaning">
+                Cleaning
+              </option>
+
+              <option value="Pets">
+                Pets
+              </option>
+
+              <option value="Automotive">
+                Automotive
+              </option>
+
+              <option value="Child Care">
+                Child Care
+              </option>
+
+              <option value="Tutoring & Lessons">
+                Tutoring & Lessons
+              </option>
+
+              <option value="Events & Photography">
+                Events & Photography
+              </option>
+
+              <option value="Moving & Hauling">
+                Moving & Hauling
+              </option>
+
+              <option value="Technology">
+                Technology
+              </option>
+
+              <option value="Notary & Professional">
+                Notary & Professional
+              </option>
+
+              <option value="Other Services">
+                Other Services
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- LOCATION -->
+
+          <div class="field full">
+
+            <label for="location">
+              Where do you need the service?
+            </label>
+
+            <select
+              id="location"
+              name="location"
+              required
+            >
+
+              <option value="">
+                Select a city
+              </option>
+
+              <option value="Chesapeake">
+                Chesapeake
+              </option>
+
+              <option value="Norfolk">
+                Norfolk
+              </option>
+
+              <option value="Portsmouth">
+                Portsmouth
+              </option>
+
+              <option value="Suffolk">
+                Suffolk
+              </option>
+
+              <option value="Virginia Beach">
+                Virginia Beach
+              </option>
+
+              <option value="Hampton">
+                Hampton
+              </option>
+
+              <option value="Newport News">
+                Newport News
+              </option>
+
+              <option value="Other">
+                Other
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- OTHER LOCATION -->
+
+          <div
+            class="field full"
+            id="otherLocationField"
+            style="display:none;"
+          >
+
+            <label for="otherLocation">
+              Other Location
+            </label>
+
+            <input
+              id="otherLocation"
+              type="text"
+              placeholder="Enter the city or area"
+            >
+
+          </div>
+
+
+
+          <!-- WHAT THEY NEED -->
+
+          <div class="field full">
+
+            <label for="whatTheyNeed">
+              What do you need?
+            </label>
+
+            <textarea
+              id="whatTheyNeed"
+              name="whatTheyNeed"
+              required
+              placeholder="Describe the job, service, or help you are looking for."
+            ></textarea>
+
+            <div class="helper">
+              Include enough information for someone to understand what you need.
+            </div>
+
+          </div>
+
+
+
+          <!-- TIMEFRAME -->
+
+          <div class="field">
+
+            <label for="timeframe">
+              When do you need it?
+            </label>
+
+            <select
+              id="timeframe"
+              name="timeframe"
+              required
+            >
+
+              <option value="">
+                Select a timeframe
+              </option>
+
+              <option value="As soon as possible">
+                As soon as possible
+              </option>
+
+              <option value="Within a week">
+                Within a week
+              </option>
+
+              <option value="Within a month">
+                Within a month
+              </option>
+
+              <option value="I'm flexible">
+                I'm flexible
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- PREFERRED CONTACT -->
+
+          <div class="field">
+
+            <label for="preferredContact">
+              Preferred Contact
+            </label>
+
+            <select
+              id="preferredContact"
+              name="preferredContact"
+              required
+            >
+
+              <option value="">
+                Select a method
+              </option>
+
+              <option value="Text">
+                Text
+              </option>
+
+              <option value="Phone">
+                Phone
+              </option>
+
+              <option value="Email">
+                Email
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- PHOTO LINK -->
+
+          <div class="field full">
+
+            <label for="photoLink">
+              Photo Link
+            </label>
+
+            <input
+              id="photoLink"
+              name="photoLink"
+              type="text"
+              placeholder="Optional link to photos"
+            >
+
+            <div class="helper">
+              Optional. You can paste a link to Google Drive, Google Photos, Dropbox, or another photo page.
+            </div>
+
+          </div>
+
+
+
+          <!-- CONFIRMATION -->
+
+          <div class="field full">
+
+            <label class="check-row">
+
+              <input
+                type="checkbox"
+                id="requestConfirmation"
+                required
+              >
+
+              I confirm that the information I submitted is accurate and appropriate for a local service request.
+
+            </label>
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- SUBMIT BUTTON -->
+
+        <button
+          class="btn btn-green"
+          type="submit"
+          id="submitRequestButton"
+        >
+
+          Post What I Need
+
+        </button>
+
+
+
+        <!-- SUBMITTING MESSAGE -->
+
+        <div
+          class="notice"
+          id="submittingMessage"
+          style="
+            display:none;
+            margin-top:16px;
+          "
+        >
+
+          <strong>
+            Submitting your request...
+          </strong>
+
+          Please do not close this page.
+
+        </div>
+
+
+
+        <!-- SUCCESS MESSAGE -->
+
+        <div
+          class="notice green"
+          id="successMessage"
+          style="
+            display:none;
+            margin-top:16px;
+          "
+        >
+
+          <strong>
+            Request submitted.
+          </strong>
+
+          Your service request has been sent for review.
+
+        </div>
+
+
+
+        <!-- ERROR MESSAGE -->
+
+        <div
+          class="notice warning"
+          id="errorMessage"
+          style="
+            display:none;
+            margin-top:16px;
+          "
+        >
+
+          <strong>
+            We could not submit your request.
+          </strong>
+
+          Please check your information and try again.
+
+        </div>
+
+
+      </form>
+
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+
+<!-- HIDDEN POST TARGET -->
+
+<iframe
+  name="serviceRequestFrame"
+  id="serviceRequestFrame"
+  style="
+    width:0;
+    height:0;
+    border:0;
+    position:absolute;
+    left:-9999px;
+  "
+></iframe>
+
+
+
+<!-- MAIN NEIGHBORSOURCE JAVASCRIPT -->
 
 <script src="js/app.js"></script>
+
+
+
+<!-- REQUEST PAGE JAVASCRIPT -->
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+
+    /**********************************************
+     * ELEMENTS
+     **********************************************/
+
+    const form =
+      document.getElementById(
+        "serviceRequestForm"
+      );
+
+
+    const locationSelect =
+      document.getElementById(
+        "location"
+      );
+
+
+    const otherLocationField =
+      document.getElementById(
+        "otherLocationField"
+      );
+
+
+    const otherLocationInput =
+      document.getElementById(
+        "otherLocation"
+      );
+
+
+    const phoneInput =
+      document.getElementById(
+        "requesterPhone"
+      );
+
+
+    const preferredContact =
+      document.getElementById(
+        "preferredContact"
+      );
+
+
+    const submitButton =
+      document.getElementById(
+        "submitRequestButton"
+      );
+
+
+    const submittingMessage =
+      document.getElementById(
+        "submittingMessage"
+      );
+
+
+    const successMessage =
+      document.getElementById(
+        "successMessage"
+      );
+
+
+    const errorMessage =
+      document.getElementById(
+        "errorMessage"
+      );
+
+
+    const iframe =
+      document.getElementById(
+        "serviceRequestFrame"
+      );
+
+
+    let submissionStarted =
+      false;
+
+
+
+    /**********************************************
+     * OTHER LOCATION
+     **********************************************/
+
+    locationSelect.addEventListener(
+      "change",
+      function () {
+
+
+        if (
+          locationSelect.value ===
+          "Other"
+        ) {
+
+          otherLocationField.style.display =
+            "flex";
+
+
+          otherLocationInput.required =
+            true;
+
+
+          otherLocationInput.focus();
+
+        }
+
+        else {
+
+          otherLocationField.style.display =
+            "none";
+
+
+          otherLocationInput.required =
+            false;
+
+
+          otherLocationInput.value =
+            "";
+
+        }
+
+
+      }
+    );
+
+
+
+    /**********************************************
+     * VALIDATE CONTACT METHOD
+     **********************************************/
+
+    function validateContact() {
+
+
+      if (
+        preferredContact.value ===
+          "Phone" ||
+        preferredContact.value ===
+          "Text"
+      ) {
+
+
+        if (
+          !phoneInput.value.trim()
+        ) {
+
+          alert(
+            "Please enter a phone number if you want to be contacted by phone or text."
+          );
+
+
+          phoneInput.focus();
+
+
+          return false;
+
+        }
+
+
+      }
+
+
+      return true;
+
+    }
+
+
+
+    /**********************************************
+     * FORM SUBMIT
+     **********************************************/
+
+    form.addEventListener(
+      "submit",
+      function (
+        event
+      ) {
+
+
+        /******************************************
+         * CONTACT VALIDATION
+         ******************************************/
+
+        if (
+          !validateContact()
+        ) {
+
+          event.preventDefault();
+
+          return;
+
+        }
+
+
+
+        /******************************************
+         * OTHER LOCATION
+         ******************************************/
+
+        if (
+          locationSelect.value ===
+          "Other"
+        ) {
+
+
+          const otherLocation =
+            otherLocationInput
+              .value
+              .trim();
+
+
+          if (
+            !otherLocation
+          ) {
+
+            event.preventDefault();
+
+
+            alert(
+              "Please enter your location."
+            );
+
+
+            otherLocationInput.focus();
+
+
+            return;
+
+          }
+
+
+          /*
+           * The database only has one Location
+           * column, so replace "Other" with the
+           * actual city or area entered.
+           */
+
+          locationSelect.value =
+            otherLocation;
+
+        }
+
+
+
+        /******************************************
+         * USER INTERFACE
+         ******************************************/
+
+        successMessage.style.display =
+          "none";
+
+
+        errorMessage.style.display =
+          "none";
+
+
+        submittingMessage.style.display =
+          "block";
+
+
+        submitButton.disabled =
+          true;
+
+
+        submitButton.textContent =
+          "Submitting...";
+
+
+        submissionStarted =
+          true;
+
+
+        /*
+         * Do not prevent default here.
+         *
+         * Browser submits directly to Apps Script
+         * using the hidden iframe.
+         */
+
+      }
+    );
+
+
+
+    /**********************************************
+     * APPS SCRIPT FINISHED
+     **********************************************/
+
+    iframe.addEventListener(
+      "load",
+      function () {
+
+
+        if (
+          !submissionStarted
+        ) {
+
+          return;
+
+        }
+
+
+        submissionStarted =
+          false;
+
+
+        submittingMessage.style.display =
+          "none";
+
+
+        successMessage.style.display =
+          "block";
+
+
+        errorMessage.style.display =
+          "none";
+
+
+        submitButton.disabled =
+          false;
+
+
+        submitButton.textContent =
+          "Post What I Need";
+
+
+        /******************************************
+         * RESET FORM
+         ******************************************/
+
+        form.reset();
+
+
+        otherLocationField.style.display =
+          "none";
+
+
+        otherLocationInput.required =
+          false;
+
+
+        /******************************************
+         * SCROLL TO SUCCESS
+         ******************************************/
+
+        successMessage.scrollIntoView({
+
+          behavior:
+            "smooth",
+
+          block:
+            "center"
+
+        });
+
+
+      }
+    );
+
+
+  }
+);
+
+</script>
+
+
 </body>
+
 </html>
