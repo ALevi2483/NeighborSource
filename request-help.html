@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
@@ -17,12 +16,12 @@
 
   <meta
     name="description"
-    content="Tell NeighborSource what service you need and find local help."
+    content="Tell NeighborSource what kind of local service you need and help connect your request with the community."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css"
+    href="css/style.css?v=3"
   >
 
 </head>
@@ -34,19 +33,27 @@
 <main>
 
 
-  <!-- PAGE HEADER -->
+  <!-- PAGE HERO -->
 
   <section class="page-hero">
 
     <div class="container">
 
+
+      <div class="eyebrow">
+        NEED LOCAL HELP?
+      </div>
+
+
       <h1>
-        I Need Someone
+        Tell Us What You Need
       </h1>
 
+
       <p>
-        Tell the community what you need help with.
+        Can't find the right provider? Submit a service request and tell the community what you're looking for.
       </p>
+
 
     </div>
 
@@ -54,7 +61,7 @@
 
 
 
-  <!-- FORM SECTION -->
+  <!-- FORM -->
 
   <section class="section">
 
@@ -63,20 +70,31 @@
 
       <form
         class="card form-card"
-        id="serviceRequestForm"
-        action="https://script.google.com/macros/s/AKfycbx4bTHYgVwb9rB66m4hnFKvxtPHrTwe6qoqdERU_eRVb4yg1cdrH1zkeIHHl54573_8/exec"
-        method="POST"
-        target="serviceRequestFrame"
+        id="request-help-form"
+        data-form-type="serviceRequest"
       >
 
-
-        <!-- DATABASE TYPE -->
 
         <input
           type="hidden"
           name="type"
           value="serviceRequest"
         >
+
+
+
+        <!-- INTRO -->
+
+        <div
+          class="notice green"
+          style="margin-bottom:30px;"
+        >
+
+          <strong>Be as specific as you can.</strong>
+
+          The more information you provide, the easier it is to understand what kind of help you need.
+
+        </div>
 
 
 
@@ -88,7 +106,7 @@
           <div class="field">
 
             <label for="requesterName">
-              Your Name
+              Your Name *
             </label>
 
             <input
@@ -96,8 +114,65 @@
               name="requesterName"
               type="text"
               required
+              autocomplete="name"
               placeholder="Your name"
             >
+
+          </div>
+
+
+
+          <!-- LOCATION -->
+
+          <div class="field">
+
+            <label for="location">
+              Location *
+            </label>
+
+            <select
+              id="location"
+              name="location"
+              required
+            >
+
+              <option value="">
+                Choose your city
+              </option>
+
+              <option value="Chesapeake">
+                Chesapeake
+              </option>
+
+              <option value="Norfolk">
+                Norfolk
+              </option>
+
+              <option value="Portsmouth">
+                Portsmouth
+              </option>
+
+              <option value="Suffolk">
+                Suffolk
+              </option>
+
+              <option value="Virginia Beach">
+                Virginia Beach
+              </option>
+
+              <option value="Hampton">
+                Hampton
+              </option>
+
+              <option value="Newport News">
+                Newport News
+              </option>
+
+              <option value="Other">
+                Other
+              </option>
+
+            </select>
 
           </div>
 
@@ -108,7 +183,7 @@
           <div class="field">
 
             <label for="requesterEmail">
-              Email
+              Email *
             </label>
 
             <input
@@ -116,6 +191,7 @@
               name="requesterEmail"
               type="email"
               required
+              autocomplete="email"
               placeholder="you@example.com"
             >
 
@@ -125,7 +201,7 @@
 
           <!-- PHONE -->
 
-          <div class="field full">
+          <div class="field">
 
             <label for="requesterPhone">
               Phone
@@ -135,12 +211,9 @@
               id="requesterPhone"
               name="requesterPhone"
               type="tel"
+              autocomplete="tel"
               placeholder="757-555-0100"
             >
-
-            <div class="helper">
-              Optional unless you choose phone or text as your preferred contact method.
-            </div>
 
           </div>
 
@@ -148,10 +221,10 @@
 
           <!-- CATEGORY -->
 
-          <div class="field full">
+          <div class="field">
 
             <label for="category">
-              What type of help do you need?
+              Service Category *
             </label>
 
             <select
@@ -218,113 +291,12 @@
 
 
 
-          <!-- LOCATION -->
-
-          <div class="field full">
-
-            <label for="location">
-              Where do you need the service?
-            </label>
-
-            <select
-              id="location"
-              name="location"
-              required
-            >
-
-              <option value="">
-                Select a city
-              </option>
-
-              <option value="Chesapeake">
-                Chesapeake
-              </option>
-
-              <option value="Norfolk">
-                Norfolk
-              </option>
-
-              <option value="Portsmouth">
-                Portsmouth
-              </option>
-
-              <option value="Suffolk">
-                Suffolk
-              </option>
-
-              <option value="Virginia Beach">
-                Virginia Beach
-              </option>
-
-              <option value="Hampton">
-                Hampton
-              </option>
-
-              <option value="Newport News">
-                Newport News
-              </option>
-
-              <option value="Other">
-                Other
-              </option>
-
-            </select>
-
-          </div>
-
-
-
-          <!-- OTHER LOCATION -->
-
-          <div
-            class="field full"
-            id="otherLocationField"
-            style="display:none;"
-          >
-
-            <label for="otherLocation">
-              Other Location
-            </label>
-
-            <input
-              id="otherLocation"
-              type="text"
-              placeholder="Enter the city or area"
-            >
-
-          </div>
-
-
-
-          <!-- WHAT THEY NEED -->
-
-          <div class="field full">
-
-            <label for="whatTheyNeed">
-              What do you need?
-            </label>
-
-            <textarea
-              id="whatTheyNeed"
-              name="whatTheyNeed"
-              required
-              placeholder="Describe the job, service, or help you are looking for."
-            ></textarea>
-
-            <div class="helper">
-              Include enough information for someone to understand what you need.
-            </div>
-
-          </div>
-
-
-
           <!-- TIMEFRAME -->
 
           <div class="field">
 
             <label for="timeframe">
-              When do you need it?
+              When do you need it? *
             </label>
 
             <select
@@ -334,11 +306,15 @@
             >
 
               <option value="">
-                Select a timeframe
+                Choose a timeframe
               </option>
 
               <option value="As soon as possible">
                 As soon as possible
+              </option>
+
+              <option value="Within a few days">
+                Within a few days
               </option>
 
               <option value="Within a week">
@@ -349,11 +325,34 @@
                 Within a month
               </option>
 
-              <option value="I'm flexible">
-                I'm flexible
+              <option value="Flexible">
+                Flexible
               </option>
 
             </select>
+
+          </div>
+
+
+
+          <!-- WHAT THEY NEED -->
+
+          <div class="field full">
+
+            <label for="whatTheyNeed">
+              What do you need help with? *
+            </label>
+
+            <textarea
+              id="whatTheyNeed"
+              name="whatTheyNeed"
+              required
+              placeholder="Example: I need someone to repair about 20 feet of wooden privacy fence that was damaged during a storm."
+            ></textarea>
+
+            <div class="helper">
+              Include the type of work, approximate size or scope, and anything else that would help a provider understand the job.
+            </div>
 
           </div>
 
@@ -364,7 +363,7 @@
           <div class="field">
 
             <label for="preferredContact">
-              Preferred Contact
+              Preferred Contact Method *
             </label>
 
             <select
@@ -374,19 +373,23 @@
             >
 
               <option value="">
-                Select a method
+                Choose one
               </option>
 
-              <option value="Text">
-                Text
+              <option value="Email">
+                Email
               </option>
 
               <option value="Phone">
                 Phone
               </option>
 
-              <option value="Email">
-                Email
+              <option value="Text">
+                Text
+              </option>
+
+              <option value="Either">
+                Either
               </option>
 
             </select>
@@ -397,7 +400,7 @@
 
           <!-- PHOTO LINK -->
 
-          <div class="field full">
+          <div class="field">
 
             <label for="photoLink">
               Photo Link
@@ -406,12 +409,12 @@
             <input
               id="photoLink"
               name="photoLink"
-              type="text"
-              placeholder="Optional link to photos"
+              type="url"
+              placeholder="https://..."
             >
 
             <div class="helper">
-              Optional. You can paste a link to Google Drive, Google Photos, Dropbox, or another photo page.
+              Optional. If helpful, paste a link to a photo stored online.
             </div>
 
           </div>
@@ -425,12 +428,14 @@
             <label class="check-row">
 
               <input
-                type="checkbox"
                 id="requestConfirmation"
+                type="checkbox"
                 required
               >
 
-              I confirm that the information I submitted is accurate and appropriate for a local service request.
+              <span>
+                I confirm that this request is genuine and that the information I provided is accurate.
+              </span>
 
             </label>
 
@@ -441,83 +446,171 @@
 
 
 
-        <!-- SUBMIT BUTTON -->
+        <!-- SUBMIT -->
 
         <button
           class="btn btn-green"
           type="submit"
-          id="submitRequestButton"
         >
-
-          Post What I Need
-
+          Submit My Request
         </button>
 
 
 
-        <!-- SUBMITTING MESSAGE -->
+        <!-- STATUS -->
 
         <div
-          class="notice"
-          id="submittingMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            Submitting your request...
-          </strong>
-
-          Please do not close this page.
-
-        </div>
-
-
-
-        <!-- SUCCESS MESSAGE -->
-
-        <div
-          class="notice green"
-          id="successMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            Request submitted.
-          </strong>
-
-          Your service request has been sent for review.
-
-        </div>
-
-
-
-        <!-- ERROR MESSAGE -->
-
-        <div
-          class="notice warning"
-          id="errorMessage"
-          style="
-            display:none;
-            margin-top:16px;
-          "
-        >
-
-          <strong>
-            We could not submit your request.
-          </strong>
-
-          Please check your information and try again.
-
-        </div>
+          id="form-status"
+          style="margin-top:20px;"
+          aria-live="polite"
+        ></div>
 
 
       </form>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- HOW IT WORKS -->
+
+  <section class="section section-soft">
+
+    <div class="container">
+
+
+      <div class="section-heading centered">
+
+        <div class="eyebrow dark">
+          HOW IT WORKS
+        </div>
+
+        <h2>
+          A simple way to ask for local help
+        </h2>
+
+        <p class="section-intro">
+          Your request gives NeighborSource more information about what people in the community are looking for.
+        </p>
+
+      </div>
+
+
+
+      <div class="steps-grid">
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            1
+          </div>
+
+          <h3>
+            Tell Us What You Need
+          </h3>
+
+          <p>
+            Describe the service, your location, and when you need the work completed.
+          </p>
+
+        </div>
+
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            2
+          </div>
+
+          <h3>
+            We Review It
+          </h3>
+
+          <p>
+            Requests are reviewed before being used within the NeighborSource community.
+          </p>
+
+        </div>
+
+
+
+        <div class="card step-card">
+
+          <div class="step-number">
+            3
+          </div>
+
+          <h3>
+            Find Local Help
+          </h3>
+
+          <p>
+            You can continue browsing NeighborSource for providers who may be able to help.
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- SAFETY -->
+
+  <section class="section">
+
+    <div class="container">
+
+
+      <div
+        class="card"
+        style="
+          max-width:900px;
+          margin:0 auto;
+          padding:36px;
+        "
+      >
+
+
+        <div class="eyebrow dark">
+          BEFORE HIRING
+        </div>
+
+
+        <h2>
+          Use good judgment when choosing a provider
+        </h2>
+
+
+        <p>
+          NeighborSource helps organize local service information and community recommendations. It does not guarantee a provider's work, pricing, availability, licensing, insurance, or qualifications.
+        </p>
+
+
+        <p class="small">
+          Confirm important details directly with the provider before agreeing to work or making payment.
+        </p>
+
+
+        <a
+          class="btn btn-outline"
+          href="verification.html"
+        >
+          Learn About Verification
+        </a>
+
+
+      </div>
 
 
     </div>
@@ -529,396 +622,7 @@
 
 
 
-<!-- HIDDEN POST TARGET -->
-
-<iframe
-  name="serviceRequestFrame"
-  id="serviceRequestFrame"
-  style="
-    width:0;
-    height:0;
-    border:0;
-    position:absolute;
-    left:-9999px;
-  "
-></iframe>
-
-
-
-<!-- MAIN NEIGHBORSOURCE JAVASCRIPT -->
-
-<script src="js/app.js"></script>
-
-
-
-<!-- REQUEST PAGE JAVASCRIPT -->
-
-<script>
-
-document.addEventListener(
-  "DOMContentLoaded",
-  function () {
-
-
-    /**********************************************
-     * ELEMENTS
-     **********************************************/
-
-    const form =
-      document.getElementById(
-        "serviceRequestForm"
-      );
-
-
-    const locationSelect =
-      document.getElementById(
-        "location"
-      );
-
-
-    const otherLocationField =
-      document.getElementById(
-        "otherLocationField"
-      );
-
-
-    const otherLocationInput =
-      document.getElementById(
-        "otherLocation"
-      );
-
-
-    const phoneInput =
-      document.getElementById(
-        "requesterPhone"
-      );
-
-
-    const preferredContact =
-      document.getElementById(
-        "preferredContact"
-      );
-
-
-    const submitButton =
-      document.getElementById(
-        "submitRequestButton"
-      );
-
-
-    const submittingMessage =
-      document.getElementById(
-        "submittingMessage"
-      );
-
-
-    const successMessage =
-      document.getElementById(
-        "successMessage"
-      );
-
-
-    const errorMessage =
-      document.getElementById(
-        "errorMessage"
-      );
-
-
-    const iframe =
-      document.getElementById(
-        "serviceRequestFrame"
-      );
-
-
-    let submissionStarted =
-      false;
-
-
-
-    /**********************************************
-     * OTHER LOCATION
-     **********************************************/
-
-    locationSelect.addEventListener(
-      "change",
-      function () {
-
-
-        if (
-          locationSelect.value ===
-          "Other"
-        ) {
-
-          otherLocationField.style.display =
-            "flex";
-
-
-          otherLocationInput.required =
-            true;
-
-
-          otherLocationInput.focus();
-
-        }
-
-        else {
-
-          otherLocationField.style.display =
-            "none";
-
-
-          otherLocationInput.required =
-            false;
-
-
-          otherLocationInput.value =
-            "";
-
-        }
-
-
-      }
-    );
-
-
-
-    /**********************************************
-     * VALIDATE CONTACT METHOD
-     **********************************************/
-
-    function validateContact() {
-
-
-      if (
-        preferredContact.value ===
-          "Phone" ||
-        preferredContact.value ===
-          "Text"
-      ) {
-
-
-        if (
-          !phoneInput.value.trim()
-        ) {
-
-          alert(
-            "Please enter a phone number if you want to be contacted by phone or text."
-          );
-
-
-          phoneInput.focus();
-
-
-          return false;
-
-        }
-
-
-      }
-
-
-      return true;
-
-    }
-
-
-
-    /**********************************************
-     * FORM SUBMIT
-     **********************************************/
-
-    form.addEventListener(
-      "submit",
-      function (
-        event
-      ) {
-
-
-        /******************************************
-         * CONTACT VALIDATION
-         ******************************************/
-
-        if (
-          !validateContact()
-        ) {
-
-          event.preventDefault();
-
-          return;
-
-        }
-
-
-
-        /******************************************
-         * OTHER LOCATION
-         ******************************************/
-
-        if (
-          locationSelect.value ===
-          "Other"
-        ) {
-
-
-          const otherLocation =
-            otherLocationInput
-              .value
-              .trim();
-
-
-          if (
-            !otherLocation
-          ) {
-
-            event.preventDefault();
-
-
-            alert(
-              "Please enter your location."
-            );
-
-
-            otherLocationInput.focus();
-
-
-            return;
-
-          }
-
-
-          /*
-           * The database only has one Location
-           * column, so replace "Other" with the
-           * actual city or area entered.
-           */
-
-          locationSelect.value =
-            otherLocation;
-
-        }
-
-
-
-        /******************************************
-         * USER INTERFACE
-         ******************************************/
-
-        successMessage.style.display =
-          "none";
-
-
-        errorMessage.style.display =
-          "none";
-
-
-        submittingMessage.style.display =
-          "block";
-
-
-        submitButton.disabled =
-          true;
-
-
-        submitButton.textContent =
-          "Submitting...";
-
-
-        submissionStarted =
-          true;
-
-
-        /*
-         * Do not prevent default here.
-         *
-         * Browser submits directly to Apps Script
-         * using the hidden iframe.
-         */
-
-      }
-    );
-
-
-
-    /**********************************************
-     * APPS SCRIPT FINISHED
-     **********************************************/
-
-    iframe.addEventListener(
-      "load",
-      function () {
-
-
-        if (
-          !submissionStarted
-        ) {
-
-          return;
-
-        }
-
-
-        submissionStarted =
-          false;
-
-
-        submittingMessage.style.display =
-          "none";
-
-
-        successMessage.style.display =
-          "block";
-
-
-        errorMessage.style.display =
-          "none";
-
-
-        submitButton.disabled =
-          false;
-
-
-        submitButton.textContent =
-          "Post What I Need";
-
-
-        /******************************************
-         * RESET FORM
-         ******************************************/
-
-        form.reset();
-
-
-        otherLocationField.style.display =
-          "none";
-
-
-        otherLocationInput.required =
-          false;
-
-
-        /******************************************
-         * SCROLL TO SUCCESS
-         ******************************************/
-
-        successMessage.scrollIntoView({
-
-          behavior:
-            "smooth",
-
-          block:
-            "center"
-
-        });
-
-
-      }
-    );
-
-
-  }
-);
-
-</script>
+<script src="js/app.js?v=3"></script>
 
 
 </body>
