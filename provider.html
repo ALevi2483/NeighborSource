@@ -16,12 +16,12 @@
 
   <meta
     name="description"
-    content="View a local service provider on NeighborSource, including services, recommendations, service areas, and verification information."
+    content="View local provider information, services, verification details, and community recommendations on NeighborSource."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=2"
+    href="css/style.css?v=3"
   >
 
 </head>
@@ -35,25 +35,23 @@
 
   <!-- PROVIDER HERO -->
 
-  <section class="profile-hero">
+  <section class="page-hero">
 
     <div class="container">
 
 
-      <div
-        class="small"
-        id="provider-category"
-      >
-        Loading provider...
+      <div class="eyebrow">
+        LOCAL PROVIDER
       </div>
 
 
       <h1 id="provider-name">
-        Loading...
+        Provider
       </h1>
 
 
-      <p id="provider-description">
+      <p id="provider-category">
+        Local Service Provider
       </p>
 
 
@@ -63,177 +61,105 @@
 
 
 
-  <!-- PROVIDER CONTENT -->
+  <!-- PROVIDER PROFILE -->
 
   <section class="section">
 
-    <div class="container profile-grid">
+    <div class="container">
 
 
-      <!-- LEFT SIDE -->
-
-      <div class="profile-main">
-
-
-        <!-- ABOUT -->
-
-        <section class="card">
-
-          <h2>
-            About
-          </h2>
+      <div
+        class="provider-profile-grid"
+        style="
+          display:grid;
+          grid-template-columns:minmax(0, 1fr) 340px;
+          gap:28px;
+          align-items:start;
+        "
+      >
 
 
-          <p id="provider-description">
-          </p>
+        <!-- LEFT COLUMN -->
+
+        <div>
 
 
-          <h3>
-            Services
-          </h3>
+          <!-- SUMMARY STATS -->
 
-
-          <div id="provider-services">
-
-            <span class="small">
-              Loading services...
-            </span>
-
-          </div>
-
-
-          <h3 style="margin-top:28px;">
-            Service Area
-          </h3>
-
-
-          <p id="provider-area">
-            Loading service area...
-          </p>
-
-        </section>
-
-
-
-        <!-- VERIFICATION -->
-
-        <section class="card">
-
-          <h2>
-            Verification
-          </h2>
-
-
-          <p class="small">
-
-            Verification badges show information that NeighborSource has reviewed. A provider without badges is not necessarily unqualified. It simply means that information has not been verified through NeighborSource.
-
-          </p>
-
-
-          <div id="provider-badges">
-
-            <span class="small">
-              Loading verification information...
-            </span>
-
-          </div>
-
-
-          <p
-            class="small"
-            style="margin-top:20px;"
-          >
-
-            Always confirm licensing, insurance, credentials, pricing, and other requirements directly with a provider before hiring them.
-
-          </p>
-
-
-          <a
-            href="verification.html"
+          <div
+            class="profile-stats"
             style="
-              color:#2675e8;
-              font-weight:800;
+              display:grid;
+              grid-template-columns:repeat(3, 1fr);
+              gap:16px;
+              margin-bottom:28px;
             "
           >
-            Learn about verification →
-          </a>
-
-        </section>
 
 
+            <!-- RECOMMENDATIONS -->
 
-        <!-- RECOMMENDATIONS -->
+            <div class="card stat">
 
-        <section class="card">
-
-          <h2>
-            Neighbor Recommendations
-          </h2>
-
-
-          <p class="small">
-            Loading approved recommendations...
-          </p>
-
-        </section>
-
-
-      </div>
-
-
-
-      <!-- RIGHT SIDE -->
-
-      <aside class="profile-sidebar">
-
-
-        <!-- PROVIDER SUMMARY -->
-
-        <section class="card">
-
-
-          <div class="profile-stats">
-
-
-            <div class="stat">
-
-              <strong id="provider-recs">
+              <strong
+                id="provider-recs"
+                style="
+                  display:block;
+                  font-size:28px;
+                  margin-bottom:4px;
+                "
+              >
                 0
               </strong>
 
-              <div class="small">
-                Recommendations
-              </div>
+              <span class="small">
+                Recommend
+              </span>
 
             </div>
 
 
 
-            <div class="stat">
+            <!-- WOULD USE AGAIN -->
 
-              <strong id="provider-rehire">
+            <div class="card stat">
+
+              <strong
+                id="provider-rehire"
+                style="
+                  display:block;
+                  font-size:28px;
+                  margin-bottom:4px;
+                "
+              >
                 0
               </strong>
 
-              <div class="small">
-                Would Rehire
-              </div>
+              <span class="small">
+                Would Use Again
+              </span>
 
             </div>
 
 
 
-            <div class="stat">
+            <!-- VERIFICATION -->
 
-              <strong>
+            <div class="card stat">
+
+              <strong
+                style="
+                  display:block;
+                  font-size:18px;
+                  margin-bottom:4px;
+                "
+              >
                 —
               </strong>
 
-              <div class="small">
-                Not Verified
-              </div>
+              <span class="small">
+                Verification
+              </span>
 
             </div>
 
@@ -242,67 +168,418 @@
 
 
 
-          <!-- PRIMARY ACTIONS -->
+          <!-- ABOUT -->
 
-          <div class="provider-actions">
+          <div
+            class="card"
+            style="margin-bottom:28px;"
+          >
+
+
+            <div class="eyebrow dark">
+              ABOUT
+            </div>
+
+
+            <h2>
+              About This Provider
+            </h2>
+
+
+            <p id="provider-description">
+              Provider information is loading...
+            </p>
+
+
+          </div>
+
+
+
+          <!-- SERVICES -->
+
+          <div
+            class="card"
+            style="margin-bottom:28px;"
+          >
+
+
+            <div class="eyebrow dark">
+              SERVICES
+            </div>
+
+
+            <h2>
+              Services Offered
+            </h2>
+
+
+            <div
+              id="provider-services"
+              class="badges"
+              style="margin-top:20px;"
+            >
+
+              <span class="small">
+                Loading services...
+              </span>
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- SERVICE AREA -->
+
+          <div
+            class="card"
+            style="margin-bottom:28px;"
+          >
+
+
+            <div class="eyebrow dark">
+              SERVICE AREA
+            </div>
+
+
+            <h2>
+              Where They Work
+            </h2>
+
+
+            <div
+              id="provider-area"
+              class="badges"
+              style="margin-top:20px;"
+            >
+
+              <span class="small">
+                Loading service area...
+              </span>
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- VERIFICATION -->
+
+          <div
+            class="card"
+            style="margin-bottom:28px;"
+          >
+
+
+            <div class="eyebrow dark">
+              VERIFICATION
+            </div>
+
+
+            <h2>
+              Verification Details
+            </h2>
+
+
+            <p>
+              Verification badges apply only to the specific information shown.
+            </p>
+
+
+            <div
+              id="provider-badges"
+              class="badges"
+              style="margin-top:20px;"
+            >
+
+              <span class="small">
+                Loading verification information...
+              </span>
+
+            </div>
+
+
+            <p
+              class="small"
+              style="margin-top:20px;"
+            >
+              Verification does not guarantee workmanship, pricing, availability, or future performance.
+            </p>
 
 
             <a
-              class="btn btn-green"
-              id="provider-call"
-              href="#"
+              href="verification.html"
+              style="
+                display:inline-block;
+                margin-top:8px;
+                font-weight:800;
+              "
             >
-
-              Call
-              <span
-                id="provider-phone"
-                style="margin-left:6px;"
-              ></span>
-
-            </a>
-
-
-            <a
-              class="btn btn-primary"
-              id="recommend-provider-link"
-              href="recommend.html"
-            >
-              Recommend
+              What does verification mean? →
             </a>
 
 
           </div>
 
 
-          <!-- SECONDARY ACTIONS -->
+
+          <!-- NEIGHBOR RECOMMENDATIONS -->
 
           <div
+            class="card"
+            style="margin-bottom:28px;"
+          >
+
+
+            <div class="eyebrow dark">
+              COMMUNITY FEEDBACK
+            </div>
+
+
+            <h2>
+              Neighbor Recommendations
+            </h2>
+
+
+            <p class="small">
+              Approved recommendations from people who have used this provider will appear below.
+            </p>
+
+
+            <div
+              id="provider-recommendations"
+              style="margin-top:24px;"
+            ></div>
+
+
+          </div>
+
+
+
+          <!-- RECOMMEND CTA -->
+
+          <div
+            class="card"
             style="
-              margin-top:20px;
-              padding-top:20px;
-              border-top:1px solid var(--line);
+              padding:34px;
+              margin-bottom:28px;
             "
           >
 
 
+            <div class="eyebrow dark">
+              USED THIS PROVIDER?
+            </div>
+
+
+            <h2>
+              Help your neighbors
+            </h2>
+
+
+            <p>
+              If you have personally used this provider, share your experience with the community.
+            </p>
+
+
             <a
+              id="recommend-provider-link"
+              class="btn btn-green"
+              href="recommend.html"
+            >
+              Recommend This Provider
+            </a>
+
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- RIGHT COLUMN -->
+
+        <aside>
+
+
+          <!-- CONTACT CARD -->
+
+          <div
+            class="card"
+            style="
+              position:sticky;
+              top:100px;
+              margin-bottom:22px;
+            "
+          >
+
+
+            <div class="eyebrow dark">
+              CONTACT
+            </div>
+
+
+            <h2>
+              Contact Provider
+            </h2>
+
+
+
+            <!-- PHONE -->
+
+            <div
+              style="
+                padding:18px 0;
+                border-bottom:1px solid var(--line);
+              "
+            >
+
+              <div class="small">
+                PHONE
+              </div>
+
+              <div
+                id="provider-phone"
+                style="
+                  font-size:20px;
+                  font-weight:800;
+                  margin-top:5px;
+                "
+              >
+                —
+              </div>
+
+            </div>
+
+
+
+            <!-- CALL -->
+
+            <a
+              id="provider-call"
+              class="btn btn-green"
+              href="#"
+              style="
+                width:100%;
+                margin-top:20px;
+                text-align:center;
+              "
+            >
+              Call Provider
+            </a>
+
+
+
+            <!-- WEBSITE -->
+
+            <a
+              id="provider-website"
               class="btn btn-outline"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="
+                width:100%;
+                margin-top:12px;
+                text-align:center;
+                display:none;
+              "
+            >
+              Visit Website
+            </a>
+
+
+
+            <!-- FACEBOOK -->
+
+            <a
+              id="provider-facebook"
+              class="btn btn-outline"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="
+                width:100%;
+                margin-top:12px;
+                text-align:center;
+                display:none;
+              "
+            >
+              Facebook Page
+            </a>
+
+
+
+            <div
+              style="
+                margin-top:26px;
+                padding-top:22px;
+                border-top:1px solid var(--line);
+              "
+            >
+
+
+              <p class="small">
+                Contact providers directly to confirm pricing, availability, qualifications, and other job details before hiring.
+              </p>
+
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- LISTING TOOLS -->
+
+          <div class="card">
+
+
+            <div class="eyebrow dark">
+              LISTING TOOLS
+            </div>
+
+
+            <h3>
+              See something that needs attention?
+            </h3>
+
+
+            <p class="small">
+              Request a correction or let NeighborSource know about a concern.
+            </p>
+
+
+
+            <a
               id="update-provider-link"
+              class="btn btn-outline"
               href="update-listing.html"
               style="
                 width:100%;
-                margin-bottom:10px;
+                text-align:center;
+                margin-top:8px;
               "
             >
               Update This Listing
             </a>
 
 
+
             <a
-              class="btn btn-outline"
               id="report-provider-link"
               href="report.html"
-              style="width:100%;"
+              style="
+                display:block;
+                text-align:center;
+                margin-top:18px;
+                font-size:14px;
+                font-weight:800;
+              "
             >
               Report This Listing
             </a>
@@ -311,47 +588,119 @@
           </div>
 
 
-        </section>
+        </aside>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
 
 
 
-        <!-- COMMUNITY NOTE -->
+  <!-- DIRECTORY DISCLAIMER -->
 
-        <section class="card">
+  <section class="section section-soft">
 
-          <h3>
-            Before You Hire
-          </h3>
+    <div class="container">
 
 
-          <p class="small">
+      <div
+        class="card"
+        style="
+          max-width:1000px;
+          margin:0 auto;
+          padding:36px;
+        "
+      >
 
-            NeighborSource helps you find local providers based on community information and recommendations. NeighborSource does not guarantee a provider's work.
 
+        <div class="eyebrow dark">
+          BEFORE YOU HIRE
+        </div>
+
+
+        <h2>
+          Make the decision that is right for you
+        </h2>
+
+
+        <p>
+          NeighborSource organizes local provider information and community recommendations. It does not guarantee a provider's work, pricing, availability, licensing, insurance, qualifications, or future performance.
+        </p>
+
+
+        <p class="small">
+          Confirm important details directly with the provider before agreeing to work or making payment.
+        </p>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- MORE SERVICES -->
+
+  <section class="section section-cta">
+
+    <div class="container">
+
+
+      <div class="cta-card">
+
+
+        <div>
+
+
+          <div class="eyebrow">
+            KEEP LOOKING
+          </div>
+
+
+          <h2>
+            Compare local providers.
+          </h2>
+
+
+          <p>
+            Browse the directory to find other providers offering similar services.
           </p>
 
 
-          <p class="small">
+        </div>
 
-            Ask questions, confirm pricing, and verify any licenses, insurance, or credentials required for your project.
 
-          </p>
+
+        <div class="cta-actions">
 
 
           <a
-            href="how-it-works.html"
-            style="
-              color:#2675e8;
-              font-weight:800;
-            "
+            class="btn btn-green"
+            href="services.html"
           >
-            How NeighborSource works →
+            Browse Services
           </a>
 
-        </section>
+
+          <a
+            class="btn btn-outline-light"
+            href="request-help.html"
+          >
+            I Need Someone
+          </a>
 
 
-      </aside>
+        </div>
+
+
+      </div>
 
 
     </div>
@@ -363,7 +712,7 @@
 
 
 
-<script src="js/app.js?v=2"></script>
+<script src="js/app.js?v=3"></script>
 
 
 </body>
