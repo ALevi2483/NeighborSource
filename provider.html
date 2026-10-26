@@ -1,47 +1,371 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Provider Profile | NeighborSource</title>
-  <meta name="description" content="NeighborSource local services directory">
-  <link rel="stylesheet" href="css/style.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    Provider Profile | NeighborSource
+  </title>
+
+  <meta
+    name="description"
+    content="View a local service provider on NeighborSource, including services, recommendations, service areas, and verification information."
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css?v=2"
+  >
+
 </head>
+
+
 <body>
 
+
 <main>
-  <section class="page-hero"><div class="container"><div class="small" id="provider-category" style="color:#cfe1f2"></div><h1 id="provider-name">Provider Name</h1><p id="provider-description"></p></div></section>
-  <section class="section"><div class="container profile-head">
-    <div>
-      <div class="card">
-        <h2>About</h2><p id="provider-description"></p>
-        <h3>Services</h3><div class="pill-row" id="provider-services"></div>
-        <h3 style="margin-top:22px">Service Area</h3><p id="provider-area"></p>
-        <h3>Verification</h3><div class="badges" id="provider-badges"></div>
+
+
+  <!-- PROVIDER HERO -->
+
+  <section class="profile-hero">
+
+    <div class="container">
+
+
+      <div
+        class="small"
+        id="provider-category"
+      >
+        Loading provider...
       </div>
-      <div class="card" style="margin-top:18px">
-        <h2>Neighbor Recommendations</h2>
-        <p><strong>“Great communication and solid work. I would use them again.”</strong></p>
-        <div class="small">Example recommendation</div>
-      </div>
+
+
+      <h1 id="provider-name">
+        Loading...
+      </h1>
+
+
+      <p id="provider-description">
+      </p>
+
+
     </div>
-    <aside>
-      <div class="card">
-        <div class="profile-stats">
-          <div class="stat"><strong id="provider-recs">0</strong><span class="small">Recommendations</span></div>
-          <div class="stat"><strong id="provider-rehire">0</strong><span class="small">Would Rehire</span></div>
-          <div class="stat"><strong>✓</strong><span class="small">Verified Info</span></div>
-        </div>
-        <div class="provider-actions" style="margin-top:20px">
-          <a class="btn btn-green" id="provider-call" href="#">Call <span id="provider-phone"></span></a>
-          <a class="btn btn-primary" id="recommend-provider-link" href="recommend.html">Recommend</a>
-          <a class="btn btn-outline" href="report.html">Report Listing</a>
-        </div>
+
+  </section>
+
+
+
+  <!-- PROVIDER CONTENT -->
+
+  <section class="section">
+
+    <div class="container profile-grid">
+
+
+      <!-- LEFT SIDE -->
+
+      <div class="profile-main">
+
+
+        <!-- ABOUT -->
+
+        <section class="card">
+
+          <h2>
+            About
+          </h2>
+
+
+          <p id="provider-description">
+          </p>
+
+
+          <h3>
+            Services
+          </h3>
+
+
+          <div id="provider-services">
+
+            <span class="small">
+              Loading services...
+            </span>
+
+          </div>
+
+
+          <h3 style="margin-top:28px;">
+            Service Area
+          </h3>
+
+
+          <p id="provider-area">
+            Loading service area...
+          </p>
+
+        </section>
+
+
+
+        <!-- VERIFICATION -->
+
+        <section class="card">
+
+          <h2>
+            Verification
+          </h2>
+
+
+          <p class="small">
+
+            Verification badges show information that NeighborSource has reviewed. A provider without badges is not necessarily unqualified. It simply means that information has not been verified through NeighborSource.
+
+          </p>
+
+
+          <div id="provider-badges">
+
+            <span class="small">
+              Loading verification information...
+            </span>
+
+          </div>
+
+
+          <p
+            class="small"
+            style="margin-top:20px;"
+          >
+
+            Always confirm licensing, insurance, credentials, pricing, and other requirements directly with a provider before hiring them.
+
+          </p>
+
+
+          <a
+            href="verification.html"
+            style="
+              color:#2675e8;
+              font-weight:800;
+            "
+          >
+            Learn about verification →
+          </a>
+
+        </section>
+
+
+
+        <!-- RECOMMENDATIONS -->
+
+        <section class="card">
+
+          <h2>
+            Neighbor Recommendations
+          </h2>
+
+
+          <p class="small">
+            Loading approved recommendations...
+          </p>
+
+        </section>
+
+
       </div>
-    </aside>
-  </div></section>
+
+
+
+      <!-- RIGHT SIDE -->
+
+      <aside class="profile-sidebar">
+
+
+        <!-- PROVIDER SUMMARY -->
+
+        <section class="card">
+
+
+          <div class="profile-stats">
+
+
+            <div class="stat">
+
+              <strong id="provider-recs">
+                0
+              </strong>
+
+              <div class="small">
+                Recommendations
+              </div>
+
+            </div>
+
+
+
+            <div class="stat">
+
+              <strong id="provider-rehire">
+                0
+              </strong>
+
+              <div class="small">
+                Would Rehire
+              </div>
+
+            </div>
+
+
+
+            <div class="stat">
+
+              <strong>
+                —
+              </strong>
+
+              <div class="small">
+                Not Verified
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- PRIMARY ACTIONS -->
+
+          <div class="provider-actions">
+
+
+            <a
+              class="btn btn-green"
+              id="provider-call"
+              href="#"
+            >
+
+              Call
+              <span
+                id="provider-phone"
+                style="margin-left:6px;"
+              ></span>
+
+            </a>
+
+
+            <a
+              class="btn btn-primary"
+              id="recommend-provider-link"
+              href="recommend.html"
+            >
+              Recommend
+            </a>
+
+
+          </div>
+
+
+          <!-- SECONDARY ACTIONS -->
+
+          <div
+            style="
+              margin-top:20px;
+              padding-top:20px;
+              border-top:1px solid var(--line);
+            "
+          >
+
+
+            <a
+              class="btn btn-outline"
+              id="update-provider-link"
+              href="update-listing.html"
+              style="
+                width:100%;
+                margin-bottom:10px;
+              "
+            >
+              Update This Listing
+            </a>
+
+
+            <a
+              class="btn btn-outline"
+              id="report-provider-link"
+              href="report.html"
+              style="width:100%;"
+            >
+              Report This Listing
+            </a>
+
+
+          </div>
+
+
+        </section>
+
+
+
+        <!-- COMMUNITY NOTE -->
+
+        <section class="card">
+
+          <h3>
+            Before You Hire
+          </h3>
+
+
+          <p class="small">
+
+            NeighborSource helps you find local providers based on community information and recommendations. NeighborSource does not guarantee a provider's work.
+
+          </p>
+
+
+          <p class="small">
+
+            Ask questions, confirm pricing, and verify any licenses, insurance, or credentials required for your project.
+
+          </p>
+
+
+          <a
+            href="how-it-works.html"
+            style="
+              color:#2675e8;
+              font-weight:800;
+            "
+          >
+            How NeighborSource works →
+          </a>
+
+        </section>
+
+
+      </aside>
+
+
+    </div>
+
+  </section>
+
+
 </main>
 
-<script src="js/app.js"></script>
+
+
+<script src="js/app.js?v=2"></script>
+
+
 </body>
+
 </html>
