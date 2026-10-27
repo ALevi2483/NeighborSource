@@ -1,744 +1,459 @@
 /*************************************************
- * NEIGHBORSOURCE PRIVATE ADMIN DASHBOARD
- *
- * This is the PRIVATE admin Apps Script project.
- * Do not put this code in the public API project.
+ * FINDLOCAL757.COM
+ * MAIN WEBSITE JAVASCRIPT
  *************************************************/
 
 
 /*************************************************
- * DATABASE
+ * GOOGLE APPS SCRIPT API
  *************************************************/
 
-const ADMIN_SPREADSHEET_ID =
-  '1IvyBNiE-7Aazd21q4_Wsug5WPVo3uqoLHPLZrO4Fqdg';
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbx4bTHYgVwb9rB66m4hnFKvxtPHrTwe6qoqdERU_eRVb4yg1cdrH1zkeIHHl54573_8/exec";
 
 
 /*************************************************
- * ADMIN SECTIONS
+ * PUBLIC PROVIDER DATA
  *************************************************/
 
-const ADMIN_SECTIONS = {
+let providers = [];
 
-  providers: {
-    title: 'Providers',
-    sheetName: 'Providers',
-    idHeaders: [
-      'ID'
-    ],
-    allowedStatuses: [
-      'Pending',
-      'Approved',
-      'Rejected',
-      'Removed'
-    ],
-    approvalDateHeaders: [
-      'Date Approved'
-    ],
-    reviewDateHeaders: [],
-    notesHeaders: [],
-    supportsNotes: false
-  },
-
-
-  recommendations: {
-    title: 'Recommendations',
-    sheetName: 'Recommendations',
-    idHeaders: [
-      'Recommendation ID'
-    ],
-    allowedStatuses: [
-      'Pending',
-      'Approved',
-      'Rejected'
-    ],
-    approvalDateHeaders: [
-      'Date Approved'
-    ],
-    reviewDateHeaders: [],
-    notesHeaders: [],
-    supportsNotes: false
-  },
-
-
-  serviceRequests: {
-    title: 'Service Requests',
-    sheetName: 'Service Requests',
-    idHeaders: [
-      'Request ID',
-      'Required ID'
-    ],
-    allowedStatuses: [
-      'Pending',
-      'Reviewed',
-      'Closed'
-    ],
-    approvalDateHeaders: [],
-    reviewDateHeaders: [],
-    notesHeaders: [],
-    supportsNotes: false
-  },
-
-
-  providerSuggestions: {
-    title: 'Provider Suggestions',
-    sheetName: 'Provider Suggestions',
-    idHeaders: [
-      'Suggestion ID'
-    ],
-    allowedStatuses: [
-      'Pending',
-      'Approved',
-      'Rejected'
-    ],
-    approvalDateHeaders: [],
-    reviewDateHeaders: [
-      'Date Reviewed'
-    ],
-    notesHeaders: [],
-    supportsNotes: false
-  },
-
-
-  listingUpdates: {
-    title: 'Listing Updates',
-    sheetName: 'Listing Updates',
-    idHeaders: [
-      'Update ID'
-    ],
-    allowedStatuses: [
-      'Pending',
-      'Completed',
-      'Rejected'
-    ],
-    approvalDateHeaders: [],
-    reviewDateHeaders: [
-      'Date Reviewed'
-    ],
-    notesHeaders: [
-      'Admin Notes'
-    ],
-    supportsNotes: true
-  },
-
-
-  reports: {
-    title: 'Reports',
-    sheetName: 'Reports',
-    idHeaders: [
-      'Report ID'
-    ],
-    allowedStatuses: [
-      'Pending',
-      'Reviewed',
-      'Resolved',
-      'Dismissed'
-    ],
-    approvalDateHeaders: [],
-    reviewDateHeaders: [
-      'Date Reviewed'
-    ],
-    notesHeaders: [
-      'Admin Notes'
-    ],
-    supportsNotes: true
-  },
-
-
-  contactMessages: {
-    title: 'Contact Messages',
-    sheetName: 'Contact Messages',
-    idHeaders: [
-      'Message ID'
-    ],
-    allowedStatuses: [
-      'Pending',
-      'Reviewed',
-      'Closed'
-    ],
-    approvalDateHeaders: [],
-    reviewDateHeaders: [
-      'Date Reviewed'
-    ],
-    notesHeaders: [
-      'Admin Notes'
-    ],
-    supportsNotes: true
-  }
-
-};
+let providerLoadFailed = false;
 
 
 /*************************************************
- * WEB APP
+ * SERVICE CATEGORIES
  *************************************************/
 
-function doGet() {
+const categories = [
 
-  return HtmlService
-    .createHtmlOutputFromFile(
-      'Admin'
-    )
-    .setTitle(
-      'NeighborSource Admin'
-    );
+  [
+    "Home & Repair",
+    "🏠",
+    "Handyman, plumbing, electrical, windows, decks, fences and more."
+  ],
+
+  [
+    "Lawn & Outdoor",
+    "🌿",
+    "Lawn care, landscaping, tree work, pressure washing and outdoor projects."
+  ],
+
+  [
+    "Cleaning",
+    "🧹",
+    "House cleaning, move-out cleaning, organization and specialty cleaning."
+  ],
+
+  [
+    "Pets",
+    "🐾",
+    "Dog walking, pet sitting, boarding, grooming and pet care."
+  ],
+
+  [
+    "Automotive",
+    "🚗",
+    "Mobile mechanics, detailing, towing, tires and other vehicle services."
+  ],
+
+  [
+    "Child Care",
+    "🧸",
+    "Babysitting, child care, mother's helpers and family support."
+  ],
+
+  [
+    "Tutoring & Lessons",
+    "📚",
+    "Academic tutoring, music lessons, coaching and instruction."
+  ],
+
+  [
+    "Events & Photography",
+    "📸",
+    "Photography, DJs, party help, event services and rentals."
+  ],
+
+  [
+    "Moving & Hauling",
+    "📦",
+    "Moving help, junk removal, hauling and delivery."
+  ],
+
+  [
+    "Technology",
+    "💻",
+    "Computer repair, setup, websites, networking and tech support."
+  ],
+
+  [
+    "Notary & Professional",
+    "✍️",
+    "Notary, bookkeeping, tax support and other professional services."
+  ],
+
+  [
+    "Other Services",
+    "🛠️",
+    "Everything that does not fit another category."
+  ]
+
+];
+
+
+/*************************************************
+ * HEADER
+ *************************************************/
+
+function header() {
+
+  return `
+    <header class="site-header">
+
+      <div class="container nav">
+
+        <a
+          class="brand"
+          href="index.html"
+          aria-label="FindLocal757.com home"
+        >
+
+          <span class="brand-mark">
+            🏡
+          </span>
+
+          <span>
+            FindLocal757.com
+          </span>
+
+        </a>
+
+
+        <button
+          class="menu-btn"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+
+
+        <nav
+          class="nav-links"
+          aria-label="Main navigation"
+        >
+
+          <a href="services.html">
+            Find Services
+          </a>
+
+          <a href="request-help.html">
+            I Need Someone
+          </a>
+
+          <a href="list-service.html">
+            List Your Service
+          </a>
+
+          <a href="update-listing.html">
+            Update a Listing
+          </a>
+
+          <a href="how-it-works.html">
+            How It Works
+          </a>
+
+          <a
+            class="nav-cta"
+            href="suggest-provider.html"
+          >
+            Recommend Someone
+          </a>
+
+        </nav>
+
+      </div>
+
+    </header>
+  `;
 
 }
 
 
 /*************************************************
- * GET FULL DASHBOARD
+ * FOOTER
  *************************************************/
 
-function getAdminDashboardData() {
+function footer() {
 
-  const spreadsheet =
-    SpreadsheetApp.openById(
-      ADMIN_SPREADSHEET_ID
+  return `
+    <footer class="footer">
+
+      <div class="container">
+
+        <div class="footer-grid">
+
+
+          <div>
+
+            <a
+              class="brand"
+              href="index.html"
+              style="color:#fff"
+            >
+
+              <span class="brand-mark">
+                🏡
+              </span>
+
+              <span>
+                FindLocal757.com
+              </span>
+
+            </a>
+
+            <p
+              class="small"
+              style="
+                color:#b9cadb;
+                margin-top:12px;
+              "
+            >
+              Find who your neighbors actually use.
+            </p>
+
+          </div>
+
+
+
+          <div>
+
+            <h4>
+              Find Help
+            </h4>
+
+            <a href="services.html">
+              Browse Services
+            </a>
+
+            <a href="request-help.html">
+              Post What You Need
+            </a>
+
+            <a href="suggest-provider.html">
+              Suggest a Provider
+            </a>
+
+          </div>
+
+
+
+          <div>
+
+            <h4>
+              For Providers
+            </h4>
+
+            <a href="list-service.html">
+              List Your Service
+            </a>
+
+            <a href="update-listing.html">
+              Update a Listing
+            </a>
+
+            <a href="verification.html">
+              Verification
+            </a>
+
+          </div>
+
+
+
+          <div>
+
+            <h4>
+              FindLocal757.com
+            </h4>
+
+            <a href="about.html">
+              About
+            </a>
+
+            <a href="contact.html">
+              Contact
+            </a>
+
+            <a href="privacy.html">
+              Privacy
+            </a>
+
+            <a href="terms.html">
+              Terms
+            </a>
+
+          </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+          © <span id="year"></span> FindLocal757.com.
+          Community-powered local service directory.
+
+        </div>
+
+      </div>
+
+    </footer>
+  `;
+
+}
+
+
+/*************************************************
+ * START WEBSITE
+ *************************************************/
+
+async function boot() {
+
+  injectLayout();
+
+  initNavigation();
+
+  initSearchForms();
+
+  initSubmissionForms();
+
+  await loadProviders();
+
+  renderDynamicContent();
+
+}
+
+
+/*************************************************
+ * INSERT HEADER / FOOTER
+ *************************************************/
+
+function injectLayout() {
+
+  if (
+    !document.querySelector(
+      ".site-header"
+    )
+  ) {
+
+    document.body.insertAdjacentHTML(
+      "afterbegin",
+      header()
+    );
+
+  }
+
+
+  if (
+    !document.querySelector(
+      ".footer"
+    )
+  ) {
+
+    document.body.insertAdjacentHTML(
+      "beforeend",
+      footer()
+    );
+
+  }
+
+
+  const year =
+    document.querySelector(
+      "#year"
     );
 
 
-  const sections = [];
+  if (year) {
 
-  let totalPending = 0;
+    year.textContent =
+      new Date()
+        .getFullYear();
 
+  }
 
-  Object.keys(
-    ADMIN_SECTIONS
-  ).forEach(
-    key => {
-
-      const config =
-        ADMIN_SECTIONS[
-          key
-        ];
+}
 
 
-      const section =
-        getAdminSectionData_(
-          spreadsheet,
-          key,
-          config
+/*************************************************
+ * MOBILE NAVIGATION
+ *************************************************/
+
+function initNavigation() {
+
+  const button =
+    document.querySelector(
+      ".menu-btn"
+    );
+
+  const navigation =
+    document.querySelector(
+      ".nav-links"
+    );
+
+
+  if (
+    !button ||
+    !navigation
+  ) {
+
+    return;
+
+  }
+
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      const isOpen =
+        navigation.classList.toggle(
+          "open"
         );
 
 
-      totalPending +=
-        section.pendingCount;
-
-
-      sections.push(
-        section
+      button.setAttribute(
+        "aria-expanded",
+        String(
+          isOpen
+        )
       );
 
     }
   );
 
 
-  const directoryStats =
-    getDirectoryStats_(
-      spreadsheet
-    );
-
-
-  return {
-
-    success: true,
-
-    generatedAt:
-      Utilities.formatDate(
-        new Date(),
-        Session.getScriptTimeZone(),
-        'MMM d, yyyy h:mm a'
-      ),
-
-    totalPending:
-      totalPending,
-
-    directoryStats:
-      directoryStats,
-
-    sections:
-      sections
-
-  };
-
-}
-
-
-/*************************************************
- * DIRECTORY STATISTICS
- *
- * These statistics use APPROVED providers so
- * they reflect listings actually visible in the
- * public NeighborSource directory.
- *************************************************/
-
-function getDirectoryStats_(
-  spreadsheet
-) {
-
-  const providerSheet =
-    spreadsheet.getSheetByName(
-      'Providers'
-    );
-
-
-  const recommendationSheet =
-    spreadsheet.getSheetByName(
-      'Recommendations'
-    );
-
-
-  const result = {
-
-    totalProviderRecords: 0,
-
-    approvedProviders: 0,
-
-    pendingProviders: 0,
-
-    businesses: 0,
-
-    individuals: 0,
-
-    approvedRecommendations: 0,
-
-    categories: [],
-
-    cities: []
-
-  };
-
-
-  /***********************************************
-   * PROVIDERS
-   ***********************************************/
-
-  if (
-    providerSheet
-  ) {
-
-    const values =
-      providerSheet
-        .getDataRange()
-        .getDisplayValues();
-
-
-    if (
-      values.length >
-      1
-    ) {
-
-      const headers =
-        values[
-          0
-        ];
-
-
-      const statusIndex =
-        findHeaderIndex_(
-          headers,
-          [
-            'Status'
-          ]
-        );
-
-
-      const typeIndex =
-        findHeaderIndex_(
-          headers,
-          [
-            'Provider Type'
-          ]
-        );
-
-
-      const categoryIndex =
-        findHeaderIndex_(
-          headers,
-          [
-            'Category'
-          ]
-        );
-
-
-      const serviceAreaIndex =
-        findHeaderIndex_(
-          headers,
-          [
-            'Service Area'
-          ]
-        );
-
-
-      const categoryCounts = {};
-
-      const cityCounts = {};
-
-
-      for (
-        let i = 1;
-        i < values.length;
-        i++
-      ) {
-
-        const row =
-          values[
-            i
-          ];
-
-
-        const hasContent =
-          row.some(
-            value =>
-              String(
-                value ||
-                ''
-              ).trim() !==
-              ''
-          );
-
-
-        if (
-          !hasContent
-        ) {
-
-          continue;
-
-        }
-
-
-        result.totalProviderRecords++;
-
-
-        const status =
-          statusIndex >=
-          0
-            ?
-              String(
-                row[
-                  statusIndex
-                ] ||
-                ''
-              )
-                .trim()
-                .toLowerCase()
-            :
-              '';
-
-
-        if (
-          status ===
-          'pending'
-        ) {
-
-          result.pendingProviders++;
-
-        }
-
-
-        if (
-          status !==
-          'approved'
-        ) {
-
-          continue;
-
-        }
-
-
-        result.approvedProviders++;
-
-
-        /*******************************************
-         * PROVIDER TYPE
-         *******************************************/
-
-        if (
-          typeIndex >=
-          0
-        ) {
-
-          const providerType =
-            String(
-              row[
-                typeIndex
-              ] ||
-              ''
-            )
-              .trim()
-              .toLowerCase();
-
-
-          if (
-            providerType ===
-            'business'
-          ) {
-
-            result.businesses++;
-
-          }
-
-
-          if (
-            providerType ===
-            'individual'
-          ) {
-
-            result.individuals++;
-
-          }
-
-        }
-
-
-        /*******************************************
-         * CATEGORY
-         *******************************************/
-
-        if (
-          categoryIndex >=
-          0
-        ) {
-
-          const category =
-            String(
-              row[
-                categoryIndex
-              ] ||
-              ''
-            ).trim();
-
-
-          if (
-            category
-          ) {
-
-            categoryCounts[
-              category
-            ] =
-              (
-                categoryCounts[
-                  category
-                ] ||
-                0
-              ) +
-              1;
-
-          }
-
-        }
-
-
-        /*******************************************
-         * SERVICE AREA / CITY
-         *******************************************/
-
-        if (
-          serviceAreaIndex >=
-          0
-        ) {
-
-          const serviceArea =
-            String(
-              row[
-                serviceAreaIndex
-              ] ||
-              ''
-            ).trim();
-
-
-          if (
-            serviceArea
-          ) {
-
-            const cities =
-              serviceArea
-                .split(
-                  /[,;|]+/
-                )
-                .map(
-                  city =>
-                    city.trim()
-                )
-                .filter(
-                  city =>
-                    city
-                );
-
-
-            const uniqueCities =
-              [
-                ...new Set(
-                  cities
-                )
-              ];
-
-
-            uniqueCities.forEach(
-              city => {
-
-                cityCounts[
-                  city
-                ] =
-                  (
-                    cityCounts[
-                      city
-                    ] ||
-                    0
-                  ) +
-                  1;
-
-              }
+  navigation
+    .querySelectorAll("a")
+    .forEach(
+      link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            navigation.classList.remove(
+              "open"
+            );
+
+            button.setAttribute(
+              "aria-expanded",
+              "false"
             );
 
           }
-
-        }
-
-      }
-
-
-      result.categories =
-        objectCountsToArray_(
-          categoryCounts
-        );
-
-
-      result.cities =
-        objectCountsToArray_(
-          cityCounts
-        );
-
-    }
-
-  }
-
-
-  /***********************************************
-   * APPROVED RECOMMENDATIONS
-   ***********************************************/
-
-  if (
-    recommendationSheet
-  ) {
-
-    const values =
-      recommendationSheet
-        .getDataRange()
-        .getDisplayValues();
-
-
-    if (
-      values.length >
-      1
-    ) {
-
-      const headers =
-        values[
-          0
-        ];
-
-
-      const statusIndex =
-        findHeaderIndex_(
-          headers,
-          [
-            'Status'
-          ]
-        );
-
-
-      if (
-        statusIndex >=
-        0
-      ) {
-
-        for (
-          let i = 1;
-          i < values.length;
-          i++
-        ) {
-
-          const status =
-            String(
-              values[
-                i
-              ][
-                statusIndex
-              ] ||
-              ''
-            )
-              .trim()
-              .toLowerCase();
-
-
-          if (
-            status ===
-            'approved'
-          ) {
-
-            result.approvedRecommendations++;
-
-          }
-
-        }
-
-      }
-
-    }
-
-  }
-
-
-  return result;
-
-}
-
-
-/*************************************************
- * CONVERT COUNT OBJECT TO SORTED ARRAY
- *************************************************/
-
-function objectCountsToArray_(
-  counts
-) {
-
-  return Object
-    .keys(
-      counts
-    )
-    .map(
-      name => ({
-        name:
-          name,
-        count:
-          counts[
-            name
-          ]
-      })
-    )
-    .sort(
-      (
-        a,
-        b
-      ) => {
-
-        if (
-          b.count !==
-          a.count
-        ) {
-
-          return (
-            b.count -
-            a.count
-          );
-
-        }
-
-
-        return a.name.localeCompare(
-          b.name
         );
 
       }
@@ -748,319 +463,180 @@ function objectCountsToArray_(
 
 
 /*************************************************
- * GET ONE ADMIN SECTION
+ * LOAD APPROVED PROVIDERS
  *************************************************/
 
-function getAdminSectionData_(
-  spreadsheet,
-  key,
-  config
-) {
+async function loadProviders() {
 
-  const sheet =
-    spreadsheet.getSheetByName(
-      config.sheetName
-    );
+  providerLoadFailed =
+    false;
 
 
-  if (
-    !sheet
-  ) {
+  try {
 
-    return {
-
-      key:
-        key,
-
-      title:
-        config.title,
-
-      error:
-        'Sheet not found: ' +
-        config.sheetName,
-
-      pendingCount: 0,
-
-      totalCount: 0,
-
-      counts: {},
-
-      allowedStatuses:
-        config.allowedStatuses,
-
-      supportsNotes:
-        config.supportsNotes,
-
-      rows: []
-
-    };
-
-  }
+    const url =
+      API_URL +
+      "?action=providers&_=" +
+      Date.now();
 
 
-  const values =
-    sheet
-      .getDataRange()
-      .getDisplayValues();
+    const response =
+      await fetch(
+        url,
+        {
+          method:
+            "GET",
 
-
-  if (
-    values.length ===
-    0
-  ) {
-
-    return {
-
-      key:
-        key,
-
-      title:
-        config.title,
-
-      pendingCount: 0,
-
-      totalCount: 0,
-
-      counts: {},
-
-      allowedStatuses:
-        config.allowedStatuses,
-
-      supportsNotes:
-        config.supportsNotes,
-
-      rows: []
-
-    };
-
-  }
-
-
-  const headers =
-    values[
-      0
-    ];
-
-
-  let idIndex =
-    findHeaderIndex_(
-      headers,
-      config.idHeaders
-    );
-
-
-  if (
-    idIndex ===
-    -1
-  ) {
-
-    idIndex = 0;
-
-  }
-
-
-  const statusIndex =
-    findHeaderIndex_(
-      headers,
-      [
-        'Status'
-      ]
-    );
-
-
-  const rows = [];
-
-  const counts = {};
-
-
-  for (
-    let i = 1;
-    i < values.length;
-    i++
-  ) {
-
-    const row =
-      values[
-        i
-      ];
-
-
-    const hasContent =
-      row.some(
-        value =>
-          String(
-            value ||
-            ''
-          ).trim() !==
-          ''
+          cache:
+            "no-store"
+        }
       );
 
 
     if (
-      !hasContent
+      !response.ok
     ) {
 
-      continue;
+      throw new Error(
+        "Provider directory request failed."
+      );
 
     }
 
 
-    const recordId =
-      String(
-        row[
-          idIndex
-        ] ||
-        ''
-      ).trim();
+    const data =
+      await response.json();
 
 
-    const status =
-      statusIndex >=
-      0
-        ?
-          String(
-            row[
-              statusIndex
-            ] ||
-            ''
-          ).trim()
-        :
-          '';
+    if (
+      !data ||
+      data.success !== true ||
+      !Array.isArray(
+        data.providers
+      )
+    ) {
+
+      throw new Error(
+        "Invalid provider response."
+      );
+
+    }
 
 
-    const normalizedStatus =
-      status ||
-      'No Status';
-
-
-    counts[
-      normalizedStatus
-    ] =
-      (
-        counts[
-          normalizedStatus
-        ] ||
-        0
-      ) +
-      1;
-
-
-    const fields = [];
-
-
-    headers.forEach(
-      (
-        header,
-        columnIndex
-      ) => {
-
-        const label =
-          String(
-            header ||
-            ''
-          ).trim();
-
-
-        const value =
-          String(
-            row[
-              columnIndex
-            ] ||
-            ''
-          ).trim();
-
-
-        if (
-          !label ||
-          !value
-        ) {
-
-          return;
-
-        }
-
-
-        fields.push({
-
-          label:
-            label,
-
-          value:
-            value
-
-        });
-
-      }
-    );
-
-
-    rows.push({
-
-      recordId:
-        recordId,
-
-      status:
-        status,
-
-      rowNumber:
-        i + 1,
-
-      fields:
-        fields
-
-    });
+    providers =
+      data.providers.map(
+        normalizeProvider
+      );
 
   }
 
+  catch (error) {
 
-  rows.sort(
-    (
-      a,
-      b
-    ) =>
-      b.rowNumber -
-      a.rowNumber
-  );
+    console.error(
+      "Unable to load providers:",
+      error
+    );
 
 
-  const pendingCount =
-    rows.filter(
-      row =>
-        String(
-          row.status ||
-          ''
-        )
-          .trim()
-          .toLowerCase() ===
-        'pending'
-    ).length;
+    providers =
+      [];
+
+
+    providerLoadFailed =
+      true;
+
+  }
+
+}
+
+
+/*************************************************
+ * NORMALIZE PROVIDER DATA
+ *************************************************/
+
+function normalizeProvider(
+  provider
+) {
+
+  const p =
+    provider ||
+    {};
 
 
   return {
 
-    key:
-      key,
+    id:
+      String(
+        p.id ||
+        ""
+      ).trim(),
 
-    title:
-      config.title,
+    name:
+      String(
+        p.name ||
+        ""
+      ).trim(),
 
-    pendingCount:
-      pendingCount,
+    type:
+      String(
+        p.type ||
+        ""
+      ).trim(),
 
-    totalCount:
-      rows.length,
+    category:
+      String(
+        p.category ||
+        ""
+      ).trim(),
 
-    counts:
-      counts,
+    services:
+      normalizeList(
+        p.services
+      ),
 
-    allowedStatuses:
-      config.allowedStatuses,
+    description:
+      String(
+        p.description ||
+        ""
+      ).trim(),
 
-    supportsNotes:
-      config.supportsNotes,
+    phone:
+      String(
+        p.phone ||
+        ""
+      ).trim(),
 
-    rows:
-      rows
+    website:
+      String(
+        p.website ||
+        ""
+      ).trim(),
+
+    facebook:
+      String(
+        p.facebook ||
+        ""
+      ).trim(),
+
+    area:
+      normalizeList(
+        p.area
+      ),
+
+    verified:
+      normalizeList(
+        p.verified
+      ),
+
+    recommendations:
+      safeNumber(
+        p.recommendations
+      ),
+
+    rehire:
+      safeNumber(
+        p.rehire
+      )
 
   };
 
@@ -1068,712 +644,2812 @@ function getAdminSectionData_(
 
 
 /*************************************************
- * UPDATE RECORD
+ * NORMALIZE ARRAYS
  *************************************************/
 
-function updateAdminRecord(
-  sectionKey,
-  recordId,
-  newStatus,
-  adminNotes
+function normalizeList(
+  value
 ) {
 
-  const key =
-    String(
-      sectionKey ||
-      ''
-    ).trim();
-
-
-  const id =
-    String(
-      recordId ||
-      ''
-    ).trim();
-
-
-  const status =
-    String(
-      newStatus ||
-      ''
-    ).trim();
-
-
-  const notes =
-    String(
-      adminNotes ||
-      ''
-    ).trim();
-
-
-  const config =
-    ADMIN_SECTIONS[
-      key
-    ];
-
-
   if (
-    !config
-  ) {
-
-    throw new Error(
-      'Unknown admin section.'
-    );
-
-  }
-
-
-  if (
-    !id
-  ) {
-
-    throw new Error(
-      'Record ID is missing.'
-    );
-
-  }
-
-
-  if (
-    !config.allowedStatuses.includes(
-      status
+    Array.isArray(
+      value
     )
   ) {
 
-    throw new Error(
-      'Invalid status.'
-    );
-
-  }
-
-
-  const spreadsheet =
-    SpreadsheetApp.openById(
-      ADMIN_SPREADSHEET_ID
-    );
-
-
-  const sheet =
-    spreadsheet.getSheetByName(
-      config.sheetName
-    );
-
-
-  if (
-    !sheet
-  ) {
-
-    throw new Error(
-      'Sheet not found: ' +
-      config.sheetName
-    );
-
-  }
-
-
-  const values =
-    sheet
-      .getDataRange()
-      .getDisplayValues();
-
-
-  if (
-    values.length <
-    2
-  ) {
-
-    throw new Error(
-      'No records found.'
-    );
-
-  }
-
-
-  const headers =
-    values[
-      0
-    ];
-
-
-  let idIndex =
-    findHeaderIndex_(
-      headers,
-      config.idHeaders
-    );
-
-
-  if (
-    idIndex ===
-    -1
-  ) {
-
-    idIndex = 0;
-
-  }
-
-
-  const statusIndex =
-    findHeaderIndex_(
-      headers,
-      [
-        'Status'
-      ]
-    );
-
-
-  if (
-    statusIndex ===
-    -1
-  ) {
-
-    throw new Error(
-      'Status column not found.'
-    );
-
-  }
-
-
-  let matchedRowNumber =
-    -1;
-
-
-  for (
-    let i = 1;
-    i < values.length;
-    i++
-  ) {
-
-    const currentId =
-      String(
-        values[
-          i
-        ][
-          idIndex
-        ] ||
-        ''
-      ).trim();
-
-
-    if (
-      currentId ===
-      id
-    ) {
-
-      matchedRowNumber =
-        i + 1;
-
-      break;
-
-    }
-
-  }
-
-
-  if (
-    matchedRowNumber ===
-    -1
-  ) {
-
-    throw new Error(
-      'Record not found.'
-    );
-
-  }
-
-
-  /***********************************************
-   * STATUS
-   ***********************************************/
-
-  sheet
-    .getRange(
-      matchedRowNumber,
-      statusIndex + 1
-    )
-    .setValue(
-      status
-    );
-
-
-  /***********************************************
-   * DATE APPROVED
-   ***********************************************/
-
-  if (
-    status ===
-    'Approved'
-  ) {
-
-    setDateIfColumnExists_(
-      sheet,
-      headers,
-      matchedRowNumber,
-      config.approvalDateHeaders
-    );
-
-  }
-
-
-  /***********************************************
-   * DATE REVIEWED
-   ***********************************************/
-
-  if (
-    status !==
-    'Pending'
-  ) {
-
-    setDateIfColumnExists_(
-      sheet,
-      headers,
-      matchedRowNumber,
-      config.reviewDateHeaders
-    );
-
-  }
-
-
-  /***********************************************
-   * ADMIN NOTES
-   ***********************************************/
-
-  if (
-    notes &&
-    config.notesHeaders.length
-  ) {
-
-    const notesIndex =
-      findHeaderIndex_(
-        headers,
-        config.notesHeaders
+    return value
+      .map(
+        item =>
+          String(
+            item ||
+            ""
+          ).trim()
+      )
+      .filter(
+        Boolean
       );
 
+  }
+
+
+  if (
+    value === null ||
+    value === undefined ||
+    value === ""
+  ) {
+
+    return [];
+
+  }
+
+
+  return String(
+    value
+  )
+    .split(
+      /[,;\n]+/
+    )
+    .map(
+      item =>
+        item.trim()
+    )
+    .filter(
+      Boolean
+    );
+
+}
+
+
+/*************************************************
+ * SAFE NUMBER
+ *************************************************/
+
+function safeNumber(
+  value
+) {
+
+  const number =
+    Number(
+      value
+    );
+
+
+  if (
+    Number.isFinite(
+      number
+    )
+  ) {
+
+    return number;
+
+  }
+
+
+  return 0;
+
+}
+
+
+/*************************************************
+ * CURRENT PAGE
+ *************************************************/
+
+function currentPage() {
+
+  return (
+    location.pathname
+      .split("/")
+      .pop() ||
+    "index.html"
+  );
+
+}
+
+
+/*************************************************
+ * RENDER PAGE-SPECIFIC CONTENT
+ *************************************************/
+
+function renderDynamicContent() {
+
+  const page =
+    currentPage();
+
+
+  if (
+    page ===
+      "index.html" ||
+    page ===
+      ""
+  ) {
+
+    renderHomeCategories();
+
+    renderFeatured();
+
+  }
+
+
+  if (
+    page ===
+    "services.html"
+  ) {
+
+    renderCategories(
+      "all-categories"
+    );
+
+  }
+
+
+  if (
+    page ===
+    "search.html"
+  ) {
+
+    renderSearch();
+
+  }
+
+
+  if (
+    page ===
+    "category.html"
+  ) {
+
+    renderCategoryPage();
+
+  }
+
+
+  if (
+    page ===
+    "provider.html"
+  ) {
+
+    renderProvider();
+
+  }
+
+}
+
+
+/*************************************************
+ * SEARCH FORMS
+ *************************************************/
+
+function initSearchForms() {
+
+  document
+    .querySelectorAll(
+      "[data-search-form]"
+    )
+    .forEach(
+      form => {
+
+        form.addEventListener(
+          "submit",
+          event => {
+
+            event.preventDefault();
+
+
+            const input =
+              form.querySelector(
+                'input[type="search"], input[type="text"], input'
+              );
+
+
+            const query =
+              input
+                ? input.value.trim()
+                : "";
+
+
+            location.href =
+              "search.html?q=" +
+              encodeURIComponent(
+                query
+              );
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+/*************************************************
+ * HOME CATEGORIES
+ *************************************************/
+
+function renderHomeCategories() {
+
+  const container =
+    document.querySelector(
+      "#home-categories"
+    );
+
+
+  if (
+    !container
+  ) {
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    categories
+      .slice(
+        0,
+        8
+      )
+      .map(
+        categoryCard
+      )
+      .join("");
+
+}
+
+
+/*************************************************
+ * ALL CATEGORIES
+ *************************************************/
+
+function renderCategories(
+  elementId
+) {
+
+  const container =
+    document.getElementById(
+      elementId
+    );
+
+
+  if (
+    !container
+  ) {
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    categories
+      .map(
+        categoryCard
+      )
+      .join("");
+
+}
+
+
+/*************************************************
+ * CATEGORY CARD
+ *************************************************/
+
+function categoryCard(
+  category
+) {
+
+  const [
+    name,
+    icon,
+    description
+  ] =
+    category;
+
+
+  return `
+    <a
+      class="card category-card"
+      href="category.html?name=${encodeURIComponent(name)}"
+    >
+
+      <div class="category-icon">
+        ${escapeHTML(icon)}
+      </div>
+
+      <h3>
+        ${escapeHTML(name)}
+      </h3>
+
+      <div class="small">
+        ${escapeHTML(description)}
+      </div>
+
+    </a>
+  `;
+
+}
+
+
+/*************************************************
+ * CATEGORY SLUG
+ *************************************************/
+
+function categorySlug(
+  name
+) {
+
+  return String(
+    name ||
+    ""
+  )
+    .toLowerCase()
+    .replace(
+      /&/g,
+      "and"
+    )
+    .replace(
+      /[^a-z0-9]+/g,
+      "-"
+    )
+    .replace(
+      /^-|-$/g,
+      ""
+    );
+
+}
+
+
+/*************************************************
+ * PROVIDER CARD
+ *************************************************/
+
+function providerCard(
+  provider
+) {
+
+  const p =
+    normalizeProvider(
+      provider
+    );
+
+
+  const recommendationLabel =
+    p.recommendations ===
+      1
+      ? "recommendation"
+      : "recommendations";
+
+
+  const areaText =
+    p.area.length
+      ? p.area.join(
+          ", "
+        )
+      : "Service area not listed";
+
+
+  const badges =
+    p.verified
+      .slice(
+        0,
+        3
+      )
+      .map(
+        badge =>
+          `
+            <span class="badge green">
+              ✓ ${escapeHTML(badge)}
+            </span>
+          `
+      )
+      .join("");
+
+
+  const callButton =
+    p.phone
+      ? `
+          <a
+            class="btn btn-outline"
+            href="tel:${phoneDigits(p.phone)}"
+          >
+            Call
+          </a>
+        `
+      : "";
+
+
+  return `
+    <article class="card provider-card">
+
+      <div class="small">
+        ${escapeHTML(p.type)}
+        ${p.type && p.category ? " • " : ""}
+        ${escapeHTML(p.category)}
+      </div>
+
+
+      <h3>
+        ${escapeHTML(p.name)}
+      </h3>
+
+
+      <div class="meta">
+
+        <span>
+          👍 ${p.recommendations}
+          ${recommendationLabel}
+        </span>
+
+        <span>
+          📍 ${escapeHTML(areaText)}
+        </span>
+
+      </div>
+
+
+      ${
+        badges
+          ? `
+              <div class="badges">
+                ${badges}
+              </div>
+            `
+          : ""
+      }
+
+
+      <p>
+        ${escapeHTML(
+          p.description ||
+          "No description has been provided yet."
+        )}
+      </p>
+
+
+      <div class="provider-actions">
+
+        <a
+          class="btn btn-primary"
+          href="provider.html?id=${encodeURIComponent(p.id)}"
+        >
+          View Profile
+        </a>
+
+        ${callButton}
+
+      </div>
+
+    </article>
+  `;
+
+}
+
+
+/*************************************************
+ * FEATURED PROVIDERS
+ *************************************************/
+
+function renderFeatured() {
+
+  const container =
+    document.querySelector(
+      "#featured-providers"
+    );
+
+
+  if (
+    !container
+  ) {
+
+    return;
+
+  }
+
+
+  if (
+    providerLoadFailed
+  ) {
+
+    container.innerHTML =
+      directoryUnavailableMessage();
+
+    return;
+
+  }
+
+
+  if (
+    providers.length ===
+    0
+  ) {
+
+    container.innerHTML =
+      `
+        <div class="card empty-state">
+
+          <h3>
+            The directory is growing
+          </h3>
+
+          <p>
+            No approved providers are available yet.
+          </p>
+
+          <a
+            class="btn btn-green"
+            href="list-service.html"
+          >
+            List Your Service
+          </a>
+
+        </div>
+      `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    providers
+      .slice(
+        0,
+        3
+      )
+      .map(
+        providerCard
+      )
+      .join("");
+
+}
+
+
+/*************************************************
+ * SEARCH PAGE
+ *************************************************/
+
+function renderSearch() {
+
+  const params =
+    new URLSearchParams(
+      location.search
+    );
+
+
+  const query =
+    String(
+      params.get(
+        "q"
+      ) ||
+      ""
+    ).trim();
+
+
+  const queryLabel =
+    document.querySelector(
+      "#search-query"
+    );
+
+
+  if (
+    queryLabel
+  ) {
+
+    queryLabel.textContent =
+      query ||
+      "all services";
+
+  }
+
+
+  const searchInput =
+    document.querySelector(
+      "#search-page-input"
+    );
+
+
+  if (
+    searchInput
+  ) {
+
+    searchInput.value =
+      query;
+
+  }
+
+
+  const resultCount =
+    document.querySelector(
+      "#result-count"
+    );
+
+
+  const resultContainer =
+    document.querySelector(
+      "#search-results"
+    );
+
+
+  if (
+    !resultContainer
+  ) {
+
+    return;
+
+  }
+
+
+  if (
+    providerLoadFailed
+  ) {
 
     if (
-      notesIndex >=
-      0
+      resultCount
     ) {
 
-      sheet
-        .getRange(
-          matchedRowNumber,
-          notesIndex + 1
-        )
-        .setValue(
-          notes
-        );
+      resultCount.textContent =
+        "";
 
     }
 
+
+    resultContainer.innerHTML =
+      directoryUnavailableMessage();
+
+    return;
+
   }
 
 
-  SpreadsheetApp.flush();
+  const normalizedQuery =
+    query.toLowerCase();
 
 
-  /***********************************************
-   * RECOMMENDATION COUNT
-   ***********************************************/
+  const results =
+    providers.filter(
+      provider => {
 
-  if (
-    key ===
-    'recommendations'
-  ) {
+        const haystack =
+          [
 
-    syncProviderRecommendationCount_(
-      sheet,
-      matchedRowNumber,
-      headers
+            provider.name,
+
+            provider.type,
+
+            provider.category,
+
+            provider.services.join(
+              " "
+            ),
+
+            provider.area.join(
+              " "
+            ),
+
+            provider.description
+
+          ]
+            .join(
+              " "
+            )
+            .toLowerCase();
+
+
+        return (
+          !normalizedQuery ||
+          haystack.includes(
+            normalizedQuery
+          )
+        );
+
+      }
     );
 
+
+  if (
+    resultCount
+  ) {
+
+    resultCount.textContent =
+      `${results.length} provider${
+        results.length === 1
+          ? ""
+          : "s"
+      } found`;
+
   }
 
 
-  return getAdminDashboardData();
+  if (
+    results.length ===
+    0
+  ) {
+
+    resultContainer.innerHTML =
+      `
+        <div class="card empty-state">
+
+          <h3>
+            No exact matches yet
+          </h3>
+
+          <p>
+            Try a broader search or tell the community what kind of help you need.
+          </p>
+
+          <a
+            class="btn btn-green"
+            href="request-help.html"
+          >
+            Post What You Need
+          </a>
+
+        </div>
+      `;
+
+    return;
+
+  }
+
+
+  resultContainer.innerHTML =
+    results
+      .map(
+        providerCard
+      )
+      .join("");
 
 }
 
 
 /*************************************************
- * SET DATE IF COLUMN EXISTS
+ * CATEGORY PAGE
  *************************************************/
 
-function setDateIfColumnExists_(
-  sheet,
-  headers,
-  rowNumber,
-  possibleHeaders
-) {
+function renderCategoryPage() {
 
-  if (
-    !possibleHeaders ||
-    !possibleHeaders.length
-  ) {
-
-    return;
-
-  }
-
-
-  const index =
-    findHeaderIndex_(
-      headers,
-      possibleHeaders
+  const params =
+    new URLSearchParams(
+      location.search
     );
 
 
-  if (
-    index <
-    0
-  ) {
+  const requestedName =
+    String(
+      params.get(
+        "name"
+      ) ||
+      ""
+    ).trim();
 
-    return;
 
-  }
+  const category =
+    categories.find(
+      item =>
+        item[0] ===
+        requestedName
+    ) ||
+    categories[0];
 
 
-  sheet
-    .getRange(
-      rowNumber,
-      index + 1
+  const [
+    name,
+    icon,
+    description
+  ] =
+    category;
+
+
+  document
+    .querySelectorAll(
+      "[data-category-name]"
     )
-    .setValue(
-      new Date()
+    .forEach(
+      element => {
+
+        element.textContent =
+          name;
+
+      }
     );
 
-}
 
-
-/*************************************************
- * SYNC PROVIDER RECOMMENDATION COUNT
- *************************************************/
-
-function syncProviderRecommendationCount_(
-  recommendationSheet,
-  recommendationRowNumber,
-  recommendationHeaders
-) {
-
-  const providerIdIndex =
-    findHeaderIndex_(
-      recommendationHeaders,
-      [
-        'Provider ID'
-      ]
+  const iconElement =
+    document.querySelector(
+      "#category-icon"
     );
 
 
   if (
-    providerIdIndex <
-    0
+    iconElement
+  ) {
+
+    iconElement.textContent =
+      icon;
+
+  }
+
+
+  const descriptionElement =
+    document.querySelector(
+      "#category-desc"
+    );
+
+
+  if (
+    descriptionElement
+  ) {
+
+    descriptionElement.textContent =
+      description;
+
+  }
+
+
+  const container =
+    document.querySelector(
+      "#category-providers"
+    );
+
+
+  if (
+    !container
   ) {
 
     return;
 
   }
+
+
+  if (
+    providerLoadFailed
+  ) {
+
+    container.innerHTML =
+      directoryUnavailableMessage();
+
+    return;
+
+  }
+
+
+  const results =
+    providers.filter(
+      provider =>
+        provider.category ===
+        name
+    );
+
+
+  if (
+    results.length ===
+    0
+  ) {
+
+    container.innerHTML =
+      `
+        <div class="card empty-state">
+
+          <h3>
+            No providers listed yet
+          </h3>
+
+          <p>
+            No approved providers are currently listed in ${escapeHTML(name)}.
+          </p>
+
+          <a
+            class="btn btn-green"
+            href="list-service.html"
+          >
+            List a Service
+          </a>
+
+        </div>
+      `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    results
+      .map(
+        providerCard
+      )
+      .join("");
+
+}
+
+
+/*************************************************
+ * PROVIDER PROFILE
+ *************************************************/
+
+function renderProvider() {
+
+  const params =
+    new URLSearchParams(
+      location.search
+    );
 
 
   const providerId =
     String(
-      recommendationSheet
-        .getRange(
-          recommendationRowNumber,
-          providerIdIndex + 1
-        )
-        .getDisplayValue() ||
-      ''
+      params.get(
+        "id"
+      ) ||
+      params.get(
+        "providerId"
+      ) ||
+      ""
     ).trim();
+
+
+  if (
+    providerLoadFailed
+  ) {
+
+    renderProviderUnavailable(
+      "The provider directory is temporarily unavailable."
+    );
+
+    return;
+
+  }
 
 
   if (
     !providerId
   ) {
 
+    renderProviderUnavailable(
+      "No provider was selected."
+    );
+
     return;
 
   }
 
 
-  const spreadsheet =
-    SpreadsheetApp.openById(
-      ADMIN_SPREADSHEET_ID
-    );
-
-
-  const recommendations =
-    spreadsheet.getSheetByName(
-      'Recommendations'
-    );
-
-
-  const providers =
-    spreadsheet.getSheetByName(
-      'Providers'
+  const provider =
+    providers.find(
+      item =>
+        item.id ===
+        providerId
     );
 
 
   if (
-    !recommendations ||
-    !providers
+    !provider
   ) {
 
-    return;
-
-  }
-
-
-  const recommendationValues =
-    recommendations
-      .getDataRange()
-      .getDisplayValues();
-
-
-  if (
-    recommendationValues.length <
-    2
-  ) {
-
-    return;
-
-  }
-
-
-  const recHeaders =
-    recommendationValues[
-      0
-    ];
-
-
-  const recProviderIndex =
-    findHeaderIndex_(
-      recHeaders,
-      [
-        'Provider ID'
-      ]
+    renderProviderUnavailable(
+      "This provider could not be found or is no longer publicly listed."
     );
 
-
-  const recStatusIndex =
-    findHeaderIndex_(
-      recHeaders,
-      [
-        'Status'
-      ]
-    );
-
-
-  if (
-    recProviderIndex <
-      0 ||
-    recStatusIndex <
-      0
-  ) {
-
     return;
 
   }
 
 
-  let approvedCount =
-    0;
+  document.title =
+    `${provider.name} | FindLocal757.com`;
 
 
-  for (
-    let i = 1;
-    i < recommendationValues.length;
-    i++
-  ) {
-
-    const row =
-      recommendationValues[
-        i
-      ];
+  setText(
+    "#provider-name",
+    provider.name
+  );
 
 
-    const currentProviderId =
-      String(
-        row[
-          recProviderIndex
-        ] ||
-        ''
-      ).trim();
-
-
-    const currentStatus =
-      String(
-        row[
-          recStatusIndex
-        ] ||
-        ''
+  setText(
+    "#provider-category",
+    [
+      provider.type,
+      provider.category
+    ]
+      .filter(
+        Boolean
       )
-        .trim()
-        .toLowerCase();
+      .join(
+        " • "
+      )
+  );
 
 
-    if (
-      currentProviderId ===
-        providerId &&
-      currentStatus ===
-        'approved'
-    ) {
-
-      approvedCount++;
-
-    }
-
-  }
+  setText(
+    "#provider-description",
+    provider.description ||
+    "No provider description has been provided."
+  );
 
 
-  const providerValues =
-    providers
-      .getDataRange()
-      .getDisplayValues();
+  setText(
+    "#provider-recs",
+    provider.recommendations
+  );
 
 
-  if (
-    providerValues.length <
-    2
-  ) {
-
-    return;
-
-  }
+  setText(
+    "#provider-rehire",
+    provider.rehire
+  );
 
 
-  const providerHeaders =
-    providerValues[
-      0
-    ];
+  setText(
+    "#provider-phone",
+    provider.phone ||
+    "Not listed"
+  );
 
 
-  const providerIdIndex2 =
-    findHeaderIndex_(
-      providerHeaders,
-      [
-        'ID'
-      ]
-    );
+  renderProviderServices(
+    provider.services
+  );
 
 
-  const recommendationCountIndex =
-    findHeaderIndex_(
-      providerHeaders,
-      [
-        'Recommendation Count',
-        'Recommendations',
-        'Recommendations / Recommendation Count'
-      ]
-    );
+  renderProviderAreas(
+    provider.area
+  );
 
 
-  if (
-    providerIdIndex2 <
-      0 ||
-    recommendationCountIndex <
-      0
-  ) {
-
-    return;
-
-  }
+  renderProviderBadges(
+    provider.verified
+  );
 
 
-  for (
-    let i = 1;
-    i < providerValues.length;
-    i++
-  ) {
-
-    const currentId =
-      String(
-        providerValues[
-          i
-        ][
-          providerIdIndex2
-        ] ||
-        ''
-      ).trim();
+  updateVerificationStat(
+    provider.verified
+  );
 
 
-    if (
-      currentId ===
-      providerId
-    ) {
-
-      providers
-        .getRange(
-          i + 1,
-          recommendationCountIndex + 1
-        )
-        .setValue(
-          approvedCount
-        );
-
-      break;
-
-    }
-
-  }
+  configureProviderContact(
+    provider
+  );
 
 
-  SpreadsheetApp.flush();
+  configureProviderLinks(
+    provider
+  );
+
+
+  loadProviderRecommendations(
+    provider.id
+  );
 
 }
 
 
 /*************************************************
- * FIND HEADER INDEX
+ * PROVIDER NOT AVAILABLE
  *************************************************/
 
-function findHeaderIndex_(
-  headers,
-  possibleHeaders
+function renderProviderUnavailable(
+  message
 ) {
 
-  const normalizedHeaders =
-    headers.map(
-      header =>
-        String(
-          header ||
-          ''
-        )
-          .trim()
-          .toLowerCase()
+  setText(
+    "#provider-name",
+    "Provider Not Available"
+  );
+
+
+  setText(
+    "#provider-category",
+    ""
+  );
+
+
+  setText(
+    "#provider-description",
+    message
+  );
+
+
+  setText(
+    "#provider-recs",
+    "—"
+  );
+
+
+  setText(
+    "#provider-rehire",
+    "—"
+  );
+
+
+  setText(
+    "#provider-phone",
+    "—"
+  );
+
+
+  const services =
+    document.querySelector(
+      "#provider-services"
     );
 
 
-  for (
-    const possibleHeader
-    of possibleHeaders
+  if (
+    services
   ) {
 
-    const normalized =
-      String(
-        possibleHeader ||
-        ''
+    services.innerHTML =
+      `<span class="small">${escapeHTML(message)}</span>`;
+
+  }
+
+
+  const areas =
+    document.querySelector(
+      "#provider-area"
+    );
+
+
+  if (
+    areas
+  ) {
+
+    areas.innerHTML =
+      `<span class="small">No service-area information available.</span>`;
+
+  }
+
+
+  const badges =
+    document.querySelector(
+      "#provider-badges"
+    );
+
+
+  if (
+    badges
+  ) {
+
+    badges.innerHTML =
+      `<span class="small">No verification information available.</span>`;
+
+  }
+
+
+  const recommendations =
+    document.querySelector(
+      "#provider-recommendations"
+    );
+
+
+  if (
+    recommendations
+  ) {
+
+    recommendations.innerHTML =
+      "";
+
+  }
+
+
+  const call =
+    document.querySelector(
+      "#provider-call"
+    );
+
+
+  if (
+    call
+  ) {
+
+    call.style.display =
+      "none";
+
+  }
+
+
+  hideElement(
+    "#provider-website"
+  );
+
+
+  hideElement(
+    "#provider-facebook"
+  );
+
+}
+
+
+/*************************************************
+ * PROVIDER SERVICES
+ *************************************************/
+
+function renderProviderServices(
+  services
+) {
+
+  const container =
+    document.querySelector(
+      "#provider-services"
+    );
+
+
+  if (
+    !container
+  ) {
+
+    return;
+
+  }
+
+
+  if (
+    !services.length
+  ) {
+
+    container.innerHTML =
+      `
+        <span class="small">
+          No specific services have been listed.
+        </span>
+      `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    services
+      .map(
+        service =>
+          `
+            <span class="pill">
+              ${escapeHTML(service)}
+            </span>
+          `
       )
-        .trim()
-        .toLowerCase();
+      .join("");
+
+}
 
 
-    const index =
-      normalizedHeaders.indexOf(
-        normalized
-      );
+/*************************************************
+ * PROVIDER AREAS
+ *************************************************/
+
+function renderProviderAreas(
+  areas
+) {
+
+  const container =
+    document.querySelector(
+      "#provider-area"
+    );
+
+
+  if (
+    !container
+  ) {
+
+    return;
+
+  }
+
+
+  if (
+    !areas.length
+  ) {
+
+    container.innerHTML =
+      `
+        <span class="small">
+          Service area not listed.
+        </span>
+      `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    areas
+      .map(
+        area =>
+          `
+            <span class="pill">
+              📍 ${escapeHTML(area)}
+            </span>
+          `
+      )
+      .join("");
+
+}
+
+
+/*************************************************
+ * PROVIDER VERIFICATION BADGES
+ *************************************************/
+
+function renderProviderBadges(
+  badges
+) {
+
+  const container =
+    document.querySelector(
+      "#provider-badges"
+    );
+
+
+  if (
+    !container
+  ) {
+
+    return;
+
+  }
+
+
+  if (
+    !badges.length
+  ) {
+
+    container.innerHTML =
+      `
+        <span class="small">
+          No FindLocal757.com verification badges are currently displayed.
+        </span>
+      `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    badges
+      .map(
+        badge =>
+          `
+            <span class="badge green">
+              ✓ ${escapeHTML(badge)}
+            </span>
+          `
+      )
+      .join("");
+
+}
+
+
+/*************************************************
+ * VERIFICATION SUMMARY STAT
+ *************************************************/
+
+function updateVerificationStat(
+  badges
+) {
+
+  const stat =
+    document.querySelector(
+      ".profile-stats .stat:nth-child(3)"
+    );
+
+
+  if (
+    !stat
+  ) {
+
+    return;
+
+  }
+
+
+  const number =
+    stat.querySelector(
+      "strong"
+    );
+
+
+  const label =
+    stat.querySelector(
+      ".small"
+    );
+
+
+  const count =
+    Array.isArray(
+      badges
+    )
+      ? badges.length
+      : 0;
+
+
+  if (
+    count ===
+    0
+  ) {
+
+    if (
+      number
+    ) {
+
+      number.textContent =
+        "—";
+
+    }
 
 
     if (
-      index !==
-      -1
+      label
     ) {
 
-      return index;
+      label.textContent =
+        "Not Verified";
+
+    }
+
+
+    return;
+
+  }
+
+
+  if (
+    number
+  ) {
+
+    number.textContent =
+      `✓ ${count}`;
+
+  }
+
+
+  if (
+    label
+  ) {
+
+    label.textContent =
+      count ===
+        1
+        ? "Verified Item"
+        : "Verified Items";
+
+  }
+
+}
+
+
+/*************************************************
+ * PROVIDER CONTACT LINKS
+ *************************************************/
+
+function configureProviderContact(
+  provider
+) {
+
+  const call =
+    document.querySelector(
+      "#provider-call"
+    );
+
+
+  if (
+    call
+  ) {
+
+    if (
+      provider.phone &&
+      phoneDigits(
+        provider.phone
+      )
+    ) {
+
+      call.href =
+        "tel:" +
+        phoneDigits(
+          provider.phone
+        );
+
+
+      call.style.display =
+        "";
+
+    }
+
+    else {
+
+      call.style.display =
+        "none";
 
     }
 
   }
 
 
-  return -1;
+  configureExternalButton(
+    "#provider-website",
+    provider.website
+  );
+
+
+  configureExternalButton(
+    "#provider-facebook",
+    provider.facebook
+  );
 
 }
+
+
+/*************************************************
+ * EXTERNAL PROVIDER BUTTON
+ *************************************************/
+
+function configureExternalButton(
+  selector,
+  value
+) {
+
+  const element =
+    document.querySelector(
+      selector
+    );
+
+
+  if (
+    !element
+  ) {
+
+    return;
+
+  }
+
+
+  const url =
+    safeExternalURL(
+      value
+    );
+
+
+  if (
+    !url
+  ) {
+
+    element.style.display =
+      "none";
+
+    element.removeAttribute(
+      "href"
+    );
+
+    return;
+
+  }
+
+
+  element.href =
+    url;
+
+
+  element.style.display =
+    "";
+
+}
+
+
+/*************************************************
+ * RECOMMEND / UPDATE / REPORT LINKS
+ *************************************************/
+
+function configureProviderLinks(
+  provider
+) {
+
+  const encodedId =
+    encodeURIComponent(
+      provider.id
+    );
+
+
+  const encodedName =
+    encodeURIComponent(
+      provider.name
+    );
+
+
+  const recommendationLink =
+    document.querySelector(
+      "#recommend-provider-link"
+    );
+
+
+  if (
+    recommendationLink
+  ) {
+
+    recommendationLink.href =
+      `recommend.html?providerId=${encodedId}&provider=${encodedName}`;
+
+  }
+
+
+  const updateLink =
+    document.querySelector(
+      "#update-provider-link"
+    );
+
+
+  if (
+    updateLink
+  ) {
+
+    updateLink.href =
+      `update-listing.html?providerId=${encodedId}&provider=${encodedName}`;
+
+  }
+
+
+  const reportLink =
+    document.querySelector(
+      "#report-provider-link"
+    );
+
+
+  if (
+    reportLink
+  ) {
+
+    reportLink.href =
+      `report.html?providerId=${encodedId}&provider=${encodedName}`;
+
+  }
+
+}
+
+
+/*************************************************
+ * LOAD APPROVED RECOMMENDATIONS
+ *************************************************/
+
+async function loadProviderRecommendations(
+  providerId
+) {
+
+  const container =
+    document.querySelector(
+      "#provider-recommendations"
+    );
+
+
+  if (
+    !container
+  ) {
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    `
+      <p class="small">
+        Loading recommendations...
+      </p>
+    `;
+
+
+  try {
+
+    const url =
+      API_URL +
+      "?action=recommendations" +
+      "&providerId=" +
+      encodeURIComponent(
+        providerId
+      ) +
+      "&_=" +
+      Date.now();
+
+
+    const response =
+      await fetch(
+        url,
+        {
+          method:
+            "GET",
+
+          cache:
+            "no-store"
+        }
+      );
+
+
+    if (
+      !response.ok
+    ) {
+
+      throw new Error(
+        "Recommendation request failed."
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if (
+      !data ||
+      data.success !== true ||
+      !Array.isArray(
+        data.recommendations
+      )
+    ) {
+
+      throw new Error(
+        "Invalid recommendation response."
+      );
+
+    }
+
+
+    renderProviderRecommendations(
+      data.recommendations
+    );
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Unable to load recommendations:",
+      error
+    );
+
+
+    container.innerHTML =
+      `
+        <p class="small">
+          Recommendations are temporarily unavailable.
+        </p>
+      `;
+
+  }
+
+}
+
+
+/*************************************************
+ * DISPLAY PROVIDER RECOMMENDATIONS
+ *************************************************/
+
+function renderProviderRecommendations(
+  recommendations
+) {
+
+  const container =
+    document.querySelector(
+      "#provider-recommendations"
+    );
+
+
+  if (
+    !container
+  ) {
+
+    return;
+
+  }
+
+
+  if (
+    recommendations.length ===
+    0
+  ) {
+
+    container.innerHTML =
+      `
+        <div class="empty-state">
+
+          <h3>
+            No approved recommendations yet
+          </h3>
+
+          <p>
+            Used this provider? You can be the first to share your experience.
+          </p>
+
+        </div>
+      `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    recommendations
+      .map(
+        recommendation =>
+          recommendationCard(
+            recommendation
+          )
+      )
+      .join("");
+
+}
+
+
+/*************************************************
+ * RECOMMENDATION CARD
+ *************************************************/
+
+function recommendationCard(
+  recommendation
+) {
+
+  const r =
+    recommendation ||
+    {};
+
+
+  const reviewer =
+    String(
+      r.reviewerName ||
+      "Neighbor"
+    ).trim();
+
+
+  const city =
+    String(
+      r.reviewerCity ||
+      ""
+    ).trim();
+
+
+  const service =
+    String(
+      r.serviceProvided ||
+      ""
+    ).trim();
+
+
+  const comments =
+    String(
+      r.comments ||
+      ""
+    ).trim();
+
+
+  const date =
+    String(
+      r.dateApproved ||
+      ""
+    ).trim();
+
+
+  const recommend =
+    String(
+      r.wouldRecommend ||
+      ""
+    ).trim();
+
+
+  const useAgain =
+    String(
+      r.wouldUseAgain ||
+      ""
+    ).trim();
+
+
+  return `
+    <article
+      style="
+        padding:22px 0;
+        border-top:1px solid var(--line);
+      "
+    >
+
+      <div
+        style="
+          display:flex;
+          justify-content:space-between;
+          gap:16px;
+          flex-wrap:wrap;
+        "
+      >
+
+        <div>
+
+          <strong>
+            ${escapeHTML(reviewer)}
+          </strong>
+
+          ${
+            city
+              ? `
+                  <span class="small">
+                    • ${escapeHTML(city)}
+                  </span>
+                `
+              : ""
+          }
+
+        </div>
+
+
+        ${
+          date
+            ? `
+                <div class="small">
+                  ${escapeHTML(date)}
+                </div>
+              `
+            : ""
+        }
+
+      </div>
+
+
+      ${
+        service
+          ? `
+              <p
+                class="small"
+                style="margin-top:10px;"
+              >
+                <strong>Service:</strong>
+                ${escapeHTML(service)}
+              </p>
+            `
+          : ""
+      }
+
+
+      <div
+        class="badges"
+        style="margin-top:12px;"
+      >
+
+        ${
+          recommend
+            ? `
+                <span
+                  class="badge ${
+                    recommend.toLowerCase() ===
+                    "yes"
+                      ? "green"
+                      : ""
+                  }"
+                >
+                  ${
+                    recommend.toLowerCase() ===
+                    "yes"
+                      ? "✓"
+                      : ""
+                  }
+                  Recommend: ${escapeHTML(recommend)}
+                </span>
+              `
+            : ""
+        }
+
+
+        ${
+          useAgain
+            ? `
+                <span
+                  class="badge ${
+                    useAgain.toLowerCase() ===
+                    "yes"
+                      ? "green"
+                      : ""
+                  }"
+                >
+                  ${
+                    useAgain.toLowerCase() ===
+                    "yes"
+                      ? "✓"
+                      : ""
+                  }
+                  Use Again: ${escapeHTML(useAgain)}
+                </span>
+              `
+            : ""
+        }
+
+      </div>
+
+
+      ${
+        comments
+          ? `
+              <p style="margin-top:14px;">
+                ${escapeHTML(comments)}
+              </p>
+            `
+          : ""
+      }
+
+    </article>
+  `;
+
+}
+
+
+/*************************************************
+ * WEBSITE FORM SUBMISSIONS
+ *************************************************/
+
+function initSubmissionForms() {
+
+  document
+    .querySelectorAll(
+      "form[data-form-type]"
+    )
+    .forEach(
+      form => {
+
+        form.addEventListener(
+          "submit",
+          event => {
+
+            event.preventDefault();
+
+
+            submitFindLocal757Form(
+              form
+            );
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+/*************************************************
+ * SUBMIT A FORM
+ *************************************************/
+
+async function submitFindLocal757Form(
+  form
+) {
+
+  if (
+    !form
+  ) {
+
+    return;
+
+  }
+
+
+  if (
+    !form.checkValidity()
+  ) {
+
+    form.reportValidity();
+
+    return;
+
+  }
+
+
+  const submitButton =
+    form.querySelector(
+      'button[type="submit"], input[type="submit"]'
+    );
+
+
+  const originalButtonText =
+    submitButton
+      ? submitButton.textContent
+      : "";
+
+
+  if (
+    submitButton
+  ) {
+
+    submitButton.disabled =
+      true;
+
+
+    submitButton.textContent =
+      "Submitting...";
+
+  }
+
+
+  setFormStatus(
+    form,
+    "Submitting...",
+    "loading"
+  );
+
+
+  try {
+
+    const formData =
+      new FormData(
+        form
+      );
+
+
+    const formType =
+      String(
+        form.dataset.formType ||
+        formData.get(
+          "type"
+        ) ||
+        ""
+      ).trim();
+
+
+    if (
+      !formType
+    ) {
+
+      throw new Error(
+        "Submission type is missing."
+      );
+
+    }
+
+
+    formData.set(
+      "type",
+      formType
+    );
+
+
+    let providerSubmissionId =
+      "";
+
+
+    if (
+      formType ===
+      "provider"
+    ) {
+
+      providerSubmissionId =
+        createProviderSubmissionId();
+
+
+      formData.set(
+        "submissionId",
+        providerSubmissionId
+      );
+
+    }
+
+
+    const body =
+      new URLSearchParams();
+
+
+    for (
+      const [
+        key,
+        value
+      ] of formData.entries()
+    ) {
+
+      body.append(
+        key,
+        String(
+          value
+        )
+      );
+
+    }
+
+
+    const response =
+      await fetch(
+        API_URL,
+        {
+
+          method:
+            "POST",
+
+          headers:
+            {
+
+              "Content-Type":
+                "application/x-www-form-urlencoded;charset=UTF-8"
+
+            },
+
+          body:
+            body.toString()
+
+        }
+      );
+
+
+    if (
+      !response.ok
+    ) {
+
+      throw new Error(
+        "The submission could not be completed."
+      );
+
+    }
+
+
+    const responseText =
+      await response.text();
+
+
+    let data;
+
+
+    try {
+
+      data =
+        JSON.parse(
+          responseText
+        );
+
+    }
+
+    catch (error) {
+
+      throw new Error(
+        "The server returned an unexpected response."
+      );
+
+    }
+
+
+    if (
+      !data ||
+      data.success !==
+        true
+    ) {
+
+      throw new Error(
+        data &&
+        data.message
+          ? data.message
+          : "The submission could not be completed."
+      );
+
+    }
+
+
+    if (
+      formType ===
+      "provider"
+    ) {
+
+      const submissionId =
+        String(
+          data.id ||
+          providerSubmissionId ||
+          ""
+        ).trim();
+
+
+      if (
+        submissionId
+      ) {
+
+        await verifyProviderSubmission(
+          submissionId
+        );
+
+      }
+
+    }
+
+
+    setFormStatus(
+      form,
+      data.message ||
+      successMessageForFormType(
+        formType
+      ),
+      "success"
+    );
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "FindLocal757.com submission error:",
+      error
+    );
+
+
+    setFormStatus(
+      form,
+      error.message ||
+      "Something went wrong. Please try again.",
+      "error"
+    );
+
+  }
+
+  finally {
+
+    if (
+      submitButton
+    ) {
+
+      submitButton.disabled =
+        false;
+
+
+      submitButton.textContent =
+        originalButtonText;
+
+    }
+
+  }
+
+}
+
+
+/*************************************************
+ * VERIFY NEW PROVIDER SUBMISSION
+ *************************************************/
+
+async function verifyProviderSubmission(
+  submissionId
+) {
+
+  try {
+
+    const url =
+      API_URL +
+      "?action=submissionstatus" +
+      "&id=" +
+      encodeURIComponent(
+        submissionId
+      ) +
+      "&_=" +
+      Date.now();
+
+
+    const response =
+      await fetch(
+        url,
+        {
+
+          method:
+            "GET",
+
+          cache:
+            "no-store"
+
+        }
+      );
+
+
+    if (
+      !response.ok
+    ) {
+
+      return false;
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    return Boolean(
+      data &&
+      data.success === true &&
+      data.found === true
+    );
+
+  }
+
+  catch (error) {
+
+    console.warn(
+      "Provider submission verification could not be completed:",
+      error
+    );
+
+
+    return false;
+
+  }
+
+}
+
+
+/*************************************************
+ * PROVIDER SUBMISSION ID
+ *************************************************/
+
+function createProviderSubmissionId() {
+
+  const timestamp =
+    Date.now()
+      .toString(
+        36
+      )
+      .toUpperCase();
+
+
+  const random =
+    Math.random()
+      .toString(
+        36
+      )
+      .slice(
+        2,
+        10
+      )
+      .toUpperCase();
+
+
+  return (
+    "PROV-WEB-" +
+    timestamp +
+    "-" +
+    random
+  );
+
+}
+
+
+/*************************************************
+ * FORM SUCCESS MESSAGES
+ *************************************************/
+
+function successMessageForFormType(
+  type
+) {
+
+  switch (
+    type
+  ) {
+
+    case "provider":
+
+      return "Provider submitted for review.";
+
+
+    case "recommendation":
+
+      return "Recommendation submitted for review.";
+
+
+    case "serviceRequest":
+
+      return "Service request submitted.";
+
+
+    case "providerSuggestion":
+
+      return "Provider suggestion submitted.";
+
+
+    case "listingUpdate":
+
+      return "Listing update request submitted.";
+
+
+    case "report":
+
+      return "Report submitted.";
+
+
+    case "contact":
+
+      return "Message received.";
+
+
+    default:
+
+      return "Submission received.";
+
+  }
+
+}
+
+
+/*************************************************
+ * FORM STATUS MESSAGE
+ *************************************************/
+
+function setFormStatus(
+  form,
+  message,
+  type
+) {
+
+  const status =
+    form.querySelector(
+      "#form-status"
+    ) ||
+    document.querySelector(
+      "#form-status"
+    );
+
+
+  if (
+    !status
+  ) {
+
+    return;
+
+  }
+
+
+  status.textContent =
+    message;
+
+
+  status.classList.remove(
+    "notice",
+    "green",
+    "warning"
+  );
+
+
+  if (
+    type ===
+    "success"
+  ) {
+
+    status.classList.add(
+      "notice",
+      "green"
+    );
+
+  }
+
+  else if (
+    type ===
+    "error"
+  ) {
+
+    status.classList.add(
+      "notice",
+      "warning"
+    );
+
+  }
+
+  else if (
+    type ===
+    "loading"
+  ) {
+
+    status.classList.add(
+      "notice"
+    );
+
+  }
+
+}
+
+
+/*************************************************
+ * DIRECTORY UNAVAILABLE MESSAGE
+ *************************************************/
+
+function directoryUnavailableMessage() {
+
+  return `
+    <div class="card empty-state">
+
+      <h3>
+        The directory is temporarily unavailable
+      </h3>
+
+      <p>
+        We could not load the provider directory right now. Please try refreshing the page.
+      </p>
+
+    </div>
+  `;
+
+}
+
+
+/*************************************************
+ * SET TEXT
+ *************************************************/
+
+function setText(
+  selector,
+  value
+) {
+
+  const element =
+    document.querySelector(
+      selector
+    );
+
+
+  if (
+    element
+  ) {
+
+    element.textContent =
+      value === null ||
+      value === undefined
+        ? ""
+        : String(
+            value
+          );
+
+  }
+
+}
+
+
+/*************************************************
+ * HIDE ELEMENT
+ *************************************************/
+
+function hideElement(
+  selector
+) {
+
+  const element =
+    document.querySelector(
+      selector
+    );
+
+
+  if (
+    element
+  ) {
+
+    element.style.display =
+      "none";
+
+  }
+
+}
+
+
+/*************************************************
+ * PHONE NUMBER FOR TEL LINK
+ *************************************************/
+
+function phoneDigits(
+  phone
+) {
+
+  return String(
+    phone ||
+    ""
+  )
+    .replace(
+      /[^\d+]/g,
+      ""
+    );
+
+}
+
+
+/*************************************************
+ * SAFE EXTERNAL URL
+ *************************************************/
+
+function safeExternalURL(
+  value
+) {
+
+  let url =
+    String(
+      value ||
+      ""
+    ).trim();
+
+
+  if (
+    !url
+  ) {
+
+    return "";
+
+  }
+
+
+  if (
+    !/^https?:\/\//i.test(
+      url
+    )
+  ) {
+
+    url =
+      "https://" +
+      url;
+
+  }
+
+
+  try {
+
+    const parsed =
+      new URL(
+        url
+      );
+
+
+    if (
+      parsed.protocol !==
+        "http:" &&
+      parsed.protocol !==
+        "https:"
+    ) {
+
+      return "";
+
+    }
+
+
+    return parsed.href;
+
+  }
+
+  catch (error) {
+
+    return "";
+
+  }
+
+}
+
+
+/*************************************************
+ * ESCAPE USER-PROVIDED HTML
+ *************************************************/
+
+function escapeHTML(
+  value
+) {
+
+  return String(
+    value === null ||
+    value === undefined
+      ? ""
+      : value
+  )
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+/*************************************************
+ * BOOT AFTER PAGE LOAD
+ *************************************************/
+
+document.addEventListener(
+  "DOMContentLoaded",
+  boot
+);
