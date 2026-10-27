@@ -11,41 +11,109 @@
   >
 
   <title>
-    List Your Service | NeighborSource
+    List Your Service | FindLocal757.com
   </title>
 
   <meta
     name="description"
-    content="Submit your local business or individual service to be considered for the NeighborSource directory."
+    content="Add your local business, side hustle, or individual service to the FindLocal757.com directory for free."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=3"
+    href="css/style.css?v=4"
   >
 
 
   <style>
 
+    /* =========================================
+       LIST SERVICE PAGE
+       ========================================= */
+
+    .listing-page-hero {
+      text-align: center;
+      padding-top: 54px;
+      padding-bottom: 54px;
+    }
+
+    .listing-page-hero .container {
+      max-width: 880px;
+    }
+
+    .listing-page-hero p {
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* =========================================
+       MAIN LAYOUT
+       ========================================= */
+
     .listing-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 340px;
+      grid-template-columns:
+        minmax(0, 1fr) 340px;
       gap: 32px;
       align-items: start;
     }
 
-
-    .listing-contact-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
+    .listing-form-card {
+      padding: 34px;
+      min-width: 0;
     }
 
+    .listing-sidebar {
+      min-width: 0;
+    }
+
+    .listing-sidebar .card + .card {
+      margin-top: 22px;
+    }
+
+
+    /* =========================================
+       FORM SECTIONS
+       ========================================= */
+
+    .listing-form-section {
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .listing-form-section:last-of-type {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .listing-section-heading {
+      margin-bottom: 22px;
+    }
+
+    .listing-section-heading h2 {
+      margin-bottom: 6px;
+    }
+
+    .listing-section-heading p {
+      margin-bottom: 0;
+    }
+
+
+    /* =========================================
+       FIELDS
+       ========================================= */
 
     #list-service-form .form-group {
-      margin-bottom: 26px;
+      margin-bottom: 24px;
     }
 
+    #list-service-form .form-group:last-child {
+      margin-bottom: 0;
+    }
 
     #list-service-form .form-group > .small {
       display: block;
@@ -53,16 +121,52 @@
       line-height: 1.5;
     }
 
+    #list-service-form input:not([type="checkbox"]),
+    #list-service-form select,
+    #list-service-form textarea {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
 
-    #list-service-form > .small {
-      display: block;
-      margin-bottom: 30px;
+    #list-service-form textarea {
+      min-height: 150px;
+      resize: vertical;
     }
 
 
+    /* =========================================
+       TWO COLUMN CONTACT GRID
+       ========================================= */
+
+    .listing-contact-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 0 20px;
+    }
+
+
+    /* =========================================
+       OPTIONAL LABEL
+       ========================================= */
+
+    .optional-label {
+      margin-left: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+
+    /* =========================================
+       SERVICE AREA
+       ========================================= */
+
     .service-area-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
       gap: 16px 22px;
       margin-top: 18px;
       padding: 22px;
@@ -70,7 +174,6 @@
       border: 1px solid var(--line);
       border-radius: 14px;
     }
-
 
     .service-area-choice {
       display: flex !important;
@@ -83,7 +186,6 @@
       cursor: pointer;
     }
 
-
     .service-area-choice input[type="checkbox"] {
       width: 22px !important;
       height: 22px !important;
@@ -93,7 +195,6 @@
       margin: 0 !important;
       padding: 0 !important;
     }
-
 
     .service-area-choice span {
       display: block;
@@ -105,15 +206,24 @@
       overflow-wrap: normal;
     }
 
+    #service-area-error {
+      display: none;
+      margin-top: 12px;
+      font-weight: 700;
+    }
+
+
+    /* =========================================
+       CONFIRMATION
+       ========================================= */
 
     .confirmation-box {
-      margin-top: 30px;
+      margin-top: 28px;
       padding: 22px;
       background: var(--soft);
       border: 1px solid var(--line);
       border-radius: 14px;
     }
-
 
     .confirmation-label {
       display: flex !important;
@@ -123,7 +233,6 @@
       width: 100%;
       cursor: pointer;
     }
-
 
     .confirmation-label input[type="checkbox"] {
       width: 22px !important;
@@ -135,7 +244,6 @@
       padding: 0 !important;
     }
 
-
     .confirmation-label span {
       flex: 1 1 auto;
       min-width: 0;
@@ -144,96 +252,124 @@
     }
 
 
-    .listing-sidebar .card + .card {
-      margin-top: 22px;
+    /* =========================================
+       SUBMIT AREA
+       ========================================= */
+
+    .listing-submit-area {
+      margin-top: 28px;
+    }
+
+    .listing-submit-button {
+      min-width: 220px;
+    }
+
+    .listing-submit-note {
+      max-width: 680px;
+      margin-top: 12px;
     }
 
 
+    /* =========================================
+       SIDEBAR
+       ========================================= */
+
+    .listing-sidebar .trust-list {
+      margin-top: 20px;
+      color: var(--text);
+    }
+
+    .listing-sidebar .btn {
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+
+    /* =========================================
+       TABLET
+       ========================================= */
 
     @media (max-width: 900px) {
+
+      .listing-page-hero {
+        padding-top: 48px;
+        padding-bottom: 48px;
+      }
 
       .listing-layout {
         grid-template-columns: 1fr;
         gap: 28px;
       }
 
-
       .listing-sidebar {
         order: 2;
         width: 100%;
       }
 
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 650px) {
+
+      .listing-page-hero {
+        text-align: left;
+        padding-top: 38px;
+        padding-bottom: 38px;
+      }
+
+      .listing-page-hero h1 {
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+      .listing-page-hero p {
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+      .listing-layout {
+        display: block;
+      }
+
+      .listing-form-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 22px;
+      }
 
       .listing-contact-grid {
         grid-template-columns: 1fr;
         gap: 0;
       }
 
-
-      .service-area-grid {
-        grid-template-columns: 1fr;
+      .listing-form-section {
+        padding-bottom: 24px;
+        margin-bottom: 24px;
       }
-
-    }
-
-
-
-    @media (max-width: 520px) {
-
-      .listing-layout {
-        display: block;
-      }
-
-
-      .listing-layout > form {
-        width: 100%;
-        max-width: 100%;
-      }
-
 
       #list-service-form .form-group {
-        margin-bottom: 30px;
+        margin-bottom: 26px;
       }
 
-
-      #list-service-form > .small {
-        margin-bottom: 34px;
+      #list-service-form input:not([type="checkbox"]),
+      #list-service-form select {
+        min-height: 52px;
       }
 
-
-      #list-service-form .form-group > .small {
-        margin-top: 9px;
+      #list-service-form textarea {
+        min-height: 160px;
       }
-
-
-      .listing-sidebar {
-        width: 100%;
-        max-width: 100%;
-        margin-top: 28px;
-      }
-
-
-      .listing-contact-grid {
-        display: block;
-      }
-
 
       .service-area-grid {
-        display: grid;
         grid-template-columns: 1fr;
         gap: 18px;
         padding: 20px;
       }
-
-
-      .form-card input:not([type="checkbox"]),
-      .form-card select,
-      .form-card textarea {
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-      }
-
 
       .service-area-choice input[type="checkbox"],
       .confirmation-label input[type="checkbox"] {
@@ -244,20 +380,20 @@
         flex-basis: 22px !important;
       }
 
-
-      .form-card textarea {
-        min-height: 160px;
-      }
-
-
       .confirmation-box {
-        margin-top: 34px;
+        margin-top: 26px;
         padding: 20px;
       }
 
-
-      .form-card .btn[type="submit"] {
+      .listing-submit-button {
         width: 100%;
+        min-height: 54px;
+      }
+
+      .listing-sidebar {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 28px;
       }
 
     }
@@ -273,11 +409,14 @@
 <main>
 
 
-  <!-- PAGE HERO -->
+  <!-- =========================================
+       PAGE HERO
+       ========================================= -->
 
-  <section class="page-hero">
+  <section class="page-hero listing-page-hero">
 
     <div class="container">
+
 
       <div class="eyebrow">
         FOR LOCAL PROVIDERS
@@ -290,8 +429,9 @@
 
 
       <p>
-        Own a local business or provide a service in Hampton Roads? Submit your information for review and possible inclusion in the NeighborSource directory.
+        Own a local business, run a side hustle, or provide a service in Hampton Roads? Add your information to FindLocal757.com for free.
       </p>
+
 
     </div>
 
@@ -299,7 +439,9 @@
 
 
 
-  <!-- FORM SECTION -->
+  <!-- =========================================
+       FORM SECTION
+       ========================================= -->
 
   <section class="section">
 
@@ -309,10 +451,13 @@
       <div class="listing-layout">
 
 
-        <!-- FORM -->
+
+        <!-- =====================================
+             FORM
+             ===================================== -->
 
         <form
-          class="card form-card"
+          class="card form-card listing-form-card"
           id="list-service-form"
           data-form-type="provider"
         >
@@ -334,148 +479,565 @@
 
 
 
-          <div class="eyebrow dark">
-            PROVIDER INFORMATION
-          </div>
+          <!-- =====================================
+               BASIC INFORMATION
+               ===================================== -->
+
+          <div class="listing-form-section">
 
 
-          <h2>
-            Tell us about your service
-          </h2>
+            <div class="listing-section-heading">
 
+              <div class="eyebrow dark">
+                STEP 1
+              </div>
 
-          <p class="small">
-            Fields marked with * are required.
-          </p>
+              <h2>
+                Tell us about your service
+              </h2>
 
+              <p class="section-intro">
+                Fields marked with * are required.
+              </p>
 
-
-          <!-- PROVIDER TYPE -->
-
-          <div class="form-group">
-
-            <label for="providerType">
-              Provider Type *
-            </label>
-
-
-            <select
-              id="providerType"
-              name="providerType"
-              required
-            >
-
-              <option value="">
-                Select provider type
-              </option>
-
-              <option value="Business">
-                Business
-              </option>
-
-              <option value="Individual">
-                Individual
-              </option>
-
-            </select>
-
-          </div>
-
-
-
-          <!-- PROVIDER NAME -->
-
-          <div class="form-group">
-
-            <label for="providerName">
-              Business or Provider Name *
-            </label>
-
-
-            <input
-              id="providerName"
-              name="providerName"
-              type="text"
-              autocomplete="organization"
-              required
-            >
-
-
-            <div class="small">
-              This is the name that will appear publicly on NeighborSource.
             </div>
 
-          </div>
 
 
+            <!-- PROVIDER TYPE -->
 
-          <!-- CONTACT NAME -->
+            <div class="form-group">
 
-          <div class="form-group">
+              <label for="providerType">
+                Provider Type *
+              </label>
 
-            <label for="contactName">
-              Contact Name *
-            </label>
+              <select
+                id="providerType"
+                name="providerType"
+                required
+              >
 
+                <option value="">
+                  Select provider type
+                </option>
 
-            <input
-              id="contactName"
-              name="contactName"
-              type="text"
-              autocomplete="name"
-              required
-            >
+                <option value="Business">
+                  Business
+                </option>
 
+                <option value="Individual">
+                  Individual Service Provider
+                </option>
 
-            <div class="small">
-              Used for administrative contact. This does not have to be the public provider name.
+              </select>
+
+              <div class="small">
+                You do not have to be a registered business. Individuals and side hustles can also be listed.
+              </div>
+
             </div>
 
+
+
+            <!-- PROVIDER NAME -->
+
+            <div class="form-group">
+
+              <label for="providerName">
+                Business or Provider Name *
+              </label>
+
+              <input
+                id="providerName"
+                name="providerName"
+                type="text"
+                autocomplete="organization"
+                required
+                placeholder="Example: Smith Lawn Care"
+              >
+
+              <div class="small">
+                This is the name that will appear publicly on FindLocal757.com.
+              </div>
+
+            </div>
+
+
+
+            <!-- CONTACT NAME -->
+
+            <div class="form-group">
+
+              <label for="contactName">
+                Contact Name *
+              </label>
+
+              <input
+                id="contactName"
+                name="contactName"
+                type="text"
+                autocomplete="name"
+                required
+                placeholder="Your name"
+              >
+
+              <div class="small">
+                Used for administrative contact. This does not have to be the public provider name.
+              </div>
+
+            </div>
+
+
+
+            <!-- PHONE / EMAIL -->
+
+            <div class="listing-contact-grid">
+
+
+              <div class="form-group">
+
+                <label for="phone">
+                  Phone *
+                </label>
+
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="757-555-1234"
+                  required
+                >
+
+              </div>
+
+
+
+              <div class="form-group">
+
+                <label for="email">
+                  Email *
+                </label>
+
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  inputmode="email"
+                  placeholder="you@example.com"
+                  required
+                >
+
+              </div>
+
+
+            </div>
+
+
           </div>
 
 
 
-          <!-- PHONE / EMAIL -->
+          <!-- =====================================
+               WHAT YOU OFFER
+               ===================================== -->
 
-          <div class="listing-contact-grid">
+          <div class="listing-form-section">
+
+
+            <div class="listing-section-heading">
+
+              <div class="eyebrow dark">
+                STEP 2
+              </div>
+
+              <h2>
+                What services do you offer?
+              </h2>
+
+            </div>
+
+
+
+            <!-- CATEGORY -->
+
+            <div class="form-group">
+
+              <label for="category">
+                Primary Service Category *
+              </label>
+
+              <select
+                id="category"
+                name="category"
+                required
+              >
+
+                <option value="">
+                  Select a category
+                </option>
+
+                <option value="Home & Repair">
+                  Home & Repair
+                </option>
+
+                <option value="Lawn & Outdoor">
+                  Lawn & Outdoor
+                </option>
+
+                <option value="Cleaning">
+                  Cleaning
+                </option>
+
+                <option value="Pets">
+                  Pets
+                </option>
+
+                <option value="Automotive">
+                  Automotive
+                </option>
+
+                <option value="Child Care">
+                  Child Care
+                </option>
+
+                <option value="Tutoring & Lessons">
+                  Tutoring & Lessons
+                </option>
+
+                <option value="Events & Photography">
+                  Events & Photography
+                </option>
+
+                <option value="Moving & Hauling">
+                  Moving & Hauling
+                </option>
+
+                <option value="Technology">
+                  Technology
+                </option>
+
+                <option value="Notary & Professional">
+                  Notary & Professional
+                </option>
+
+                <option value="Other Services">
+                  Other Services
+                </option>
+
+              </select>
+
+            </div>
+
+
+
+            <!-- SERVICES -->
+
+            <div class="form-group">
+
+              <label for="services">
+                Services Offered *
+              </label>
+
+              <input
+                id="services"
+                name="services"
+                type="text"
+                placeholder="Example: Handyman, deck repair, fence repair, drywall"
+                required
+              >
+
+              <div class="small">
+                Separate multiple services with commas.
+              </div>
+
+            </div>
+
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+              <label for="description">
+                About Your Service *
+              </label>
+
+              <textarea
+                id="description"
+                name="description"
+                rows="6"
+                placeholder="Tell people what you do, your experience, specialties, and anything else they should know."
+                required
+              ></textarea>
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- =====================================
+               SERVICE AREA
+               ===================================== -->
+
+          <div class="listing-form-section">
+
+
+            <div class="listing-section-heading">
+
+              <div class="eyebrow dark">
+                STEP 3
+              </div>
+
+              <h2>
+                Where do you provide service?
+              </h2>
+
+              <p class="section-intro">
+                Select every Hampton Roads city you serve.
+              </p>
+
+            </div>
+
 
 
             <div class="form-group">
 
-              <label for="phone">
-                Phone *
+              <label>
+                Service Area *
               </label>
 
 
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                inputmode="tel"
-                autocomplete="tel"
-                placeholder="757-555-1234"
-                required
+              <div class="service-area-grid">
+
+
+                <label class="service-area-choice">
+
+                  <input
+                    type="checkbox"
+                    class="service-area-option"
+                    value="Chesapeake"
+                  >
+
+                  <span>
+                    Chesapeake
+                  </span>
+
+                </label>
+
+
+
+                <label class="service-area-choice">
+
+                  <input
+                    type="checkbox"
+                    class="service-area-option"
+                    value="Norfolk"
+                  >
+
+                  <span>
+                    Norfolk
+                  </span>
+
+                </label>
+
+
+
+                <label class="service-area-choice">
+
+                  <input
+                    type="checkbox"
+                    class="service-area-option"
+                    value="Portsmouth"
+                  >
+
+                  <span>
+                    Portsmouth
+                  </span>
+
+                </label>
+
+
+
+                <label class="service-area-choice">
+
+                  <input
+                    type="checkbox"
+                    class="service-area-option"
+                    value="Suffolk"
+                  >
+
+                  <span>
+                    Suffolk
+                  </span>
+
+                </label>
+
+
+
+                <label class="service-area-choice">
+
+                  <input
+                    type="checkbox"
+                    class="service-area-option"
+                    value="Virginia Beach"
+                  >
+
+                  <span>
+                    Virginia Beach
+                  </span>
+
+                </label>
+
+
+
+                <label class="service-area-choice">
+
+                  <input
+                    type="checkbox"
+                    class="service-area-option"
+                    value="Hampton"
+                  >
+
+                  <span>
+                    Hampton
+                  </span>
+
+                </label>
+
+
+
+                <label class="service-area-choice">
+
+                  <input
+                    type="checkbox"
+                    class="service-area-option"
+                    value="Newport News"
+                  >
+
+                  <span>
+                    Newport News
+                  </span>
+
+                </label>
+
+
+
+                <label class="service-area-choice">
+
+                  <input
+                    type="checkbox"
+                    class="service-area-option"
+                    value="Other"
+                  >
+
+                  <span>
+                    Other
+                  </span>
+
+                </label>
+
+
+              </div>
+
+
+
+              <div
+                id="service-area-error"
+                class="small"
               >
+                Please select at least one service area.
+              </div>
+
 
             </div>
 
 
+          </div>
+
+
+
+          <!-- =====================================
+               ONLINE INFORMATION
+               ===================================== -->
+
+          <div class="listing-form-section">
+
+
+            <div class="listing-section-heading">
+
+              <div class="eyebrow dark">
+                STEP 4
+              </div>
+
+              <h2>
+                Online information
+              </h2>
+
+              <p class="section-intro">
+                These fields are optional. Add them if you have them.
+              </p>
+
+            </div>
+
+
+
+            <!-- WEBSITE -->
 
             <div class="form-group">
 
-              <label for="email">
-                Email *
+              <label for="website">
+                Website
+                <span class="optional-label">
+                  Optional
+                </span>
               </label>
-
 
               <input
-                id="email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                required
+                id="website"
+                name="website"
+                type="text"
+                inputmode="url"
+                autocomplete="url"
+                placeholder="example.com"
               >
 
+              <div class="small">
+                Enter example.com, www.example.com, or the full web address. You do not need to type https://.
+              </div>
+
+            </div>
+
+
+
+            <!-- FACEBOOK -->
+
+            <div class="form-group">
+
+              <label for="facebook">
+                Facebook Page
+                <span class="optional-label">
+                  Optional
+                </span>
+              </label>
+
+              <input
+                id="facebook"
+                name="facebook"
+                type="text"
+                inputmode="url"
+                placeholder="facebook.com/yourpage"
+              >
+
+              <div class="small">
+                Enter facebook.com/yourpage or the full Facebook address. You do not need to type https://.
+              </div>
+
             </div>
 
 
@@ -483,345 +1045,9 @@
 
 
 
-          <!-- CATEGORY -->
-
-          <div class="form-group">
-
-            <label for="category">
-              Primary Service Category *
-            </label>
-
-
-            <select
-              id="category"
-              name="category"
-              required
-            >
-
-              <option value="">
-                Select a category
-              </option>
-
-              <option value="Home & Repair">
-                Home & Repair
-              </option>
-
-              <option value="Lawn & Outdoor">
-                Lawn & Outdoor
-              </option>
-
-              <option value="Cleaning">
-                Cleaning
-              </option>
-
-              <option value="Pets">
-                Pets
-              </option>
-
-              <option value="Automotive">
-                Automotive
-              </option>
-
-              <option value="Child Care">
-                Child Care
-              </option>
-
-              <option value="Tutoring & Lessons">
-                Tutoring & Lessons
-              </option>
-
-              <option value="Events & Photography">
-                Events & Photography
-              </option>
-
-              <option value="Moving & Hauling">
-                Moving & Hauling
-              </option>
-
-              <option value="Technology">
-                Technology
-              </option>
-
-              <option value="Notary & Professional">
-                Notary & Professional
-              </option>
-
-              <option value="Other Services">
-                Other Services
-              </option>
-
-            </select>
-
-          </div>
-
-
-
-          <!-- SERVICES -->
-
-          <div class="form-group">
-
-            <label for="services">
-              Services Offered *
-            </label>
-
-
-            <input
-              id="services"
-              name="services"
-              type="text"
-              placeholder="Example: Handyman, deck repair, fence repair, drywall"
-              required
-            >
-
-
-            <div class="small">
-              Separate multiple services with commas.
-            </div>
-
-          </div>
-
-
-
-          <!-- DESCRIPTION -->
-
-          <div class="form-group">
-
-            <label for="description">
-              About Your Service *
-            </label>
-
-
-            <textarea
-              id="description"
-              name="description"
-              rows="6"
-              placeholder="Tell neighbors what you do, your experience, specialties, and anything else they should know."
-              required
-            ></textarea>
-
-          </div>
-
-
-
-          <!-- SERVICE AREA -->
-
-          <div class="form-group">
-
-            <label>
-              Service Area *
-            </label>
-
-
-            <div class="small">
-              Select every city where you provide service.
-            </div>
-
-
-
-            <div class="service-area-grid">
-
-
-              <label class="service-area-choice">
-
-                <input
-                  type="checkbox"
-                  class="service-area-option"
-                  value="Chesapeake"
-                >
-
-                <span>
-                  Chesapeake
-                </span>
-
-              </label>
-
-
-
-              <label class="service-area-choice">
-
-                <input
-                  type="checkbox"
-                  class="service-area-option"
-                  value="Norfolk"
-                >
-
-                <span>
-                  Norfolk
-                </span>
-
-              </label>
-
-
-
-              <label class="service-area-choice">
-
-                <input
-                  type="checkbox"
-                  class="service-area-option"
-                  value="Portsmouth"
-                >
-
-                <span>
-                  Portsmouth
-                </span>
-
-              </label>
-
-
-
-              <label class="service-area-choice">
-
-                <input
-                  type="checkbox"
-                  class="service-area-option"
-                  value="Suffolk"
-                >
-
-                <span>
-                  Suffolk
-                </span>
-
-              </label>
-
-
-
-              <label class="service-area-choice">
-
-                <input
-                  type="checkbox"
-                  class="service-area-option"
-                  value="Virginia Beach"
-                >
-
-                <span>
-                  Virginia Beach
-                </span>
-
-              </label>
-
-
-
-              <label class="service-area-choice">
-
-                <input
-                  type="checkbox"
-                  class="service-area-option"
-                  value="Hampton"
-                >
-
-                <span>
-                  Hampton
-                </span>
-
-              </label>
-
-
-
-              <label class="service-area-choice">
-
-                <input
-                  type="checkbox"
-                  class="service-area-option"
-                  value="Newport News"
-                >
-
-                <span>
-                  Newport News
-                </span>
-
-              </label>
-
-
-
-              <label class="service-area-choice">
-
-                <input
-                  type="checkbox"
-                  class="service-area-option"
-                  value="Other"
-                >
-
-                <span>
-                  Other
-                </span>
-
-              </label>
-
-
-            </div>
-
-
-
-            <div
-              id="service-area-error"
-              class="small"
-              style="
-                display:none;
-                margin-top:12px;
-                font-weight:700;
-              "
-            >
-              Please select at least one service area.
-            </div>
-
-          </div>
-
-
-
-          <!-- WEBSITE -->
-
-          <div class="form-group">
-
-            <label for="website">
-              Website
-            </label>
-
-
-            <input
-              id="website"
-              name="website"
-              type="text"
-              inputmode="url"
-              autocomplete="url"
-              placeholder="example.com"
-            >
-
-
-            <div class="small">
-              You can enter your website with or without https://
-            </div>
-
-          </div>
-
-
-
-          <!-- FACEBOOK -->
-
-          <div class="form-group">
-
-            <label for="facebook">
-              Facebook Page
-            </label>
-
-
-            <input
-              id="facebook"
-              name="facebook"
-              type="text"
-              inputmode="url"
-              placeholder="facebook.com/yourpage"
-            >
-
-
-            <div class="small">
-              You can enter the Facebook address with or without https://
-            </div>
-
-          </div>
-
-
-
-          <!-- CONFIRMATION -->
+          <!-- =====================================
+               CONFIRMATION
+               ===================================== -->
 
           <div class="confirmation-box">
 
@@ -831,7 +1057,6 @@
                 type="checkbox"
                 required
               >
-
 
               <span class="small">
                 I confirm that the information submitted is accurate to the best of my knowledge and that I am authorized to submit this provider information.
@@ -843,16 +1068,22 @@
 
 
 
-          <!-- SUBMIT -->
+          <!-- =====================================
+               SUBMIT
+               ===================================== -->
 
-          <div style="margin-top:30px;">
+          <div class="listing-submit-area">
 
             <button
-              class="btn btn-green"
+              class="btn btn-green listing-submit-button"
               type="submit"
             >
               Submit Listing
             </button>
+
+            <p class="small listing-submit-note">
+              Listings are reviewed before appearing publicly. There is no charge to submit or maintain a listing on FindLocal757.com.
+            </p>
 
           </div>
 
@@ -871,9 +1102,29 @@
 
 
 
-        <!-- SIDEBAR -->
+        <!-- =====================================
+             SIDEBAR
+             ===================================== -->
 
         <aside class="listing-sidebar">
+
+
+          <div class="card">
+
+            <div class="eyebrow dark">
+              COMPLETELY FREE
+            </div>
+
+            <h3>
+              No listing or lead fees
+            </h3>
+
+            <p class="small">
+              FindLocal757.com is designed to make local services easier to find. There are no paid rankings and no charge to submit your service.
+            </p>
+
+          </div>
+
 
 
           <div class="card">
@@ -882,31 +1133,23 @@
               WHAT HAPPENS NEXT?
             </div>
 
-
             <h3>
               Listings are reviewed first
             </h3>
-
 
             <p class="small">
               Submitting this form does not immediately publish the listing.
             </p>
 
 
-            <div
-              class="trust-list"
-              style="
-                margin-top:20px;
-                color:var(--text);
-              "
-            >
+            <div class="trust-list">
 
               <div class="trust-item">
                 1. Submit your information
               </div>
 
               <div class="trust-item">
-                2. NeighborSource reviews it
+                2. FindLocal757.com reviews it
               </div>
 
               <div class="trust-item">
@@ -925,16 +1168,13 @@
               ALREADY LISTED?
             </div>
 
-
             <h3>
               Need to make a change?
             </h3>
 
-
             <p class="small">
               Use the listing update form instead of submitting a duplicate provider.
             </p>
-
 
             <a
               class="btn btn-outline"
@@ -961,7 +1201,9 @@
 
 
 
-<!-- SERVICE AREA CHECKBOX HANDLER -->
+<!-- =========================================
+     SERVICE AREA CHECKBOX HANDLER
+     ========================================= -->
 
 <script>
 
@@ -1095,7 +1337,7 @@ document.addEventListener(
 </script>
 
 
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 
 
 </body>
