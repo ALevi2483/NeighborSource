@@ -11,18 +11,88 @@
   >
 
   <title>
-    NeighborSource | Find Local Services Recommended by Neighbors
+    FindLocal757.com | Find Local Services in Hampton Roads
   </title>
 
   <meta
     name="description"
-    content="Find local businesses and individual service providers recommended by people in your community."
+    content="Find local businesses and individual service providers across Hampton Roads recommended by people in your community."
   >
 
   <link
     rel="stylesheet"
     href="css/style.css"
   >
+
+  <style>
+
+    .home-hero-simple {
+      text-align: center;
+    }
+
+    .home-hero-simple .hero-copy {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .home-hero-simple .hero-text {
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .home-hero-simple .hero-search {
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .home-hero-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .home-trust-line {
+      margin-top: 20px;
+      color: rgba(255, 255, 255, .88);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .home-secondary-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 600px) {
+
+      .home-hero-links {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .home-hero-links .btn {
+        width: 100%;
+      }
+
+      .home-secondary-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .home-secondary-actions .btn {
+        width: 100%;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -35,9 +105,9 @@
 
   <!-- HERO -->
 
-  <section class="hero">
+  <section class="hero home-hero-simple">
 
-    <div class="container hero-grid">
+    <div class="container">
 
 
       <div class="hero-copy">
@@ -54,9 +124,7 @@
 
 
         <p class="hero-text">
-
-          Search local businesses and individual service providers without digging through old Facebook posts, neighborhood groups, or message threads.
-
+          Search local businesses and individuals across Hampton Roads without digging through old Facebook posts, neighborhood groups, or message threads.
         </p>
 
 
@@ -82,60 +150,28 @@
         </form>
 
 
-        <div class="hero-actions">
+        <div class="home-hero-links">
 
           <a
             class="btn btn-primary"
             href="services.html"
           >
-            Browse Services
+            Browse All Services
           </a>
 
+
           <a
-            class="btn btn-green"
-            href="request-help.html"
+            class="btn btn-outline-light"
+            href="list-service.html"
           >
-            Post What You Need
+            List Your Service
           </a>
 
         </div>
 
 
-      </div>
-
-
-
-      <div class="hero-side-card">
-
-
-        <h2>
-          Built for local recommendations
-        </h2>
-
-
-        <p>
-          NeighborSource keeps community recommendations organized, searchable, and easy to find.
-        </p>
-
-
-        <div class="trust-list">
-
-          <div class="trust-item">
-            ✓ No account required to browse
-          </div>
-
-          <div class="trust-item">
-            ✓ No lead fees
-          </div>
-
-          <div class="trust-item">
-            ✓ No paid rankings
-          </div>
-
-          <div class="trust-item">
-            ✓ Community recommendations
-          </div>
-
+        <div class="home-trust-line">
+          Free to search. Free to list. No lead fees. No paid rankings.
         </div>
 
 
@@ -163,9 +199,11 @@
             FIND LOCAL HELP
           </div>
 
+
           <h2>
             Popular Categories
           </h2>
+
 
           <p class="section-intro">
             Start with the type of service you need.
@@ -214,12 +252,14 @@
           SIMPLE BY DESIGN
         </div>
 
+
         <h2>
           A better way to find local help
         </h2>
 
+
         <p class="section-intro">
-          Search recommendations, ask the community, or share someone you trust.
+          Search for a service, ask for help, or recommend someone you trust.
         </p>
 
       </div>
@@ -235,13 +275,16 @@
             1
           </div>
 
+
           <h3>
             Find a Service
           </h3>
 
+
           <p>
-            Search by service, category, provider name, or community.
+            Search by service, category, provider name, or city.
           </p>
+
 
           <a href="services.html">
             Browse services →
@@ -257,13 +300,16 @@
             2
           </div>
 
+
           <h3>
             Ask for Help
           </h3>
 
+
           <p>
-            Can't find what you need? Post a service request for the community.
+            Can't find what you need? Submit a service request and let the community know what you are looking for.
           </p>
+
 
           <a href="request-help.html">
             Post what you need →
@@ -279,13 +325,16 @@
             3
           </div>
 
+
           <h3>
             Recommend Someone
           </h3>
 
+
           <p>
-            Share a business or individual provider you have actually used.
+            Share a business or individual provider you have actually used and would recommend.
           </p>
+
 
           <a href="suggest-provider.html">
             Recommend someone →
@@ -303,7 +352,7 @@
 
 
 
-  <!-- PROVIDERS -->
+  <!-- LOCAL PROVIDERS -->
 
   <section class="section">
 
@@ -318,12 +367,14 @@
             COMMUNITY RECOMMENDED
           </div>
 
+
           <h2>
             Local Providers
           </h2>
 
+
           <p class="section-intro">
-            Approved providers and community recommendations will appear here.
+            Browse approved local businesses and individual service providers.
           </p>
 
         </div>
@@ -356,7 +407,7 @@
 
 
 
-  <!-- PROVIDER CTA -->
+  <!-- COMMUNITY CTA -->
 
   <section class="section section-cta">
 
@@ -369,15 +420,17 @@
         <div>
 
           <div class="eyebrow">
-            LOCAL PROVIDERS
+            HELP BUILD THE DIRECTORY
           </div>
 
+
           <h2>
-            Offer a service in the community?
+            Offer a service or know someone great?
           </h2>
 
+
           <p>
-            Businesses and individuals can submit a free NeighborSource listing.
+            Businesses and individuals can list a service for free, and neighbors can recommend local providers they trust.
           </p>
 
         </div>
@@ -392,11 +445,12 @@
             List Your Service
           </a>
 
+
           <a
             class="btn btn-outline-light"
-            href="how-it-works.html"
+            href="suggest-provider.html"
           >
-            How It Works
+            Recommend Someone
           </a>
 
         </div>
