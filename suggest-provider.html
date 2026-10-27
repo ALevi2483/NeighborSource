@@ -11,18 +11,265 @@
   >
 
   <title>
-    Recommend a Local Provider | NeighborSource
+    Recommend a Local Provider | FindLocal757.com
   </title>
 
   <meta
     name="description"
-    content="Recommend a local business or individual service provider for NeighborSource."
+    content="Recommend a local business or individual service provider for FindLocal757.com."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=3"
+    href="css/style.css?v=4"
   >
+
+
+  <style>
+
+    /* =========================================
+       RECOMMEND PROVIDER PAGE
+       ========================================= */
+
+    .suggest-page-hero {
+      text-align: center;
+      padding-top: 54px;
+      padding-bottom: 54px;
+    }
+
+    .suggest-page-hero .container {
+      max-width: 850px;
+    }
+
+    .suggest-page-hero p {
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* =========================================
+       FORM
+       ========================================= */
+
+    .suggest-form-wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .suggest-form-card {
+      padding: 34px;
+    }
+
+    .suggest-intro {
+      margin-bottom: 30px;
+    }
+
+
+    /* =========================================
+       FORM SECTIONS
+       ========================================= */
+
+    .suggest-form-section {
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .suggest-form-section:last-of-type {
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .suggest-section-heading {
+      margin-bottom: 22px;
+    }
+
+    .suggest-section-heading h2 {
+      margin-bottom: 6px;
+    }
+
+    .suggest-section-heading p {
+      margin-bottom: 0;
+    }
+
+
+    /* =========================================
+       FORM GRID
+       ========================================= */
+
+    .suggest-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .suggest-grid .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .suggest-grid input,
+    .suggest-grid select,
+    .suggest-grid textarea {
+      width: 100%;
+    }
+
+    #whyRecommended {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .optional-label {
+      margin-left: 5px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+
+    /* =========================================
+       CONFIRMATION
+       ========================================= */
+
+    .suggest-confirmation {
+      margin-top: 26px;
+    }
+
+    .suggest-confirmation .check-row {
+      align-items: flex-start;
+    }
+
+    .suggest-confirmation input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      margin-top: 1px;
+    }
+
+
+    /* =========================================
+       SUBMIT
+       ========================================= */
+
+    .suggest-submit-area {
+      margin-top: 28px;
+    }
+
+    .suggest-submit-button {
+      min-width: 240px;
+    }
+
+    .suggest-submit-note {
+      max-width: 680px;
+      margin-top: 12px;
+    }
+
+
+    /* =========================================
+       STEPS
+       ========================================= */
+
+    .suggest-steps {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+
+    /* =========================================
+       ALREADY LISTED
+       ========================================= */
+
+    .already-listed-card {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 34px;
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 700px) {
+
+      .suggest-page-hero {
+        text-align: left;
+        padding-top: 38px;
+        padding-bottom: 38px;
+      }
+
+      .suggest-page-hero h1 {
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+      .suggest-page-hero p {
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+
+      /* FORM */
+
+      .suggest-form-card {
+        padding: 22px;
+      }
+
+      .suggest-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .suggest-grid .field.full {
+        grid-column: auto;
+      }
+
+      .suggest-form-section {
+        padding-bottom: 24px;
+        margin-bottom: 24px;
+      }
+
+      .suggest-grid input,
+      .suggest-grid select {
+        min-height: 52px;
+      }
+
+      #whyRecommended {
+        min-height: 160px;
+      }
+
+
+      /* SUBMIT */
+
+      .suggest-submit-button {
+        width: 100%;
+        min-height: 54px;
+      }
+
+
+      /* STEPS */
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+
+      /* ALREADY LISTED */
+
+      .already-listed-card {
+        padding: 24px;
+      }
+
+      .already-listed-card .btn {
+        width: 100%;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -33,9 +280,11 @@
 <main>
 
 
-  <!-- PAGE HERO -->
+  <!-- =========================================
+       PAGE HERO
+       ========================================= -->
 
-  <section class="page-hero">
+  <section class="page-hero suggest-page-hero">
 
     <div class="container">
 
@@ -51,7 +300,7 @@
 
 
       <p>
-        Know a local business or individual who does great work? Suggest them for the NeighborSource directory.
+        Know a local business or individual who does great work? Tell us about them so they can be considered for FindLocal757.com.
       </p>
 
 
@@ -61,357 +310,519 @@
 
 
 
-  <!-- FORM -->
+  <!-- =========================================
+       FORM
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <form
-        class="card form-card"
-        id="suggest-provider-form"
-        data-form-type="providerSuggestion"
-      >
+      <div class="suggest-form-wrap">
 
 
-        <input
-          type="hidden"
-          name="type"
-          value="providerSuggestion"
+        <form
+          class="card form-card suggest-form-card"
+          id="suggest-provider-form"
+          data-form-type="providerSuggestion"
         >
 
 
-
-        <!-- INTRO -->
-
-        <div
-          class="notice green"
-          style="margin-bottom:30px;"
-        >
-
-          <strong>You do not need to be the provider.</strong>
-
-          Use this form to suggest a business or individual you believe should be listed on NeighborSource.
-
-        </div>
+          <input
+            type="hidden"
+            name="type"
+            value="providerSuggestion"
+          >
 
 
 
-        <div class="form-grid">
+          <!-- INTRO -->
 
+          <div class="notice green suggest-intro">
 
-          <!-- PROVIDER NAME -->
+            <strong>
+              You do not need to be the provider.
+            </strong>
 
-          <div class="field">
-
-            <label for="providerName">
-              Provider or Business Name *
-            </label>
-
-            <input
-              id="providerName"
-              name="providerName"
-              type="text"
-              required
-              placeholder="Example: Smith Lawn Care"
-            >
+            Recommend any local business or individual service provider you believe other Hampton Roads residents should know about.
 
           </div>
 
 
 
-          <!-- PROVIDER TYPE -->
+          <!-- =====================================
+               PROVIDER BASICS
+               ===================================== -->
 
-          <div class="field">
-
-            <label for="providerType">
-              Provider Type *
-            </label>
-
-            <select
-              id="providerType"
-              name="providerType"
-              required
-            >
-
-              <option value="">
-                Choose provider type
-              </option>
-
-              <option value="Business">
-                Business
-              </option>
-
-              <option value="Individual">
-                Individual Service Provider
-              </option>
-
-            </select>
-
-          </div>
+          <div class="suggest-form-section">
 
 
+            <div class="suggest-section-heading">
 
-          <!-- CATEGORY -->
+              <div class="eyebrow dark">
+                STEP 1
+              </div>
 
-          <div class="field">
+              <h2>
+                Tell us who you're recommending
+              </h2>
 
-            <label for="category">
-              Primary Category *
-            </label>
+              <p class="section-intro">
+                Start with the basic information you know.
+              </p>
 
-            <select
-              id="category"
-              name="category"
-              required
-            >
-
-              <option value="">
-                Choose a category
-              </option>
-
-              <option value="Home & Repair">
-                Home & Repair
-              </option>
-
-              <option value="Lawn & Outdoor">
-                Lawn & Outdoor
-              </option>
-
-              <option value="Cleaning">
-                Cleaning
-              </option>
-
-              <option value="Pets">
-                Pets
-              </option>
-
-              <option value="Automotive">
-                Automotive
-              </option>
-
-              <option value="Child Care">
-                Child Care
-              </option>
-
-              <option value="Tutoring & Lessons">
-                Tutoring & Lessons
-              </option>
-
-              <option value="Events & Photography">
-                Events & Photography
-              </option>
-
-              <option value="Moving & Hauling">
-                Moving & Hauling
-              </option>
-
-              <option value="Technology">
-                Technology
-              </option>
-
-              <option value="Notary & Professional">
-                Notary & Professional
-              </option>
-
-              <option value="Other Services">
-                Other Services
-              </option>
-
-            </select>
-
-          </div>
-
-
-
-          <!-- SERVICE AREA -->
-
-          <div class="field">
-
-            <label for="serviceArea">
-              Service Area
-            </label>
-
-            <input
-              id="serviceArea"
-              name="serviceArea"
-              type="text"
-              placeholder="Example: Chesapeake, Portsmouth, Suffolk"
-            >
-
-            <div class="helper">
-              List the cities or communities they serve if you know them.
             </div>
 
-          </div>
+
+
+            <div class="suggest-grid">
+
+
+              <!-- PROVIDER NAME -->
+
+              <div class="field">
+
+                <label for="providerName">
+                  Provider or Business Name *
+                </label>
+
+                <input
+                  id="providerName"
+                  name="providerName"
+                  type="text"
+                  required
+                  placeholder="Example: Smith Lawn Care"
+                >
+
+              </div>
 
 
 
-          <!-- SERVICE DESCRIPTION -->
+              <!-- PROVIDER TYPE -->
 
-          <div class="field full">
+              <div class="field">
 
-            <label for="serviceDescription">
-              What service do they provide? *
-            </label>
+                <label for="providerType">
+                  Provider Type *
+                </label>
 
-            <input
-              id="serviceDescription"
-              name="serviceDescription"
-              type="text"
-              required
-              placeholder="Example: Deck building, fence repair, handyman work"
-            >
+                <select
+                  id="providerType"
+                  name="providerType"
+                  required
+                >
 
-          </div>
+                  <option value="">
+                    Choose provider type
+                  </option>
 
+                  <option value="Business">
+                    Business
+                  </option>
 
+                  <option value="Individual">
+                    Individual Service Provider
+                  </option>
 
-          <!-- PHONE -->
+                </select>
 
-          <div class="field">
-
-            <label for="providerPhone">
-              Provider Phone
-            </label>
-
-            <input
-              id="providerPhone"
-              name="providerPhone"
-              type="tel"
-              placeholder="757-555-0100"
-            >
-
-          </div>
+              </div>
 
 
 
-          <!-- EMAIL -->
+              <!-- CATEGORY -->
 
-          <div class="field">
+              <div class="field">
 
-            <label for="providerEmail">
-              Provider Email
-            </label>
+                <label for="category">
+                  Primary Category *
+                </label>
 
-            <input
-              id="providerEmail"
-              name="providerEmail"
-              type="email"
-              placeholder="provider@example.com"
-            >
+                <select
+                  id="category"
+                  name="category"
+                  required
+                >
 
-          </div>
+                  <option value="">
+                    Choose a category
+                  </option>
 
+                  <option value="Home & Repair">
+                    Home & Repair
+                  </option>
 
+                  <option value="Lawn & Outdoor">
+                    Lawn & Outdoor
+                  </option>
 
-          <!-- WEBSITE -->
+                  <option value="Cleaning">
+                    Cleaning
+                  </option>
 
-          <div class="field">
+                  <option value="Pets">
+                    Pets
+                  </option>
 
-            <label for="providerWebsite">
-              Website
-            </label>
+                  <option value="Automotive">
+                    Automotive
+                  </option>
 
-            <input
-              id="providerWebsite"
-              name="providerWebsite"
-              type="url"
-              placeholder="https://example.com"
-            >
+                  <option value="Child Care">
+                    Child Care
+                  </option>
 
-          </div>
+                  <option value="Tutoring & Lessons">
+                    Tutoring & Lessons
+                  </option>
 
+                  <option value="Events & Photography">
+                    Events & Photography
+                  </option>
 
+                  <option value="Moving & Hauling">
+                    Moving & Hauling
+                  </option>
 
-          <!-- FACEBOOK -->
+                  <option value="Technology">
+                    Technology
+                  </option>
 
-          <div class="field">
+                  <option value="Notary & Professional">
+                    Notary & Professional
+                  </option>
 
-            <label for="providerFacebook">
-              Facebook Page
-            </label>
+                  <option value="Other Services">
+                    Other Services
+                  </option>
 
-            <input
-              id="providerFacebook"
-              name="providerFacebook"
-              type="url"
-              placeholder="https://facebook.com/..."
-            >
+                </select>
 
-          </div>
-
-
-
-          <!-- WHY RECOMMENDED -->
-
-          <div class="field full">
-
-            <label for="whyRecommended">
-              Why are you recommending them? *
-            </label>
-
-            <textarea
-              id="whyRecommended"
-              name="whyRecommended"
-              required
-              placeholder="Tell us about your experience or why you think this provider should be added."
-            ></textarea>
-
-          </div>
+              </div>
 
 
 
-          <!-- SUBMITTER NAME -->
+              <!-- SERVICE AREA -->
 
-          <div class="field">
+              <div class="field">
 
-            <label for="submittedBy">
-              Your Name *
-            </label>
+                <label for="serviceArea">
+                  Service Area
+                  <span class="optional-label">
+                    Optional
+                  </span>
+                </label>
 
-            <input
-              id="submittedBy"
-              name="submittedBy"
-              type="text"
-              required
-              autocomplete="name"
-              placeholder="Your name"
-            >
+                <input
+                  id="serviceArea"
+                  name="serviceArea"
+                  type="text"
+                  placeholder="Chesapeake, Portsmouth, Suffolk..."
+                >
 
-          </div>
+                <div class="helper">
+                  List the cities they serve if you know them.
+                </div>
+
+              </div>
 
 
 
-          <!-- SUBMITTER EMAIL -->
+              <!-- SERVICE DESCRIPTION -->
 
-          <div class="field">
+              <div class="field full">
 
-            <label for="submitterEmail">
-              Your Email *
-            </label>
+                <label for="serviceDescription">
+                  What service do they provide? *
+                </label>
 
-            <input
-              id="submitterEmail"
-              name="submitterEmail"
-              type="email"
-              required
-              autocomplete="email"
-              placeholder="you@example.com"
-            >
+                <input
+                  id="serviceDescription"
+                  name="serviceDescription"
+                  type="text"
+                  required
+                  placeholder="Example: Deck building, fence repair, handyman work"
+                >
 
-            <div class="helper">
-              Used only if we need to clarify the recommendation.
+              </div>
+
+
             </div>
 
+
           </div>
 
 
 
-          <!-- CONFIRMATION -->
+          <!-- =====================================
+               PROVIDER CONTACT DETAILS
+               ===================================== -->
 
-          <div class="field full">
+          <div class="suggest-form-section">
+
+
+            <div class="suggest-section-heading">
+
+              <div class="eyebrow dark">
+                STEP 2
+              </div>
+
+              <h2>
+                Provider contact information
+              </h2>
+
+              <p class="section-intro">
+                These fields are optional. Fill in whatever you know.
+              </p>
+
+            </div>
+
+
+
+            <div class="suggest-grid">
+
+
+              <!-- PHONE -->
+
+              <div class="field">
+
+                <label for="providerPhone">
+                  Provider Phone
+                  <span class="optional-label">
+                    Optional
+                  </span>
+                </label>
+
+                <input
+                  id="providerPhone"
+                  name="providerPhone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="757-555-0100"
+                >
+
+              </div>
+
+
+
+              <!-- EMAIL -->
+
+              <div class="field">
+
+                <label for="providerEmail">
+                  Provider Email
+                  <span class="optional-label">
+                    Optional
+                  </span>
+                </label>
+
+                <input
+                  id="providerEmail"
+                  name="providerEmail"
+                  type="email"
+                  inputmode="email"
+                  placeholder="provider@example.com"
+                >
+
+              </div>
+
+
+
+              <!-- WEBSITE -->
+
+              <div class="field">
+
+                <label for="providerWebsite">
+                  Website
+                  <span class="optional-label">
+                    Optional
+                  </span>
+                </label>
+
+                <input
+                  id="providerWebsite"
+                  name="providerWebsite"
+                  type="text"
+                  inputmode="url"
+                  placeholder="example.com"
+                >
+
+              </div>
+
+
+
+              <!-- FACEBOOK -->
+
+              <div class="field">
+
+                <label for="providerFacebook">
+                  Facebook Page
+                  <span class="optional-label">
+                    Optional
+                  </span>
+                </label>
+
+                <input
+                  id="providerFacebook"
+                  name="providerFacebook"
+                  type="text"
+                  inputmode="url"
+                  placeholder="facebook.com/theirpage"
+                >
+
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- =====================================
+               WHY RECOMMEND THEM
+               ===================================== -->
+
+          <div class="suggest-form-section">
+
+
+            <div class="suggest-section-heading">
+
+              <div class="eyebrow dark">
+                STEP 3
+              </div>
+
+              <h2>
+                Why do you recommend them?
+              </h2>
+
+              <p class="section-intro">
+                A short explanation helps us understand why they should be included.
+              </p>
+
+            </div>
+
+
+
+            <div class="suggest-grid">
+
+
+              <div class="field full">
+
+                <label for="whyRecommended">
+                  Why are you recommending them? *
+                </label>
+
+                <textarea
+                  id="whyRecommended"
+                  name="whyRecommended"
+                  required
+                  placeholder="Example: They repaired our fence after a storm, communicated well, showed up when promised, and did great work."
+                ></textarea>
+
+                <div class="helper">
+                  If you personally used them, tell us what service they provided and what your experience was like.
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- =====================================
+               YOUR INFORMATION
+               ===================================== -->
+
+          <div class="suggest-form-section">
+
+
+            <div class="suggest-section-heading">
+
+              <div class="eyebrow dark">
+                STEP 4
+              </div>
+
+              <h2>
+                Your information
+              </h2>
+
+              <p class="section-intro">
+                This helps us follow up if we need clarification.
+              </p>
+
+            </div>
+
+
+
+            <div class="suggest-grid">
+
+
+              <!-- SUBMITTER NAME -->
+
+              <div class="field">
+
+                <label for="submittedBy">
+                  Your Name *
+                </label>
+
+                <input
+                  id="submittedBy"
+                  name="submittedBy"
+                  type="text"
+                  required
+                  autocomplete="name"
+                  placeholder="Your name"
+                >
+
+              </div>
+
+
+
+              <!-- SUBMITTER EMAIL -->
+
+              <div class="field">
+
+                <label for="submitterEmail">
+                  Your Email *
+                </label>
+
+                <input
+                  id="submitterEmail"
+                  name="submitterEmail"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  placeholder="you@example.com"
+                >
+
+                <div class="helper">
+                  Used only if we need to clarify your recommendation.
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- =====================================
+               CONFIRMATION
+               ===================================== -->
+
+          <div class="suggest-confirmation">
+
 
             <label class="check-row">
 
@@ -427,34 +838,48 @@
 
             </label>
 
+
           </div>
 
 
-        </div>
+
+          <!-- =====================================
+               SUBMIT
+               ===================================== -->
+
+          <div class="suggest-submit-area">
+
+
+            <button
+              class="btn btn-green suggest-submit-button"
+              type="submit"
+            >
+              Submit Recommendation
+            </button>
+
+
+            <p class="small suggest-submit-note">
+              Suggested providers are reviewed before appearing publicly. Submitting a recommendation does not guarantee that a provider will be added.
+            </p>
+
+
+          </div>
 
 
 
-        <!-- SUBMIT -->
+          <!-- STATUS -->
 
-        <button
-          class="btn btn-green"
-          type="submit"
-        >
-          Submit Recommendation
-        </button>
-
+          <div
+            id="form-status"
+            style="margin-top:20px;"
+            aria-live="polite"
+          ></div>
 
 
-        <!-- STATUS -->
-
-        <div
-          id="form-status"
-          style="margin-top:20px;"
-          aria-live="polite"
-        ></div>
+        </form>
 
 
-      </form>
+      </div>
 
 
     </div>
@@ -463,11 +888,13 @@
 
 
 
-  <!-- HOW IT WORKS -->
+  <!-- =========================================
+       WHAT HAPPENS NEXT
+       ========================================= -->
 
   <section class="section section-soft">
 
-    <div class="container">
+    <div class="container suggest-steps">
 
 
       <div class="section-heading centered">
@@ -476,13 +903,16 @@
           WHAT HAPPENS NEXT
         </div>
 
+
         <h2>
-          Your suggestion helps grow NeighborSource
+          Your recommendation helps grow FindLocal757.com
         </h2>
+
 
         <p class="section-intro">
           Suggested providers are reviewed before appearing in the public directory.
         </p>
+
 
       </div>
 
@@ -502,7 +932,7 @@
           </h3>
 
           <p>
-            Tell us about a provider you believe your neighbors should know about.
+            Tell us about a local provider you think others should know about.
           </p>
 
         </div>
@@ -520,7 +950,7 @@
           </h3>
 
           <p>
-            NeighborSource reviews the information before adding anything publicly.
+            The information is reviewed before anything is added publicly.
           </p>
 
         </div>
@@ -534,7 +964,7 @@
           </div>
 
           <h3>
-            Provider Gets Listed
+            They Can Be Listed
           </h3>
 
           <p>
@@ -553,25 +983,20 @@
 
 
 
-  <!-- ALREADY LISTED -->
+  <!-- =========================================
+       ALREADY LISTED
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:900px;
-          margin:0 auto;
-          padding:36px;
-        "
-      >
+      <div class="card already-listed-card">
 
 
         <div class="eyebrow dark">
-          ALREADY ON NEIGHBORSOURCE?
+          ALREADY LISTED?
         </div>
 
 
@@ -581,7 +1006,7 @@
 
 
         <p>
-          If the provider is already listed, use their profile page to submit a recommendation. That recommendation can be connected directly to their listing.
+          If the provider is already on FindLocal757.com, open their profile and submit your recommendation there. That lets your feedback connect directly to their listing.
         </p>
 
 
@@ -605,7 +1030,7 @@
 
 
 
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 
 
 </body>
