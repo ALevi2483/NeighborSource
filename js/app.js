@@ -300,6 +300,33 @@ function footer() {
         </div>
 
 
+        <div
+          class="footer-disclaimer"
+          style="
+            margin-top:28px;
+            padding-top:24px;
+            border-top:1px solid rgba(255,255,255,.16);
+            color:#b9cadb;
+            font-size:13px;
+            line-height:1.65;
+          "
+        >
+
+          <strong style="color:#fff;">
+            Directory Disclaimer:
+          </strong>
+
+          FindLocal757.com is a community directory and information resource.
+          FindLocal757.com does not recommend, endorse, employ, or guarantee any
+          business or individual listed on this site. Provider listings and
+          community recommendations are provided for informational purposes to
+          help users discover local service providers and contact them directly.
+          Always evaluate providers independently and confirm important details
+          before hiring or paying anyone.
+
+        </div>
+
+
         <div class="footer-bottom">
 
           © <span id="year"></span> FindLocal757.com.
