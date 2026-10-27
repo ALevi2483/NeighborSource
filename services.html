@@ -11,18 +11,266 @@
   >
 
   <title>
-    Browse Local Services | NeighborSource
+    Browse Local Services | FindLocal757.com
   </title>
 
   <meta
     name="description"
-    content="Browse local businesses and individual service providers recommended by people in your community."
+    content="Browse local businesses and individual service providers across Hampton Roads. Search by service, category, provider name, or city."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=3"
+    href="css/style.css?v=4"
   >
+
+
+  <style>
+
+    /* =========================================
+       SERVICES PAGE
+       ========================================= */
+
+    .services-page-hero {
+      text-align: center;
+      padding-top: 54px;
+      padding-bottom: 54px;
+    }
+
+    .services-page-hero .container {
+      max-width: 900px;
+    }
+
+    .services-page-hero h1 {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .services-page-hero p {
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* =========================================
+       SEARCH
+       ========================================= */
+
+    .services-search-section {
+      padding-top: 42px;
+      padding-bottom: 34px;
+    }
+
+    .services-search-card {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+
+    .services-search-card h2 {
+      margin-bottom: 8px;
+    }
+
+    .services-search-form {
+      margin-top: 22px;
+      margin-bottom: 0;
+    }
+
+
+    /* =========================================
+       CATEGORIES
+       ========================================= */
+
+    .services-categories-section {
+      padding-top: 34px;
+    }
+
+    #all-categories {
+      display: grid;
+      grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    #all-categories .category-card {
+      height: 100%;
+    }
+
+
+    /* =========================================
+       HELP CTA
+       ========================================= */
+
+    .services-help-card {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 36px;
+    }
+
+    .services-help-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+
+    /* =========================================
+       TABLET
+       ========================================= */
+
+    @media (max-width: 900px) {
+
+      #all-categories {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+      .services-page-hero {
+        padding-top: 48px;
+        padding-bottom: 48px;
+      }
+
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 650px) {
+
+      .services-page-hero {
+        text-align: left;
+        padding-top: 38px;
+        padding-bottom: 38px;
+      }
+
+      .services-page-hero h1 {
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+      .services-page-hero p {
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+
+      /* SEARCH */
+
+      .services-search-section {
+        padding-top: 28px;
+        padding-bottom: 24px;
+      }
+
+      .services-search-card {
+        padding: 22px;
+      }
+
+      .services-search-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .services-search-form input {
+        width: 100%;
+        min-height: 54px;
+      }
+
+      .services-search-form button {
+        width: 100%;
+        min-height: 52px;
+      }
+
+
+      /* CATEGORIES */
+
+      .services-categories-section {
+        padding-top: 24px;
+      }
+
+      #all-categories {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      #all-categories .category-card {
+        padding: 18px 14px;
+        min-height: 125px;
+      }
+
+      #all-categories .category-icon {
+        margin-bottom: 10px;
+      }
+
+      #all-categories h3 {
+        font-size: 17px;
+        line-height: 1.2;
+        margin-bottom: 0;
+      }
+
+      #all-categories .small {
+        display: none;
+      }
+
+
+      /* HELP CARD */
+
+      .services-help-card {
+        padding: 24px;
+      }
+
+      .services-help-actions {
+        flex-direction: column;
+      }
+
+      .services-help-actions .btn {
+        width: 100%;
+      }
+
+
+      /* BOTTOM CTA */
+
+      .cta-card {
+        gap: 24px;
+      }
+
+      .cta-actions {
+        width: 100%;
+      }
+
+      .cta-actions .btn {
+        width: 100%;
+      }
+
+    }
+
+
+    /* =========================================
+       VERY SMALL PHONES
+       ========================================= */
+
+    @media (max-width: 390px) {
+
+      #all-categories {
+        gap: 10px;
+      }
+
+      #all-categories .category-card {
+        padding: 16px 12px;
+      }
+
+      #all-categories h3 {
+        font-size: 16px;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -33,9 +281,11 @@
 <main>
 
 
-  <!-- PAGE HERO -->
+  <!-- =========================================
+       PAGE HERO
+       ========================================= -->
 
-  <section class="page-hero">
+  <section class="page-hero services-page-hero">
 
     <div class="container">
 
@@ -51,7 +301,7 @@
 
 
       <p>
-        Find businesses and individual service providers by category, or search for exactly what you need.
+        Search local businesses and individual service providers across Hampton Roads, or browse by category.
       </p>
 
 
@@ -61,24 +311,21 @@
 
 
 
-  <!-- SEARCH -->
+  <!-- =========================================
+       SEARCH
+       ========================================= -->
 
-  <section
-    class="section"
-    style="padding-bottom:30px;"
-  >
+  <section class="section services-search-section">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:900px;
-          margin:0 auto;
-          padding:28px;
-        "
-      >
+      <div class="card services-search-card">
+
+
+        <div class="eyebrow dark">
+          SEARCH THE DIRECTORY
+        </div>
 
 
         <h2>
@@ -87,17 +334,13 @@
 
 
         <p class="section-intro">
-          Search by service, provider name, category, or location.
+          Search by service, provider name, category, or city.
         </p>
 
 
         <form
-          class="search-page-form"
+          class="search-page-form services-search-form"
           data-search-form
-          style="
-            margin-top:22px;
-            margin-bottom:0;
-          "
         >
 
 
@@ -105,7 +348,7 @@
             type="search"
             name="q"
             aria-label="Search local services"
-            placeholder="Example: plumber, dog sitter, notary, lawn care..."
+            placeholder="Plumber, dog sitter, notary, lawn care..."
           >
 
 
@@ -129,12 +372,11 @@
 
 
 
-  <!-- CATEGORIES -->
+  <!-- =========================================
+       CATEGORIES
+       ========================================= -->
 
-  <section
-    class="section"
-    style="padding-top:30px;"
-  >
+  <section class="section services-categories-section">
 
     <div class="container">
 
@@ -153,7 +395,7 @@
 
 
         <p class="section-intro">
-          Choose a category to see approved NeighborSource providers.
+          Choose a category to browse approved local providers.
         </p>
 
 
@@ -166,7 +408,7 @@
         id="all-categories"
       >
 
-        <!-- Categories are loaded by app.js -->
+        <!-- Categories loaded by app.js -->
 
       </div>
 
@@ -177,21 +419,16 @@
 
 
 
-  <!-- CAN'T FIND IT -->
+  <!-- =========================================
+       CAN'T FIND IT
+       ========================================= -->
 
   <section class="section section-soft">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:900px;
-          margin:0 auto;
-          padding:36px;
-        "
-      >
+      <div class="card services-help-card">
 
 
         <div class="eyebrow dark">
@@ -205,18 +442,11 @@
 
 
         <p>
-          If the service or provider you need is not listed yet, post what you need. You can also recommend someone you have used before.
+          If the service you need is not listed yet, tell the community what you are looking for. You can also recommend a local provider you trust.
         </p>
 
 
-        <div
-          style="
-            display:flex;
-            flex-wrap:wrap;
-            gap:12px;
-            margin-top:24px;
-          "
-        >
+        <div class="services-help-actions">
 
 
           <a
@@ -247,7 +477,9 @@
 
 
 
-  <!-- PROVIDER CTA -->
+  <!-- =========================================
+       PROVIDER CTA
+       ========================================= -->
 
   <section class="section section-cta">
 
@@ -271,7 +503,7 @@
 
 
           <p>
-            Businesses and individual service providers can submit a free NeighborSource listing for review.
+            Businesses and individuals can add their service to FindLocal757.com for free.
           </p>
 
 
@@ -313,7 +545,7 @@
 
 
 
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 
 
 </body>
