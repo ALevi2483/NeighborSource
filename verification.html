@@ -11,18 +11,234 @@
   >
 
   <title>
-    Verification | NeighborSource
+    Verification | FindLocal757.com
   </title>
 
   <meta
     name="description"
-    content="Learn what NeighborSource verification badges mean and what they do not guarantee."
+    content="Learn what FindLocal757.com verification badges mean, what information they apply to, and what they do not guarantee."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=3"
+    href="css/style.css?v=4"
   >
+
+
+  <style>
+
+    /* =========================================
+       VERIFICATION PAGE
+       ========================================= */
+
+    .verification-page-hero {
+      text-align: center;
+      padding-top: 54px;
+      padding-bottom: 54px;
+    }
+
+    .verification-page-hero .container {
+      max-width: 850px;
+    }
+
+    .verification-page-hero p {
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* =========================================
+       INFORMATION CARDS
+       ========================================= */
+
+    .verification-info-card {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 38px;
+    }
+
+    .verification-info-card h2 {
+      margin-bottom: 14px;
+    }
+
+
+    /* =========================================
+       BADGE GRID
+       ========================================= */
+
+    .verification-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    .verification-badge-card {
+      height: 100%;
+    }
+
+    .verification-badge-label {
+      display: inline-flex;
+      margin-bottom: 18px;
+    }
+
+    .verification-badge-card h3 {
+      margin-bottom: 10px;
+    }
+
+
+    /* =========================================
+       DOES NOT MEAN LIST
+       ========================================= */
+
+    .verification-limit-list {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 14px 24px;
+      margin-top: 26px;
+    }
+
+    .verification-limit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .verification-limit-icon {
+      flex: 0 0 auto;
+      font-weight: 900;
+    }
+
+
+    /* =========================================
+       BEFORE HIRING
+       ========================================= */
+
+    .verification-check-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .verification-check-grid .category-card {
+      height: 100%;
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 800px) {
+
+      .verification-check-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+
+    @media (max-width: 650px) {
+
+      .verification-page-hero {
+        text-align: left;
+        padding-top: 38px;
+        padding-bottom: 38px;
+      }
+
+      .verification-page-hero h1 {
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+      .verification-page-hero p {
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+
+      /* INFO CARDS */
+
+      .verification-info-card {
+        padding: 24px;
+      }
+
+      .verification-info-card .btn {
+        width: 100%;
+      }
+
+
+      /* BADGES */
+
+      .verification-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .verification-badge-card {
+        padding: 22px;
+      }
+
+
+      /* LIMITS */
+
+      .verification-limit-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+
+      /* BEFORE HIRING */
+
+      .verification-check-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .verification-check-grid .category-card {
+        padding: 18px 14px;
+      }
+
+      .verification-check-grid h3 {
+        font-size: 17px;
+      }
+
+
+      /* CTA */
+
+      .cta-card {
+        gap: 24px;
+      }
+
+      .cta-actions {
+        width: 100%;
+      }
+
+      .cta-actions .btn {
+        width: 100%;
+      }
+
+    }
+
+
+    @media (max-width: 390px) {
+
+      .verification-check-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -33,9 +249,11 @@
 <main>
 
 
-  <!-- PAGE HERO -->
+  <!-- =========================================
+       PAGE HERO
+       ========================================= -->
 
-  <section class="page-hero">
+  <section class="page-hero verification-page-hero">
 
     <div class="container">
 
@@ -46,12 +264,12 @@
 
 
       <h1>
-        NeighborSource Verification
+        FindLocal757.com Verification
       </h1>
 
 
       <p>
-        Verification badges help show when specific provider information has been reviewed.
+        Verification badges show when specific information associated with a provider listing has been reviewed.
       </p>
 
 
@@ -61,21 +279,16 @@
 
 
 
-  <!-- INTRO -->
+  <!-- =========================================
+       WHAT VERIFICATION MEANS
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:1000px;
-          margin:0 auto;
-          padding:42px;
-        "
-      >
+      <div class="card verification-info-card">
 
 
         <div class="eyebrow dark">
@@ -89,12 +302,12 @@
 
 
         <p>
-          NeighborSource may review certain information submitted by a provider and display a badge when that specific information has been verified.
+          FindLocal757.com may review certain information associated with a provider and display a badge when that specific information has been verified.
         </p>
 
 
         <p>
-          For example, a provider with a Phone Verified badge has had their phone information reviewed. That does not automatically mean their business, license, insurance, or other information has also been verified.
+          For example, a provider with a Phone Verified badge has had their submitted phone information reviewed. It does not automatically mean their business, license, insurance, or other information has also been verified.
         </p>
 
 
@@ -103,7 +316,9 @@
           style="margin-top:26px;"
         >
 
-          <strong>Important:</strong>
+          <strong>
+            Important:
+          </strong>
 
           Verification is not the same as an endorsement or guarantee.
 
@@ -119,7 +334,9 @@
 
 
 
-  <!-- BADGES -->
+  <!-- =========================================
+       BADGES
+       ========================================= -->
 
   <section class="section section-soft">
 
@@ -140,7 +357,7 @@
 
 
         <p class="section-intro">
-          Only badges actually shown on a provider's profile should be considered verified.
+          Only badges actually displayed on a provider's profile should be considered verified.
         </p>
 
 
@@ -148,26 +365,16 @@
 
 
 
-      <div
-        class="provider-grid"
-        style="
-          max-width:1050px;
-          margin:0 auto;
-        "
-      >
+      <div class="verification-grid">
+
 
 
         <!-- PHONE -->
 
-        <div class="card">
+        <div class="card verification-badge-card">
 
-          <div
-            class="badge green"
-            style="
-              display:inline-flex;
-              margin-bottom:18px;
-            "
-          >
+
+          <div class="badge green verification-badge-label">
             ✓ Phone Verified
           </div>
 
@@ -178,7 +385,7 @@
 
 
           <p>
-            The provider's submitted phone number has been reviewed or confirmed through NeighborSource's verification process.
+            The provider's submitted phone number has been reviewed or confirmed through the FindLocal757.com verification process.
           </p>
 
 
@@ -186,21 +393,17 @@
             This does not confirm the provider's identity, business status, licensing, insurance, or quality of work.
           </p>
 
+
         </div>
 
 
 
         <!-- BUSINESS -->
 
-        <div class="card">
+        <div class="card verification-badge-card">
 
-          <div
-            class="badge green"
-            style="
-              display:inline-flex;
-              margin-bottom:18px;
-            "
-          >
+
+          <div class="badge green verification-badge-label">
             ✓ Business Verified
           </div>
 
@@ -219,21 +422,17 @@
             This does not mean every statement made by the business has been independently verified.
           </p>
 
+
         </div>
 
 
 
         <!-- LICENSE -->
 
-        <div class="card">
+        <div class="card verification-badge-card">
 
-          <div
-            class="badge green"
-            style="
-              display:inline-flex;
-              margin-bottom:18px;
-            "
-          >
+
+          <div class="badge green verification-badge-label">
             ✓ License Verified
           </div>
 
@@ -249,8 +448,9 @@
 
 
           <p class="small">
-            Licensing requirements vary by profession, service, and jurisdiction. Users should still confirm current license status when it matters for the work.
+            Licensing requirements vary by service and jurisdiction. Users should still confirm current license status when it matters for the work.
           </p>
+
 
         </div>
 
@@ -258,15 +458,10 @@
 
         <!-- INSURANCE -->
 
-        <div class="card">
+        <div class="card verification-badge-card">
 
-          <div
-            class="badge green"
-            style="
-              display:inline-flex;
-              margin-bottom:18px;
-            "
-          >
+
+          <div class="badge green verification-badge-label">
             ✓ Insurance Verified
           </div>
 
@@ -285,6 +480,7 @@
             Coverage can change, expire, contain exclusions, or apply differently depending on the work being performed. Confirm current coverage directly when needed.
           </p>
 
+
         </div>
 
 
@@ -297,21 +493,16 @@
 
 
 
-  <!-- WHAT IT DOES NOT MEAN -->
+  <!-- =========================================
+       WHAT IT DOES NOT MEAN
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:1000px;
-          margin:0 auto;
-          padding:42px;
-        "
-      >
+      <div class="card verification-info-card">
 
 
         <div class="eyebrow dark">
@@ -324,42 +515,48 @@
         </h2>
 
 
-        <div
-          class="trust-list"
-          style="
-            margin-top:26px;
-            color:var(--text);
-          "
-        >
+        <p>
+          Verification gives you an additional piece of information about a provider. It should not replace your own judgment or research.
+        </p>
 
 
-          <div class="trust-item">
-            ✕ It does not guarantee workmanship.
+
+        <div class="verification-limit-list">
+
+
+          <div class="verification-limit-item">
+            <span class="verification-limit-icon">✕</span>
+            <span>It does not guarantee workmanship.</span>
           </div>
 
 
-          <div class="trust-item">
-            ✕ It does not guarantee pricing or estimates.
+          <div class="verification-limit-item">
+            <span class="verification-limit-icon">✕</span>
+            <span>It does not guarantee pricing or estimates.</span>
           </div>
 
 
-          <div class="trust-item">
-            ✕ It does not guarantee availability.
+          <div class="verification-limit-item">
+            <span class="verification-limit-icon">✕</span>
+            <span>It does not guarantee availability.</span>
           </div>
 
 
-          <div class="trust-item">
-            ✕ It does not guarantee future performance.
+          <div class="verification-limit-item">
+            <span class="verification-limit-icon">✕</span>
+            <span>It does not guarantee future performance.</span>
           </div>
 
 
-          <div class="trust-item">
-            ✕ It does not replace your own research.
+          <div class="verification-limit-item">
+            <span class="verification-limit-icon">✕</span>
+            <span>It does not replace your own research.</span>
           </div>
 
 
-          <div class="trust-item">
-            ✕ It does not mean NeighborSource is recommending or endorsing the provider.
+          <div class="verification-limit-item">
+            <span class="verification-limit-icon">✕</span>
+            <span>It does not mean FindLocal757.com endorses the provider.</span>
           </div>
 
 
@@ -375,21 +572,16 @@
 
 
 
-  <!-- NO BADGE -->
+  <!-- =========================================
+       NO BADGE
+       ========================================= -->
 
   <section class="section section-soft">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:1000px;
-          margin:0 auto;
-          padding:42px;
-        "
-      >
+      <div class="card verification-info-card">
 
 
         <div class="eyebrow dark">
@@ -398,17 +590,17 @@
 
 
         <h2>
-          Lack of a badge does not automatically mean something is wrong
+          No badge does not automatically mean something is wrong
         </h2>
 
 
         <p>
-          Some providers may not have completed any NeighborSource verification steps yet.
+          Some providers may not have completed any FindLocal757.com verification steps.
         </p>
 
 
         <p>
-          A provider without verification badges may still be a legitimate and capable local service provider. The absence of a badge simply means NeighborSource is not displaying that specific verification.
+          A provider without verification badges may still be a legitimate and capable local service provider. The absence of a badge simply means FindLocal757.com is not displaying that specific verification.
         </p>
 
 
@@ -421,7 +613,9 @@
 
 
 
-  <!-- BEFORE HIRING -->
+  <!-- =========================================
+       BEFORE HIRING
+       ========================================= -->
 
   <section class="section">
 
@@ -442,7 +636,7 @@
 
 
         <p class="section-intro">
-          Different types of work require different levels of due diligence.
+          Different types of work may require different levels of due diligence.
         </p>
 
 
@@ -450,58 +644,71 @@
 
 
 
-      <div class="category-grid">
+      <div class="category-grid verification-check-grid">
+
 
 
         <div class="card category-card">
+
 
           <div class="category-icon">
             💵
           </div>
 
+
           <h3>
             Pricing
           </h3>
+
 
           <div class="small">
             Get clear information about rates, estimates, deposits, and payment expectations.
           </div>
 
+
         </div>
 
 
 
         <div class="card category-card">
+
 
           <div class="category-icon">
             📋
           </div>
 
+
           <h3>
             Credentials
           </h3>
+
 
           <div class="small">
             Confirm licenses, certifications, permits, or other credentials when applicable.
           </div>
 
+
         </div>
 
 
 
         <div class="card category-card">
+
 
           <div class="category-icon">
             🛡️
           </div>
 
+
           <h3>
             Insurance
           </h3>
 
+
           <div class="small">
             Ask for current insurance information when coverage is important for the work.
           </div>
+
 
         </div>
 
@@ -509,17 +716,21 @@
 
         <div class="card category-card">
 
+
           <div class="category-icon">
             👍
           </div>
+
 
           <h3>
             References
           </h3>
 
+
           <div class="small">
             Consider community recommendations, references, and examples of previous work.
           </div>
+
 
         </div>
 
@@ -533,21 +744,16 @@
 
 
 
-  <!-- PROVIDER NOTE -->
+  <!-- =========================================
+       PROVIDER NOTE
+       ========================================= -->
 
   <section class="section section-soft">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:1000px;
-          margin:0 auto;
-          padding:42px;
-        "
-      >
+      <div class="card verification-info-card">
 
 
         <div class="eyebrow dark">
@@ -561,7 +767,7 @@
 
 
         <p>
-          If NeighborSource requests documentation or confirmation related to your listing, the information is used to determine whether an applicable verification badge can be displayed.
+          If FindLocal757.com requests documentation or confirmation related to your listing, that information may be used to determine whether an applicable verification badge can be displayed.
         </p>
 
 
@@ -574,7 +780,7 @@
           class="btn btn-outline"
           href="contact.html"
         >
-          Contact NeighborSource
+          Contact FindLocal757.com
         </a>
 
 
@@ -587,7 +793,9 @@
 
 
 
-  <!-- FINAL CTA -->
+  <!-- =========================================
+       FINAL CTA
+       ========================================= -->
 
   <section class="section section-cta">
 
@@ -606,12 +814,12 @@
 
 
           <h2>
-            Browse providers and community recommendations.
+            Browse local providers and community recommendations.
           </h2>
 
 
           <p>
-            Verification is one piece of information you can use when deciding who is right for your needs.
+            Verification is one piece of information you can consider when deciding which provider is right for your needs.
           </p>
 
 
@@ -653,7 +861,7 @@
 
 
 
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 
 
 </body>
