@@ -313,12 +313,12 @@ function footer() {
           </strong>
 
           FindLocal757.com is a community directory and information resource.
-          FindLocal757.com does not recommend, endorse, employ, or guarantee any
-          business or individual listed on this site. Provider listings and
-          community recommendations are provided for informational purposes to
-          help users discover local service providers and contact them directly.
-          Always evaluate providers independently and confirm important details
-          before hiring or paying anyone.
+          FindLocal757.com does not recommend, endorse, employ, approve, or
+          guarantee any business or individual listed on this site. Provider
+          listings and community recommendations are provided for informational
+          purposes to help users discover local service providers and contact
+          them directly. Always evaluate providers independently and confirm
+          important details before hiring or paying anyone.
 
         </div>
 
@@ -1087,17 +1087,6 @@ function providerCard(
       </div>
 
 
-      ${
-        badges
-          ? `
-              <div class="badges">
-                ${badges}
-              </div>
-            `
-          : ""
-      }
-
-
       <p>
         ${escapeHTML(
           p.description ||
@@ -1694,7 +1683,7 @@ function renderProvider() {
     provider.area
   );
 
- 
+
   configureProviderContact(
     provider
   );
@@ -1938,8 +1927,6 @@ function renderProviderAreas(
       .join("");
 
 }
-
-
 
 
 /*************************************************
@@ -2763,7 +2750,7 @@ async function submitFindLocal757Form(
         submissionId
       ) {
 
-        await verifyProviderSubmission(
+        await confirmProviderSubmission(
           submissionId
         );
 
@@ -2821,10 +2808,10 @@ async function submitFindLocal757Form(
 
 
 /*************************************************
- * VERIFY NEW PROVIDER SUBMISSION
+ * CONFIRM NEW PROVIDER SUBMISSION
  *************************************************/
 
-async function verifyProviderSubmission(
+async function confirmProviderSubmission(
   submissionId
 ) {
 
@@ -2880,7 +2867,7 @@ async function verifyProviderSubmission(
   catch (error) {
 
     console.warn(
-      "Provider submission verification could not be completed:",
+      "Provider submission confirmation could not be completed:",
       error
     );
 
