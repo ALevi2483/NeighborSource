@@ -11,18 +11,253 @@
   >
 
   <title>
-    Service Category | NeighborSource
+    Service Category | FindLocal757.com
   </title>
 
   <meta
     name="description"
-    content="Browse local NeighborSource providers by service category."
+    content="Browse local businesses and individual service providers by service category on FindLocal757.com."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=3"
+    href="css/style.css?v=4"
   >
+
+
+  <style>
+
+    /* =========================================
+       CATEGORY PAGE
+       ========================================= */
+
+    .category-page-hero {
+      text-align: center;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    .category-page-hero .container {
+      max-width: 900px;
+    }
+
+    .category-page-icon {
+      font-size: 2.5rem;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .category-page-hero p {
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* =========================================
+       SEARCH
+       ========================================= */
+
+    .category-search-section {
+      padding-top: 38px;
+      padding-bottom: 30px;
+    }
+
+    .category-search-card {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    .category-search-card h2 {
+      margin-bottom: 8px;
+    }
+
+    .category-search-form {
+      margin-top: 22px;
+      margin-bottom: 0;
+    }
+
+
+    /* =========================================
+       PROVIDERS
+       ========================================= */
+
+    .category-provider-section {
+      padding-top: 30px;
+    }
+
+    #category-providers {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    #category-providers .provider-card {
+      height: 100%;
+    }
+
+    #category-providers .provider-actions {
+      margin-top: auto;
+    }
+
+
+    /* =========================================
+       HELP CARD
+       ========================================= */
+
+    .category-help-card {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 34px;
+    }
+
+    .category-help-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+
+    /* =========================================
+       TABLET
+       ========================================= */
+
+    @media (max-width: 900px) {
+
+      #category-providers {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 650px) {
+
+      .category-page-hero {
+        text-align: left;
+        padding-top: 38px;
+        padding-bottom: 38px;
+      }
+
+      .category-page-icon {
+        font-size: 2.2rem;
+      }
+
+      .category-page-hero h1 {
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+      .category-page-hero p {
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+
+      /* SEARCH */
+
+      .category-search-section {
+        padding-top: 28px;
+        padding-bottom: 24px;
+      }
+
+      .category-search-card {
+        padding: 22px;
+      }
+
+      .category-search-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .category-search-form input {
+        width: 100%;
+        min-height: 54px;
+      }
+
+      .category-search-form button {
+        width: 100%;
+        min-height: 52px;
+      }
+
+
+      /* PROVIDER SECTION */
+
+      .category-provider-section {
+        padding-top: 24px;
+      }
+
+      .category-provider-section .section-heading-row {
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      .category-provider-section .section-heading-row .btn {
+        width: 100%;
+      }
+
+      #category-providers {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      #category-providers .provider-card {
+        width: 100%;
+      }
+
+      #category-providers .provider-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      #category-providers .provider-actions .btn {
+        width: 100%;
+      }
+
+
+      /* HELP */
+
+      .category-help-card {
+        padding: 24px;
+      }
+
+      .category-help-actions {
+        flex-direction: column;
+      }
+
+      .category-help-actions .btn {
+        width: 100%;
+      }
+
+
+      /* CTA */
+
+      .cta-card {
+        gap: 24px;
+      }
+
+      .cta-actions {
+        width: 100%;
+      }
+
+      .cta-actions .btn {
+        width: 100%;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -33,19 +268,18 @@
 <main>
 
 
-  <!-- CATEGORY HERO -->
+  <!-- =========================================
+       CATEGORY HERO
+       ========================================= -->
 
-  <section class="page-hero">
+  <section class="page-hero category-page-hero">
 
     <div class="container">
 
 
       <div
         id="category-icon"
-        style="
-          font-size:2.4rem;
-          margin-bottom:14px;
-        "
+        class="category-page-icon"
       >
         🛠️
       </div>
@@ -62,7 +296,7 @@
 
 
       <p id="category-desc">
-        Browse local businesses and individual service providers.
+        Browse local businesses and individual service providers in this category.
       </p>
 
 
@@ -72,43 +306,36 @@
 
 
 
-  <!-- SEARCH -->
+  <!-- =========================================
+       SEARCH
+       ========================================= -->
 
-  <section
-    class="section"
-    style="padding-bottom:30px;"
-  >
+  <section class="section category-search-section">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:900px;
-          margin:0 auto;
-          padding:28px;
-        "
-      >
+      <div class="card category-search-card">
+
+
+        <div class="eyebrow dark">
+          SEARCH THE DIRECTORY
+        </div>
 
 
         <h2>
-          Search within NeighborSource
+          Looking for something specific?
         </h2>
 
 
         <p class="section-intro">
-          Looking for something specific? Search by service, provider name, or location.
+          Search by service, provider name, category, or city.
         </p>
 
 
         <form
-          class="search-page-form"
+          class="search-page-form category-search-form"
           data-search-form
-          style="
-            margin-top:22px;
-            margin-bottom:0;
-          "
         >
 
 
@@ -116,7 +343,7 @@
             type="search"
             name="q"
             aria-label="Search local services"
-            placeholder="Example: fence repair, dog walking, mobile notary..."
+            placeholder="Fence repair, dog walking, mobile notary..."
           >
 
 
@@ -124,7 +351,7 @@
             class="btn btn-green"
             type="submit"
           >
-            Search
+            Search Services
           </button>
 
 
@@ -140,12 +367,11 @@
 
 
 
-  <!-- CATEGORY PROVIDERS -->
+  <!-- =========================================
+       CATEGORY PROVIDERS
+       ========================================= -->
 
-  <section
-    class="section"
-    style="padding-top:30px;"
-  >
+  <section class="section category-provider-section">
 
     <div class="container">
 
@@ -157,7 +383,7 @@
 
 
           <div class="eyebrow dark">
-            COMMUNITY LISTINGS
+            LOCAL SERVICE DIRECTORY
           </div>
 
 
@@ -169,7 +395,7 @@
 
 
           <p class="section-intro">
-            Approved providers in this category appear below.
+            Approved local providers in this category appear below.
           </p>
 
 
@@ -212,46 +438,34 @@
 
 
 
-  <!-- NO PROVIDER HELP -->
+  <!-- =========================================
+       NO PROVIDER HELP
+       ========================================= -->
 
   <section class="section section-soft">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:900px;
-          margin:0 auto;
-          padding:36px;
-        "
-      >
+      <div class="card category-help-card">
 
 
         <div class="eyebrow dark">
-          NEED ANOTHER OPTION?
+          DON'T SEE WHAT YOU NEED?
         </div>
 
 
         <h2>
-          Ask or recommend
+          You still have options
         </h2>
 
 
         <p>
-          If you do not see the provider you need, post what you are looking for or recommend a local provider you trust.
+          Tell the community what kind of help you need, or recommend a local provider you trust so they can be considered for the directory.
         </p>
 
 
-        <div
-          style="
-            display:flex;
-            flex-wrap:wrap;
-            gap:12px;
-            margin-top:24px;
-          "
-        >
+        <div class="category-help-actions">
 
 
           <a
@@ -282,7 +496,9 @@
 
 
 
-  <!-- PROVIDER CTA -->
+  <!-- =========================================
+       PROVIDER CTA
+       ========================================= -->
 
   <section class="section section-cta">
 
@@ -306,7 +522,7 @@
 
 
           <p>
-            Businesses and individuals can submit a free NeighborSource listing for review.
+            Businesses and individuals can add their service to FindLocal757.com for free.
           </p>
 
 
@@ -348,7 +564,7 @@
 
 
 
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 
 
 </body>
