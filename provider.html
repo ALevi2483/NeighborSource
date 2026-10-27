@@ -11,18 +11,355 @@
   >
 
   <title>
-    Provider Profile | NeighborSource
+    Provider Profile | FindLocal757.com
   </title>
 
   <meta
     name="description"
-    content="View local provider information, services, verification details, and community recommendations on NeighborSource."
+    content="View local provider information, services, service areas, verification details, and community recommendations on FindLocal757.com."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=3"
+    href="css/style.css?v=4"
   >
+
+
+  <style>
+
+    /* =========================================
+       PROVIDER PAGE
+       ========================================= */
+
+    .provider-page-hero {
+      padding-top: 54px;
+      padding-bottom: 54px;
+    }
+
+    .provider-page-hero .container {
+      max-width: 1320px;
+    }
+
+    .provider-page-hero h1 {
+      max-width: 900px;
+      overflow-wrap: anywhere;
+    }
+
+
+    /* =========================================
+       MAIN PROFILE GRID
+       ========================================= */
+
+    .provider-profile-grid {
+      display: grid;
+      grid-template-columns:
+        minmax(0, 1fr) 340px;
+      grid-template-areas:
+        "main contact"
+        "main tools";
+      gap: 28px;
+      align-items: start;
+    }
+
+    .provider-main {
+      grid-area: main;
+      min-width: 0;
+    }
+
+    .provider-contact-card {
+      grid-area: contact;
+      position: sticky;
+      top: 100px;
+    }
+
+    .provider-tools-card {
+      grid-area: tools;
+    }
+
+
+    /* =========================================
+       SUMMARY STATS
+       ========================================= */
+
+    .profile-stats {
+      display: grid;
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .profile-stat {
+      text-align: left;
+      min-width: 0;
+    }
+
+    .profile-stat strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      overflow-wrap: anywhere;
+    }
+
+    .profile-stat.verification-stat strong {
+      font-size: 20px;
+    }
+
+
+    /* =========================================
+       PROFILE CARDS
+       ========================================= */
+
+    .provider-section-card {
+      margin-bottom: 22px;
+    }
+
+    .provider-section-card h2 {
+      margin-bottom: 12px;
+    }
+
+    .provider-badge-area {
+      margin-top: 20px;
+    }
+
+
+    /* =========================================
+       CONTACT
+       ========================================= */
+
+    .provider-phone-row {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    #provider-phone {
+      font-size: 21px;
+      font-weight: 800;
+      margin-top: 5px;
+      overflow-wrap: anywhere;
+    }
+
+    .provider-contact-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .provider-contact-actions .btn {
+      width: 100%;
+      text-align: center;
+    }
+
+    .provider-contact-note {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+
+    /* =========================================
+       RECOMMEND CTA
+       ========================================= */
+
+    .provider-recommend-card {
+      padding: 32px;
+      margin-bottom: 22px;
+    }
+
+    .provider-recommend-card .btn {
+      margin-top: 8px;
+    }
+
+
+    /* =========================================
+       LISTING TOOLS
+       ========================================= */
+
+    .provider-tools-card .btn {
+      width: 100%;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .provider-report-link {
+      display: block;
+      text-align: center;
+      margin-top: 18px;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+
+    /* =========================================
+       DISCLAIMER
+       ========================================= */
+
+    .provider-disclaimer-card {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 34px;
+    }
+
+
+    /* =========================================
+       TABLET
+       ========================================= */
+
+    @media (max-width: 1000px) {
+
+      .provider-profile-grid {
+        grid-template-columns:
+          minmax(0, 1fr) 300px;
+        gap: 22px;
+      }
+
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 760px) {
+
+      .provider-page-hero {
+        padding-top: 38px;
+        padding-bottom: 38px;
+      }
+
+      .provider-page-hero h1 {
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+
+      /*
+       * CONTACT COMES FIRST ON MOBILE
+       */
+
+      .provider-profile-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .provider-contact-card {
+        order: 1;
+        position: static;
+        width: 100%;
+      }
+
+      .provider-main {
+        order: 2;
+        width: 100%;
+      }
+
+      .provider-tools-card {
+        order: 3;
+        width: 100%;
+      }
+
+
+      /* STATS */
+
+      .profile-stats {
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .profile-stat {
+        padding: 16px 10px;
+        text-align: center;
+      }
+
+      .profile-stat strong {
+        font-size: 23px;
+      }
+
+      .profile-stat.verification-stat strong {
+        font-size: 18px;
+      }
+
+      .profile-stat .small {
+        font-size: 11px;
+        line-height: 1.25;
+      }
+
+
+      /* CONTACT */
+
+      #provider-phone {
+        font-size: 22px;
+      }
+
+      .provider-contact-actions .btn {
+        min-height: 52px;
+      }
+
+
+      /* CONTENT CARDS */
+
+      .provider-section-card {
+        margin-bottom: 16px;
+      }
+
+      .provider-recommend-card {
+        padding: 24px;
+        margin-bottom: 16px;
+      }
+
+      .provider-recommend-card .btn {
+        width: 100%;
+      }
+
+
+      /* DISCLAIMER */
+
+      .provider-disclaimer-card {
+        padding: 24px;
+      }
+
+
+      /* BOTTOM CTA */
+
+      .cta-card {
+        gap: 24px;
+      }
+
+      .cta-actions {
+        width: 100%;
+      }
+
+      .cta-actions .btn {
+        width: 100%;
+      }
+
+    }
+
+
+    /* =========================================
+       VERY SMALL PHONES
+       ========================================= */
+
+    @media (max-width: 390px) {
+
+      .profile-stat {
+        padding: 14px 7px;
+      }
+
+      .profile-stat strong {
+        font-size: 21px;
+      }
+
+      .profile-stat .small {
+        font-size: 10px;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -33,9 +370,11 @@
 <main>
 
 
-  <!-- PROVIDER HERO -->
+  <!-- =========================================
+       PROVIDER HERO
+       ========================================= -->
 
-  <section class="page-hero">
+  <section class="page-hero provider-page-hero">
 
     <div class="container">
 
@@ -61,77 +400,48 @@
 
 
 
-  <!-- PROVIDER PROFILE -->
+  <!-- =========================================
+       PROVIDER PROFILE
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <div
-        class="provider-profile-grid"
-        style="
-          display:grid;
-          grid-template-columns:minmax(0, 1fr) 340px;
-          gap:28px;
-          align-items:start;
-        "
-      >
+      <div class="provider-profile-grid">
 
 
-        <!-- LEFT COLUMN -->
 
-        <div>
+        <!-- =====================================
+             MAIN PROFILE CONTENT
+             ===================================== -->
+
+        <div class="provider-main">
 
 
           <!-- SUMMARY STATS -->
 
-          <div
-            class="profile-stats"
-            style="
-              display:grid;
-              grid-template-columns:repeat(3, 1fr);
-              gap:16px;
-              margin-bottom:28px;
-            "
-          >
+          <div class="profile-stats">
 
 
-            <!-- RECOMMENDATIONS -->
+            <div class="card stat profile-stat">
 
-            <div class="card stat">
-
-              <strong
-                id="provider-recs"
-                style="
-                  display:block;
-                  font-size:28px;
-                  margin-bottom:4px;
-                "
-              >
+              <strong id="provider-recs">
                 0
               </strong>
 
               <span class="small">
-                Recommend
+                Recommendations
               </span>
 
             </div>
 
 
 
-            <!-- WOULD USE AGAIN -->
+            <div class="card stat profile-stat">
 
-            <div class="card stat">
-
-              <strong
-                id="provider-rehire"
-                style="
-                  display:block;
-                  font-size:28px;
-                  margin-bottom:4px;
-                "
-              >
+              <strong id="provider-rehire">
                 0
               </strong>
 
@@ -143,17 +453,9 @@
 
 
 
-            <!-- VERIFICATION -->
+            <div class="card stat profile-stat verification-stat">
 
-            <div class="card stat">
-
-              <strong
-                style="
-                  display:block;
-                  font-size:18px;
-                  margin-bottom:4px;
-                "
-              >
+              <strong>
                 —
               </strong>
 
@@ -170,10 +472,7 @@
 
           <!-- ABOUT -->
 
-          <div
-            class="card"
-            style="margin-bottom:28px;"
-          >
+          <div class="card provider-section-card">
 
 
             <div class="eyebrow dark">
@@ -197,10 +496,7 @@
 
           <!-- SERVICES -->
 
-          <div
-            class="card"
-            style="margin-bottom:28px;"
-          >
+          <div class="card provider-section-card">
 
 
             <div class="eyebrow dark">
@@ -215,8 +511,7 @@
 
             <div
               id="provider-services"
-              class="badges"
-              style="margin-top:20px;"
+              class="badges provider-badge-area"
             >
 
               <span class="small">
@@ -232,10 +527,7 @@
 
           <!-- SERVICE AREA -->
 
-          <div
-            class="card"
-            style="margin-bottom:28px;"
-          >
+          <div class="card provider-section-card">
 
 
             <div class="eyebrow dark">
@@ -250,8 +542,7 @@
 
             <div
               id="provider-area"
-              class="badges"
-              style="margin-top:20px;"
+              class="badges provider-badge-area"
             >
 
               <span class="small">
@@ -267,10 +558,7 @@
 
           <!-- VERIFICATION -->
 
-          <div
-            class="card"
-            style="margin-bottom:28px;"
-          >
+          <div class="card provider-section-card">
 
 
             <div class="eyebrow dark">
@@ -290,8 +578,7 @@
 
             <div
               id="provider-badges"
-              class="badges"
-              style="margin-top:20px;"
+              class="badges provider-badge-area"
             >
 
               <span class="small">
@@ -325,12 +612,9 @@
 
 
 
-          <!-- NEIGHBOR RECOMMENDATIONS -->
+          <!-- COMMUNITY RECOMMENDATIONS -->
 
-          <div
-            class="card"
-            style="margin-bottom:28px;"
-          >
+          <div class="card provider-section-card">
 
 
             <div class="eyebrow dark">
@@ -339,12 +623,12 @@
 
 
             <h2>
-              Neighbor Recommendations
+              Customer Recommendations
             </h2>
 
 
             <p class="small">
-              Approved recommendations from people who have used this provider will appear below.
+              Approved recommendations from people who have used this provider appear below.
             </p>
 
 
@@ -360,13 +644,7 @@
 
           <!-- RECOMMEND CTA -->
 
-          <div
-            class="card"
-            style="
-              padding:34px;
-              margin-bottom:28px;
-            "
-          >
+          <div class="card provider-recommend-card">
 
 
             <div class="eyebrow dark">
@@ -375,12 +653,12 @@
 
 
             <h2>
-              Help your neighbors
+              Share your experience
             </h2>
 
 
             <p>
-              If you have personally used this provider, share your experience with the community.
+              If you have personally used this provider, let other Hampton Roads residents know about your experience.
             </p>
 
 
@@ -400,80 +678,49 @@
 
 
 
-        <!-- RIGHT COLUMN -->
+        <!-- =====================================
+             CONTACT CARD
+             ===================================== -->
 
-        <aside>
-
-
-          <!-- CONTACT CARD -->
-
-          <div
-            class="card"
-            style="
-              position:sticky;
-              top:100px;
-              margin-bottom:22px;
-            "
-          >
+        <aside class="card provider-contact-card">
 
 
-            <div class="eyebrow dark">
-              CONTACT
+          <div class="eyebrow dark">
+            CONTACT
+          </div>
+
+
+          <h2>
+            Contact Provider
+          </h2>
+
+
+
+          <div class="provider-phone-row">
+
+            <div class="small">
+              PHONE
             </div>
 
-
-            <h2>
-              Contact Provider
-            </h2>
-
-
-
-            <!-- PHONE -->
-
-            <div
-              style="
-                padding:18px 0;
-                border-bottom:1px solid var(--line);
-              "
-            >
-
-              <div class="small">
-                PHONE
-              </div>
-
-              <div
-                id="provider-phone"
-                style="
-                  font-size:20px;
-                  font-weight:800;
-                  margin-top:5px;
-                "
-              >
-                —
-              </div>
-
+            <div id="provider-phone">
+              —
             </div>
 
+          </div>
 
 
-            <!-- CALL -->
+
+          <div class="provider-contact-actions">
+
 
             <a
               id="provider-call"
               class="btn btn-green"
               href="#"
-              style="
-                width:100%;
-                margin-top:20px;
-                text-align:center;
-              "
             >
               Call Provider
             </a>
 
-
-
-            <!-- WEBSITE -->
 
             <a
               id="provider-website"
@@ -481,19 +728,11 @@
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              style="
-                width:100%;
-                margin-top:12px;
-                text-align:center;
-                display:none;
-              "
+              style="display:none;"
             >
               Visit Website
             </a>
 
-
-
-            <!-- FACEBOOK -->
 
             <a
               id="provider-facebook"
@@ -501,91 +740,67 @@
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              style="
-                width:100%;
-                margin-top:12px;
-                text-align:center;
-                display:none;
-              "
+              style="display:none;"
             >
               Facebook Page
             </a>
 
 
-
-            <div
-              style="
-                margin-top:26px;
-                padding-top:22px;
-                border-top:1px solid var(--line);
-              "
-            >
-
-
-              <p class="small">
-                Contact providers directly to confirm pricing, availability, qualifications, and other job details before hiring.
-              </p>
-
-
-            </div>
-
-
           </div>
 
 
 
-          <!-- LISTING TOOLS -->
-
-          <div class="card">
-
-
-            <div class="eyebrow dark">
-              LISTING TOOLS
-            </div>
-
-
-            <h3>
-              See something that needs attention?
-            </h3>
-
+          <div class="provider-contact-note">
 
             <p class="small">
-              Request a correction or let NeighborSource know about a concern.
+              Contact providers directly to confirm pricing, availability, qualifications, and other job details before hiring.
             </p>
 
-
-
-            <a
-              id="update-provider-link"
-              class="btn btn-outline"
-              href="update-listing.html"
-              style="
-                width:100%;
-                text-align:center;
-                margin-top:8px;
-              "
-            >
-              Update This Listing
-            </a>
-
-
-
-            <a
-              id="report-provider-link"
-              href="report.html"
-              style="
-                display:block;
-                text-align:center;
-                margin-top:18px;
-                font-size:14px;
-                font-weight:800;
-              "
-            >
-              Report This Listing
-            </a>
-
-
           </div>
+
+
+        </aside>
+
+
+
+        <!-- =====================================
+             LISTING TOOLS
+             ===================================== -->
+
+        <aside class="card provider-tools-card">
+
+
+          <div class="eyebrow dark">
+            LISTING TOOLS
+          </div>
+
+
+          <h3>
+            See something that needs attention?
+          </h3>
+
+
+          <p class="small">
+            Request a correction or let FindLocal757.com know about a concern.
+          </p>
+
+
+          <a
+            id="update-provider-link"
+            class="btn btn-outline"
+            href="update-listing.html"
+          >
+            Update This Listing
+          </a>
+
+
+          <a
+            id="report-provider-link"
+            class="provider-report-link"
+            href="report.html"
+          >
+            Report This Listing
+          </a>
 
 
         </aside>
@@ -600,21 +815,16 @@
 
 
 
-  <!-- DIRECTORY DISCLAIMER -->
+  <!-- =========================================
+       DIRECTORY DISCLAIMER
+       ========================================= -->
 
   <section class="section section-soft">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:1000px;
-          margin:0 auto;
-          padding:36px;
-        "
-      >
+      <div class="card provider-disclaimer-card">
 
 
         <div class="eyebrow dark">
@@ -628,7 +838,7 @@
 
 
         <p>
-          NeighborSource organizes local provider information and community recommendations. It does not guarantee a provider's work, pricing, availability, licensing, insurance, qualifications, or future performance.
+          FindLocal757.com organizes local provider information and community recommendations. It does not guarantee a provider's work, pricing, availability, licensing, insurance, qualifications, or future performance.
         </p>
 
 
@@ -646,7 +856,9 @@
 
 
 
-  <!-- MORE SERVICES -->
+  <!-- =========================================
+       MORE SERVICES
+       ========================================= -->
 
   <section class="section section-cta">
 
@@ -712,7 +924,7 @@
 
 
 
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 
 
 </body>
