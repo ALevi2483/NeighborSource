@@ -12,22 +12,141 @@
 
   <meta
     name="robots"
-    content="noindex, nofollow"
+    content="noindex, nofollow, noarchive"
   >
 
   <title>
-    Administration | NeighborSource
+    Administration | FindLocal757.com
   </title>
 
   <meta
     name="description"
-    content="NeighborSource administration page."
+    content="FindLocal757.com administration page."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=3"
+    href="css/style.css?v=4"
   >
+
+
+  <style>
+
+    /* =========================================
+       ADMIN PLACEHOLDER
+       ========================================= */
+
+    .admin-page-hero {
+      text-align: center;
+      padding-top: 54px;
+      padding-bottom: 54px;
+    }
+
+    .admin-page-hero .container {
+      max-width: 850px;
+    }
+
+    .admin-page-hero p {
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* =========================================
+       ADMIN CARD
+       ========================================= */
+
+    .admin-card {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 42px;
+      text-align: center;
+    }
+
+    .admin-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 72px;
+      height: 72px;
+
+      margin: 0 auto 22px;
+
+      border-radius: 50%;
+      background: var(--soft);
+
+      font-size: 32px;
+      line-height: 1;
+    }
+
+    .admin-card h2 {
+      margin-bottom: 14px;
+    }
+
+    .admin-card p {
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .admin-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 650px) {
+
+      .admin-page-hero {
+        text-align: left;
+        padding-top: 38px;
+        padding-bottom: 38px;
+      }
+
+      .admin-page-hero h1 {
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+      .admin-page-hero p {
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+      .admin-card {
+        padding: 26px 22px;
+        text-align: left;
+      }
+
+      .admin-icon {
+        margin-left: 0;
+      }
+
+      .admin-card p {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .admin-actions {
+        flex-direction: column;
+      }
+
+      .admin-actions .btn {
+        width: 100%;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -38,15 +157,17 @@
 <main>
 
 
-  <!-- PAGE HERO -->
+  <!-- =========================================
+       PAGE HERO
+       ========================================= -->
 
-  <section class="page-hero">
+  <section class="page-hero admin-page-hero">
 
     <div class="container">
 
 
       <div class="eyebrow">
-        NEIGHBORSOURCE
+        FINDLOCAL757.COM
       </div>
 
 
@@ -56,7 +177,7 @@
 
 
       <p>
-        NeighborSource administrative functions are managed separately from the public website.
+        Administrative functions are managed separately from the public FindLocal757.com website.
       </p>
 
 
@@ -66,21 +187,24 @@
 
 
 
-  <!-- ADMIN NOTICE -->
+  <!-- =========================================
+       ADMIN NOTICE
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:900px;
-          margin:0 auto;
-          padding:42px;
-        "
-      >
+      <div class="card admin-card">
+
+
+        <div
+          class="admin-icon"
+          aria-hidden="true"
+        >
+          🔒
+        </div>
 
 
         <div class="eyebrow dark">
@@ -89,371 +213,33 @@
 
 
         <h2>
-          Public admin controls are disabled
+          Administrative controls are not available here
         </h2>
 
 
         <p>
-          NeighborSource is currently hosted as a public static website. For security, administrative records and moderation controls are not exposed through this page.
+          This public page does not provide access to private records, moderation tools, account information, or administrative controls.
         </p>
 
 
-        <div
-          class="notice green"
-          style="margin-top:26px;"
-        >
-
-          <strong>This is intentional.</strong>
-
-          Provider submissions, recommendations, service requests, reports, listing updates, and other administrative records should continue to be reviewed through the private NeighborSource management system.
-
-        </div>
-
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ADMIN WORKFLOW -->
-
-  <section class="section section-soft">
-
-    <div class="container">
-
-
-      <div class="section-heading centered">
-
-
-        <div class="eyebrow dark">
-          ADMIN WORKFLOW
-        </div>
-
-
-        <h2>
-          What is currently reviewed
-        </h2>
-
-
-        <p class="section-intro">
-          Public submissions are separated from approved public directory information.
+        <p class="small">
+          If you are looking for a public FindLocal757.com feature, return to the directory or browse local services.
         </p>
 
 
-      </div>
-
-
-
-      <div class="category-grid">
-
-
-        <!-- PROVIDERS -->
-
-        <div class="card category-card">
-
-
-          <div class="category-icon">
-            🧰
-          </div>
-
-
-          <h3>
-            Provider Listings
-          </h3>
-
-
-          <div class="small">
-            Review new businesses and individual service providers before they appear publicly.
-          </div>
-
-
-        </div>
-
-
-
-        <!-- RECOMMENDATIONS -->
-
-        <div class="card category-card">
-
-
-          <div class="category-icon">
-            👍
-          </div>
-
-
-          <h3>
-            Recommendations
-          </h3>
-
-
-          <div class="small">
-            Review community recommendations before connecting them to provider profiles.
-          </div>
-
-
-        </div>
-
-
-
-        <!-- SERVICE REQUESTS -->
-
-        <div class="card category-card">
-
-
-          <div class="category-icon">
-            🔎
-          </div>
-
-
-          <h3>
-            Service Requests
-          </h3>
-
-
-          <div class="small">
-            Review requests submitted by people looking for local help.
-          </div>
-
-
-        </div>
-
-
-
-        <!-- PROVIDER SUGGESTIONS -->
-
-        <div class="card category-card">
-
-
-          <div class="category-icon">
-            ➕
-          </div>
-
-
-          <h3>
-            Provider Suggestions
-          </h3>
-
-
-          <div class="small">
-            Review providers suggested by community members for possible inclusion in the directory.
-          </div>
-
-
-        </div>
-
-
-
-        <!-- LISTING UPDATES -->
-
-        <div class="card category-card">
-
-
-          <div class="category-icon">
-            ✏️
-          </div>
-
-
-          <h3>
-            Listing Updates
-          </h3>
-
-
-          <div class="small">
-            Review requests to correct, update, add, or remove provider information.
-          </div>
-
-
-        </div>
-
-
-
-        <!-- REPORTS -->
-
-        <div class="card category-card">
-
-
-          <div class="category-icon">
-            ⚑
-          </div>
-
-
-          <h3>
-            Reports
-          </h3>
-
-
-          <div class="small">
-            Review reports involving inaccurate, misleading, duplicate, or concerning listings.
-          </div>
-
-
-        </div>
-
-
-
-        <!-- CONTACT -->
-
-        <div class="card category-card">
-
-
-          <div class="category-icon">
-            ✉️
-          </div>
-
-
-          <h3>
-            Contact Messages
-          </h3>
-
-
-          <div class="small">
-            Review questions, feedback, technical issues, and other messages submitted through the website.
-          </div>
-
-
-        </div>
-
-
-
-        <!-- VERIFICATION -->
-
-        <div class="card category-card">
-
-
-          <div class="category-icon">
-            ✓
-          </div>
-
-
-          <h3>
-            Verification
-          </h3>
-
-
-          <div class="small">
-            Manage applicable phone, business, license, and insurance verification information.
-          </div>
-
-
-        </div>
-
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- SECURITY -->
-
-  <section class="section">
-
-    <div class="container">
-
-
-      <div
-        class="card"
-        style="
-          max-width:900px;
-          margin:0 auto;
-          padding:42px;
-        "
-      >
-
-
-        <div class="eyebrow dark">
-          SECURITY
-        </div>
-
-
-        <h2>
-          Administrative information stays off the public site
-        </h2>
-
-
-        <p>
-          This page intentionally does not contain passwords, private email addresses, moderation notes, submission records, Google Sheet links, approval controls, or other administrative information.
-        </p>
-
-
-        <p>
-          A future web-based admin dashboard should only be added after secure authentication and authorization are in place.
-        </p>
-
-
-        <div
-          class="notice warning"
-          style="margin-top:26px;"
-        >
-
-          <strong>Important:</strong>
-
-          Hiding an admin page or using a secret URL is not security. Any future administrative dashboard must require actual authentication before private information or moderation actions are exposed.
-
-        </div>
-
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- RETURN -->
-
-  <section class="section section-cta">
-
-    <div class="container">
-
-
-      <div class="cta-card">
-
-
-        <div>
-
-
-          <div class="eyebrow">
-            NEIGHBORSOURCE
-          </div>
-
-
-          <h2>
-            Return to the public directory.
-          </h2>
-
-
-          <p>
-            Browse local providers and community recommendations.
-          </p>
-
-
-        </div>
-
-
-
-        <div class="cta-actions">
+        <div class="admin-actions">
 
 
           <a
             class="btn btn-green"
             href="index.html"
           >
-            NeighborSource Home
+            FindLocal757.com Home
           </a>
 
 
           <a
-            class="btn btn-outline-light"
+            class="btn btn-outline"
             href="services.html"
           >
             Browse Services
@@ -475,7 +261,7 @@
 
 
 
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 
 
 </body>
