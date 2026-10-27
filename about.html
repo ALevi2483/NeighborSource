@@ -11,18 +11,254 @@
   >
 
   <title>
-    About NeighborSource
+    About FindLocal757.com
   </title>
 
   <meta
     name="description"
-    content="Learn about NeighborSource, a local community directory designed to make trusted service recommendations easier to find."
+    content="Learn about FindLocal757.com, a free Hampton Roads directory designed to make local businesses, individual service providers, and community recommendations easier to find."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=3"
+    href="css/style.css?v=4"
   >
+
+
+  <style>
+
+    /* =========================================
+       ABOUT PAGE
+       ========================================= */
+
+    .about-page-hero {
+      text-align: center;
+      padding-top: 54px;
+      padding-bottom: 54px;
+    }
+
+    .about-page-hero .container {
+      max-width: 900px;
+    }
+
+    .about-page-hero p {
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* =========================================
+       INFORMATION CARDS
+       ========================================= */
+
+    .about-info-card {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 38px;
+    }
+
+    .about-info-card h2 {
+      margin-bottom: 14px;
+    }
+
+
+    /* =========================================
+       WHAT WE DO
+       ========================================= */
+
+    .about-feature-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .about-feature-grid .category-card {
+      height: 100%;
+    }
+
+
+    /* =========================================
+       COMMUNITY FLOW
+       ========================================= */
+
+    .about-community {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+
+    /* =========================================
+       WHAT IT IS NOT
+       ========================================= */
+
+    .about-trust-list {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 14px 24px;
+      margin-top: 26px;
+    }
+
+    .about-trust-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .about-trust-check {
+      flex: 0 0 auto;
+      font-weight: 900;
+    }
+
+
+    /* =========================================
+       WHO CAN BE LISTED
+       ========================================= */
+
+    .about-provider-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .about-provider-grid .card {
+      height: 100%;
+    }
+
+    .about-provider-grid .btn {
+      margin-top: 10px;
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 850px) {
+
+      .about-feature-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+
+    @media (max-width: 650px) {
+
+      .about-page-hero {
+        text-align: left;
+        padding-top: 38px;
+        padding-bottom: 38px;
+      }
+
+      .about-page-hero h1 {
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+      .about-page-hero p {
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+
+      /* INFO CARDS */
+
+      .about-info-card {
+        padding: 24px;
+      }
+
+      .about-info-card .btn {
+        width: 100%;
+      }
+
+
+      /* FEATURES */
+
+      .about-feature-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .about-feature-grid .category-card {
+        padding: 18px 14px;
+      }
+
+      .about-feature-grid h3 {
+        font-size: 17px;
+      }
+
+      .about-feature-grid .small {
+        font-size: 13px;
+      }
+
+
+      /* COMMUNITY STEPS */
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+
+      /* TRUST LIST */
+
+      .about-trust-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+
+      /* PROVIDERS */
+
+      .about-provider-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-provider-grid .card {
+        padding: 24px;
+      }
+
+      .about-provider-grid .btn {
+        width: 100%;
+      }
+
+
+      /* CTA */
+
+      .cta-card {
+        gap: 24px;
+      }
+
+      .cta-actions {
+        width: 100%;
+      }
+
+      .cta-actions .btn {
+        width: 100%;
+      }
+
+    }
+
+
+    @media (max-width: 390px) {
+
+      .about-feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -33,15 +269,17 @@
 <main>
 
 
-  <!-- PAGE HERO -->
+  <!-- =========================================
+       PAGE HERO
+       ========================================= -->
 
-  <section class="page-hero">
+  <section class="page-hero about-page-hero">
 
     <div class="container">
 
 
       <div class="eyebrow">
-        ABOUT NEIGHBORSOURCE
+        ABOUT FINDLOCAL757.COM
       </div>
 
 
@@ -51,7 +289,7 @@
 
 
       <p>
-        NeighborSource organizes local businesses and individual service providers into one searchable community directory.
+        FindLocal757.com brings local businesses, individual service providers, and community recommendations together in one searchable Hampton Roads directory.
       </p>
 
 
@@ -61,25 +299,20 @@
 
 
 
-  <!-- WHY IT EXISTS -->
+  <!-- =========================================
+       WHY IT EXISTS
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:1000px;
-          margin:0 auto;
-          padding:42px;
-        "
-      >
+      <div class="card about-info-card">
 
 
         <div class="eyebrow dark">
-          WHY NEIGHBORSOURCE EXISTS
+          WHY IT EXISTS
         </div>
 
 
@@ -89,17 +322,17 @@
 
 
         <p>
-          Most communities already have plenty of recommendations. The problem is that they are scattered across Facebook groups, neighborhood pages, old posts, text messages, and conversations.
+          Hampton Roads already has plenty of local recommendations. The problem is that they are scattered across Facebook groups, neighborhood pages, old posts, text messages, and conversations.
         </p>
 
 
         <p>
-          Someone asks for a plumber, dog sitter, mechanic, handyman, photographer, or notary. Neighbors respond with names they trust. A few weeks later, someone else asks the same question and the process starts over again.
+          Someone asks for a plumber, dog sitter, mechanic, handyman, photographer, or notary. Neighbors share names they trust. A few weeks later, someone else asks the same question and everyone starts over.
         </p>
 
 
         <p>
-          NeighborSource is designed to organize those recommendations into something easier to search and use.
+          FindLocal757.com is designed to organize that information into one place that is easier to search, browse, and use.
         </p>
 
 
@@ -112,7 +345,9 @@
 
 
 
-  <!-- WHAT IT DOES -->
+  <!-- =========================================
+       WHAT IT DOES
+       ========================================= -->
 
   <section class="section section-soft">
 
@@ -123,7 +358,7 @@
 
 
         <div class="eyebrow dark">
-          WHAT NEIGHBORSOURCE DOES
+          WHAT FINDLOCAL757.COM DOES
         </div>
 
 
@@ -133,7 +368,7 @@
 
 
         <p class="section-intro">
-          The goal is to make finding local help easier without creating another complicated marketplace.
+          The goal is to make finding local help easier without turning the process into another complicated marketplace.
         </p>
 
 
@@ -141,58 +376,71 @@
 
 
 
-      <div class="category-grid">
+      <div class="category-grid about-feature-grid">
+
 
 
         <div class="card category-card">
+
 
           <div class="category-icon">
             🔎
           </div>
 
+
           <h3>
             Organizes Providers
           </h3>
+
 
           <div class="small">
             Businesses and individual service providers are organized by category, service, and location.
           </div>
 
+
         </div>
 
 
 
         <div class="card category-card">
+
 
           <div class="category-icon">
             👍
           </div>
 
+
           <h3>
             Tracks Recommendations
           </h3>
+
 
           <div class="small">
             Community recommendations can be connected directly to provider listings.
           </div>
 
+
         </div>
 
 
 
         <div class="card category-card">
+
 
           <div class="category-icon">
             📍
           </div>
 
+
           <h3>
             Keeps It Local
           </h3>
 
+
           <div class="small">
-            Listings show the communities and service areas where providers work.
+            Listings show the Hampton Roads communities and service areas where providers work.
           </div>
+
 
         </div>
 
@@ -200,17 +448,21 @@
 
         <div class="card category-card">
 
+
           <div class="category-icon">
             🛠️
           </div>
 
+
           <h3>
-            Helps When You Are Stuck
+            Helps When You're Stuck
           </h3>
 
+
           <div class="small">
-            If you cannot find the right provider, you can submit what you need instead.
+            If you cannot find the right provider, you can tell the community what kind of help you need.
           </div>
+
 
         </div>
 
@@ -224,11 +476,13 @@
 
 
 
-  <!-- COMMUNITY MODEL -->
+  <!-- =========================================
+       COMMUNITY MODEL
+       ========================================= -->
 
   <section class="section">
 
-    <div class="container">
+    <div class="container about-community">
 
 
       <div class="section-heading centered">
@@ -240,12 +494,12 @@
 
 
         <h2>
-          Neighbors help build the directory
+          The directory gets better when people contribute
         </h2>
 
 
         <p class="section-intro">
-          NeighborSource becomes more useful when people share the providers they actually use.
+          Local knowledge becomes much more useful when it is organized and easy for the next person to find.
         </p>
 
 
@@ -256,37 +510,46 @@
       <div class="steps-grid">
 
 
+
         <div class="card step-card">
+
 
           <div class="step-number">
             1
           </div>
 
+
           <h3>
             Someone Finds a Good Provider
           </h3>
 
+
           <p>
-            A neighbor has a positive experience with a local business or individual service provider.
+            A local resident has a positive experience with a business or individual service provider.
           </p>
+
 
         </div>
 
 
 
         <div class="card step-card">
+
 
           <div class="step-number">
             2
           </div>
 
+
           <h3>
             They Share the Provider
           </h3>
 
+
           <p>
-            The provider can be suggested for the directory or recommended if already listed.
+            They can suggest the provider for the directory or recommend them if they are already listed.
           </p>
+
 
         </div>
 
@@ -294,17 +557,21 @@
 
         <div class="card step-card">
 
+
           <div class="step-number">
             3
           </div>
 
+
           <h3>
-            The Next Neighbor Can Find Them
+            Someone Else Can Find Them
           </h3>
 
+
           <p>
-            Instead of asking the same question again, another neighbor can search NeighborSource.
+            The next person can search FindLocal757.com instead of starting the same search all over again.
           </p>
+
 
         </div>
 
@@ -318,25 +585,20 @@
 
 
 
-  <!-- WHAT IT IS NOT -->
+  <!-- =========================================
+       WHAT IT IS NOT
+       ========================================= -->
 
   <section class="section section-soft">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:1000px;
-          margin:0 auto;
-          padding:42px;
-        "
-      >
+      <div class="card about-info-card">
 
 
         <div class="eyebrow dark">
-          WHAT NEIGHBORSOURCE IS NOT
+          WHAT FINDLOCAL757.COM IS NOT
         </div>
 
 
@@ -346,41 +608,47 @@
 
 
         <p>
-          NeighborSource is designed to remain focused on organizing local information rather than selling access to customers.
+          FindLocal757.com is focused on organizing local service information, not selling access to customers or controlling the relationship between providers and the people who hire them.
         </p>
 
 
-        <div
-          class="trust-list"
-          style="
-            margin-top:26px;
-            color:var(--text);
-          "
-        >
+
+        <div class="about-trust-list">
 
 
-          <div class="trust-item">
-            ✓ No paid provider rankings
+          <div class="about-trust-item">
+            <span class="about-trust-check">✓</span>
+            <span>No paid provider rankings</span>
           </div>
 
 
-          <div class="trust-item">
-            ✓ No lead fees for contacting a provider
+          <div class="about-trust-item">
+            <span class="about-trust-check">✓</span>
+            <span>No lead fees for contacting providers</span>
           </div>
 
 
-          <div class="trust-item">
-            ✓ No account required just to browse
+          <div class="about-trust-item">
+            <span class="about-trust-check">✓</span>
+            <span>No account required just to browse</span>
           </div>
 
 
-          <div class="trust-item">
-            ✓ No requirement to book through NeighborSource
+          <div class="about-trust-item">
+            <span class="about-trust-check">✓</span>
+            <span>No requirement to book through FindLocal757.com</span>
           </div>
 
 
-          <div class="trust-item">
-            ✓ Providers and customers communicate directly
+          <div class="about-trust-item">
+            <span class="about-trust-check">✓</span>
+            <span>Providers and customers communicate directly</span>
+          </div>
+
+
+          <div class="about-trust-item">
+            <span class="about-trust-check">✓</span>
+            <span>Free to search and currently free to list</span>
           </div>
 
 
@@ -396,7 +664,9 @@
 
 
 
-  <!-- BUSINESSES AND INDIVIDUALS -->
+  <!-- =========================================
+       WHO CAN BE LISTED
+       ========================================= -->
 
   <section class="section">
 
@@ -417,7 +687,7 @@
 
 
         <p class="section-intro">
-          Some of the best local help does not come from a large company.
+          Local help does not always come from a traditional company.
         </p>
 
 
@@ -425,24 +695,27 @@
 
 
 
-      <div
-        class="provider-grid"
-        style="
-          max-width:900px;
-          margin:0 auto;
-        "
-      >
+      <div class="about-provider-grid">
+
 
 
         <div class="card">
 
+
+          <div class="eyebrow dark">
+            LOCAL BUSINESSES
+          </div>
+
+
           <h3>
-            Local Businesses
+            Established businesses
           </h3>
 
+
           <p>
-            Contractors, cleaning companies, pet services, mechanics, photographers, tutors, landscapers, and other local businesses can be listed.
+            Contractors, cleaning companies, pet services, mechanics, photographers, tutors, landscapers, and other Hampton Roads businesses can be listed.
           </p>
+
 
           <a
             class="btn btn-outline"
@@ -451,19 +724,28 @@
             List a Business
           </a>
 
+
         </div>
 
 
 
         <div class="card">
 
+
+          <div class="eyebrow dark">
+            INDIVIDUAL PROVIDERS
+          </div>
+
+
           <h3>
-            Individual Providers
+            Individuals and side hustles
           </h3>
 
+
           <p>
-            Babysitters, tutors, mobile notaries, handymen, pet sitters, instructors, and other individuals offering local services can also be listed.
+            Babysitters, tutors, mobile notaries, handymen, pet sitters, instructors, retirees, teens providing local services, and other individual providers can also be listed.
           </p>
+
 
           <a
             class="btn btn-outline"
@@ -471,6 +753,7 @@
           >
             List Your Service
           </a>
+
 
         </div>
 
@@ -484,21 +767,16 @@
 
 
 
-  <!-- VERIFICATION -->
+  <!-- =========================================
+       VERIFICATION
+       ========================================= -->
 
   <section class="section section-soft">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:1000px;
-          margin:0 auto;
-          padding:42px;
-        "
-      >
+      <div class="card about-info-card">
 
 
         <div class="eyebrow dark">
@@ -512,8 +790,9 @@
 
 
         <p>
-          Some listings may include verification badges when certain information has been reviewed.
+          Some provider profiles may include verification badges when specific information associated with the listing has been reviewed.
         </p>
+
 
 
         <div
@@ -521,27 +800,33 @@
           style="margin-top:22px;"
         >
 
+
           <span class="badge green">
             ✓ Phone Verified
           </span>
+
 
           <span class="badge green">
             ✓ Business Verified
           </span>
 
+
           <span class="badge green">
             ✓ License Verified
           </span>
+
 
           <span class="badge green">
             ✓ Insurance Verified
           </span>
 
+
         </div>
 
 
+
         <p style="margin-top:24px;">
-          A badge only means that the specific information represented by that badge was reviewed. It does not guarantee pricing, workmanship, availability, reliability, or future performance.
+          A badge only applies to the specific information represented by that badge. It does not guarantee pricing, workmanship, availability, reliability, qualifications, or future performance.
         </p>
 
 
@@ -562,21 +847,16 @@
 
 
 
-  <!-- RESPONSIBILITY -->
+  <!-- =========================================
+       CHOOSING A PROVIDER
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:1000px;
-          margin:0 auto;
-          padding:42px;
-        "
-      >
+      <div class="card about-info-card">
 
 
         <div class="eyebrow dark">
@@ -590,12 +870,12 @@
 
 
         <p>
-          NeighborSource provides information to help people find local service providers. It does not hire providers, negotiate pricing, process payments, supervise work, or guarantee results.
+          FindLocal757.com is a directory. It does not hire providers, negotiate pricing, process payments, supervise work, or guarantee results.
         </p>
 
 
         <p>
-          Before hiring someone, users should confirm whatever information matters for the job, including pricing, licensing, insurance, references, permits, qualifications, and availability when applicable.
+          Before hiring someone, confirm whatever matters for your job, including pricing, availability, experience, licensing, insurance, references, permits, qualifications, and other relevant details.
         </p>
 
 
@@ -608,7 +888,9 @@
 
 
 
-  <!-- FINAL CTA -->
+  <!-- =========================================
+       FINAL CTA
+       ========================================= -->
 
   <section class="section section-cta">
 
@@ -622,7 +904,7 @@
 
 
           <div class="eyebrow">
-            HELP BUILD NEIGHBORSOURCE
+            HELP BUILD THE DIRECTORY
           </div>
 
 
@@ -632,7 +914,7 @@
 
 
           <p>
-            Recommend a provider or start searching the directory.
+            Recommend a local provider or start searching for the service you need.
           </p>
 
 
@@ -674,7 +956,7 @@
 
 
 
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 
 
 </body>
