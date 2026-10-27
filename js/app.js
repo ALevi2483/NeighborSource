@@ -264,10 +264,6 @@ function footer() {
               Update a Listing
             </a>
 
-            <a href="verification.html">
-              Verification
-            </a>
-
           </div>
 
 
@@ -649,21 +645,6 @@ function normalizeProvider(
       normalizeList(
         p.area
       ),
-
-    verified:
-      normalizeList(
-        p.verified
-      )
-        .filter(
-          badge =>
-            String(
-              badge ||
-              ""
-            )
-              .trim()
-              .toLowerCase() ===
-            "phone verified"
-        ),
 
     recommendations:
       safeNumber(
@@ -1062,33 +1043,6 @@ function providerCard(
           ", "
         )
       : "Service area not listed";
-
-
-  const badges =
-    p.verified
-      .filter(
-        badge =>
-          String(
-            badge ||
-            ""
-          )
-            .trim()
-            .toLowerCase() ===
-          "phone verified"
-      )
-      .slice(
-        0,
-        1
-      )
-      .map(
-        () =>
-          `
-            <span class="badge green">
-              ✓ Phone Verified
-            </span>
-          `
-      )
-      .join("");
 
 
   const callButton =
@@ -1740,17 +1694,7 @@ function renderProvider() {
     provider.area
   );
 
-
-  renderProviderBadges(
-    provider.verified
-  );
-
-
-  updateVerificationStat(
-    provider.verified
-  );
-
-
+ 
   configureProviderContact(
     provider
   );
@@ -1840,22 +1784,6 @@ function renderProviderUnavailable(
 
     areas.innerHTML =
       `<span class="small">No service-area information available.</span>`;
-
-  }
-
-
-  const badges =
-    document.querySelector(
-      "#provider-badges"
-    );
-
-
-  if (
-    badges
-  ) {
-
-    badges.innerHTML =
-      `<span class="small">No phone verification information available.</span>`;
 
   }
 
@@ -2012,146 +1940,6 @@ function renderProviderAreas(
 }
 
 
-/*************************************************
- * PROVIDER VERIFICATION BADGES
- *************************************************/
-
-function renderProviderBadges(
-  badges
-) {
-
-  const container =
-    document.querySelector(
-      "#provider-badges"
-    );
-
-
-  if (
-    !container
-  ) {
-
-    return;
-
-  }
-
-
-  const phoneVerified =
-    Array.isArray(
-      badges
-    ) &&
-    badges.some(
-      badge =>
-        String(
-          badge ||
-          ""
-        )
-          .trim()
-          .toLowerCase() ===
-        "phone verified"
-    );
-
-
-  if (
-    !phoneVerified
-  ) {
-
-    container.innerHTML =
-      `
-        <span class="small">
-          Phone verification has not been completed.
-        </span>
-      `;
-
-    return;
-
-  }
-
-
-  container.innerHTML =
-    `
-      <span class="badge green">
-        ✓ Phone Verified
-      </span>
-    `;
-
-}
-
-
-/*************************************************
- * VERIFICATION SUMMARY STAT
- *************************************************/
-
-function updateVerificationStat(
-  badges
-) {
-
-  const stat =
-    document.querySelector(
-      ".profile-stats .stat:nth-child(3)"
-    );
-
-
-  if (
-    !stat
-  ) {
-
-    return;
-
-  }
-
-
-  const number =
-    stat.querySelector(
-      "strong"
-    );
-
-
-  const label =
-    stat.querySelector(
-      ".small"
-    );
-
-
-  const phoneVerified =
-    Array.isArray(
-      badges
-    ) &&
-    badges.some(
-      badge =>
-        String(
-          badge ||
-          ""
-        )
-          .trim()
-          .toLowerCase() ===
-        "phone verified"
-    );
-
-
-  if (
-    number
-  ) {
-
-    number.textContent =
-      phoneVerified
-        ? "✓"
-        : "—";
-
-  }
-
-
-  if (
-    label
-  ) {
-
-    label.textContent =
-      phoneVerified
-        ? "Phone Verified"
-        : "Phone Not Verified";
-
-  }
-
-}
 
 
 /*************************************************
