@@ -11,18 +11,232 @@
   >
 
   <title>
-    Contact NeighborSource
+    Contact FindLocal757.com
   </title>
 
   <meta
     name="description"
-    content="Contact NeighborSource with questions, feedback, suggestions, or general inquiries."
+    content="Contact FindLocal757.com with questions, feedback, suggestions, technical issues, or other general inquiries."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=3"
+    href="css/style.css?v=4"
   >
+
+
+  <style>
+
+    /* =========================================
+       CONTACT PAGE
+       ========================================= */
+
+    .contact-page-hero {
+      text-align: center;
+      padding-top: 54px;
+      padding-bottom: 54px;
+    }
+
+    .contact-page-hero .container {
+      max-width: 850px;
+    }
+
+    .contact-page-hero p {
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* =========================================
+       CONTACT FORM
+       ========================================= */
+
+    .contact-form-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .contact-form-card {
+      padding: 34px;
+    }
+
+    .contact-intro {
+      margin-bottom: 30px;
+    }
+
+
+    /* =========================================
+       FORM GRID
+       ========================================= */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .contact-grid .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .contact-grid input,
+    .contact-grid select,
+    .contact-grid textarea {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    #message {
+      min-height: 180px;
+      resize: vertical;
+    }
+
+
+    /* =========================================
+       CONFIRMATION
+       ========================================= */
+
+    .contact-confirmation {
+      margin-top: 26px;
+    }
+
+    .contact-confirmation .check-row {
+      align-items: flex-start;
+    }
+
+    .contact-confirmation input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      margin-top: 1px;
+    }
+
+
+    /* =========================================
+       SUBMIT
+       ========================================= */
+
+    .contact-submit-area {
+      margin-top: 28px;
+    }
+
+    .contact-submit-button {
+      min-width: 200px;
+    }
+
+    .contact-submit-note {
+      max-width: 650px;
+      margin-top: 12px;
+    }
+
+
+    /* =========================================
+       QUICK LINKS
+       ========================================= */
+
+    .contact-quick-links {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .contact-quick-links .step-card {
+      height: 100%;
+    }
+
+    .contact-quick-links .step-card a {
+      display: inline-block;
+      margin-top: 8px;
+      font-weight: 800;
+    }
+
+
+    /* =========================================
+       COMMUNITY NOTE
+       ========================================= */
+
+    .contact-community-card {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 34px;
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 700px) {
+
+      .contact-page-hero {
+        text-align: left;
+        padding-top: 38px;
+        padding-bottom: 38px;
+      }
+
+      .contact-page-hero h1 {
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+      .contact-page-hero p {
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+
+      /* FORM */
+
+      .contact-form-card {
+        padding: 22px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .contact-grid .field.full {
+        grid-column: auto;
+      }
+
+      .contact-grid input,
+      .contact-grid select {
+        min-height: 52px;
+      }
+
+      #message {
+        min-height: 180px;
+      }
+
+
+      /* SUBMIT */
+
+      .contact-submit-button {
+        width: 100%;
+        min-height: 54px;
+      }
+
+
+      /* QUICK LINKS */
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+
+      /* COMMUNITY */
+
+      .contact-community-card {
+        padding: 24px;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -33,9 +247,11 @@
 <main>
 
 
-  <!-- PAGE HERO -->
+  <!-- =========================================
+       PAGE HERO
+       ========================================= -->
 
-  <section class="page-hero">
+  <section class="page-hero contact-page-hero">
 
     <div class="container">
 
@@ -46,12 +262,12 @@
 
 
       <h1>
-        Contact NeighborSource
+        Contact FindLocal757.com
       </h1>
 
 
       <p>
-        Have a question, suggestion, or idea for improving NeighborSource? Send us a message.
+        Have a question, suggestion, technical issue, or idea for improving the site? Send us a message.
       </p>
 
 
@@ -61,160 +277,177 @@
 
 
 
-  <!-- CONTACT FORM -->
+  <!-- =========================================
+       CONTACT FORM
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <form
-        class="card form-card"
-        id="contact-form"
-        data-form-type="contact"
-      >
+      <div class="contact-form-wrap">
 
 
-        <input
-          type="hidden"
-          name="type"
-          value="contact"
+        <form
+          class="card form-card contact-form-card"
+          id="contact-form"
+          data-form-type="contact"
         >
 
 
-
-        <div
-          class="notice green"
-          style="margin-bottom:30px;"
-        >
-
-          <strong>Need help with a specific listing?</strong>
-
-          Use the appropriate listing form when possible so your request can be handled correctly.
-
-        </div>
+          <input
+            type="hidden"
+            name="type"
+            value="contact"
+          >
 
 
 
-        <div class="form-grid">
+          <!-- INTRO -->
 
+          <div class="notice green contact-intro">
 
-          <!-- NAME -->
+            <strong>
+              Need help with a specific listing?
+            </strong>
 
-          <div class="field">
-
-            <label for="name">
-              Your Name *
-            </label>
-
-            <input
-              id="name"
-              name="name"
-              type="text"
-              required
-              autocomplete="name"
-              placeholder="Your name"
-            >
+            The Update a Listing or Report a Listing forms are usually the fastest way to handle listing-specific issues.
 
           </div>
 
 
 
-          <!-- EMAIL -->
+          <div class="contact-grid">
 
-          <div class="field">
 
-            <label for="email">
-              Your Email *
-            </label>
+            <!-- NAME -->
 
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autocomplete="email"
-              placeholder="you@example.com"
-            >
+            <div class="field">
+
+              <label for="name">
+                Your Name *
+              </label>
+
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                autocomplete="name"
+                placeholder="Your name"
+              >
+
+            </div>
+
+
+
+            <!-- EMAIL -->
+
+            <div class="field">
+
+              <label for="email">
+                Your Email *
+              </label>
+
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autocomplete="email"
+                inputmode="email"
+                placeholder="you@example.com"
+              >
+
+            </div>
+
+
+
+            <!-- SUBJECT -->
+
+            <div class="field full">
+
+              <label for="subject">
+                What can we help with? *
+              </label>
+
+              <select
+                id="subject"
+                name="subject"
+                required
+              >
+
+                <option value="">
+                  Choose a subject
+                </option>
+
+                <option value="General Question">
+                  General Question
+                </option>
+
+                <option value="Website Feedback">
+                  Website Feedback
+                </option>
+
+                <option value="Suggestion">
+                  Suggestion or New Feature Idea
+                </option>
+
+                <option value="Provider Question">
+                  Provider Question
+                </option>
+
+                <option value="Service Request Question">
+                  Service Request Question
+                </option>
+
+                <option value="Technical Problem">
+                  Technical Problem
+                </option>
+
+                <option value="Other">
+                  Other
+                </option>
+
+              </select>
+
+            </div>
+
+
+
+            <!-- MESSAGE -->
+
+            <div class="field full">
+
+              <label for="message">
+                Message *
+              </label>
+
+              <textarea
+                id="message"
+                name="message"
+                required
+                placeholder="Tell us how we can help..."
+              ></textarea>
+
+              <div class="helper">
+                Include enough detail for us to understand your question or issue.
+              </div>
+
+            </div>
+
 
           </div>
 
 
 
-          <!-- SUBJECT -->
+          <!-- =====================================
+               CONFIRMATION
+               ===================================== -->
 
-          <div class="field full">
+          <div class="contact-confirmation">
 
-            <label for="subject">
-              Subject *
-            </label>
-
-            <select
-              id="subject"
-              name="subject"
-              required
-            >
-
-              <option value="">
-                Choose a subject
-              </option>
-
-              <option value="General Question">
-                General Question
-              </option>
-
-              <option value="Website Feedback">
-                Website Feedback
-              </option>
-
-              <option value="Suggestion">
-                Suggestion
-              </option>
-
-              <option value="Provider Question">
-                Provider Question
-              </option>
-
-              <option value="Service Request Question">
-                Service Request Question
-              </option>
-
-              <option value="Technical Problem">
-                Technical Problem
-              </option>
-
-              <option value="Other">
-                Other
-              </option>
-
-            </select>
-
-          </div>
-
-
-
-          <!-- MESSAGE -->
-
-          <div class="field full">
-
-            <label for="message">
-              Message *
-            </label>
-
-            <textarea
-              id="message"
-              name="message"
-              required
-              placeholder="How can we help?"
-            ></textarea>
-
-          </div>
-
-
-
-          <!-- CONFIRM -->
-
-          <div class="field full">
 
             <label class="check-row">
 
@@ -225,37 +458,53 @@
               >
 
               <span>
-                I confirm that the information provided is accurate and that NeighborSource may contact me about this message.
+                I confirm that the information provided is accurate and that FindLocal757.com may contact me about this message.
               </span>
 
             </label>
 
+
           </div>
 
 
-        </div>
+
+          <!-- =====================================
+               SUBMIT
+               ===================================== -->
+
+          <div class="contact-submit-area">
+
+
+            <button
+              class="btn btn-green contact-submit-button"
+              type="submit"
+            >
+              Send Message
+            </button>
+
+
+            <p class="small contact-submit-note">
+              Please do not include sensitive personal, financial, medical, account, or password information in your message.
+            </p>
+
+
+          </div>
 
 
 
-        <!-- SUBMIT -->
+          <!-- STATUS -->
 
-        <button
-          class="btn btn-green"
-          type="submit"
-        >
-          Send Message
-        </button>
-
+          <div
+            id="form-status"
+            style="margin-top:20px;"
+            aria-live="polite"
+          ></div>
 
 
-        <div
-          id="form-status"
-          style="margin-top:20px;"
-          aria-live="polite"
-        ></div>
+        </form>
 
 
-      </form>
+      </div>
 
 
     </div>
@@ -264,14 +513,17 @@
 
 
 
-  <!-- QUICK LINKS -->
+  <!-- =========================================
+       QUICK LINKS
+       ========================================= -->
 
   <section class="section section-soft">
 
-    <div class="container">
+    <div class="container contact-quick-links">
 
 
       <div class="section-heading centered">
+
 
         <div class="eyebrow dark">
           LOOKING FOR SOMETHING SPECIFIC?
@@ -284,8 +536,9 @@
 
 
         <p class="section-intro">
-          Use the form that best matches what you need.
+          Choose the option that best matches what you need.
         </p>
+
 
       </div>
 
@@ -294,67 +547,89 @@
       <div class="steps-grid">
 
 
+
+        <!-- UPDATE -->
+
         <div class="card step-card">
+
 
           <div class="step-number">
             1
           </div>
 
+
           <h3>
             Update a Listing
           </h3>
 
+
           <p>
-            Correct, add, or remove information from an existing provider listing.
+            Correct, add, change, or remove information from an existing provider listing.
           </p>
 
+
           <a href="update-listing.html">
-            Update a listing →
+            Update a Listing →
           </a>
+
 
         </div>
 
 
 
+        <!-- REPORT -->
+
         <div class="card step-card">
+
 
           <div class="step-number">
             2
           </div>
 
+
           <h3>
             Report a Listing
           </h3>
 
+
           <p>
-            Let us know about inaccurate, misleading, or concerning listing information.
+            Tell us about inaccurate, misleading, fraudulent, inappropriate, or concerning listing information.
           </p>
 
+
           <a href="report.html">
-            Report a listing →
+            Report a Listing →
           </a>
+
 
         </div>
 
 
 
+        <!-- RECOMMEND -->
+
         <div class="card step-card">
+
 
           <div class="step-number">
             3
           </div>
 
+
           <h3>
             Recommend Someone
           </h3>
 
+
           <p>
-            Suggest a local provider that should be included in NeighborSource.
+            Suggest a local business or individual service provider that should be considered for the directory.
           </p>
 
+
           <a href="suggest-provider.html">
-            Recommend someone →
+            Recommend Someone →
           </a>
+
 
         </div>
 
@@ -368,21 +643,16 @@
 
 
 
-  <!-- COMMUNITY NOTE -->
+  <!-- =========================================
+       COMMUNITY NOTE
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:900px;
-          margin:0 auto;
-          padding:36px;
-        "
-      >
+      <div class="card contact-community-card">
 
 
         <div class="eyebrow dark">
@@ -391,17 +661,22 @@
 
 
         <h2>
-          Help us make NeighborSource better
+          Help make FindLocal757.com better
         </h2>
 
 
         <p>
-          NeighborSource is designed to make local recommendations easier to find and organize. Feedback about confusing pages, missing categories, useful features, or problems with the site is welcome.
+          FindLocal757.com is designed to make local businesses, individual service providers, and community recommendations easier to find across Hampton Roads.
+        </p>
+
+
+        <p>
+          Feedback about confusing pages, missing categories, useful features, problems with the site, or ways to make the directory easier to use is welcome.
         </p>
 
 
         <p class="small">
-          Please do not send sensitive personal, financial, medical, or account information through the contact form.
+          Please do not send sensitive personal, financial, medical, account, password, or other confidential information through this form.
         </p>
 
 
@@ -417,7 +692,7 @@
 
 
 
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 
 
 </body>
