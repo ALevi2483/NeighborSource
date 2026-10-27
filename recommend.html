@@ -11,18 +11,278 @@
   >
 
   <title>
-    Recommend a Provider | NeighborSource
+    Recommend a Provider | FindLocal757.com
   </title>
 
   <meta
     name="description"
-    content="Share your experience with a local provider and help your neighbors make informed choices."
+    content="Share your experience with a local provider listed on FindLocal757.com and help other Hampton Roads residents make informed choices."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=3"
+    href="css/style.css?v=4"
   >
+
+
+  <style>
+
+    /* =========================================
+       RECOMMENDATION PAGE
+       ========================================= */
+
+    .recommend-page-hero {
+      text-align: center;
+      padding-top: 54px;
+      padding-bottom: 54px;
+    }
+
+    .recommend-page-hero .container {
+      max-width: 850px;
+    }
+
+    .recommend-page-hero p {
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* =========================================
+       FORM
+       ========================================= */
+
+    .recommend-form-wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .recommend-form-card {
+      padding: 34px;
+    }
+
+    .recommend-intro {
+      margin-bottom: 30px;
+    }
+
+
+    /* =========================================
+       FORM SECTIONS
+       ========================================= */
+
+    .recommend-form-section {
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .recommend-form-section:last-of-type {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .recommend-section-heading {
+      margin-bottom: 22px;
+    }
+
+    .recommend-section-heading h2 {
+      margin-bottom: 6px;
+    }
+
+    .recommend-section-heading p {
+      margin-bottom: 0;
+    }
+
+
+    /* =========================================
+       FORM GRID
+       ========================================= */
+
+    .recommend-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .recommend-grid .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .recommend-grid input,
+    .recommend-grid select,
+    .recommend-grid textarea {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    #comments {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+
+    /* =========================================
+       PROVIDER FIELD
+       ========================================= */
+
+    #providerName[readonly] {
+      background: var(--soft);
+      cursor: default;
+    }
+
+
+    /* =========================================
+       OPTIONAL LABEL
+       ========================================= */
+
+    .optional-label {
+      margin-left: 5px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+
+    /* =========================================
+       CONFIRMATION
+       ========================================= */
+
+    .recommend-confirmation {
+      margin-top: 26px;
+    }
+
+    .recommend-confirmation .check-row {
+      align-items: flex-start;
+    }
+
+    .recommend-confirmation input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      margin-top: 1px;
+    }
+
+
+    /* =========================================
+       SUBMIT
+       ========================================= */
+
+    .recommend-submit-area {
+      margin-top: 28px;
+    }
+
+    .recommend-submit-button {
+      min-width: 240px;
+    }
+
+    .recommend-submit-note {
+      max-width: 680px;
+      margin-top: 12px;
+    }
+
+
+    /* =========================================
+       COMMUNITY STEPS
+       ========================================= */
+
+    .recommend-steps {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+
+    /* =========================================
+       GUIDELINES
+       ========================================= */
+
+    .recommend-guidelines-card {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 34px;
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 700px) {
+
+      .recommend-page-hero {
+        text-align: left;
+        padding-top: 38px;
+        padding-bottom: 38px;
+      }
+
+      .recommend-page-hero h1 {
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+      .recommend-page-hero p {
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+
+      /* FORM */
+
+      .recommend-form-card {
+        padding: 22px;
+      }
+
+      .recommend-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .recommend-grid .field.full {
+        grid-column: auto;
+      }
+
+      .recommend-form-section {
+        padding-bottom: 24px;
+        margin-bottom: 24px;
+      }
+
+      .recommend-grid input,
+      .recommend-grid select {
+        min-height: 52px;
+      }
+
+      #comments {
+        min-height: 170px;
+      }
+
+
+      /* SUBMIT */
+
+      .recommend-submit-button {
+        width: 100%;
+        min-height: 54px;
+      }
+
+
+      /* STEPS */
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+
+      /* GUIDELINES */
+
+      .recommend-guidelines-card {
+        padding: 24px;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -33,9 +293,11 @@
 <main>
 
 
-  <!-- PAGE HERO -->
+  <!-- =========================================
+       PAGE HERO
+       ========================================= -->
 
-  <section class="page-hero">
+  <section class="page-hero recommend-page-hero">
 
     <div class="container">
 
@@ -51,7 +313,7 @@
 
 
       <p>
-        Used someone listed on NeighborSource? Tell your neighbors about your experience.
+        Used a provider listed on FindLocal757.com? Share your experience to help other Hampton Roads residents make informed choices.
       </p>
 
 
@@ -61,289 +323,405 @@
 
 
 
-  <!-- FORM -->
+  <!-- =========================================
+       FORM
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <form
-        class="card form-card"
-        id="recommendation-form"
-        data-form-type="recommendation"
-      >
+      <div class="recommend-form-wrap">
 
 
-        <input
-          type="hidden"
-          name="type"
-          value="recommendation"
+        <form
+          class="card form-card recommend-form-card"
+          id="recommendation-form"
+          data-form-type="recommendation"
         >
 
 
-        <input
-          type="hidden"
-          id="providerId"
-          name="providerId"
-          value=""
-        >
+          <input
+            type="hidden"
+            name="type"
+            value="recommendation"
+          >
+
+
+          <input
+            type="hidden"
+            id="providerId"
+            name="providerId"
+            value=""
+          >
 
 
 
-        <!-- INTRO -->
+          <!-- INTRO -->
 
-        <div
-          class="notice green"
-          style="margin-bottom:30px;"
-        >
+          <div class="notice green recommend-intro">
 
-          <strong>Only recommend providers you have actually used.</strong>
+            <strong>
+              Only submit feedback for a provider you personally used.
+            </strong>
 
-          Your experience helps other neighbors understand what to expect.
+            Firsthand experiences help other people understand what they can expect.
 
-        </div>
-
+          </div>
 
 
-        <div class="form-grid">
+
+          <!-- =====================================
+               PROVIDER + SERVICE
+               ===================================== -->
+
+          <div class="recommend-form-section">
 
 
-          <!-- PROVIDER -->
+            <div class="recommend-section-heading">
 
-          <div class="field full">
+              <div class="eyebrow dark">
+                STEP 1
+              </div>
 
-            <label for="providerName">
-              Provider *
-            </label>
 
-            <input
-              id="providerName"
-              name="providerName"
-              type="text"
-              required
-              placeholder="Provider name"
-            >
+              <h2>
+                Who did you use?
+              </h2>
 
-            <div class="helper">
-              If you came here from a provider profile, this should already be filled in.
+
+              <p class="section-intro">
+                Tell us which provider you used and what they did for you.
+              </p>
+
             </div>
 
-          </div>
+
+
+            <div class="recommend-grid">
+
+
+              <!-- PROVIDER -->
+
+              <div class="field full">
+
+                <label for="providerName">
+                  Provider *
+                </label>
+
+                <input
+                  id="providerName"
+                  name="providerName"
+                  type="text"
+                  required
+                  placeholder="Provider name"
+                >
+
+                <div class="helper">
+                  If you opened this form from a provider profile, the provider name should already be filled in.
+                </div>
+
+              </div>
 
 
 
-          <!-- SERVICE PROVIDED -->
+              <!-- SERVICE PROVIDED -->
 
-          <div class="field full">
+              <div class="field full">
 
-            <label for="serviceProvided">
-              What service did they provide? *
-            </label>
+                <label for="serviceProvided">
+                  What service did they provide? *
+                </label>
 
-            <input
-              id="serviceProvided"
-              name="serviceProvided"
-              type="text"
-              required
-              placeholder="Example: Fence repair, dog walking, mobile notary"
-            >
+                <input
+                  id="serviceProvided"
+                  name="serviceProvided"
+                  type="text"
+                  required
+                  placeholder="Example: Fence repair, dog walking, mobile notary"
+                >
 
-          </div>
-
-
-
-          <!-- WOULD RECOMMEND -->
-
-          <div class="field">
-
-            <label for="wouldRecommend">
-              Would you recommend them? *
-            </label>
-
-            <select
-              id="wouldRecommend"
-              name="wouldRecommend"
-              required
-            >
-
-              <option value="">
-                Choose one
-              </option>
-
-              <option value="Yes">
-                Yes
-              </option>
-
-              <option value="No">
-                No
-              </option>
-
-            </select>
-
-          </div>
+              </div>
 
 
-
-          <!-- WOULD USE AGAIN -->
-
-          <div class="field">
-
-            <label for="wouldUseAgain">
-              Would you use them again? *
-            </label>
-
-            <select
-              id="wouldUseAgain"
-              name="wouldUseAgain"
-              required
-            >
-
-              <option value="">
-                Choose one
-              </option>
-
-              <option value="Yes">
-                Yes
-              </option>
-
-              <option value="No">
-                No
-              </option>
-
-            </select>
-
-          </div>
-
-
-
-          <!-- CITY -->
-
-          <div class="field">
-
-            <label for="reviewerCity">
-              Your City *
-            </label>
-
-            <select
-              id="reviewerCity"
-              name="reviewerCity"
-              required
-            >
-
-              <option value="">
-                Choose your city
-              </option>
-
-              <option value="Chesapeake">
-                Chesapeake
-              </option>
-
-              <option value="Norfolk">
-                Norfolk
-              </option>
-
-              <option value="Portsmouth">
-                Portsmouth
-              </option>
-
-              <option value="Suffolk">
-                Suffolk
-              </option>
-
-              <option value="Virginia Beach">
-                Virginia Beach
-              </option>
-
-              <option value="Hampton">
-                Hampton
-              </option>
-
-              <option value="Newport News">
-                Newport News
-              </option>
-
-              <option value="Other">
-                Other
-              </option>
-
-            </select>
-
-          </div>
-
-
-
-          <!-- NAME -->
-
-          <div class="field">
-
-            <label for="reviewerName">
-              Your Name *
-            </label>
-
-            <input
-              id="reviewerName"
-              name="reviewerName"
-              type="text"
-              required
-              autocomplete="name"
-              placeholder="Your name"
-            >
-
-          </div>
-
-
-
-          <!-- EMAIL -->
-
-          <div class="field full">
-
-            <label for="reviewerEmail">
-              Your Email *
-            </label>
-
-            <input
-              id="reviewerEmail"
-              name="reviewerEmail"
-              type="email"
-              required
-              autocomplete="email"
-              placeholder="you@example.com"
-            >
-
-            <div class="helper">
-              Your email is used for moderation or follow-up and is not displayed publicly.
             </div>
 
+
           </div>
 
 
 
-          <!-- COMMENTS -->
+          <!-- =====================================
+               EXPERIENCE
+               ===================================== -->
 
-          <div class="field full">
+          <div class="recommend-form-section">
 
-            <label for="comments">
-              Tell your neighbors about your experience
-            </label>
 
-            <textarea
-              id="comments"
-              name="comments"
-              placeholder="What did they do well? Was communication good? Were you satisfied with the work? Anything another neighbor should know?"
-            ></textarea>
+            <div class="recommend-section-heading">
 
-            <div class="helper">
-              Keep comments factual and based on your own experience.
+              <div class="eyebrow dark">
+                STEP 2
+              </div>
+
+
+              <h2>
+                How was your experience?
+              </h2>
+
+
+              <p class="section-intro">
+                Give other people a simple picture of whether you would use or recommend this provider.
+              </p>
+
             </div>
 
+
+
+            <div class="recommend-grid">
+
+
+              <!-- WOULD RECOMMEND -->
+
+              <div class="field">
+
+                <label for="wouldRecommend">
+                  Would you recommend them? *
+                </label>
+
+                <select
+                  id="wouldRecommend"
+                  name="wouldRecommend"
+                  required
+                >
+
+                  <option value="">
+                    Choose one
+                  </option>
+
+                  <option value="Yes">
+                    Yes
+                  </option>
+
+                  <option value="No">
+                    No
+                  </option>
+
+                </select>
+
+              </div>
+
+
+
+              <!-- WOULD USE AGAIN -->
+
+              <div class="field">
+
+                <label for="wouldUseAgain">
+                  Would you use them again? *
+                </label>
+
+                <select
+                  id="wouldUseAgain"
+                  name="wouldUseAgain"
+                  required
+                >
+
+                  <option value="">
+                    Choose one
+                  </option>
+
+                  <option value="Yes">
+                    Yes
+                  </option>
+
+                  <option value="No">
+                    No
+                  </option>
+
+                </select>
+
+              </div>
+
+
+
+              <!-- COMMENTS -->
+
+              <div class="field full">
+
+                <label for="comments">
+                  Tell Your Neighbors About Your Experience
+                  <span class="optional-label">
+                    Optional
+                  </span>
+                </label>
+
+                <textarea
+                  id="comments"
+                  name="comments"
+                  placeholder="What did they do well? How was communication? Were you satisfied with the work? Is there anything another customer should know?"
+                ></textarea>
+
+                <div class="helper">
+                  Keep comments factual and based only on your own experience with this provider.
+                </div>
+
+              </div>
+
+
+            </div>
+
+
           </div>
 
 
 
-          <!-- CONFIRMATION -->
+          <!-- =====================================
+               YOUR INFORMATION
+               ===================================== -->
 
-          <div class="field full">
+          <div class="recommend-form-section">
+
+
+            <div class="recommend-section-heading">
+
+              <div class="eyebrow dark">
+                STEP 3
+              </div>
+
+
+              <h2>
+                Tell us about you
+              </h2>
+
+
+              <p class="section-intro">
+                Your email is used for moderation or follow-up and is not intended for public display.
+              </p>
+
+            </div>
+
+
+
+            <div class="recommend-grid">
+
+
+              <!-- NAME -->
+
+              <div class="field">
+
+                <label for="reviewerName">
+                  Your Name *
+                </label>
+
+                <input
+                  id="reviewerName"
+                  name="reviewerName"
+                  type="text"
+                  required
+                  autocomplete="name"
+                  placeholder="Your name"
+                >
+
+              </div>
+
+
+
+              <!-- CITY -->
+
+              <div class="field">
+
+                <label for="reviewerCity">
+                  Your City *
+                </label>
+
+                <select
+                  id="reviewerCity"
+                  name="reviewerCity"
+                  required
+                >
+
+                  <option value="">
+                    Choose your city
+                  </option>
+
+                  <option value="Chesapeake">
+                    Chesapeake
+                  </option>
+
+                  <option value="Norfolk">
+                    Norfolk
+                  </option>
+
+                  <option value="Portsmouth">
+                    Portsmouth
+                  </option>
+
+                  <option value="Suffolk">
+                    Suffolk
+                  </option>
+
+                  <option value="Virginia Beach">
+                    Virginia Beach
+                  </option>
+
+                  <option value="Hampton">
+                    Hampton
+                  </option>
+
+                  <option value="Newport News">
+                    Newport News
+                  </option>
+
+                  <option value="Other">
+                    Other
+                  </option>
+
+                </select>
+
+              </div>
+
+
+
+              <!-- EMAIL -->
+
+              <div class="field full">
+
+                <label for="reviewerEmail">
+                  Your Email *
+                </label>
+
+                <input
+                  id="reviewerEmail"
+                  name="reviewerEmail"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  inputmode="email"
+                  placeholder="you@example.com"
+                >
+
+                <div class="helper">
+                  Used for moderation or follow-up. Your email is not displayed publicly.
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- =====================================
+               CONFIRMATION
+               ===================================== -->
+
+          <div class="recommend-confirmation">
+
 
             <label class="check-row">
 
@@ -354,39 +732,53 @@
               >
 
               <span>
-                I confirm that I personally used this provider and that this recommendation reflects my genuine experience.
+                I confirm that I personally used this provider and that the information I submitted reflects my genuine experience.
               </span>
 
             </label>
 
+
           </div>
 
 
-        </div>
+
+          <!-- =====================================
+               SUBMIT
+               ===================================== -->
+
+          <div class="recommend-submit-area">
+
+
+            <button
+              class="btn btn-green recommend-submit-button"
+              type="submit"
+            >
+              Submit Recommendation
+            </button>
+
+
+            <p class="small recommend-submit-note">
+              Recommendations are reviewed before appearing publicly on a provider's profile.
+            </p>
+
+
+          </div>
 
 
 
-        <!-- SUBMIT -->
+          <!-- STATUS -->
 
-        <button
-          class="btn btn-green"
-          type="submit"
-        >
-          Submit Recommendation
-        </button>
-
+          <div
+            id="form-status"
+            style="margin-top:20px;"
+            aria-live="polite"
+          ></div>
 
 
-        <!-- STATUS -->
-
-        <div
-          id="form-status"
-          style="margin-top:20px;"
-          aria-live="polite"
-        ></div>
+        </form>
 
 
-      </form>
+      </div>
 
 
     </div>
@@ -395,26 +787,32 @@
 
 
 
-  <!-- WHY RECOMMENDATIONS MATTER -->
+  <!-- =========================================
+       WHY RECOMMENDATIONS MATTER
+       ========================================= -->
 
   <section class="section section-soft">
 
-    <div class="container">
+    <div class="container recommend-steps">
 
 
       <div class="section-heading centered">
+
 
         <div class="eyebrow dark">
           COMMUNITY RECOMMENDATIONS
         </div>
 
+
         <h2>
-          Real experiences help neighbors choose
+          Real experiences help other people choose
         </h2>
 
+
         <p class="section-intro">
-          NeighborSource recommendations are connected to individual provider listings after review.
+          Approved recommendations are connected directly to provider profiles.
         </p>
+
 
       </div>
 
@@ -423,37 +821,46 @@
       <div class="steps-grid">
 
 
+
         <div class="card step-card">
+
 
           <div class="step-number">
             1
           </div>
 
+
           <h3>
             Share Your Experience
           </h3>
 
+
           <p>
-            Tell us who you used and what service they provided.
+            Tell us who you used, what they did, and whether you would recommend them.
           </p>
+
 
         </div>
 
 
 
         <div class="card step-card">
+
 
           <div class="step-number">
             2
           </div>
 
+
           <h3>
-            Recommendation Reviewed
+            We Review It
           </h3>
+
 
           <p>
             Recommendations are reviewed before being connected to a provider's public profile.
           </p>
+
 
         </div>
 
@@ -461,17 +868,21 @@
 
         <div class="card step-card">
 
+
           <div class="step-number">
             3
           </div>
+
 
           <h3>
             Help Your Neighbors
           </h3>
 
+
           <p>
-            Approved recommendations help other people find providers their neighbors have actually used.
+            Your firsthand experience gives other people more information when choosing a local provider.
           </p>
+
 
         </div>
 
@@ -485,21 +896,16 @@
 
 
 
-  <!-- GUIDELINES -->
+  <!-- =========================================
+       GUIDELINES
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:900px;
-          margin:0 auto;
-          padding:36px;
-        "
-      >
+      <div class="card recommend-guidelines-card">
 
 
         <div class="eyebrow dark">
@@ -513,12 +919,17 @@
 
 
         <p>
-          Recommendations should describe your own experience with the provider. Avoid rumors, personal attacks, private information, or claims about situations you did not personally experience.
+          Recommendations should describe your own experience with the provider. Focus on the service you received, communication, reliability, and other details you personally observed.
+        </p>
+
+
+        <p>
+          Avoid rumors, personal attacks, private information, or claims about situations you did not personally experience.
         </p>
 
 
         <p class="small">
-          NeighborSource may decline or remove submissions that are abusive, misleading, unrelated, or cannot reasonably be connected to the provider.
+          FindLocal757.com may decline, edit for formatting or clarity, or remove submissions that are abusive, misleading, unrelated, or cannot reasonably be connected to the provider.
         </p>
 
 
@@ -534,7 +945,7 @@
 
 
 
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 
 
 <script>
@@ -547,20 +958,41 @@
    */
 
   const recommendationParams =
-    new URLSearchParams(window.location.search);
+    new URLSearchParams(
+      window.location.search
+    );
+
 
   const recommendationProviderId =
-    recommendationParams.get("providerId") || "";
+    recommendationParams.get(
+      "providerId"
+    ) ||
+    recommendationParams.get(
+      "id"
+    ) ||
+    "";
+
 
   const recommendationProviderName =
-    recommendationParams.get("provider") || "";
+    recommendationParams.get(
+      "provider"
+    ) ||
+    recommendationParams.get(
+      "providerName"
+    ) ||
+    "";
 
 
   const providerIdField =
-    document.getElementById("providerId");
+    document.getElementById(
+      "providerId"
+    );
+
 
   const providerNameField =
-    document.getElementById("providerName");
+    document.getElementById(
+      "providerName"
+    );
 
 
   if (
