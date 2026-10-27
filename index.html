@@ -16,78 +16,337 @@
 
   <meta
     name="description"
-    content="Find local businesses and individual service providers across Hampton Roads recommended by people in your community."
+    content="Find local businesses and individual service providers across Hampton Roads. Search services, browse local providers, or recommend someone you trust."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css"
+    href="css/style.css?v=4"
   >
+
 
   <style>
 
-    .home-hero-simple {
+    /* =========================================
+       HOMEPAGE
+       ========================================= */
+
+    .home-hero {
       text-align: center;
+      padding-top: 68px;
+      padding-bottom: 64px;
     }
 
-    .home-hero-simple .hero-copy {
-      max-width: 850px;
+    .home-hero .hero-copy {
+      max-width: 880px;
       margin: 0 auto;
     }
 
-    .home-hero-simple .hero-text {
-      max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .home-hero-simple .hero-search {
+    .home-hero h1 {
       max-width: 760px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    .home-hero-links {
+    .home-hero .hero-text {
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* SEARCH */
+
+    .home-hero .hero-search {
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 28px;
+    }
+
+
+    /* HERO BUTTONS */
+
+    .home-hero-actions {
       display: flex;
       justify-content: center;
+      align-items: center;
       flex-wrap: wrap;
       gap: 12px;
       margin-top: 18px;
     }
 
+
+    /* TRUST LINE */
+
     .home-trust-line {
-      margin-top: 20px;
-      color: rgba(255, 255, 255, .88);
+      margin-top: 18px;
       font-size: 14px;
       font-weight: 700;
+      line-height: 1.5;
+      color: rgba(255,255,255,.92);
     }
 
-    .home-secondary-actions {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
+
+    /* =========================================
+       CATEGORIES
+       ========================================= */
+
+    #home-categories {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
     }
 
-    @media (max-width: 600px) {
+    #home-categories .category-card {
+      height: 100%;
+    }
 
-      .home-hero-links {
-        flex-direction: column;
-        align-items: stretch;
+
+    /* =========================================
+       HOW IT WORKS
+       ========================================= */
+
+    .home-steps {
+      max-width: 1180px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* =========================================
+       PROVIDERS
+       ========================================= */
+
+    #featured-providers {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(280px, 360px)
+      );
+      gap: 20px;
+      justify-content: start;
+      align-items: start;
+    }
+
+    #featured-providers .provider-card {
+      width: 100%;
+      height: 100%;
+    }
+
+
+    /* =========================================
+       CTA
+       ========================================= */
+
+    .home-cta-copy {
+      max-width: 680px;
+    }
+
+
+    /* =========================================
+       TABLET
+       ========================================= */
+
+    @media (max-width: 900px) {
+
+      .home-hero {
+        padding-top: 56px;
+        padding-bottom: 54px;
       }
 
-      .home-hero-links .btn {
+      #home-categories {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+      #featured-providers {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 650px) {
+
+      .home-hero {
+        padding-top: 42px;
+        padding-bottom: 42px;
+      }
+
+      .home-hero .eyebrow {
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .home-hero h1 {
+        font-size: clamp(
+          38px,
+          11vw,
+          54px
+        );
+        line-height: 1.06;
+        margin-top: 14px;
+      }
+
+      .home-hero .hero-text {
+        font-size: 16px;
+        line-height: 1.55;
+        margin-top: 18px;
+      }
+
+
+      /* SEARCH STACKS ON PHONE */
+
+      .home-hero .hero-search {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .home-hero .hero-search input {
+        width: 100%;
+        min-height: 54px;
+      }
+
+      .home-hero .hero-search button {
+        width: 100%;
+        min-height: 52px;
+      }
+
+
+      /* HERO BUTTONS STACK */
+
+      .home-hero-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .home-hero-actions .btn {
+        width: 100%;
+        min-height: 50px;
+      }
+
+      .home-trust-line {
+        font-size: 13px;
+        margin-top: 16px;
+      }
+
+
+      /* SECTION SPACING */
+
+      .section {
+        padding-top: 48px;
+        padding-bottom: 48px;
+      }
+
+      .section-heading-row {
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+
+      /* CATEGORY CARDS */
+
+      #home-categories {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      #home-categories .category-card {
+        padding: 18px 14px;
+        min-height: 125px;
+      }
+
+      #home-categories .category-icon {
+        margin-bottom: 10px;
+      }
+
+      #home-categories h3 {
+        font-size: 17px;
+        line-height: 1.2;
+        margin-bottom: 0;
+      }
+
+      /*
+       * Hide the longer category descriptions
+       * on phones to keep browsing fast.
+       */
+      #home-categories .small {
+        display: none;
+      }
+
+
+      /* STEPS */
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .step-card {
+        padding: 22px;
+      }
+
+
+      /* PROVIDERS */
+
+      #featured-providers {
+        grid-template-columns: 1fr;
+      }
+
+      #featured-providers .provider-card {
+        max-width: none;
+      }
+
+
+      /* CTA */
+
+      .cta-card {
+        gap: 24px;
+      }
+
+      .cta-actions {
         width: 100%;
       }
 
-      .home-secondary-actions {
-        flex-direction: column;
-        align-items: stretch;
+      .cta-actions .btn {
+        width: 100%;
       }
 
-      .home-secondary-actions .btn {
-        width: 100%;
+    }
+
+
+    /* =========================================
+       VERY SMALL PHONES
+       ========================================= */
+
+    @media (max-width: 390px) {
+
+      #home-categories {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      #home-categories .category-card {
+        padding: 16px 12px;
+      }
+
+      #home-categories h3 {
+        font-size: 16px;
+      }
+
+      .home-hero h1 {
+        font-size: 38px;
       }
 
     }
@@ -103,9 +362,11 @@
 <main>
 
 
-  <!-- HERO -->
+  <!-- =========================================
+       HERO
+       ========================================= -->
 
-  <section class="hero home-hero-simple">
+  <section class="hero home-hero">
 
     <div class="container">
 
@@ -124,7 +385,7 @@
 
 
         <p class="hero-text">
-          Search local businesses and individuals across Hampton Roads without digging through old Facebook posts, neighborhood groups, or message threads.
+          Find local businesses and individual service providers across Hampton Roads, all in one place.
         </p>
 
 
@@ -150,7 +411,7 @@
         </form>
 
 
-        <div class="home-hero-links">
+        <div class="home-hero-actions">
 
           <a
             class="btn btn-primary"
@@ -184,7 +445,9 @@
 
 
 
-  <!-- POPULAR CATEGORIES -->
+  <!-- =========================================
+       POPULAR CATEGORIES
+       ========================================= -->
 
   <section class="section">
 
@@ -239,11 +502,13 @@
 
 
 
-  <!-- HOW IT WORKS -->
+  <!-- =========================================
+       HOW IT WORKS
+       ========================================= -->
 
   <section class="section section-soft">
 
-    <div class="container">
+    <div class="container home-steps">
 
 
       <div class="section-heading centered">
@@ -287,7 +552,7 @@
 
 
           <a href="services.html">
-            Browse services →
+            Browse Services →
           </a>
 
         </div>
@@ -312,7 +577,7 @@
 
 
           <a href="request-help.html">
-            Post what you need →
+            Post What You Need →
           </a>
 
         </div>
@@ -337,7 +602,7 @@
 
 
           <a href="suggest-provider.html">
-            Recommend someone →
+            Recommend Someone →
           </a>
 
         </div>
@@ -352,7 +617,9 @@
 
 
 
-  <!-- LOCAL PROVIDERS -->
+  <!-- =========================================
+       LOCAL PROVIDERS
+       ========================================= -->
 
   <section class="section">
 
@@ -364,7 +631,7 @@
         <div>
 
           <div class="eyebrow dark">
-            COMMUNITY RECOMMENDED
+            LOCAL SERVICE DIRECTORY
           </div>
 
 
@@ -407,7 +674,9 @@
 
 
 
-  <!-- COMMUNITY CTA -->
+  <!-- =========================================
+       COMMUNITY CTA
+       ========================================= -->
 
   <section class="section section-cta">
 
@@ -417,7 +686,7 @@
       <div class="cta-card">
 
 
-        <div>
+        <div class="home-cta-copy">
 
           <div class="eyebrow">
             HELP BUILD THE DIRECTORY
