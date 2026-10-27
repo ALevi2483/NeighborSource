@@ -11,18 +11,230 @@
   >
 
   <title>
-    Search Local Services | NeighborSource
+    Search Local Services | FindLocal757.com
   </title>
 
   <meta
     name="description"
-    content="Search NeighborSource for local businesses and individual service providers."
+    content="Search FindLocal757.com for local businesses and individual service providers across Hampton Roads."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=3"
+    href="css/style.css?v=4"
   >
+
+
+  <style>
+
+    /* =========================================
+       SEARCH PAGE
+       ========================================= */
+
+    .search-page-hero {
+      text-align: center;
+      padding-top: 54px;
+      padding-bottom: 54px;
+    }
+
+    .search-page-hero .container {
+      max-width: 900px;
+    }
+
+    .search-page-hero p {
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* =========================================
+       SEARCH FORM
+       ========================================= */
+
+    .search-main-section {
+      padding-top: 42px;
+    }
+
+    .search-page-form {
+      max-width: 900px;
+      margin: 0 auto 46px;
+    }
+
+
+    /* =========================================
+       RESULTS HEADING
+       ========================================= */
+
+    .search-results-heading {
+      margin-bottom: 24px;
+    }
+
+    .search-results-heading h2 {
+      overflow-wrap: anywhere;
+    }
+
+    #search-query {
+      color: var(--blue);
+    }
+
+
+    /* =========================================
+       RESULTS
+       ========================================= */
+
+    #search-results {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    #search-results .provider-card {
+      height: 100%;
+    }
+
+    #search-results .provider-actions {
+      margin-top: auto;
+    }
+
+
+    /* =========================================
+       HELP CARD
+       ========================================= */
+
+    .search-help-card {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 36px;
+    }
+
+    .search-help-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+
+    /* =========================================
+       TABLET
+       ========================================= */
+
+    @media (max-width: 900px) {
+
+      .search-page-hero {
+        padding-top: 48px;
+        padding-bottom: 48px;
+      }
+
+      #search-results {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 650px) {
+
+      .search-page-hero {
+        text-align: left;
+        padding-top: 38px;
+        padding-bottom: 38px;
+      }
+
+      .search-page-hero h1 {
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+      .search-page-hero p {
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+
+      /* SEARCH */
+
+      .search-main-section {
+        padding-top: 28px;
+      }
+
+      .search-page-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 36px;
+      }
+
+      .search-page-form input {
+        width: 100%;
+        min-height: 54px;
+      }
+
+      .search-page-form button {
+        width: 100%;
+        min-height: 52px;
+      }
+
+
+      /* RESULTS HEADER */
+
+      .search-results-heading {
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      .search-results-heading .btn {
+        width: 100%;
+      }
+
+
+      /* RESULTS */
+
+      #search-results {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      #search-results .provider-card {
+        width: 100%;
+      }
+
+      #search-results .provider-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      #search-results .provider-actions .btn {
+        width: 100%;
+      }
+
+
+      /* HELP CARD */
+
+      .search-help-card {
+        padding: 24px;
+      }
+
+      .search-help-actions {
+        flex-direction: column;
+      }
+
+      .search-help-actions .btn {
+        width: 100%;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -33,9 +245,11 @@
 <main>
 
 
-  <!-- PAGE HERO -->
+  <!-- =========================================
+       PAGE HERO
+       ========================================= -->
 
-  <section class="page-hero">
+  <section class="page-hero search-page-hero">
 
     <div class="container">
 
@@ -48,7 +262,7 @@
       </h1>
 
       <p>
-        Search businesses and individual service providers by service, name, category, or location.
+        Search businesses and individual service providers across Hampton Roads by service, name, category, or city.
       </p>
 
     </div>
@@ -57,9 +271,11 @@
 
 
 
-  <!-- SEARCH AREA -->
+  <!-- =========================================
+       SEARCH + RESULTS
+       ========================================= -->
 
-  <section class="section">
+  <section class="section search-main-section">
 
     <div class="container">
 
@@ -83,7 +299,7 @@
           class="btn btn-green"
           type="submit"
         >
-          Search
+          Search Services
         </button>
 
       </form>
@@ -92,7 +308,7 @@
 
       <!-- SEARCH HEADING -->
 
-      <div class="section-heading-row">
+      <div class="section-heading-row search-results-heading">
 
         <div>
 
@@ -152,21 +368,16 @@
 
 
 
-  <!-- NO MATCH HELP -->
+  <!-- =========================================
+       NO MATCH HELP
+       ========================================= -->
 
   <section class="section section-soft">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:900px;
-          margin:0 auto;
-          padding:36px;
-        "
-      >
+      <div class="card search-help-card">
 
         <div class="eyebrow dark">
           DON'T SEE WHAT YOU NEED?
@@ -177,18 +388,11 @@
         </h2>
 
         <p>
-          NeighborSource is community-built. If the service you need is not listed yet, ask the community or recommend a provider you already know.
+          If the service you need is not listed yet, tell the community what you are looking for or recommend a local provider you already trust.
         </p>
 
 
-        <div
-          style="
-            display:flex;
-            flex-wrap:wrap;
-            gap:12px;
-            margin-top:24px;
-          "
-        >
+        <div class="search-help-actions">
 
           <a
             class="btn btn-green"
@@ -219,7 +423,7 @@
 
 
 
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 
 
 </body>
