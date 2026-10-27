@@ -16,7 +16,7 @@
 
   <meta
     name="description"
-    content="View local provider information, services, service areas, phone verification status, and community recommendations on FindLocal757.com."
+    content="View local provider information, services, service areas, contact details, and community recommendations on FindLocal757.com."
   >
 
   <link
@@ -84,7 +84,7 @@
     .profile-stats {
       display: grid;
       grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+        repeat(2, minmax(0, 1fr));
       gap: 16px;
       margin-bottom: 28px;
     }
@@ -100,10 +100,6 @@
       line-height: 1.1;
       margin-bottom: 6px;
       overflow-wrap: anywhere;
-    }
-
-    .profile-stat.verification-stat strong {
-      font-size: 20px;
     }
 
 
@@ -278,10 +274,6 @@
         font-size: 23px;
       }
 
-      .profile-stat.verification-stat strong {
-        font-size: 18px;
-      }
-
       .profile-stat .small {
         font-size: 11px;
         line-height: 1.25;
@@ -452,20 +444,6 @@
             </div>
 
 
-
-            <div class="card stat profile-stat verification-stat">
-
-              <strong>
-                —
-              </strong>
-
-              <span class="small">
-                Phone Verification
-              </span>
-
-            </div>
-
-
           </div>
 
 
@@ -556,62 +534,6 @@
 
 
 
-          <!-- VERIFICATION -->
-
-          <div class="card provider-section-card">
-
-
-            <div class="eyebrow dark">
-              PHONE VERIFICATION
-            </div>
-
-
-            <h2>
-              Phone Verification
-            </h2>
-
-
-            <p>
-              A Phone Verified badge means the phone number submitted for this listing has been confirmed through FindLocal757.com's phone verification process.
-            </p>
-
-
-            <div
-              id="provider-badges"
-              class="badges provider-badge-area"
-            >
-
-              <span class="small">
-                Loading phone verification information...
-              </span>
-
-            </div>
-
-
-            <p
-              class="small"
-              style="margin-top:20px;"
-            >
-              Phone verification applies only to the submitted phone number. It does not verify identity, business status, licensing, insurance, qualifications, workmanship, pricing, availability, or future performance.
-            </p>
-
-
-            <a
-              href="verification.html"
-              style="
-                display:inline-block;
-                margin-top:8px;
-                font-weight:800;
-              "
-            >
-              What does Phone Verified mean? →
-            </a>
-
-
-          </div>
-
-
-
           <!-- COMMUNITY RECOMMENDATIONS -->
 
           <div class="card provider-section-card">
@@ -628,7 +550,7 @@
 
 
             <p class="small">
-              Approved recommendations from people who have used this provider appear below.
+              Approved recommendations from people who have used this provider appear below. Recommendations reflect the experiences and opinions of the people who submitted them, not an endorsement by FindLocal757.com.
             </p>
 
 
@@ -753,7 +675,7 @@
           <div class="provider-contact-note">
 
             <p class="small">
-              Contact providers directly to confirm pricing, availability, qualifications, and other job details before hiring.
+              Contact providers directly to confirm pricing, availability, experience, qualifications, and other job details before hiring.
             </p>
 
           </div>
@@ -838,25 +760,22 @@
 
 
         <p>
-          FindLocal757.com is a community directory and information resource.
-          It does not recommend, endorse, employ, or guarantee this provider
-          or any other business or individual listed on the site.
+          FindLocal757.com is a community directory and information resource. It does not recommend, endorse, employ, approve, or guarantee this provider or any other business or individual listed on the site.
         </p>
 
 
         <p>
-          Provider listings and community recommendations are provided for
-          informational purposes so users can discover local service providers,
-          contact them directly, and decide for themselves whether they want
-          to work with them.
+          Provider listings and community recommendations are provided for informational purposes so users can discover local service providers, contact them directly, and decide for themselves whether they want to work with them.
+        </p>
+
+
+        <p>
+          FindLocal757.com does not independently verify a provider's identity, business registration, licensing, insurance, permits, qualifications, experience, workmanship, or suitability for a particular job.
         </p>
 
 
         <p class="small">
-          Before hiring or paying a provider, independently confirm important
-          details such as pricing, availability, experience, references,
-          licensing, insurance, permits, qualifications, business status,
-          and any other information relevant to the work.
+          Before hiring or paying a provider, independently confirm any details that matter for your needs, including pricing, availability, experience, references, licensing, insurance, permits, qualifications, business status, contracts, and other relevant information.
         </p>
 
 
