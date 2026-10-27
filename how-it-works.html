@@ -11,18 +11,281 @@
   >
 
   <title>
-    How NeighborSource Works
+    How FindLocal757.com Works
   </title>
 
   <meta
     name="description"
-    content="Learn how NeighborSource helps neighbors find local businesses and individual service providers through an organized community directory."
+    content="Learn how FindLocal757.com helps Hampton Roads residents find local businesses and individual service providers."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=3"
+    href="css/style.css?v=4"
   >
+
+
+  <style>
+
+    /* =========================================
+       HOW IT WORKS PAGE
+       ========================================= */
+
+    .how-page-hero {
+      text-align: center;
+      padding-top: 54px;
+      padding-bottom: 54px;
+    }
+
+    .how-page-hero .container {
+      max-width: 900px;
+    }
+
+    .how-page-hero p {
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* =========================================
+       PRIMARY PATHS
+       ========================================= */
+
+    .how-primary {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .how-primary .step-card {
+      height: 100%;
+    }
+
+    .how-primary .step-card a {
+      display: inline-block;
+      margin-top: 8px;
+      font-weight: 800;
+    }
+
+
+    /* =========================================
+       INFORMATION CARDS
+       ========================================= */
+
+    .how-info-card {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 38px;
+    }
+
+    .how-info-card h2 {
+      margin-bottom: 14px;
+    }
+
+    .how-info-card .btn {
+      margin-top: 10px;
+    }
+
+
+    /* =========================================
+       FEATURE LIST
+       ========================================= */
+
+    .how-feature-list {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 14px 24px;
+      margin-top: 26px;
+    }
+
+    .how-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .how-feature-check {
+      flex: 0 0 auto;
+      font-weight: 900;
+    }
+
+
+    /* =========================================
+       TWO COLUMN SECTION
+       ========================================= */
+
+    .how-two-column {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .how-two-column .card {
+      height: 100%;
+    }
+
+    .how-two-column .btn {
+      margin-top: 12px;
+    }
+
+
+    /* =========================================
+       WHY FINDLOCAL757
+       ========================================= */
+
+    .how-benefits {
+      display: grid;
+      grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .how-benefits .category-card {
+      height: 100%;
+    }
+
+
+    /* =========================================
+       VERIFICATION
+       ========================================= */
+
+    .how-verification-badges {
+      margin-top: 22px;
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 800px) {
+
+      .how-benefits {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+      .how-two-column {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+    @media (max-width: 650px) {
+
+      .how-page-hero {
+        text-align: left;
+        padding-top: 38px;
+        padding-bottom: 38px;
+      }
+
+      .how-page-hero h1 {
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+      .how-page-hero p {
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+
+      /* PRIMARY STEPS */
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .how-primary .step-card {
+        padding: 22px;
+      }
+
+
+      /* INFORMATION */
+
+      .how-info-card {
+        padding: 24px;
+      }
+
+      .how-info-card .btn {
+        width: 100%;
+      }
+
+
+      /* FEATURE LIST */
+
+      .how-feature-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+
+      /* TWO COLUMN */
+
+      .how-two-column .card {
+        padding: 24px;
+      }
+
+      .how-two-column .btn {
+        width: 100%;
+      }
+
+
+      /* BENEFITS */
+
+      .how-benefits {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .how-benefits .category-card {
+        padding: 18px 14px;
+      }
+
+      .how-benefits .category-card h3 {
+        font-size: 17px;
+      }
+
+      .how-benefits .category-card .small {
+        font-size: 13px;
+      }
+
+
+      /* CTA */
+
+      .cta-card {
+        gap: 24px;
+      }
+
+      .cta-actions {
+        width: 100%;
+      }
+
+      .cta-actions .btn {
+        width: 100%;
+      }
+
+    }
+
+
+    @media (max-width: 390px) {
+
+      .how-benefits {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -33,9 +296,11 @@
 <main>
 
 
-  <!-- PAGE HERO -->
+  <!-- =========================================
+       PAGE HERO
+       ========================================= -->
 
-  <section class="page-hero">
+  <section class="page-hero how-page-hero">
 
     <div class="container">
 
@@ -46,12 +311,12 @@
 
 
       <h1>
-        How NeighborSource Works
+        How FindLocal757.com Works
       </h1>
 
 
       <p>
-        NeighborSource turns local recommendations into an organized, searchable directory so you do not have to dig through old Facebook posts, neighborhood groups, or message threads every time you need someone.
+        FindLocal757.com organizes local businesses, individual service providers, and community recommendations in one place so you do not have to search through old posts, neighborhood groups, or message threads every time you need someone.
       </p>
 
 
@@ -61,11 +326,13 @@
 
 
 
-  <!-- MAIN PATHS -->
+  <!-- =========================================
+       THREE MAIN WAYS TO USE THE SITE
+       ========================================= -->
 
   <section class="section">
 
-    <div class="container">
+    <div class="container how-primary">
 
 
       <div class="section-heading centered">
@@ -77,12 +344,12 @@
 
 
         <h2>
-          Three ways to use NeighborSource
+          Three ways to use FindLocal757.com
         </h2>
 
 
         <p class="section-intro">
-          Find someone, ask for help, or share a provider your neighbors should know about.
+          Find someone, ask for help, or recommend someone you trust.
         </p>
 
 
@@ -109,12 +376,12 @@
 
 
           <p>
-            Browse categories or search by service, provider name, location, or the type of work you need.
+            Search by service, provider name, category, or city, or simply browse the directory.
           </p>
 
 
           <a href="services.html">
-            Browse local services →
+            Browse Local Services →
           </a>
 
 
@@ -138,12 +405,12 @@
 
 
           <p>
-            If you cannot find the right provider, tell us what you need and submit a local service request.
+            Can't find what you need? Tell us what kind of local service you're looking for.
           </p>
 
 
           <a href="request-help.html">
-            Post what you need →
+            Post What You Need →
           </a>
 
 
@@ -167,12 +434,12 @@
 
 
           <p>
-            Know a local business or individual who does great work? Suggest them for the NeighborSource directory.
+            Know a local business or individual who does great work? Help others discover them.
           </p>
 
 
           <a href="suggest-provider.html">
-            Recommend someone →
+            Recommend Someone →
           </a>
 
 
@@ -188,21 +455,16 @@
 
 
 
-  <!-- FINDING A PROVIDER -->
+  <!-- =========================================
+       FINDING LOCAL HELP
+       ========================================= -->
 
   <section class="section section-soft">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:1000px;
-          margin:0 auto;
-          padding:40px;
-        "
-      >
+      <div class="card how-info-card">
 
 
         <div class="eyebrow dark">
@@ -211,67 +473,65 @@
 
 
         <h2>
-          Search recommendations instead of searching old posts
+          Find local providers without digging through old posts
         </h2>
 
 
         <p>
-          NeighborSource organizes approved provider listings by category and service so you can quickly see who is available in the directory.
+          FindLocal757.com organizes approved provider listings so you can quickly see who offers the service you need and how to contact them.
         </p>
 
 
-        <div
-          class="trust-list"
-          style="
-            margin-top:26px;
-            color:var(--text);
-          "
+
+        <div class="how-feature-list">
+
+
+          <div class="how-feature-item">
+            <span class="how-feature-check">✓</span>
+            <span>Browse by service category</span>
+          </div>
+
+
+          <div class="how-feature-item">
+            <span class="how-feature-check">✓</span>
+            <span>Search provider names and services</span>
+          </div>
+
+
+          <div class="how-feature-item">
+            <span class="how-feature-check">✓</span>
+            <span>See where providers work</span>
+          </div>
+
+
+          <div class="how-feature-item">
+            <span class="how-feature-check">✓</span>
+            <span>View community recommendations</span>
+          </div>
+
+
+          <div class="how-feature-item">
+            <span class="how-feature-check">✓</span>
+            <span>See available verification information</span>
+          </div>
+
+
+          <div class="how-feature-item">
+            <span class="how-feature-check">✓</span>
+            <span>Contact providers directly</span>
+          </div>
+
+
+        </div>
+
+
+
+        <a
+          class="btn btn-primary"
+          href="services.html"
         >
-
-
-          <div class="trust-item">
-            ✓ Browse by service category
-          </div>
-
-
-          <div class="trust-item">
-            ✓ Search provider names and services
-          </div>
-
-
-          <div class="trust-item">
-            ✓ See service areas
-          </div>
-
-
-          <div class="trust-item">
-            ✓ View community recommendation counts
-          </div>
-
-
-          <div class="trust-item">
-            ✓ See available verification badges
-          </div>
-
-
-          <div class="trust-item">
-            ✓ Contact providers directly
-          </div>
-
-
-        </div>
-
-
-        <div style="margin-top:28px;">
-
-          <a
-            class="btn btn-primary"
-            href="services.html"
-          >
-            Find Local Services
-          </a>
-
-        </div>
+          Find Local Services
+        </a>
 
 
       </div>
@@ -283,119 +543,101 @@
 
 
 
-  <!-- RECOMMENDATIONS -->
+  <!-- =========================================
+       RECOMMENDATIONS + PROVIDERS
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <div class="section-heading centered">
-
-
-        <div class="eyebrow dark">
-          COMMUNITY RECOMMENDATIONS
-        </div>
-
-
-        <h2>
-          Recommendations come from people who used the provider
-        </h2>
-
-
-        <p class="section-intro">
-          NeighborSource is built around local experiences rather than paid placement.
-        </p>
-
-
-      </div>
+      <div class="how-two-column">
 
 
 
-      <div class="steps-grid">
+        <!-- RECOMMENDATIONS -->
+
+        <div class="card">
 
 
-        <div class="card step-card">
-
-
-          <div class="step-number">
-            1
+          <div class="eyebrow dark">
+            COMMUNITY RECOMMENDATIONS
           </div>
 
 
-          <h3>
-            Use a Provider
-          </h3>
+          <h2>
+            Real local experiences
+          </h2>
 
 
           <p>
-            A neighbor hires or uses a local business or individual service provider.
+            People who have used a listed provider can submit a recommendation about their experience.
           </p>
+
+
+          <p>
+            Recommendations can include what service was provided, whether they would recommend the provider, whether they would use them again, and comments about their experience.
+          </p>
+
+
+          <p class="small">
+            Recommendations are reviewed before appearing publicly.
+          </p>
+
+
+          <a
+            class="btn btn-outline"
+            href="services.html"
+          >
+            Find a Provider
+          </a>
 
 
         </div>
 
 
 
-        <div class="card step-card">
+        <!-- PROVIDERS -->
+
+        <div class="card">
 
 
-          <div class="step-number">
-            2
+          <div class="eyebrow dark">
+            FOR PROVIDERS
           </div>
 
 
-          <h3>
-            Share the Experience
-          </h3>
+          <h2>
+            Businesses and individuals can be listed
+          </h2>
 
 
           <p>
-            They can submit a recommendation describing the service they received and whether they would recommend or use the provider again.
+            FindLocal757.com is not limited to traditional businesses.
           </p>
+
+
+          <p>
+            Local businesses, individual service providers, side hustles, retirees, and others who legitimately provide a local service can submit a listing.
+          </p>
+
+
+          <p class="small">
+            Listings are reviewed before appearing publicly.
+          </p>
+
+
+          <a
+            class="btn btn-green"
+            href="list-service.html"
+          >
+            List Your Service
+          </a>
 
 
         </div>
 
-
-
-        <div class="card step-card">
-
-
-          <div class="step-number">
-            3
-          </div>
-
-
-          <h3>
-            Recommendation Reviewed
-          </h3>
-
-
-          <p>
-            Approved recommendations are connected to the provider's NeighborSource listing.
-          </p>
-
-
-        </div>
-
-
-      </div>
-
-
-      <div
-        style="
-          text-align:center;
-          margin-top:30px;
-        "
-      >
-
-        <a
-          class="btn btn-outline"
-          href="services.html"
-        >
-          Find a Provider
-        </a>
 
       </div>
 
@@ -406,145 +648,16 @@
 
 
 
-  <!-- PROVIDERS -->
+  <!-- =========================================
+       VERIFICATION
+       ========================================= -->
 
   <section class="section section-soft">
 
     <div class="container">
 
 
-      <div class="section-heading centered">
-
-
-        <div class="eyebrow dark">
-          FOR PROVIDERS
-        </div>
-
-
-        <h2>
-          Businesses and individuals can list their services
-        </h2>
-
-
-        <p class="section-intro">
-          NeighborSource is not limited to traditional businesses. Individual local service providers can be listed too.
-        </p>
-
-
-      </div>
-
-
-
-      <div class="steps-grid">
-
-
-        <div class="card step-card">
-
-
-          <div class="step-number">
-            1
-          </div>
-
-
-          <h3>
-            Submit a Listing
-          </h3>
-
-
-          <p>
-            Provide your service name, category, contact information, service area, and a description of what you offer.
-          </p>
-
-
-        </div>
-
-
-
-        <div class="card step-card">
-
-
-          <div class="step-number">
-            2
-          </div>
-
-
-          <h3>
-            Listing Is Reviewed
-          </h3>
-
-
-          <p>
-            Submitted listings are reviewed before they are added to the public directory.
-          </p>
-
-
-        </div>
-
-
-
-        <div class="card step-card">
-
-
-          <div class="step-number">
-            3
-          </div>
-
-
-          <h3>
-            Neighbors Can Find You
-          </h3>
-
-
-          <p>
-            Approved listings can appear in searches and service categories throughout NeighborSource.
-          </p>
-
-
-        </div>
-
-
-      </div>
-
-
-
-      <div
-        style="
-          text-align:center;
-          margin-top:30px;
-        "
-      >
-
-        <a
-          class="btn btn-green"
-          href="list-service.html"
-        >
-          List Your Service
-        </a>
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- VERIFICATION -->
-
-  <section class="section">
-
-    <div class="container">
-
-
-      <div
-        class="card"
-        style="
-          max-width:1000px;
-          margin:0 auto;
-          padding:40px;
-        "
-      >
+      <div class="card how-info-card">
 
 
         <div class="eyebrow dark">
@@ -558,14 +671,12 @@
 
 
         <p>
-          Some provider listings may display verification badges for specific information that has been reviewed by NeighborSource.
+          Some provider listings may display verification badges showing that specific information has been reviewed by FindLocal757.com.
         </p>
 
 
-        <div
-          class="badges"
-          style="margin-top:22px;"
-        >
+
+        <div class="badges how-verification-badges">
 
 
           <span class="badge green">
@@ -591,8 +702,9 @@
         </div>
 
 
+
         <p style="margin-top:24px;">
-          A verification badge only applies to the specific item shown. It does not guarantee the quality of a provider's work, pricing, availability, or future performance.
+          A verification badge applies only to the specific information shown. It does not guarantee workmanship, pricing, availability, qualifications, or future performance.
         </p>
 
 
@@ -613,9 +725,11 @@
 
 
 
-  <!-- WHAT MAKES IT DIFFERENT -->
+  <!-- =========================================
+       WHY FINDLOCAL757
+       ========================================= -->
 
-  <section class="section section-soft">
+  <section class="section">
 
     <div class="container">
 
@@ -624,17 +738,17 @@
 
 
         <div class="eyebrow dark">
-          WHY NEIGHBORSOURCE?
+          WHY FINDLOCAL757.COM?
         </div>
 
 
         <h2>
-          Built to be simple
+          Built to make finding local help easier
         </h2>
 
 
         <p class="section-intro">
-          The goal is to make local recommendations easier to find without turning the process into another complicated marketplace.
+          The goal is a simple local directory, not another complicated marketplace.
         </p>
 
 
@@ -642,58 +756,71 @@
 
 
 
-      <div class="category-grid">
+      <div class="category-grid how-benefits">
+
 
 
         <div class="card category-card">
+
 
           <div class="category-icon">
             🔎
           </div>
 
+
           <h3>
             Searchable
           </h3>
+
 
           <div class="small">
             Find services without searching through months of neighborhood posts.
           </div>
 
+
         </div>
 
 
 
         <div class="card category-card">
+
 
           <div class="category-icon">
             🤝
           </div>
 
+
           <h3>
             Community Based
           </h3>
 
+
           <div class="small">
-            Recommendations are tied to local providers and community experiences.
+            Local recommendations stay connected to the providers people actually used.
           </div>
+
 
         </div>
 
 
 
         <div class="card category-card">
+
 
           <div class="category-icon">
             💵
           </div>
 
+
           <h3>
             No Lead Fees
           </h3>
 
+
           <div class="small">
-            NeighborSource does not charge providers every time someone wants to contact them.
+            Providers are not charged every time someone wants to contact them.
           </div>
+
 
         </div>
 
@@ -701,17 +828,21 @@
 
         <div class="card category-card">
 
+
           <div class="category-icon">
             ⭐
           </div>
+
 
           <h3>
             No Paid Rankings
           </h3>
 
+
           <div class="small">
-            Providers do not pay to appear above other providers in search results.
+            Providers cannot pay to appear above other providers in search results.
           </div>
+
 
         </div>
 
@@ -725,21 +856,16 @@
 
 
 
-  <!-- IMPORTANT NOTE -->
+  <!-- =========================================
+       DIRECTORY ROLE / DISCLAIMER
+       ========================================= -->
 
-  <section class="section">
+  <section class="section section-soft">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:1000px;
-          margin:0 auto;
-          padding:40px;
-        "
-      >
+      <div class="card how-info-card">
 
 
         <div class="eyebrow dark">
@@ -748,12 +874,12 @@
 
 
         <h2>
-          NeighborSource is a directory, not a guarantee
+          FindLocal757.com is a directory, not a guarantee
         </h2>
 
 
         <p>
-          NeighborSource helps organize local provider information and community recommendations. You are still responsible for deciding whether a provider is right for your needs.
+          FindLocal757.com helps organize local provider information and community recommendations. You are still responsible for deciding whether a provider is right for your needs.
         </p>
 
 
@@ -763,7 +889,7 @@
 
 
         <p class="small">
-          Community recommendations and verification badges should be considered useful information, not a guarantee or endorsement.
+          Community recommendations and verification badges are useful information, but they are not guarantees or endorsements of future performance.
         </p>
 
 
@@ -776,7 +902,9 @@
 
 
 
-  <!-- FINAL CTA -->
+  <!-- =========================================
+       FINAL CTA
+       ========================================= -->
 
   <section class="section section-cta">
 
@@ -842,7 +970,7 @@
 
 
 
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 
 
 </body>
