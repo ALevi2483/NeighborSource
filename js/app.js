@@ -626,7 +626,17 @@ function normalizeProvider(
     verified:
       normalizeList(
         p.verified
-      ),
+      )
+        .filter(
+          badge =>
+            String(
+              badge ||
+              ""
+            )
+              .trim()
+              .toLowerCase() ===
+            "phone verified"
+        ),
 
     recommendations:
       safeNumber(
@@ -1029,15 +1039,25 @@ function providerCard(
 
   const badges =
     p.verified
+      .filter(
+        badge =>
+          String(
+            badge ||
+            ""
+          )
+            .trim()
+            .toLowerCase() ===
+          "phone verified"
+      )
       .slice(
         0,
-        3
+        1
       )
       .map(
-        badge =>
+        () =>
           `
             <span class="badge green">
-              ✓ ${escapeHTML(badge)}
+              ✓ Phone Verified
             </span>
           `
       )
@@ -1808,7 +1828,7 @@ function renderProviderUnavailable(
   ) {
 
     badges.innerHTML =
-      `<span class="small">No verification information available.</span>`;
+      `<span class="small">No phone verification information available.</span>`;
 
   }
 
@@ -1988,14 +2008,30 @@ function renderProviderBadges(
   }
 
 
+  const phoneVerified =
+    Array.isArray(
+      badges
+    ) &&
+    badges.some(
+      badge =>
+        String(
+          badge ||
+          ""
+        )
+          .trim()
+          .toLowerCase() ===
+        "phone verified"
+    );
+
+
   if (
-    !badges.length
+    !phoneVerified
   ) {
 
     container.innerHTML =
       `
         <span class="small">
-          No FindLocal757.com verification badges are currently displayed.
+          Phone verification has not been completed.
         </span>
       `;
 
@@ -2005,16 +2041,11 @@ function renderProviderBadges(
 
 
   container.innerHTML =
-    badges
-      .map(
-        badge =>
-          `
-            <span class="badge green">
-              ✓ ${escapeHTML(badge)}
-            </span>
-          `
-      )
-      .join("");
+    `
+      <span class="badge green">
+        ✓ Phone Verified
+      </span>
+    `;
 
 }
 
@@ -2054,42 +2085,20 @@ function updateVerificationStat(
     );
 
 
-  const count =
+  const phoneVerified =
     Array.isArray(
       badges
-    )
-      ? badges.length
-      : 0;
-
-
-  if (
-    count ===
-    0
-  ) {
-
-    if (
-      number
-    ) {
-
-      number.textContent =
-        "—";
-
-    }
-
-
-    if (
-      label
-    ) {
-
-      label.textContent =
-        "Not Verified";
-
-    }
-
-
-    return;
-
-  }
+    ) &&
+    badges.some(
+      badge =>
+        String(
+          badge ||
+          ""
+        )
+          .trim()
+          .toLowerCase() ===
+        "phone verified"
+    );
 
 
   if (
@@ -2097,7 +2106,9 @@ function updateVerificationStat(
   ) {
 
     number.textContent =
-      `✓ ${count}`;
+      phoneVerified
+        ? "✓"
+        : "—";
 
   }
 
@@ -2107,10 +2118,9 @@ function updateVerificationStat(
   ) {
 
     label.textContent =
-      count ===
-        1
-        ? "Verified Item"
-        : "Verified Items";
+      phoneVerified
+        ? "Phone Verified"
+        : "Phone Not Verified";
 
   }
 
