@@ -11,18 +11,260 @@
   >
 
   <title>
-    Update or Remove a Listing | NeighborSource
+    Update or Remove a Listing | FindLocal757.com
   </title>
 
   <meta
     name="description"
-    content="Request an update or removal of an existing NeighborSource provider listing."
+    content="Request an update, correction, addition, or removal of an existing FindLocal757.com provider listing."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=3"
+    href="css/style.css?v=4"
   >
+
+
+  <style>
+
+    /* =========================================
+       UPDATE LISTING PAGE
+       ========================================= */
+
+    .update-page-hero {
+      text-align: center;
+      padding-top: 54px;
+      padding-bottom: 54px;
+    }
+
+    .update-page-hero .container {
+      max-width: 850px;
+    }
+
+    .update-page-hero p {
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* =========================================
+       FORM
+       ========================================= */
+
+    .update-form-wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .update-form-card {
+      padding: 34px;
+    }
+
+    .update-intro {
+      margin-bottom: 30px;
+    }
+
+
+    /* =========================================
+       FORM SECTIONS
+       ========================================= */
+
+    .update-form-section {
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .update-form-section:last-of-type {
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .update-section-heading {
+      margin-bottom: 22px;
+    }
+
+    .update-section-heading h2 {
+      margin-bottom: 6px;
+    }
+
+    .update-section-heading p {
+      margin-bottom: 0;
+    }
+
+
+    /* =========================================
+       FORM GRID
+       ========================================= */
+
+    .update-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .update-grid .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .update-grid input,
+    .update-grid select,
+    .update-grid textarea {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    #requestedChanges {
+      min-height: 180px;
+      resize: vertical;
+    }
+
+
+    /* =========================================
+       CONFIRMATION
+       ========================================= */
+
+    .update-confirmation {
+      margin-top: 26px;
+    }
+
+    .update-confirmation .check-row {
+      align-items: flex-start;
+    }
+
+    .update-confirmation input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      margin-top: 1px;
+    }
+
+
+    /* =========================================
+       SUBMIT
+       ========================================= */
+
+    .update-submit-area {
+      margin-top: 28px;
+    }
+
+    .update-submit-button {
+      min-width: 220px;
+    }
+
+    .update-submit-note {
+      max-width: 680px;
+      margin-top: 12px;
+    }
+
+
+    /* =========================================
+       STEPS
+       ========================================= */
+
+    .update-steps {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+
+    /* =========================================
+       REPORT CARD
+       ========================================= */
+
+    .update-report-card {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 34px;
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 700px) {
+
+      .update-page-hero {
+        text-align: left;
+        padding-top: 38px;
+        padding-bottom: 38px;
+      }
+
+      .update-page-hero h1 {
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+      .update-page-hero p {
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+
+      /* FORM */
+
+      .update-form-card {
+        padding: 22px;
+      }
+
+      .update-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .update-grid .field.full {
+        grid-column: auto;
+      }
+
+      .update-form-section {
+        padding-bottom: 24px;
+        margin-bottom: 24px;
+      }
+
+      .update-grid input,
+      .update-grid select {
+        min-height: 52px;
+      }
+
+      #requestedChanges {
+        min-height: 180px;
+      }
+
+
+      /* SUBMIT */
+
+      .update-submit-button {
+        width: 100%;
+        min-height: 54px;
+      }
+
+
+      /* STEPS */
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+
+      /* REPORT CARD */
+
+      .update-report-card {
+        padding: 24px;
+      }
+
+      .update-report-card .btn {
+        width: 100%;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -33,9 +275,11 @@
 <main>
 
 
-  <!-- PAGE HERO -->
+  <!-- =========================================
+       PAGE HERO
+       ========================================= -->
 
-  <section class="page-hero">
+  <section class="page-hero update-page-hero">
 
     <div class="container">
 
@@ -51,7 +295,7 @@
 
 
       <p>
-        Need to correct information, add new details, or remove an existing NeighborSource listing? Submit a request below.
+        Need to correct information, add new details, or remove an existing listing? Send us the request below.
       </p>
 
 
@@ -61,190 +305,291 @@
 
 
 
-  <!-- FORM -->
+  <!-- =========================================
+       FORM
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <form
-        class="card form-card"
-        id="update-listing-form"
-        data-form-type="listingUpdate"
-      >
+      <div class="update-form-wrap">
 
 
-        <input
-          type="hidden"
-          name="type"
-          value="listingUpdate"
+        <form
+          class="card form-card update-form-card"
+          id="update-listing-form"
+          data-form-type="listingUpdate"
         >
 
 
-        <input
-          type="hidden"
-          id="providerId"
-          name="providerId"
-          value=""
-        >
+          <input
+            type="hidden"
+            name="type"
+            value="listingUpdate"
+          >
+
+
+          <input
+            type="hidden"
+            id="providerId"
+            name="providerId"
+            value=""
+          >
 
 
 
-        <!-- INTRO -->
+          <!-- INTRO -->
 
-        <div
-          class="notice green"
-          style="margin-bottom:30px;"
-        >
+          <div class="notice green update-intro">
 
-          <strong>Listings are not changed automatically.</strong>
+            <strong>
+              Listings are not changed automatically.
+            </strong>
 
-          NeighborSource reviews update and removal requests before changing information in the public directory.
+            FindLocal757.com reviews update and removal requests before changing public information.
 
-        </div>
-
+          </div>
 
 
-        <div class="form-grid">
+
+          <!-- =====================================
+               LISTING INFORMATION
+               ===================================== -->
+
+          <div class="update-form-section">
 
 
-          <!-- PROVIDER NAME -->
+            <div class="update-section-heading">
 
-          <div class="field full">
+              <div class="eyebrow dark">
+                STEP 1
+              </div>
 
-            <label for="providerName">
-              Business or Service Name *
-            </label>
+              <h2>
+                Which listing needs attention?
+              </h2>
 
-            <input
-              id="providerName"
-              name="providerName"
-              type="text"
-              required
-              placeholder="Name of the listing"
-            >
-
-            <div class="helper">
-              If you came here from a provider profile, this may already be filled in.
             </div>
 
-          </div>
+
+
+            <div class="update-grid">
+
+
+              <!-- PROVIDER NAME -->
+
+              <div class="field full">
+
+                <label for="providerName">
+                  Business or Service Name *
+                </label>
+
+                <input
+                  id="providerName"
+                  name="providerName"
+                  type="text"
+                  required
+                  placeholder="Name of the listing"
+                >
+
+                <div class="helper">
+                  If you opened this page from a provider profile, this may already be filled in.
+                </div>
+
+              </div>
 
 
 
-          <!-- REQUEST TYPE -->
+              <!-- REQUEST TYPE -->
 
-          <div class="field full">
+              <div class="field full">
 
-            <label for="requestType">
-              What would you like to do? *
-            </label>
+                <label for="requestType">
+                  What would you like to do? *
+                </label>
 
-            <select
-              id="requestType"
-              name="requestType"
-              required
-            >
+                <select
+                  id="requestType"
+                  name="requestType"
+                  required
+                >
 
-              <option value="">
-                Choose an option
-              </option>
+                  <option value="">
+                    Choose an option
+                  </option>
 
-              <option value="Update Information">
-                Update listing information
-              </option>
+                  <option value="Update Information">
+                    Update listing information
+                  </option>
 
-              <option value="Correct Information">
-                Correct inaccurate information
-              </option>
+                  <option value="Correct Information">
+                    Correct inaccurate information
+                  </option>
 
-              <option value="Add Information">
-                Add information to the listing
-              </option>
+                  <option value="Add Information">
+                    Add information to the listing
+                  </option>
 
-              <option value="Remove Listing">
-                Remove the listing
-              </option>
+                  <option value="Remove Listing">
+                    Remove the listing
+                  </option>
 
-            </select>
+                </select>
 
-          </div>
-
-
-
-          <!-- REQUESTER NAME -->
-
-          <div class="field">
-
-            <label for="requesterName">
-              Your Name *
-            </label>
-
-            <input
-              id="requesterName"
-              name="requesterName"
-              type="text"
-              required
-              autocomplete="name"
-              placeholder="Your name"
-            >
-
-          </div>
+              </div>
 
 
-
-          <!-- REQUESTER EMAIL -->
-
-          <div class="field">
-
-            <label for="requesterEmail">
-              Your Email *
-            </label>
-
-            <input
-              id="requesterEmail"
-              name="requesterEmail"
-              type="email"
-              required
-              autocomplete="email"
-              placeholder="you@example.com"
-            >
-
-            <div class="helper">
-              We may use this email to verify the request or ask for clarification.
             </div>
 
+
           </div>
 
 
 
-          <!-- CHANGES -->
+          <!-- =====================================
+               REQUEST DETAILS
+               ===================================== -->
 
-          <div class="field full">
+          <div class="update-form-section">
 
-            <label for="requestedChanges">
-              What needs to be changed? *
-            </label>
 
-            <textarea
-              id="requestedChanges"
-              name="requestedChanges"
-              required
-              placeholder="Describe exactly what should be updated, corrected, added, or removed."
-            ></textarea>
+            <div class="update-section-heading">
 
-            <div class="helper">
-              Include both the current information and the correct information when possible.
+              <div class="eyebrow dark">
+                STEP 2
+              </div>
+
+              <h2>
+                What needs to change?
+              </h2>
+
+              <p class="section-intro">
+                Give us enough detail to understand exactly what should be updated.
+              </p>
+
             </div>
 
+
+
+            <div class="update-grid">
+
+
+              <div class="field full">
+
+                <label for="requestedChanges">
+                  Requested Changes *
+                </label>
+
+                <textarea
+                  id="requestedChanges"
+                  name="requestedChanges"
+                  required
+                  placeholder="Example: The phone number currently listed is 757-555-1111. Please change it to 757-555-2222."
+                ></textarea>
+
+                <div class="helper">
+                  When possible, include both the current information and the correct information.
+                </div>
+
+              </div>
+
+
+            </div>
+
+
           </div>
 
 
 
-          <!-- CONFIRMATION -->
+          <!-- =====================================
+               YOUR INFORMATION
+               ===================================== -->
 
-          <div class="field full">
+          <div class="update-form-section">
+
+
+            <div class="update-section-heading">
+
+              <div class="eyebrow dark">
+                STEP 3
+              </div>
+
+              <h2>
+                Your information
+              </h2>
+
+              <p class="section-intro">
+                We may contact you if we need to verify or clarify the request.
+              </p>
+
+            </div>
+
+
+
+            <div class="update-grid">
+
+
+              <!-- REQUESTER NAME -->
+
+              <div class="field">
+
+                <label for="requesterName">
+                  Your Name *
+                </label>
+
+                <input
+                  id="requesterName"
+                  name="requesterName"
+                  type="text"
+                  required
+                  autocomplete="name"
+                  placeholder="Your name"
+                >
+
+              </div>
+
+
+
+              <!-- REQUESTER EMAIL -->
+
+              <div class="field">
+
+                <label for="requesterEmail">
+                  Your Email *
+                </label>
+
+                <input
+                  id="requesterEmail"
+                  name="requesterEmail"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  inputmode="email"
+                  placeholder="you@example.com"
+                >
+
+                <div class="helper">
+                  Used only if we need to verify or clarify the request.
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- =====================================
+               CONFIRMATION
+               ===================================== -->
+
+          <div class="update-confirmation">
+
 
             <label class="check-row">
 
@@ -260,34 +605,48 @@
 
             </label>
 
+
           </div>
 
 
-        </div>
+
+          <!-- =====================================
+               SUBMIT
+               ===================================== -->
+
+          <div class="update-submit-area">
+
+
+            <button
+              class="btn btn-green update-submit-button"
+              type="submit"
+            >
+              Submit Request
+            </button>
+
+
+            <p class="small update-submit-note">
+              Requests are reviewed before changes are made. Submitting a request does not automatically modify or remove a listing.
+            </p>
+
+
+          </div>
 
 
 
-        <!-- SUBMIT -->
+          <!-- STATUS -->
 
-        <button
-          class="btn btn-green"
-          type="submit"
-        >
-          Submit Request
-        </button>
-
+          <div
+            id="form-status"
+            style="margin-top:20px;"
+            aria-live="polite"
+          ></div>
 
 
-        <!-- STATUS -->
-
-        <div
-          id="form-status"
-          style="margin-top:20px;"
-          aria-live="polite"
-        ></div>
+        </form>
 
 
-      </form>
+      </div>
 
 
     </div>
@@ -296,11 +655,13 @@
 
 
 
-  <!-- HOW IT WORKS -->
+  <!-- =========================================
+       WHAT HAPPENS NEXT
+       ========================================= -->
 
   <section class="section section-soft">
 
-    <div class="container">
+    <div class="container update-steps">
 
 
       <div class="section-heading centered">
@@ -311,7 +672,7 @@
 
 
         <h2>
-          We review the request before making changes
+          We review requests before making changes
         </h2>
 
 
@@ -333,11 +694,11 @@
           </div>
 
           <h3>
-            Submit Your Request
+            Submit the Request
           </h3>
 
           <p>
-            Tell us which listing needs attention and what should be changed.
+            Tell us which listing needs attention and exactly what should change.
           </p>
 
         </div>
@@ -351,11 +712,11 @@
           </div>
 
           <h3>
-            NeighborSource Reviews It
+            We Review It
           </h3>
 
           <p>
-            We review the information and may contact you if something needs clarification.
+            FindLocal757.com reviews the request and may contact you if clarification is needed.
           </p>
 
         </div>
@@ -369,11 +730,11 @@
           </div>
 
           <h3>
-            Listing Is Updated
+            Changes Are Applied
           </h3>
 
           <p>
-            Approved changes are applied to the public NeighborSource listing.
+            Approved updates or removals are applied to the public listing.
           </p>
 
         </div>
@@ -388,21 +749,16 @@
 
 
 
-  <!-- WRONG LISTING -->
+  <!-- =========================================
+       REPORT INSTEAD
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:900px;
-          margin:0 auto;
-          padding:36px;
-        "
-      >
+      <div class="card update-report-card">
 
 
         <div class="eyebrow dark">
@@ -416,7 +772,7 @@
 
 
         <p>
-          If you are not requesting a normal update and believe a listing contains misleading, inappropriate, fraudulent, or otherwise concerning information, use the report form instead.
+          If you believe a listing contains misleading, inappropriate, fraudulent, or otherwise concerning information, use the report form instead of the normal update form.
         </p>
 
 
@@ -440,7 +796,7 @@
 
 
 
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 
 
 <script>
