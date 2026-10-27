@@ -11,18 +11,260 @@
   >
 
   <title>
-    Report a Listing | NeighborSource
+    Report a Listing | FindLocal757.com
   </title>
 
   <meta
     name="description"
-    content="Report inaccurate, misleading, inappropriate, or concerning information on a NeighborSource listing."
+    content="Report inaccurate, misleading, inappropriate, fraudulent, or otherwise concerning information on a FindLocal757.com listing."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=3"
+    href="css/style.css?v=4"
   >
+
+
+  <style>
+
+    /* =========================================
+       REPORT LISTING PAGE
+       ========================================= */
+
+    .report-page-hero {
+      text-align: center;
+      padding-top: 54px;
+      padding-bottom: 54px;
+    }
+
+    .report-page-hero .container {
+      max-width: 850px;
+    }
+
+    .report-page-hero p {
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* =========================================
+       FORM
+       ========================================= */
+
+    .report-form-wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .report-form-card {
+      padding: 34px;
+    }
+
+    .report-intro {
+      margin-bottom: 30px;
+    }
+
+
+    /* =========================================
+       FORM SECTIONS
+       ========================================= */
+
+    .report-form-section {
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .report-form-section:last-of-type {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .report-section-heading {
+      margin-bottom: 22px;
+    }
+
+    .report-section-heading h2 {
+      margin-bottom: 6px;
+    }
+
+    .report-section-heading p {
+      margin-bottom: 0;
+    }
+
+
+    /* =========================================
+       FORM GRID
+       ========================================= */
+
+    .report-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .report-grid .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .report-grid input,
+    .report-grid select,
+    .report-grid textarea {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    #details {
+      min-height: 180px;
+      resize: vertical;
+    }
+
+
+    /* =========================================
+       CONFIRMATION
+       ========================================= */
+
+    .report-confirmation {
+      margin-top: 26px;
+    }
+
+    .report-confirmation .check-row {
+      align-items: flex-start;
+    }
+
+    .report-confirmation input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      margin-top: 1px;
+    }
+
+
+    /* =========================================
+       SUBMIT
+       ========================================= */
+
+    .report-submit-area {
+      margin-top: 28px;
+    }
+
+    .report-submit-button {
+      min-width: 220px;
+    }
+
+    .report-submit-note {
+      max-width: 680px;
+      margin-top: 12px;
+    }
+
+
+    /* =========================================
+       REVIEW PROCESS
+       ========================================= */
+
+    .report-steps {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+
+    /* =========================================
+       NORMAL UPDATE CARD
+       ========================================= */
+
+    .normal-update-card {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 34px;
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 700px) {
+
+      .report-page-hero {
+        text-align: left;
+        padding-top: 38px;
+        padding-bottom: 38px;
+      }
+
+      .report-page-hero h1 {
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+      .report-page-hero p {
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+
+      /* FORM */
+
+      .report-form-card {
+        padding: 22px;
+      }
+
+      .report-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .report-grid .field.full {
+        grid-column: auto;
+      }
+
+      .report-form-section {
+        padding-bottom: 24px;
+        margin-bottom: 24px;
+      }
+
+      .report-grid input,
+      .report-grid select {
+        min-height: 52px;
+      }
+
+      #details {
+        min-height: 180px;
+      }
+
+
+      /* SUBMIT */
+
+      .report-submit-button {
+        width: 100%;
+        min-height: 54px;
+      }
+
+
+      /* STEPS */
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+
+      /* UPDATE CARD */
+
+      .normal-update-card {
+        padding: 24px;
+      }
+
+      .normal-update-card .btn {
+        width: 100%;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -33,15 +275,17 @@
 <main>
 
 
-  <!-- PAGE HERO -->
+  <!-- =========================================
+       PAGE HERO
+       ========================================= -->
 
-  <section class="page-hero">
+  <section class="page-hero report-page-hero">
 
     <div class="container">
 
 
       <div class="eyebrow">
-        HELP KEEP NEIGHBORSOURCE ACCURATE
+        HELP KEEP FINDLOCAL757.COM ACCURATE
       </div>
 
 
@@ -51,7 +295,7 @@
 
 
       <p>
-        Let us know if a listing contains inaccurate, misleading, inappropriate, or otherwise concerning information.
+        Let us know if a listing contains inaccurate, misleading, inappropriate, fraudulent, or otherwise concerning information.
       </p>
 
 
@@ -61,206 +305,312 @@
 
 
 
-  <!-- FORM -->
+  <!-- =========================================
+       FORM
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <form
-        class="card form-card"
-        id="report-listing-form"
-        data-form-type="report"
-      >
+      <div class="report-form-wrap">
 
 
-        <input
-          type="hidden"
-          name="type"
-          value="report"
+        <form
+          class="card form-card report-form-card"
+          id="report-listing-form"
+          data-form-type="report"
         >
 
 
-        <input
-          type="hidden"
-          id="providerId"
-          name="providerId"
-          value=""
-        >
+          <input
+            type="hidden"
+            name="type"
+            value="report"
+          >
+
+
+          <input
+            type="hidden"
+            id="providerId"
+            name="providerId"
+            value=""
+          >
 
 
 
-        <!-- INTRO -->
+          <!-- INTRO -->
 
-        <div
-          class="notice warning"
-          style="margin-bottom:30px;"
-        >
+          <div class="notice warning report-intro">
 
-          <strong>Use this form for listing concerns.</strong>
+            <strong>
+              Use this form for listing concerns.
+            </strong>
 
-          If you simply need to change your own business information, use the Update a Listing page instead.
+            If you own or manage the listing and simply need to change normal business information, use the Update a Listing page instead.
 
-        </div>
-
+          </div>
 
 
-        <div class="form-grid">
+
+          <!-- =====================================
+               LISTING
+               ===================================== -->
+
+          <div class="report-form-section">
 
 
-          <!-- PROVIDER -->
+            <div class="report-section-heading">
 
-          <div class="field full">
+              <div class="eyebrow dark">
+                STEP 1
+              </div>
 
-            <label for="providerName">
-              Which listing are you reporting? *
-            </label>
 
-            <input
-              id="providerName"
-              name="providerName"
-              type="text"
-              required
-              placeholder="Business or provider name"
-            >
+              <h2>
+                Which listing are you reporting?
+              </h2>
 
-            <div class="helper">
-              If you opened this page from a provider profile, this may already be filled in.
             </div>
 
-          </div>
 
 
-
-          <!-- REASON -->
-
-          <div class="field full">
-
-            <label for="reason">
-              Reason for Report *
-            </label>
-
-            <select
-              id="reason"
-              name="reason"
-              required
-            >
-
-              <option value="">
-                Choose a reason
-              </option>
-
-              <option value="Incorrect Information">
-                Incorrect information
-              </option>
-
-              <option value="Business Closed">
-                Business is closed or no longer operating
-              </option>
-
-              <option value="Unable to Contact">
-                Provider appears to be unreachable
-              </option>
-
-              <option value="Possible Scam">
-                Possible scam or fraudulent activity
-              </option>
-
-              <option value="False Credential Claim">
-                Possible false license, insurance, or credential claim
-              </option>
-
-              <option value="Inappropriate Listing">
-                Inappropriate or abusive listing content
-              </option>
-
-              <option value="Duplicate Listing">
-                Duplicate listing
-              </option>
-
-              <option value="Other">
-                Other
-              </option>
-
-            </select>
-
-          </div>
+            <div class="report-grid">
 
 
+              <div class="field full">
 
-          <!-- DETAILS -->
+                <label for="providerName">
+                  Business or Provider Name *
+                </label>
 
-          <div class="field full">
+                <input
+                  id="providerName"
+                  name="providerName"
+                  type="text"
+                  required
+                  placeholder="Business or provider name"
+                >
 
-            <label for="details">
-              Additional Details *
-            </label>
+                <div class="helper">
+                  If you opened this page from a provider profile, this may already be filled in.
+                </div>
 
-            <textarea
-              id="details"
-              name="details"
-              required
-              placeholder="Explain what appears to be incorrect or concerning. Include enough detail for us to review the issue."
-            ></textarea>
+              </div>
 
-            <div class="helper">
-              Please stick to factual information and your own experience or observations.
+
             </div>
 
-          </div>
-
-
-
-          <!-- REPORTER NAME -->
-
-          <div class="field">
-
-            <label for="reporterName">
-              Your Name *
-            </label>
-
-            <input
-              id="reporterName"
-              name="reporterName"
-              type="text"
-              required
-              autocomplete="name"
-              placeholder="Your name"
-            >
 
           </div>
 
 
 
-          <!-- REPORTER EMAIL -->
+          <!-- =====================================
+               REASON
+               ===================================== -->
 
-          <div class="field">
+          <div class="report-form-section">
 
-            <label for="reporterEmail">
-              Your Email *
-            </label>
 
-            <input
-              id="reporterEmail"
-              name="reporterEmail"
-              type="email"
-              required
-              autocomplete="email"
-              placeholder="you@example.com"
-            >
+            <div class="report-section-heading">
 
-            <div class="helper">
-              Your email is not displayed publicly. It may be used if we need more information.
+              <div class="eyebrow dark">
+                STEP 2
+              </div>
+
+
+              <h2>
+                What is the concern?
+              </h2>
+
+
+              <p class="section-intro">
+                Choose the option that best describes the issue.
+              </p>
+
             </div>
 
+
+
+            <div class="report-grid">
+
+
+              <!-- REASON -->
+
+              <div class="field full">
+
+                <label for="reason">
+                  Reason for Report *
+                </label>
+
+                <select
+                  id="reason"
+                  name="reason"
+                  required
+                >
+
+                  <option value="">
+                    Choose a reason
+                  </option>
+
+                  <option value="Incorrect Information">
+                    Incorrect information
+                  </option>
+
+                  <option value="Business Closed">
+                    Business is closed or no longer operating
+                  </option>
+
+                  <option value="Unable to Contact">
+                    Provider appears to be unreachable
+                  </option>
+
+                  <option value="Possible Scam">
+                    Possible scam or fraudulent activity
+                  </option>
+
+                  <option value="False Credential Claim">
+                    Possible false license, insurance, or credential claim
+                  </option>
+
+                  <option value="Inappropriate Listing">
+                    Inappropriate or abusive listing content
+                  </option>
+
+                  <option value="Duplicate Listing">
+                    Duplicate listing
+                  </option>
+
+                  <option value="Other">
+                    Other
+                  </option>
+
+                </select>
+
+              </div>
+
+
+
+              <!-- DETAILS -->
+
+              <div class="field full">
+
+                <label for="details">
+                  Tell Us What Happened *
+                </label>
+
+                <textarea
+                  id="details"
+                  name="details"
+                  required
+                  placeholder="Explain what appears to be incorrect or concerning. Include enough detail for us to understand and review the issue."
+                ></textarea>
+
+                <div class="helper">
+                  Please provide factual information based on your own experience, observations, or information you can reasonably verify.
+                </div>
+
+              </div>
+
+
+            </div>
+
+
           </div>
 
 
 
-          <!-- CONFIRMATION -->
+          <!-- =====================================
+               YOUR INFORMATION
+               ===================================== -->
 
-          <div class="field full">
+          <div class="report-form-section">
+
+
+            <div class="report-section-heading">
+
+              <div class="eyebrow dark">
+                STEP 3
+              </div>
+
+
+              <h2>
+                Your information
+              </h2>
+
+
+              <p class="section-intro">
+                Your contact information is not displayed publicly.
+              </p>
+
+            </div>
+
+
+
+            <div class="report-grid">
+
+
+              <!-- REPORTER NAME -->
+
+              <div class="field">
+
+                <label for="reporterName">
+                  Your Name *
+                </label>
+
+                <input
+                  id="reporterName"
+                  name="reporterName"
+                  type="text"
+                  required
+                  autocomplete="name"
+                  placeholder="Your name"
+                >
+
+              </div>
+
+
+
+              <!-- REPORTER EMAIL -->
+
+              <div class="field">
+
+                <label for="reporterEmail">
+                  Your Email *
+                </label>
+
+                <input
+                  id="reporterEmail"
+                  name="reporterEmail"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  inputmode="email"
+                  placeholder="you@example.com"
+                >
+
+                <div class="helper">
+                  We may use this email if we need additional information about the report.
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- =====================================
+               CONFIRMATION
+               ===================================== -->
+
+          <div class="report-confirmation">
+
 
             <label class="check-row">
 
@@ -276,34 +626,48 @@
 
             </label>
 
+
           </div>
 
 
-        </div>
+
+          <!-- =====================================
+               SUBMIT
+               ===================================== -->
+
+          <div class="report-submit-area">
+
+
+            <button
+              class="btn btn-primary report-submit-button"
+              type="submit"
+            >
+              Submit Report
+            </button>
+
+
+            <p class="small report-submit-note">
+              Submitting a report does not automatically remove, suspend, or change a listing. Reports are reviewed before action is taken.
+            </p>
+
+
+          </div>
 
 
 
-        <!-- SUBMIT -->
+          <!-- STATUS -->
 
-        <button
-          class="btn btn-primary"
-          type="submit"
-        >
-          Submit Report
-        </button>
-
+          <div
+            id="form-status"
+            style="margin-top:20px;"
+            aria-live="polite"
+          ></div>
 
 
-        <!-- STATUS -->
-
-        <div
-          id="form-status"
-          style="margin-top:20px;"
-          aria-live="polite"
-        ></div>
+        </form>
 
 
-      </form>
+      </div>
 
 
     </div>
@@ -312,14 +676,17 @@
 
 
 
-  <!-- REVIEW PROCESS -->
+  <!-- =========================================
+       REVIEW PROCESS
+       ========================================= -->
 
   <section class="section section-soft">
 
-    <div class="container">
+    <div class="container report-steps">
 
 
       <div class="section-heading centered">
+
 
         <div class="eyebrow dark">
           WHAT HAPPENS NEXT
@@ -335,6 +702,7 @@
           A report does not automatically remove or change a provider listing.
         </p>
 
+
       </div>
 
 
@@ -344,35 +712,43 @@
 
         <div class="card step-card">
 
+
           <div class="step-number">
             1
           </div>
+
 
           <h3>
             Submit the Concern
           </h3>
 
+
           <p>
-            Tell us which listing you are reporting and what appears to be wrong.
+            Tell us which listing you are reporting and explain what appears to be wrong.
           </p>
+
 
         </div>
 
 
 
         <div class="card step-card">
+
 
           <div class="step-number">
             2
           </div>
 
+
           <h3>
             We Review It
           </h3>
 
+
           <p>
-            NeighborSource reviews the report and available listing information.
+            FindLocal757.com reviews the report along with the information available for the listing.
           </p>
+
 
         </div>
 
@@ -380,17 +756,21 @@
 
         <div class="card step-card">
 
+
           <div class="step-number">
             3
           </div>
 
+
           <h3>
-            Appropriate Action
+            Appropriate Action Is Taken
           </h3>
+
 
           <p>
             Depending on the issue, information may be corrected, the provider may be contacted, or the listing may be removed.
           </p>
+
 
         </div>
 
@@ -404,21 +784,16 @@
 
 
 
-  <!-- NORMAL UPDATE -->
+  <!-- =========================================
+       NORMAL UPDATE
+       ========================================= -->
 
   <section class="section">
 
     <div class="container">
 
 
-      <div
-        class="card"
-        style="
-          max-width:900px;
-          margin:0 auto;
-          padding:36px;
-        "
-      >
+      <div class="card normal-update-card">
 
 
         <div class="eyebrow dark">
@@ -432,7 +807,7 @@
 
 
         <p>
-          If you own or manage the listing and simply need to update a phone number, service area, website, description, or other information, use the listing update form.
+          If you own or manage the listing and simply need to update a phone number, service area, website, description, or other normal information, use the listing update form.
         </p>
 
 
@@ -456,7 +831,7 @@
 
 
 
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 
 
 <script>
