@@ -149,10 +149,6 @@ function header() {
             Find Services
           </a>
 
-          <a href="request-help.html">
-            I Need Someone
-          </a>
-
           <a href="list-service.html">
             List Your Service
           </a>
@@ -236,10 +232,6 @@ function footer() {
 
             <a href="services.html">
               Browse Services
-            </a>
-
-            <a href="request-help.html">
-              Post What You Need
             </a>
 
             <a href="suggest-provider.html">
@@ -1363,15 +1355,34 @@ function renderSearch() {
           </h3>
 
           <p>
-            Try a broader search or tell the community what kind of help you need.
+            Try a broader search, browse the service categories, or recommend a local provider you trust.
           </p>
 
-          <a
-            class="btn btn-green"
-            href="request-help.html"
+          <div
+            style="
+              display:flex;
+              flex-wrap:wrap;
+              justify-content:center;
+              gap:12px;
+              margin-top:20px;
+            "
           >
-            Post What You Need
-          </a>
+
+            <a
+              class="btn btn-outline"
+              href="services.html"
+            >
+              Browse Categories
+            </a>
+
+            <a
+              class="btn btn-green"
+              href="suggest-provider.html"
+            >
+              Recommend Someone
+            </a>
+
+          </div>
 
         </div>
       `;
@@ -2936,6 +2947,13 @@ function successMessageForFormType(
 
       return "Recommendation submitted for review.";
 
+
+    /*
+     * The public service-request page has been
+     * retired, but this response is intentionally
+     * retained for backward compatibility with
+     * the existing backend.
+     */
 
     case "serviceRequest":
 
