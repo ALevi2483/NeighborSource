@@ -9,11 +9,11 @@
   --navy-dark: #06243d;
   --navy-light: #174f7a;
 
-  --blue: #2675e8;
-  --blue-dark: #175fc9;
+  --blue: #195fbe;
+  --blue-dark: #144f9f;
 
-  --green: #2da343;
-  --green-dark: #208235;
+  --green: #217738;
+  --green-dark: #175b2b;
   --green-light: #eaf7ee;
 
   --page: #f4f7fb;
@@ -21,7 +21,7 @@
   --white: #ffffff;
 
   --text: #132238;
-  --muted: #64748b;
+  --muted: #516278;
   --line: #d7e1eb;
 
   --warning: #de8500;
@@ -48,7 +48,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -65,7 +65,7 @@ body {
   font-size: 16px;
   line-height: 1.55;
 
-  overflow-x: hidden;
+  overflow-wrap: anywhere;
 }
 
 img {
@@ -259,29 +259,18 @@ main {
 }
 
 
-.nav-links .nav-cta {
-  flex-shrink: 0;
-
-  padding: 13px 18px;
-
-  background: var(--green);
-  color: var(--white);
-
-  border-radius: 12px;
-}
 
 
-.nav-links .nav-cta:hover {
-  background: var(--green-dark);
-  color: var(--white);
-}
 
 
 .menu-btn {
   display: none;
 
-  width: 46px;
-  height: 46px;
+  width: auto;
+  min-width: 48px;
+  min-height: 46px;
+  padding-inline: 10px;
+  white-space: nowrap;
 
   align-items: center;
   justify-content: center;
@@ -294,7 +283,7 @@ main {
   border: 1px solid var(--line);
   border-radius: 10px;
 
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 
@@ -497,7 +486,6 @@ main {
   padding: 13px 16px;
 
   border: 0;
-  outline: none;
 
   background: transparent;
   color: var(--text);
@@ -505,7 +493,7 @@ main {
 
 
 .hero-search input::placeholder {
-  color: #7d8796;
+  color: var(--muted);
 }
 
 
@@ -1041,7 +1029,6 @@ main {
   border: 1px solid #cdd9e5;
   border-radius: 12px;
 
-  outline: none;
 }
 
 
@@ -1251,7 +1238,6 @@ main {
   border: 1px solid var(--line);
   border-radius: 12px;
 
-  outline: none;
 }
 
 
@@ -1430,7 +1416,8 @@ hr {
 }
 
 
-.footer h4 {
+.footer-heading {
+  font-size: 1rem;
   margin-bottom: 15px;
 
   color: var(--white);
@@ -1515,9 +1502,6 @@ hr {
   }
 
 
-  .nav-links .nav-cta {
-    padding: 12px 15px;
-  }
 
 }
 
@@ -1581,13 +1565,6 @@ hr {
   }
 
 
-  .nav-links .nav-cta {
-    margin-top: 12px;
-
-    padding: 14px 16px;
-
-    text-align: center;
-  }
 
 
   .hero-grid {
@@ -1870,4 +1847,139 @@ hr {
     padding: 20px;
   }
 
+}
+
+/* Shared navigation, focus, and directory controls */
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid #164c85;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px #fff;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.skip-link {
+  position: absolute;
+  z-index: 1000;
+  top: 8px;
+  left: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: white;
+  color: var(--navy);
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.nav-links > a,
+.home-hero-actions > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.nav-links > a {
+  text-decoration: none;
+}
+
+.nav-links > a:hover,
+.nav-links > a[aria-current="page"] {
+  text-decoration: underline;
+}
+
+
+
+.directory-search {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.directory-search label {
+  font-weight: 700;
+  min-width: 0;
+}
+
+.directory-search input,
+.directory-search select {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  margin-top: 4px;
+  padding: 8px 10px;
+  color: var(--text);
+  background: var(--white);
+  border: 1px solid #78899c;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.directory-search-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#search-more {
+  margin-top: 18px;
+}
+
+@media (max-width: 720px) {
+  .nav {
+    gap: 8px;
+  }
+
+  .nav .brand {
+    gap: 8px;
+  }
+
+  .nav-links {
+    max-height: calc(100dvh - 70px);
+    overflow-y: auto;
+  }
+
+  .directory-search {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  input:not([type="checkbox"], [type="radio"]),
+  select,
+  textarea {
+    font-size: max(16px, 1em);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.service-area-fieldset {
+  min-width: 0;
+  margin-inline: 0;
+  padding: 0;
+  border: 0;
+}
+
+.service-area-fieldset legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-weight: 700;
 }
