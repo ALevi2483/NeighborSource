@@ -21,7 +21,7 @@
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=4"
+    href="css/style.css?v=6"
   >
 
   <style>
@@ -115,17 +115,26 @@
        SIDEBAR
        ========================================================= */
 
-    .provider-sidebar {
+    .provider-contact-card,
+    .provider-tools-card {
       grid-column: 2;
-      grid-row: 1 / span 6;
       min-width: 0;
+    }
 
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
+    .provider-contact-card {
+      grid-row: 1 / span 4;
+    }
 
-      position: sticky;
-      top: 24px;
+    .provider-tools-card {
+      grid-row: 5 / span 2;
+    }
+
+    .profile-back {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
 
@@ -415,12 +424,8 @@
         width: 100%;
       }
 
-      .provider-sidebar {
-        display: contents;
-      }
-
       .provider-contact-card {
-        order: 5;
+        order: 0;
         position: static;
         width: 100%;
       }
@@ -677,7 +682,7 @@
 <body>
 
 
-<main>
+<main id="main-content" tabindex="-1">
 
 
   <!-- =====================================================
@@ -689,9 +694,7 @@
     <div class="container">
 
 
-      <div class="eyebrow">
-        LOCAL PROVIDER
-      </div>
+      <a id="provider-back" class="profile-back" href="search.html">Find a Service</a>
 
 
       <h1 id="provider-name">
@@ -722,6 +725,88 @@
       <div class="provider-profile-grid">
 
 
+
+        <aside class="card provider-contact-card">
+
+
+          <div class="eyebrow dark">
+            CONTACT
+          </div>
+
+
+          <h2>
+            Contact Provider
+          </h2>
+
+
+
+          <div class="provider-phone-row">
+
+            <div class="small">
+              PHONE
+            </div>
+
+            <div id="provider-phone">
+              —
+            </div>
+
+          </div>
+
+
+
+          <div class="provider-contact-actions">
+
+
+            <a
+              id="provider-call"
+              class="btn btn-green"
+              href="#"
+            >
+              Call Provider
+            </a>
+
+
+            <a
+              id="provider-website"
+              class="btn btn-outline"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="display:none;"
+            >
+              Visit Website
+            </a>
+
+
+            <a
+              id="provider-facebook"
+              class="btn btn-outline"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="display:none;"
+            >
+              Facebook Page
+            </a>
+
+
+          </div>
+
+
+
+          <button id="copy-provider-link" class="btn btn-outline" type="button" hidden>Copy listing link</button>
+          <p id="copy-provider-status" class="small" role="status"></p>
+
+          <div class="provider-contact-note">
+
+            <p class="small">
+              Contact providers directly to confirm pricing, availability, experience, qualifications, and other job details before hiring.
+            </p>
+
+          </div>
+
+
+        </aside>
 
         <!-- SUMMARY STATS -->
 
@@ -905,137 +990,45 @@
 
 
 
-        <!-- SIDEBAR -->
+        <!-- LISTING TOOLS -->
 
-        <div class="provider-sidebar">
-
-
-
-          <!-- CONTACT -->
-
-          <aside class="card provider-contact-card">
+        <aside class="card provider-tools-card">
 
 
-            <div class="eyebrow dark">
-              CONTACT
-            </div>
+          <div class="eyebrow dark">
+            LISTING TOOLS
+          </div>
 
 
-            <h2>
-              Contact Provider
-            </h2>
+          <h3>
+            See something that needs attention?
+          </h3>
 
 
-
-            <div class="provider-phone-row">
-
-              <div class="small">
-                PHONE
-              </div>
-
-              <div id="provider-phone">
-                —
-              </div>
-
-            </div>
+          <p class="small">
+            Request a correction or let FindLocal757.com know about a concern.
+          </p>
 
 
-
-            <div class="provider-contact-actions">
-
-
-              <a
-                id="provider-call"
-                class="btn btn-green"
-                href="#"
-              >
-                Call Provider
-              </a>
+          <a
+            id="update-provider-link"
+            class="btn btn-outline"
+            href="update-listing.html"
+          >
+            Update This Listing
+          </a>
 
 
-              <a
-                id="provider-website"
-                class="btn btn-outline"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                style="display:none;"
-              >
-                Visit Website
-              </a>
+          <a
+            id="report-provider-link"
+            class="provider-report-link"
+            href="report.html"
+          >
+            Report This Listing
+          </a>
 
 
-              <a
-                id="provider-facebook"
-                class="btn btn-outline"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                style="display:none;"
-              >
-                Facebook Page
-              </a>
-
-
-            </div>
-
-
-
-            <div class="provider-contact-note">
-
-              <p class="small">
-                Contact providers directly to confirm pricing, availability, experience, qualifications, and other job details before hiring.
-              </p>
-
-            </div>
-
-
-          </aside>
-
-
-
-          <!-- LISTING TOOLS -->
-
-          <aside class="card provider-tools-card">
-
-
-            <div class="eyebrow dark">
-              LISTING TOOLS
-            </div>
-
-
-            <h3>
-              See something that needs attention?
-            </h3>
-
-
-            <p class="small">
-              Request a correction or let FindLocal757.com know about a concern.
-            </p>
-
-
-            <a
-              id="update-provider-link"
-              class="btn btn-outline"
-              href="update-listing.html"
-            >
-              Update This Listing
-            </a>
-
-
-            <a
-              id="report-provider-link"
-              class="provider-report-link"
-              href="report.html"
-            >
-              Report This Listing
-            </a>
-
-
-          </aside>
-
-
-        </div>
+        </aside>
 
 
       </div>
@@ -1145,9 +1138,9 @@
 
           <a
             class="btn btn-outline-light"
-            href="request-help.html"
+            href="search.html"
           >
-            I Need Someone
+            Find a Service
           </a>
 
 
@@ -1165,7 +1158,7 @@
 </main>
 
 
-<script src="js/app.js?v=5"></script>
+<script src="js/app.js?v=6"></script>
 
 
 </body>

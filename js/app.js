@@ -109,69 +109,23 @@ const categories = [
 function header() {
 
   return `
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
-
       <div class="container nav">
-
-        <a
-          class="brand"
-          href="index.html"
-          aria-label="FindLocal757.com home"
-        >
-
-          <span class="brand-mark">
-            🏡
-          </span>
-
-          <span>
-            FindLocal757.com
-          </span>
-
+        <a class="brand" href="index.html" aria-label="FindLocal757.com home">
+          <span class="brand-mark" aria-hidden="true">🏡</span>
+          <span>FindLocal757.com</span>
         </a>
-
-
-        <button
-          class="menu-btn"
-          type="button"
-          aria-label="Open navigation menu"
-          aria-expanded="false"
-        >
-          ☰
-        </button>
-
-
-        <nav
-          class="nav-links"
-          aria-label="Main navigation"
-        >
-
-          <a href="services.html">
-            Find Services
-          </a>
-
-          <a href="list-service.html">
-            List Your Service
-          </a>
-
-          <a href="update-listing.html">
-            Update a Listing
-          </a>
-
-          <a href="how-it-works.html">
-            How It Works
-          </a>
-
-          <a
-            class="nav-cta"
-            href="suggest-provider.html"
-          >
-            Recommend Someone
-          </a>
-
+        <button class="menu-btn" type="button" aria-controls="site-navigation"
+          aria-expanded="false">Menu</button>
+        <nav class="nav-links" id="site-navigation" aria-label="Main navigation">
+          <a href="search.html">Find a Service</a>
+          <a href="services.html">Browse Categories</a>
+          <a href="list-service.html">List Your Service</a>
+          <a href="suggest-provider.html">Recommend Someone</a>
+          <a href="update-listing.html">Update a Listing</a>
         </nav>
-
       </div>
-
     </header>
   `;
 
@@ -226,16 +180,20 @@ function footer() {
 
           <div>
 
-            <h4>
+            <h2 class="footer-heading">
               Find Help
-            </h4>
+            </h2>
+
+            <a href="search.html">
+              Find a Service
+            </a>
 
             <a href="services.html">
-              Browse Services
+              Browse Categories
             </a>
 
             <a href="suggest-provider.html">
-              Suggest a Provider
+              Recommend Someone
             </a>
 
           </div>
@@ -244,9 +202,9 @@ function footer() {
 
           <div>
 
-            <h4>
+            <h2 class="footer-heading">
               For Providers
-            </h4>
+            </h2>
 
             <a href="list-service.html">
               List Your Service
@@ -262,13 +220,15 @@ function footer() {
 
           <div>
 
-            <h4>
+            <h2 class="footer-heading">
               FindLocal757.com
-            </h4>
+            </h2>
 
             <a href="about.html">
               About
             </a>
+
+            <a href="how-it-works.html">How It Works</a>
 
             <a href="contact.html">
               Contact
@@ -340,12 +300,17 @@ async function boot() {
 
   initNavigation();
 
-  initSearchForms();
 
   initSubmissionForms();
 
-  await loadProviders();
+  const page = currentPage();
+  if (page === "index.html" || page === "") renderHomeCategories();
+  if (page === "services.html") renderCategories("all-categories");
 
+  if (page === "search.html") initializeSearch();
+  if (["", "index.html", "search.html", "category.html", "provider.html"].includes(page)) {
+    await loadProviders();
+  }
   renderDynamicContent();
 
 }
@@ -408,71 +373,32 @@ function injectLayout() {
 
 function initNavigation() {
 
-  const button =
-    document.querySelector(
-      ".menu-btn"
-    );
+  const button = document.querySelector(".menu-btn");
+  const navigation = document.querySelector(".nav-links");
+  const current = navigation.querySelector(`a[href="${CSS.escape(currentPage())}"]`);
+  current?.setAttribute("aria-current", "page");
 
-  const navigation =
-    document.querySelector(
-      ".nav-links"
-    );
-
-
-  if (
-    !button ||
-    !navigation
-  ) {
-
-    return;
-
+  function setOpen(open) {
+    navigation.classList.toggle("open", open);
+    button.setAttribute("aria-expanded", String(open));
   }
 
+  button.addEventListener("click", () => {
+    setOpen(button.getAttribute("aria-expanded") !== "true");
+  });
 
-  button.addEventListener(
-    "click",
-    () => {
-
-      const isOpen =
-        navigation.classList.toggle(
-          "open"
-        );
-
-
-      button.setAttribute(
-        "aria-expanded",
-        String(
-          isOpen
-        )
-      );
-
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && button.getAttribute("aria-expanded") === "true") {
+      setOpen(false);
+      button.focus();
     }
-  );
+  });
 
-
-  navigation
-    .querySelectorAll("a")
-    .forEach(
-      link => {
-
-        link.addEventListener(
-          "click",
-          () => {
-
-            navigation.classList.remove(
-              "open"
-            );
-
-            button.setAttribute(
-              "aria-expanded",
-              "false"
-            );
-
-          }
-        );
-
-      }
-    );
+  document.addEventListener("click", event => {
+    if (!navigation.contains(event.target) && !button.contains(event.target)) {
+      setOpen(false);
+    }
+  });
 
 }
 
@@ -503,7 +429,8 @@ async function loadProviders() {
             "GET",
 
           cache:
-            "no-store"
+            "no-store",
+          signal: AbortSignal.timeout(8000)
         }
       );
 
@@ -773,21 +700,7 @@ function renderDynamicContent() {
       ""
   ) {
 
-    renderHomeCategories();
-
     renderFeatured();
-
-  }
-
-
-  if (
-    page ===
-    "services.html"
-  ) {
-
-    renderCategories(
-      "all-categories"
-    );
 
   }
 
@@ -820,53 +733,6 @@ function renderDynamicContent() {
     renderProvider();
 
   }
-
-}
-
-
-/*************************************************
- * SEARCH FORMS
- *************************************************/
-
-function initSearchForms() {
-
-  document
-    .querySelectorAll(
-      "[data-search-form]"
-    )
-    .forEach(
-      form => {
-
-        form.addEventListener(
-          "submit",
-          event => {
-
-            event.preventDefault();
-
-
-            const input =
-              form.querySelector(
-                'input[type="search"], input[type="text"], input'
-              );
-
-
-            const query =
-              input
-                ? input.value.trim()
-                : "";
-
-
-            location.href =
-              "search.html?q=" +
-              encodeURIComponent(
-                query
-              );
-
-          }
-        );
-
-      }
-    );
 
 }
 
@@ -1037,12 +903,13 @@ function providerCard(
       : "Service area not listed";
 
 
+  const phone = phoneDigits(p.phone);
   const callButton =
-    p.phone
+    phone
       ? `
           <a
             class="btn btn-outline"
-            href="tel:${phoneDigits(p.phone)}"
+            href="tel:${phone}" aria-label="Call ${escapeHTML(p.name)}"
           >
             Call
           </a>
@@ -1081,7 +948,7 @@ function providerCard(
 
       <p>
         ${escapeHTML(
-          p.description ||
+          p.services.length ? p.services.join(", ") : p.description ||
           "No description has been provided yet."
         )}
       </p>
@@ -1091,6 +958,7 @@ function providerCard(
 
         <a
           class="btn btn-primary"
+          aria-label="View profile for ${escapeHTML(p.name)}"
           href="provider.html?id=${encodeURIComponent(p.id)}"
         >
           View Profile
@@ -1172,11 +1040,7 @@ function renderFeatured() {
 
 
   container.innerHTML =
-    providers
-      .slice(
-        0,
-        3
-      )
+    rotatingProviders()
       .map(
         providerCard
       )
@@ -1185,220 +1049,120 @@ function renderFeatured() {
 }
 
 
+function rotatingProviders() {
+  const ordered = [...providers].sort(compareProviderNames);
+  const count = Math.min(3, ordered.length);
+  const day = Math.floor(Date.now() / 86400000);
+  const start = (day * count) % ordered.length;
+  return ordered.slice(start, start + count).concat(ordered.slice(0, Math.max(0, start + count - ordered.length)));
+}
+
+
 /*************************************************
  * SEARCH PAGE
  *************************************************/
 
+const searchSynonyms = [
+  [/\b(?:grass cut(?:ting)?|mow(?:ing)?(?: (?:the )?lawn)?|lawn mow(?:ing)?|lawn care)\b/g, "lawn"],
+  [/\b(?:dog walk(?:ing|er)|walk(?:ing)? dogs?)\b/g, "dog walking"],
+  [/\b(?:plumbers?|plumbing)\b/g, "plumb"],
+  [/\b(?:electricians?|electrical)\b/g, "electric"],
+  [/\b(?:housekeep(?:ing|er)|house clean(?:ing|er))\b/g, "clean"],
+];
+
+function normalizeSearch(value) {
+  let text = value.toLowerCase().normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .replace(/[^a-z0-9]+/g, " ").trim();
+  for (const [pattern, replacement] of searchSynonyms) {
+    text = text.replace(pattern, replacement);
+  }
+  return text;
+}
+
+const providerNameOrder = new Intl.Collator("en", { sensitivity: "base", numeric: true });
+
+function compareProviderNames(a, b) {
+  return providerNameOrder.compare(a.name, b.name) || a.id.localeCompare(b.id);
+}
+
+function populateSearchFilter(select, values, selected) {
+  const options = new Map();
+  for (const value of [...values, selected]) {
+    if (value) options.set(value.toLowerCase(), value);
+  }
+  for (const value of [...options.values()].sort(providerNameOrder.compare)) {
+    select.add(new Option(value, value));
+  }
+  select.value = options.get(selected.toLowerCase()) || "";
+}
+
+function initializeSearch() {
+  const params = new URLSearchParams(location.search);
+  const query = (params.get("q") || "").trim();
+  document.querySelector("#search-page-input").value = query;
+  document.querySelector("#search-query").textContent = query || "all services";
+}
+
 function renderSearch() {
+  const params = new URLSearchParams(location.search);
+  const query = (params.get("q") || "").trim();
+  const city = (params.get("city") || "").trim();
+  const category = (params.get("category") || "").trim();
+  const cityKey = city.toLowerCase();
+  const categoryKey = category.toLowerCase();
+  const resultCount = document.querySelector("#result-count");
+  const resultContainer = document.querySelector("#search-results");
+  populateSearchFilter(document.querySelector("#search-city"), providers.flatMap(p => p.area), city);
+  populateSearchFilter(document.querySelector("#search-category"),
+    [...categories.map(([name]) => name), ...providers.map(p => p.category)], category);
 
-  const params =
-    new URLSearchParams(
-      location.search
-    );
-
-
-  const query =
-    String(
-      params.get(
-        "q"
-      ) ||
-      ""
-    ).trim();
-
-
-  const queryLabel =
-    document.querySelector(
-      "#search-query"
-    );
-
-
-  if (
-    queryLabel
-  ) {
-
-    queryLabel.textContent =
-      query ||
-      "all services";
-
-  }
-
-
-  const searchInput =
-    document.querySelector(
-      "#search-page-input"
-    );
-
-
-  if (
-    searchInput
-  ) {
-
-    searchInput.value =
-      query;
-
-  }
-
-
-  const resultCount =
-    document.querySelector(
-      "#result-count"
-    );
-
-
-  const resultContainer =
-    document.querySelector(
-      "#search-results"
-    );
-
-
-  if (
-    !resultContainer
-  ) {
-
+  if (providerLoadFailed) {
+    resultCount.textContent = "Provider results are unavailable.";
+    resultContainer.innerHTML = directoryUnavailableMessage();
     return;
-
   }
 
+  const terms = normalizeSearch(query).split(/\s+/).filter(Boolean);
+  const results = providers.filter(provider => {
+    if (city && !provider.area.some(area => area.toLowerCase() === cityKey)) return false;
+    if (category && provider.category.toLowerCase() !== categoryKey) return false;
+    const text = normalizeSearch([
+      provider.name, provider.type, provider.category,
+      ...provider.services, ...provider.area, provider.description,
+    ].join(" "));
+    return terms.every(term => text.includes(term));
+  }).sort(compareProviderNames);
 
-  if (
-    providerLoadFailed
-  ) {
-
-    if (
-      resultCount
-    ) {
-
-      resultCount.textContent =
-        "";
-
-    }
-
-
-    resultContainer.innerHTML =
-      directoryUnavailableMessage();
-
+  resultCount.textContent = `${results.length} provider${results.length === 1 ? "" : "s"} found`;
+  if (!results.length) {
+    resultContainer.innerHTML = `
+      <div class="card empty-state">
+        <h3>No matching providers</h3>
+        <p>Try a shorter search, clear a city or category filter, or browse all categories.</p>
+        <a class="btn btn-outline" href="services.html">Browse Categories</a>
+        <a class="btn btn-outline" href="suggest-provider.html">Recommend Someone</a>
+      </div>`;
     return;
-
   }
 
-
-  const normalizedQuery =
-    query.toLowerCase();
-
-
-  const results =
-    providers.filter(
-      provider => {
-
-        const haystack =
-          [
-
-            provider.name,
-
-            provider.type,
-
-            provider.category,
-
-            provider.services.join(
-              " "
-            ),
-
-            provider.area.join(
-              " "
-            ),
-
-            provider.description
-
-          ]
-            .join(
-              " "
-            )
-            .toLowerCase();
-
-
-        return (
-          !normalizedQuery ||
-          haystack.includes(
-            normalizedQuery
-          )
-        );
-
-      }
-    );
-
-
-  if (
-    resultCount
-  ) {
-
-    resultCount.textContent =
-      `${results.length} provider${
-        results.length === 1
-          ? ""
-          : "s"
-      } found`;
-
+  const pageSize = 24;
+  let shown = 0;
+  function showMore() {
+    resultContainer.insertAdjacentHTML("beforeend", results.slice(shown, shown + pageSize).map(providerCard).join(""));
+    shown = Math.min(shown + pageSize, results.length);
+    resultCount.textContent = `Showing ${shown} of ${results.length} providers`;
+    more.hidden = shown >= results.length;
   }
 
-
-  if (
-    results.length ===
-    0
-  ) {
-
-    resultContainer.innerHTML =
-      `
-        <div class="card empty-state">
-
-          <h3>
-            No exact matches yet
-          </h3>
-
-          <p>
-            Try a broader search, browse the service categories, or recommend a local provider you trust.
-          </p>
-
-          <div
-            style="
-              display:flex;
-              flex-wrap:wrap;
-              justify-content:center;
-              gap:12px;
-              margin-top:20px;
-            "
-          >
-
-            <a
-              class="btn btn-outline"
-              href="services.html"
-            >
-              Browse Categories
-            </a>
-
-            <a
-              class="btn btn-green"
-              href="suggest-provider.html"
-            >
-              Recommend Someone
-            </a>
-
-          </div>
-
-        </div>
-      `;
-
-    return;
-
-  }
-
-
-  resultContainer.innerHTML =
-    results
-      .map(
-        providerCard
-      )
-      .join("");
-
+  const more = document.querySelector("#search-more");
+  more.addEventListener("click", () => {
+    const firstNew = shown;
+    showMore();
+    resultContainer.children[firstNew].querySelector("a").focus();
+  });
+  resultContainer.replaceChildren();
+  showMore();
 }
 
 
@@ -1516,9 +1280,8 @@ function renderCategoryPage() {
   const results =
     providers.filter(
       provider =>
-        provider.category ===
-        name
-    );
+        provider.category.toLowerCase() === name.toLowerCase()
+    ).sort(compareProviderNames);
 
 
   if (
@@ -1634,8 +1397,8 @@ function renderProvider() {
   }
 
 
-  document.title =
-    `${provider.name} | FindLocal757.com`;
+  document.title = `${provider.name} | FindLocal757.com`;
+  configureProfileNavigation(provider);
 
 
   setText(
@@ -1709,6 +1472,39 @@ function renderProvider() {
     provider.id
   );
 
+}
+
+
+function configureProfileNavigation(provider) {
+  const back = document.querySelector("#provider-back");
+  if (document.referrer) {
+    const previous = new URL(document.referrer);
+    const page = previous.pathname.split("/").pop();
+    if (previous.origin === location.origin && ["search.html", "category.html", "services.html"].includes(page)) {
+      back.href = previous.href;
+      back.textContent = page === "search.html" ? "Back to Search Results" : "Back to Services";
+    }
+  }
+
+  const profileUrl = new URL("provider.html", location.href);
+  profileUrl.searchParams.set("id", provider.id);
+  const canonical = document.createElement("link");
+  canonical.rel = "canonical";
+  canonical.href = new URL(profileUrl.search, "https://findlocal757.com/provider.html").href;
+  document.head.append(canonical);
+
+  if (!navigator.clipboard) return;
+  const copy = document.querySelector("#copy-provider-link");
+  const status = document.querySelector("#copy-provider-status");
+  copy.hidden = false;
+  copy.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(canonical.href);
+      status.textContent = "Listing link copied.";
+    } catch {
+      status.textContent = "Could not copy the link. You can copy it from your address bar.";
+    }
+  });
 }
 
 
@@ -2575,6 +2371,7 @@ async function submitFindLocal757Form(
     submitButton
   ) {
 
+    if (submitButton.disabled) return;
     submitButton.disabled =
       true;
 
@@ -2783,16 +2580,11 @@ async function submitFindLocal757Form(
 
   catch (error) {
 
-    console.error(
-      "FindLocal757.com submission error:",
-      error
-    );
-
-
     setFormStatus(
       form,
-      error.message ||
-      "Something went wrong. Please try again.",
+      error instanceof TypeError
+        ? "We could not reach the submission service. Your entries are still here. Please try again."
+        : error.message || "Something went wrong. Please try again.",
       "error"
     );
 
@@ -2848,7 +2640,8 @@ async function confirmProviderSubmission(
             "GET",
 
           cache:
-            "no-store"
+            "no-store",
+          signal: AbortSignal.timeout(8000)
 
         }
       );

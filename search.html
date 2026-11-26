@@ -13,6 +13,11 @@
   <title>
     Search Local Services | FindLocal757.com
   </title>
+  <link rel="canonical" href="https://findlocal757.com/search.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://findlocal757.com/search.html">
+  <meta property="og:title" content="Search Local Services | FindLocal757.com">
+  <meta property="og:description" content="Search FindLocal757.com for local businesses and individual service providers across Hampton Roads.">
 
   <meta
     name="description"
@@ -21,7 +26,7 @@
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=4"
+    href="css/style.css?v=6"
   >
 
 
@@ -56,10 +61,6 @@
       padding-top: 42px;
     }
 
-    .search-page-form {
-      max-width: 900px;
-      margin: 0 auto 46px;
-    }
 
 
     /* =========================================
@@ -101,24 +102,6 @@
 
 
     /* =========================================
-       HELP CARD
-       ========================================= */
-
-    .search-help-card {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 36px;
-    }
-
-    .search-help-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-
-    /* =========================================
        TABLET
        ========================================= */
 
@@ -145,12 +128,11 @@
 
       .search-page-hero {
         text-align: left;
-        padding-top: 38px;
-        padding-bottom: 38px;
+        padding-block: 24px;
       }
 
       .search-page-hero h1 {
-        font-size: 38px;
+        font-size: 32px;
         line-height: 1.08;
       }
 
@@ -164,23 +146,6 @@
 
       .search-main-section {
         padding-top: 28px;
-      }
-
-      .search-page-form {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin-bottom: 36px;
-      }
-
-      .search-page-form input {
-        width: 100%;
-        min-height: 54px;
-      }
-
-      .search-page-form button {
-        width: 100%;
-        min-height: 52px;
       }
 
 
@@ -218,20 +183,6 @@
       }
 
 
-      /* HELP CARD */
-
-      .search-help-card {
-        padding: 24px;
-      }
-
-      .search-help-actions {
-        flex-direction: column;
-      }
-
-      .search-help-actions .btn {
-        width: 100%;
-      }
-
     }
 
   </style>
@@ -242,7 +193,7 @@
 <body>
 
 
-<main>
+<main id="main-content" tabindex="-1">
 
 
   <!-- =========================================
@@ -254,18 +205,13 @@
     <div class="container">
 
 
-      <div class="eyebrow">
-        FIND LOCAL HELP
-      </div>
-
-
       <h1>
         Search Local Services
       </h1>
 
 
       <p>
-        Search businesses and individual service providers across Hampton Roads by service, name, category, or city.
+        Find businesses and independent providers across Hampton Roads.
       </p>
 
 
@@ -286,29 +232,24 @@
 
       <!-- SEARCH BAR -->
 
-      <form
-        class="search-page-form"
-        data-search-form
-      >
-
-        <input
-          id="search-page-input"
-          type="search"
-          name="q"
-          aria-label="Search local services"
-          placeholder="Plumber, lawn care, dog sitter, notary..."
-        >
-
-        <button
-          class="btn btn-green"
-          type="submit"
-        >
-          Search Services
-        </button>
-
+      <form class="directory-search" action="search.html" method="get" role="search">
+        <label for="search-page-input">
+          Service or provider
+          <input id="search-page-input" type="search" name="q" placeholder="Try lawn care or a business name">
+        </label>
+        <label for="search-city">
+          City or area
+          <select id="search-city" name="city"><option value="">All areas</option></select>
+        </label>
+        <label for="search-category">
+          Category
+          <select id="search-category" name="category"><option value="">All categories</option></select>
+        </label>
+        <div class="directory-search-actions">
+          <button class="btn btn-green" type="submit">Search</button>
+          <a class="btn btn-outline" href="search.html">Clear filters</a>
+        </div>
       </form>
-
-
 
       <!-- SEARCH HEADING -->
 
@@ -318,13 +259,8 @@
         <div>
 
 
-          <div class="eyebrow dark">
-            SEARCH RESULTS
-          </div>
-
-
           <h2>
-            Results for:
+            Results for
             <span id="search-query">
               all services
             </span>
@@ -333,7 +269,7 @@
 
           <p
             class="section-intro"
-            id="result-count"
+            id="result-count" role="status"
           >
             Searching...
           </p>
@@ -373,74 +309,18 @@
       </div>
 
 
+      <button class="btn btn-outline" id="search-more" type="button" hidden>Show more providers</button>
     </div>
 
   </section>
 
-
-
-  <!-- =========================================
-       NO MATCH HELP
-       ========================================= -->
-
-  <section class="section section-soft">
-
-    <div class="container">
-
-
-      <div class="card search-help-card">
-
-
-        <div class="eyebrow dark">
-          DON'T SEE WHAT YOU NEED?
-        </div>
-
-
-        <h2>
-          Try another way to find it
-        </h2>
-
-
-        <p>
-          Try a broader search, browse all service categories, or recommend a local provider you trust if they are not listed yet.
-        </p>
-
-
-        <div class="search-help-actions">
-
-
-          <a
-            class="btn btn-primary"
-            href="services.html"
-          >
-            Browse Categories
-          </a>
-
-
-          <a
-            class="btn btn-green"
-            href="suggest-provider.html"
-          >
-            Recommend Someone
-          </a>
-
-
-        </div>
-
-
-      </div>
-
-
-    </div>
-
-  </section>
 
 
 </main>
 
 
 
-<script src="js/app.js?v=5"></script>
+<script src="js/app.js?v=6"></script>
 
 
 </body>

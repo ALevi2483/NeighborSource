@@ -13,6 +13,11 @@
   <title>
     List Your Service | FindLocal757.com
   </title>
+  <link rel="canonical" href="https://findlocal757.com/list-service.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://findlocal757.com/list-service.html">
+  <meta property="og:title" content="List Your Service | FindLocal757.com">
+  <meta property="og:description" content="Add your local business, side hustle, or individual service to the FindLocal757.com directory for free.">
 
   <meta
     name="description"
@@ -21,7 +26,7 @@
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=4"
+    href="css/style.css?v=6"
   >
 
 
@@ -406,7 +411,7 @@
 <body>
 
 
-<main>
+<main id="main-content" tabindex="-1">
 
 
   <!-- =========================================
@@ -806,11 +811,9 @@
 
 
 
-            <div class="form-group">
+            <fieldset class="form-group service-area-fieldset" aria-describedby="service-area-error">
 
-              <label>
-                Service Area *
-              </label>
+              <legend>Service area *</legend>
 
 
               <div class="service-area-grid">
@@ -948,14 +951,14 @@
 
 
               <div
-                id="service-area-error"
+                id="service-area-error" role="alert"
                 class="small"
               >
                 Please select at least one service area.
               </div>
 
 
-            </div>
+            </fieldset>
 
 
           </div>
@@ -1093,6 +1096,7 @@
 
           <div
             id="form-status"
+            role="status" tabindex="-1"
             style="margin-top:22px;"
             aria-live="polite"
           ></div>
@@ -1337,7 +1341,7 @@ document.addEventListener(
 </script>
 
 
-<script src="js/app.js?v=5"></script>
+<script src="js/app.js?v=6"></script>
 
 
 </body>

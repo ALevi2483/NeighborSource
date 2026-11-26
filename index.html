@@ -10,18 +10,21 @@
     content="width=device-width, initial-scale=1"
   >
 
-  <title>
-    FindLocal757.com | Find Local Services in Hampton Roads
-  </title>
+  <title>Find Local Services in Hampton Roads | FindLocal757.com</title>
+  <link rel="canonical" href="https://findlocal757.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://findlocal757.com/">
+  <meta property="og:title" content="Find Local Services in Hampton Roads | FindLocal757.com">
+  <meta property="og:description" content="Search the free Hampton Roads directory for local businesses and independent providers by service, city, or category. List your service or recommend a neighbor.">
 
   <meta
     name="description"
-    content="Find local businesses and individual service providers across Hampton Roads. Search services, browse local providers, or recommend someone you trust."
+    content="Search the free Hampton Roads directory for local businesses and independent providers by service, city, or category. List your service or recommend a neighbor."
   >
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=4"
+    href="css/style.css?v=6"
   >
 
 
@@ -111,21 +114,6 @@
 
 
     /* =========================================
-       HOW IT WORKS
-       ========================================= */
-
-    .home-steps {
-      max-width: 1180px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .home-steps .step-card {
-      height: 100%;
-    }
-
-
-    /* =========================================
        PROVIDERS
        ========================================= */
 
@@ -187,20 +175,14 @@
     @media (max-width: 650px) {
 
       .home-hero {
-        padding-top: 42px;
-        padding-bottom: 42px;
-      }
-
-      .home-hero .eyebrow {
-        font-size: 12px;
-        line-height: 1.5;
+        padding-block: 26px;
       }
 
       .home-hero h1 {
         font-size: clamp(
-          38px,
-          11vw,
-          54px
+          30px,
+          8vw,
+          48px
         );
         line-height: 1.06;
         margin-top: 14px;
@@ -219,7 +201,7 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-        margin-top: 24px;
+        margin-top: 16px;
       }
 
       .home-hero .hero-search input {
@@ -232,20 +214,6 @@
         min-height: 52px;
       }
 
-
-      /* HERO BUTTONS STACK */
-
-      .home-hero-actions {
-        flex-direction: column;
-        width: 100%;
-        gap: 10px;
-        margin-top: 14px;
-      }
-
-      .home-hero-actions .btn {
-        width: 100%;
-        min-height: 50px;
-      }
 
       .home-trust-line {
         font-size: 13px;
@@ -299,18 +267,6 @@
       }
 
 
-      /* STEPS */
-
-      .steps-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
-
-      .step-card {
-        padding: 22px;
-      }
-
-
       /* PROVIDERS */
 
       #featured-providers {
@@ -359,20 +315,29 @@
       }
 
       .home-hero h1 {
-        font-size: 38px;
+        font-size: 32px;
       }
 
     }
 
   </style>
 
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "FindLocal757.com",
+      "url": "https://findlocal757.com/",
+      "description": "A free community directory of local services in Hampton Roads, Virginia."
+    }
+  </script>
 </head>
 
 
 <body>
 
 
-<main>
+<main id="main-content" tabindex="-1">
 
 
   <!-- =========================================
@@ -387,31 +352,23 @@
       <div class="hero-copy">
 
 
-        <div class="eyebrow">
-          LOCAL PEOPLE. LOCAL SERVICES. NEIGHBOR RECOMMENDED.
-        </div>
-
-
-        <h1>
-          Find who your neighbors actually use.
-        </h1>
-
-
+        <h1>Find local services in Hampton Roads</h1>
         <p class="hero-text">
-          Find local businesses and individual service providers across Hampton Roads, all in one place.
+          A free community directory of local businesses and independent service providers.
         </p>
-
 
         <form
           class="hero-search"
-          data-search-form
+          action="search.html"
+          method="get"
+          role="search"
         >
 
           <input
             type="search"
             name="q"
             aria-label="Search local services"
-            placeholder="What do you need? Plumber, dog sitter, notary, lawn care..."
+            placeholder="Try plumber or Norfolk"
           >
 
 
@@ -419,38 +376,18 @@
             class="btn btn-green"
             type="submit"
           >
-            Find Local Help
+            Search
           </button>
 
         </form>
 
 
         <div class="home-hero-actions">
-
-
-          <a
-            class="btn btn-primary"
-            href="services.html"
-          >
-            Browse All Services
-          </a>
-
-
-          <a
-            class="btn btn-outline-light"
-            href="list-service.html"
-          >
-            List Your Service
-          </a>
-
-
+          <a href="services.html">Browse Categories</a>
+          <a href="list-service.html">List Your Service</a>
+          <a href="suggest-provider.html">Recommend Someone</a>
         </div>
-
-
-        <div class="home-trust-line">
-          Free to search. Free to list. No lead fees. No paid rankings.
-        </div>
-
+        <p class="home-trust-line">Free to search and list. No subscriptions, lead fees, or paid rankings.</p>
 
       </div>
 
@@ -476,9 +413,6 @@
         <div>
 
 
-          <div class="eyebrow dark">
-            FIND LOCAL HELP
-          </div>
 
 
           <h2>
@@ -487,7 +421,7 @@
 
 
           <p class="section-intro">
-            Start with the type of service you need.
+            Browse providers by the type of help you need.
           </p>
 
 
@@ -498,7 +432,7 @@
           class="btn btn-outline"
           href="services.html"
         >
-          View All Services
+          All Categories
         </a>
 
 
@@ -512,136 +446,6 @@
       >
 
         <!-- Categories loaded by app.js -->
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =========================================
-       HOW IT WORKS
-       ========================================= -->
-
-  <section class="section section-soft">
-
-    <div class="container home-steps">
-
-
-      <div class="section-heading centered">
-
-
-        <div class="eyebrow dark">
-          SIMPLE BY DESIGN
-        </div>
-
-
-        <h2>
-          Finding local help should be simple
-        </h2>
-
-
-        <p class="section-intro">
-          Search the directory, learn about local providers, and contact the person or business that fits your needs.
-        </p>
-
-
-      </div>
-
-
-
-      <div class="steps-grid">
-
-
-
-        <!-- STEP 1 -->
-
-        <div class="card step-card">
-
-
-          <div class="step-number">
-            1
-          </div>
-
-
-          <h3>
-            Find a Service
-          </h3>
-
-
-          <p>
-            Search by service, category, provider name, or city, or browse the directory.
-          </p>
-
-
-          <a href="services.html">
-            Browse Services →
-          </a>
-
-
-        </div>
-
-
-
-        <!-- STEP 2 -->
-
-        <div class="card step-card">
-
-
-          <div class="step-number">
-            2
-          </div>
-
-
-          <h3>
-            View Provider Details
-          </h3>
-
-
-          <p>
-            See services offered, service areas, community recommendations, available verification information, and contact options.
-          </p>
-
-
-          <a href="services.html">
-            Find a Provider →
-          </a>
-
-
-        </div>
-
-
-
-        <!-- STEP 3 -->
-
-        <div class="card step-card">
-
-
-          <div class="step-number">
-            3
-          </div>
-
-
-          <h3>
-            Contact Them Directly
-          </h3>
-
-
-          <p>
-            When you find someone who may be a good fit, contact the provider directly to discuss the job, pricing, and availability.
-          </p>
-
-
-          <a href="services.html">
-            Start Searching →
-          </a>
-
-
-        </div>
-
 
       </div>
 
@@ -667,9 +471,6 @@
         <div>
 
 
-          <div class="eyebrow dark">
-            LOCAL SERVICE DIRECTORY
-          </div>
 
 
           <h2>
@@ -687,9 +488,9 @@
 
         <a
           class="btn btn-outline"
-          href="services.html"
+          href="search.html"
         >
-          Browse All
+          View All Providers
         </a>
 
 
@@ -702,7 +503,7 @@
         id="featured-providers"
       >
 
-        <!-- Providers loaded by app.js -->
+        <p>Loading local providers…</p>
 
       </div>
 
@@ -728,9 +529,6 @@
         <div class="home-cta-copy">
 
 
-          <div class="eyebrow">
-            HELP BUILD THE DIRECTORY
-          </div>
 
 
           <h2>
@@ -781,7 +579,7 @@
 
 
 
-<script src="js/app.js?v=5"></script>
+<script src="js/app.js?v=6"></script>
 
 
 </body>
